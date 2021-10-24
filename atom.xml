@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jackylvm.github.io</id>
     <title>Gridea</title>
-    <updated>2021-10-24T14:59:32.316Z</updated>
+    <updated>2021-10-24T15:01:45.202Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jackylvm.github.io"/>
     <link rel="self" href="https://jackylvm.github.io/atom.xml"/>
@@ -10,6 +10,22 @@
     <logo>https://jackylvm.github.io/images/avatar.png</logo>
     <icon>https://jackylvm.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[关于]]></title>
+        <id>https://jackylvm.github.io/post/about/</id>
+        <link href="https://jackylvm.github.io/post/about/">
+        </link>
+        <updated>2021-10-24T15:01:22.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+</blockquote>
+<h2 id="关于本站">🏠 关于本站</h2>
+<p>这是一个记录自己工作中经常使用的东西的地方,年纪大了一点,很多东西容易忘记!</p>
+<h2 id="博主是谁">👨‍💻 博主是谁</h2>
+<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
+<h2 id="联系我呀">📬 联系我呀</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://jackylvm.github.io/post/hello-gridea/</id>
