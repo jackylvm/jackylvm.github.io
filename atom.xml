@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jackylvm.github.io</id>
     <title>为了部落!</title>
-    <updated>2021-10-25T13:54:34.954Z</updated>
+    <updated>2021-10-25T14:40:24.384Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jackylvm.github.io"/>
     <link rel="self" href="https://jackylvm.github.io/atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://jackylvm.github.io/images/avatar.png</logo>
     <icon>https://jackylvm.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 为了部落!</rights>
+    <entry>
+        <title type="html"><![CDATA[各种Python有用的库]]></title>
+        <id>https://jackylvm.github.io/post/0x01_python/</id>
+        <link href="https://jackylvm.github.io/post/0x01_python/">
+        </link>
+        <updated>2021-10-25T13:55:29.000Z</updated>
+        <content type="html"><![CDATA[<p>介绍有用的Python库</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[关于]]></title>
         <id>https://jackylvm.github.io/post/about/</id>
