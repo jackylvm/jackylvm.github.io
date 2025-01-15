@@ -1,0 +1,258 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity项目结构 | 为了部落!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1736949705433">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            为了部落!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1736949705433" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity项目结构
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-01-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/GbsLkWbrXvQ/" class="post-tags">
+                            # 项目结构
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>开发中,好的项目结构可以起到事半功倍的作用.<br>
+经过很多项目的洗礼,总结了一下自己常用的项目结构</p>
+<pre><code class="language-bash">    Assets/
+    ├── _Project/                   # 项目特定的内容
+    │   ├── Scripts/                # 脚本
+    │   │   ├── Managers/           # 管理器类（如GameManager、UIManager等）
+    │   │   ├── Systems/            # 系统逻辑模块（如战斗系统、任务系统等）
+    │   │   ├── Utilities/          # 工具类和通用代码
+    │   │   └── [FeatureName]/      # 按功能划分的子目录
+    │   ├── Art/                    # 美术资源
+    │   │   ├── Textures/           # 纹理
+    │   │   ├── Materials/          # 材质
+    │   │   ├── Models/             # 3D模型
+    │   │   └── Animations/         # 动画
+    │   ├── Audio/                  # 音频资源
+    │   │   ├── Music/              # 背景音乐
+    │   │   ├── SFX/                # 声效
+    │   │   └── Voices/             # 配音
+    │   ├── Prefabs/                # 预制件
+    │   │   ├── Characters/         # 角色预制件
+    │   │   ├── Environments/       # 场景环境预制件
+    │   │   └── UI/                 # UI预制件
+    │   ├── Scenes/                 # 场景
+    │   │   ├── MainMenu.unity      # 主菜单场景
+    │   │   ├── Level01.unity       # 第一关
+    │   │   └── [OtherScenes]/      # 其他场景
+    │   ├── UI/                     # UI相关资源
+    │   │   ├── Sprites/            # UI精灵
+    │   │   ├── Fonts/              # 字体
+    │   │   └── [UIFeature]/        # 按功能分类的UI资源
+    │   ├── Plugins/                # 插件和外部工具
+    │   ├── Resources/              # Resources加载的资源
+    │   ├── StreamingAssets/        # 流媒体资源
+    │   └── Tests/                  # 测试文件
+    │       ├── PlayMode/           # 游戏运行模式测试
+    │       └── EditMode/           # 编辑器模式测试
+    ├── ExternalAssets/             # 外部导入的资产
+    ├── Editor/                     # 编辑器工具和自定义Inspector
+    └── ThirdParty/                 # 第三方库和插件
+</code></pre>
+<hr>
+<h2 id="详细说明">详细说明</h2>
+<ol>
+<li>
+<p>脚本组织 (Scripts)</p>
+<ul>
+<li>按功能划分：将脚本按具体功能（如管理器、系统逻辑等）划分目录，方便定位。</li>
+<li>工具类 (Utilities)：放置一些与具体功能无关的工具类，比如日志工具、数学工具等。</li>
+</ul>
+</li>
+<li>
+<p>资源分类 (Art/Audio/Prefabs)</p>
+<ul>
+<li>资源按照类型和用途组织，保持整洁。</li>
+<li>使用一致的命名规则，比如：[用途]_[描述]（如UI_HealthBar.prefab）。</li>
+</ul>
+</li>
+<li>
+<p>场景管理 (Scenes)</p>
+<ul>
+<li>主场景放在一个单独的文件夹中，便于快速访问。</li>
+<li>命名规则清晰（如Level01.unity），可快速区分关卡。</li>
+</ul>
+</li>
+<li>
+<p>插件和第三方库</p>
+<ul>
+<li>将插件放在单独的Plugins或ThirdParty目录中，避免与项目代码混淆。</li>
+</ul>
+</li>
+<li>
+<p>UI资源</p>
+<ul>
+<li>使用单独的目录存放UI相关资源（如Sprites、Fonts等）。</li>
+<li>如果UI逻辑较复杂，可进一步细分为模块或页面。</li>
+</ul>
+</li>
+<li>
+<p>测试</p>
+<ul>
+<li>包含测试脚本，用于编辑器模式或游戏运行模式的单元测试和集成测试。</li>
+</ul>
+</li>
+<li>
+<p>自定义Editor工具</p>
+<ul>
+<li>如果开发自定义的Inspector或工具，放在Editor目录下以保持清晰的结构。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="命名规范">命名规范</h2>
+<ul>
+<li>文件夹命名：单词首字母大写，采用驼峰命名法，如GameManager、UIElements。</li>
+<li>资源命名：统一前缀和功能描述，如Player_Model.fbx、BGM_MainTheme.mp3。</li>
+<li>脚本命名：采用单一职责原则，命名与其功能一致。</li>
+</ul>
+<hr>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>保持简洁：避免不必要的目录嵌套。</li>
+<li>版本控制友好：尽量减少动态生成的文件在版本控制中的频繁变更。</li>
+<li>使用工具：可以结合Unity的Addressables和自动化脚本，优化资源管理。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/freessl-mian-fei-zheng-shu-zi-dong-hua-guan-li/" class="post-title gt-a-link">
+                    Freessl免费证书自动化管理
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

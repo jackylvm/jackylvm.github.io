@@ -1,0 +1,295 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>MySQL操作语句 | 为了部落!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1736949705433">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            为了部落!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1736949705433" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    MySQL操作语句
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2017-06-06 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/-8-XXrHLTq/" class="post-tags">
+                            # 数据库
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jp5Qr-aEeWY/" class="post-tags">
+                            # MySQL
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>最近一段时间经常需要操作MySQL数据,把一些操作语句记录下来</p>
+<blockquote>
+<ol>
+<li>#db#是数据库名称</li>
+<li>#table#是数据表名称</li>
+<li>#field#是数据表里的字段名称</li>
+<li>有些语句最后加上**/G**可以使结果更美观</li>
+</ol>
+</blockquote>
+<h2 id="数据库相关">数据库相关</h2>
+<h3 id="创建数据库修改数据库">创建数据库,修改数据库</h3>
+<pre><code class="language-mysql">create database #db#; 使用默认设置
+create database #db# default character set &quot;utf8&quot;;指定编码
+show databases; #查看所有数据库
+show create database #db#; 查看数据库信息
+alter database #db# default character set #code# collate #cc#;修改数据编码
+drop database #db#;删除数据库
+create database #db# default character set utf8 collate utf8_general_ci; #完整的建库语句
+use #db#;使用数据库
+</code></pre>
+<h3 id="数据库权限">数据库权限</h3>
+<pre><code class="language-mysql">grant #privileges# on #db#.#table# to #user#@'#host#' identified by #passwd#&quot; with grant option;
+1. #privileges# 指权限; ALL PRIVILEGES是表示所有权限,可以使用select,update等权限.
+2. ON 用来指定权限针对哪些库和表.
+3. #db#.#table# 数据库和表;*.*指所有数据库的所有表
+4. TO 表示将权限赋予某个用户.
+5. #user#@'#host#' 指定用户和主机;@后面接限制的主机,可以是IP,IP段,域名以及%,%表示任何地方.
+    - 注意：这里%有的版本不包括本地,以前碰到过给某个用户设置了%允许任何地方登录,但是在本地登录不了,这个和版本有关系,遇到这个问题再加一个localhost的用户就可以了.
+6. IDENTIFIED BY 指定用户的登录密码.
+7. WITH GRANT OPTION 这个选项表示该用户可以将自己拥有的权限授权给别人.
+    - 注意：经常有人在创建操作用户的时候不指定WITH GRANT OPTION选项导致后来该用户不能使用GRANT命令创建用户或者给其它用户授权.
+
+刷新权限
+flush privileges;
+
+查询权限
+show grants;
+show grants for #user#@'#host#';
+
+回收权限
+revoke delete on *.* from #user#@'#host#';
+
+修改密码
+SET PASSWORD FOR #user#@'#host#' = PASSWORD('#passwd#');
+update user set PASSWORD = PASSWORD('#passwd#') where user = #user#;
+</code></pre>
+<h2 id="数据表相关">数据表相关</h2>
+<h3 id="对数据库里面的表做相关的操作">对数据库里面的表做相关的操作</h3>
+<h4 id="创建表">创建表</h4>
+<pre><code class="language-mysql">create table #table#(
+    #field1# 数据类型 [完整性约束条件],
+    ...
+    #field*# 数据类型,
+    [UNIQUE|FULLTEXT|SPATIAL] INDEX|KEY
+)ENGINE=[MyISAM|INODB|...];
+</code></pre>
+<h4 id="查看数据表">查看数据表</h4>
+<pre><code class="language-mysql">show tables;查看数据库下面的所有表
+
+查看数据表信息
+desc #table#
+show create table #table#;
+show columns from #table#;
+</code></pre>
+<h4 id="修改数据表">修改数据表</h4>
+<pre><code class="language-mysql">alter table #table_src# rename #table_dest#;修改表名
+    #table_src#为原来数据表的名称,而#table_dest#为新的数据表名称.
+alter table #table# change #field_src# #field_dest#;修改字段名
+alter table #table# modify #field# int(20);修改字段的数据类型
+alter table #table# add #field# int;增加字段
+alter table #table# drop #field#;删除字段
+
+drop table #table#;删除表
+truncate table #table#;清空表
+</code></pre>
+<h4 id="索引相关">索引相关</h4>
+<pre><code class="language-mysql">创建索引
+    创建普通索引
+    create index #index_name# on #table#(#field#);
+    alter table #table# add index #index_name#(#field#);
+    创建唯一性索引
+    create unique index #index_name# on #table#(#field#);
+    alter table #table# add unique #index_name#(#field#);
+删除索引
+alter table #table# drop index #index_name#;
+drop index #index_name# on #table#;
+</code></pre>
+<h4 id="数据表里面的数据的操作">数据表里面的数据的操作</h4>
+<pre><code class="language-mysql">添加数据
+insert into #table#(#field1#,#field2#,...) values(#value1#,#value2#,...);
+insert into #table# values(#value1#,#value2#,...);
+insert into #table# set #field1#=#value1#,#field2#=#value2#,...;
+insert into #table# values(#value1#,#value2#,...),(#value1#,#value2#,...),...;
+
+查询数据
+select * from #table#;
+select * from #table# limit #count#;
+select * from #table# limit #start#,#count#;
+select * from #table# where #field#=#value#;
+select #field1#,#field2#,... from #table# where #field#=#value#;
+    %：代表0个、1个或者多个任意字符
+    _：代表1个任意字符
+select * from #table# where #field# like &quot;%|_&quot;;
+select * from #table# group by #field#;分组
+select #field1#,#field2#,...,group_concat(#field#) from #table# group by #field#;
+select #field1#,group_concat(#field#) as #variable1#,
+                   count(*) as #variable2#,
+                   max(#field#) as #variable3#,
+                   sum(#field#) as #variable4#
+    from #table# group by #field# having count(*) &gt; 2;
+select * from #src# order by #field# desc; #降序
+select * from #src# order by #field# asc; #升序
+
+更新数据
+update #table# set #field#=#value# where #field#=#value#;
+
+删除数据
+delete from #table# where #field#=#value#;
+</code></pre>
+<h2 id="备份">备份</h2>
+<pre><code class="language-msyql">备份数据库到文件
+mysqldump -uroot -p #db# &gt; #path#/#file#.sql
+创建一个新的数据库
+mysql -uroot -p -e &quot;create database #db#&quot;
+导入数据到新的数据库
+mysql -uroot -p #db# &lt; #path#/#file#.sql
+        
+查看数据库历史命令
+cat /root/.mysql_history
+
+远程登陆数据库并查询
+mysql -uroot -proot -h 127.0.0.1 -P 3306 -e &quot;select * from #db#.#table# limit 2;&quot;
+        
+查看数据表的详细信息
+show table status like '#table#';
+
+导出数据库的一个数据表
+mysqldump #db#.#table# &gt; #path#/#file#.sql
+
+将数据表导入数据库
+mysql #db# &lt; #path#/#file#.sql
+需要注意的是,导入的数据表名称为导出时候,数据表在源数据库中的名称,
+因此保证在源数据库中的名称和新数据库中表名称不会重复,否则会发生数据覆盖.
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

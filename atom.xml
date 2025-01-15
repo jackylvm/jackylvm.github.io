@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://jackylvm.github.io</id>
+    <title>为了部落!</title>
+    <updated>2025-01-15T14:01:47.593Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://jackylvm.github.io"/>
+    <link rel="self" href="https://jackylvm.github.io/atom.xml"/>
+    <subtitle>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</subtitle>
+    <logo>https://jackylvm.github.io/images/avatar.png</logo>
+    <icon>https://jackylvm.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2025, 为了部落!</rights>
+    <entry>
+        <title type="html"><![CDATA[Unity项目结构]]></title>
+        <id>https://jackylvm.github.io/post/unity-xiang-mu-jie-gou/</id>
+        <link href="https://jackylvm.github.io/post/unity-xiang-mu-jie-gou/">
+        </link>
+        <updated>2025-01-14T06:53:58.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Freessl免费证书自动化管理]]></title>
+        <id>https://jackylvm.github.io/post/freessl-mian-fei-zheng-shu-zi-dong-hua-guan-li/</id>
+        <link href="https://jackylvm.github.io/post/freessl-mian-fei-zheng-shu-zi-dong-hua-guan-li/">
+        </link>
+        <updated>2025-01-10T12:30:42.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[关于作者]]></title>
+        <id>https://jackylvm.github.io/post/about/</id>
+        <link href="https://jackylvm.github.io/post/about/">
+        </link>
+        <updated>2024-12-31T16:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[TCP/IP的七层结构]]></title>
+        <id>https://jackylvm.github.io/post/tcpip-de-qi-ceng-jie-gou/</id>
+        <link href="https://jackylvm.github.io/post/tcpip-de-qi-ceng-jie-gou/">
+        </link>
+        <updated>2022-05-03T12:12:39.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MySQL操作语句]]></title>
+        <id>https://jackylvm.github.io/post/mysql-cao-zuo-yu-ju/</id>
+        <link href="https://jackylvm.github.io/post/mysql-cao-zuo-yu-ju/">
+        </link>
+        <updated>2017-06-06T13:06:32.000Z</updated>
+    </entry>
+</feed>
