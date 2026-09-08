@@ -1,0 +1,461 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x09.Shader函数lerp | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x09.Shader函数lerp
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-06-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/60e52J_k-Hr/" class="post-tags">
+                            # 基础函数
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Shader 编程中，<strong><code>lerp</code></strong>（线性插值，Linear Interpolation）是一个核心函数，用于在两个值之间进行平滑过渡。它是实现颜色混合、渐变、动画过渡等效果的基础工具。</p>
+<hr>
+<h3 id="1-基本语法"><strong>1. 基本语法</strong></h3>
+<pre><code class="language-hlsl">float lerp(float a, float b, float t);
+float2 lerp(float2 a, float2 b, float2 t);
+float3 lerp(float3 a, float3 b, float3 t);
+// 其他向量类型同理
+</code></pre>
+<ul>
+<li><strong><code>a</code></strong>：起始值。</li>
+<li><strong><code>b</code></strong>：目标值。</li>
+<li><strong><code>t</code></strong>：插值因子（范围通常为 <code>[0, 1]</code>）。</li>
+<li><strong>返回值</strong>：<code>a</code> 和 <code>b</code> 之间的线性插值结果：<code>a * (1-t) + b * t</code>。</li>
+</ul>
+<h3 id="2-工作原理"><strong>2. 工作原理</strong></h3>
+<ul>
+<li>当 <strong><code>t = 0</code></strong> 时，返回 <strong><code>a</code></strong>。</li>
+<li>当 <strong><code>t = 1</code></strong> 时，返回 <strong><code>b</code></strong>。</li>
+<li>当 <strong><code>t = 0.5</code></strong> 时，返回 <strong><code>a</code> 和 <code>b</code> 的平均值</strong>。</li>
+<li><strong><code>t</code> 超出 <code>[0, 1]</code> 范围时</strong>：结果会向两侧外推（如 <code>t = 2</code> 时，返回 <code>2b - a</code>）。</li>
+</ul>
+<h3 id="3-常见应用场景"><strong>3. 常见应用场景</strong></h3>
+<h4 id="31-颜色混合">3.1 <strong>颜色混合</strong></h4>
+<pre><code class="language-hlsl">fixed4 frag (v2f i) : SV_Target {
+    fixed4 colorA = fixed4(1, 0, 0, 1);  // 红色
+    fixed4 colorB = fixed4(0, 0, 1, 1);  // 蓝色
+    float t = i.uv.x;  // 水平方向插值因子
+    
+    fixed4 finalColor = lerp(colorA, colorB, t);
+    return finalColor;  // 从左到右红→蓝渐变
+}
+</code></pre>
+<h4 id="32-基于距离的混合">3.2 <strong>基于距离的混合</strong></h4>
+<pre><code class="language-hlsl">float2 center = float2(0.5, 0.5);
+float dist = distance(i.uv, center);  // 到中心的距离
+float t = smoothstep(0.2, 0.8, dist);  // 平滑过渡
+
+fixed4 col = lerp(_ColorA, _ColorB, t);  // 基于距离混合颜色
+</code></pre>
+<h4 id="33-基于时间的动画">3.3 <strong>基于时间的动画</strong></h4>
+<pre><code class="language-hlsl">float t = frac(_Time.y);  // 0~1 循环的时间因子
+fixed4 col = lerp(_ColorA, _ColorB, t);  // 颜色随时间变化
+</code></pre>
+<h4 id="34-透明度混合">3.4 <strong>透明度混合</strong></h4>
+<pre><code class="language-hlsl">fixed4 baseColor = tex2D(_MainTex, i.uv);
+fixed4 overlayColor = tex2D(_OverlayTex, i.uv);
+fixed4 finalColor = lerp(baseColor, overlayColor, overlayColor.a);  // 基于透明度混合
+</code></pre>
+<h3 id="4-变体函数"><strong>4. 变体函数</strong></h3>
+<h4 id="41-smoothstep">4.1 <strong><code>smoothstep</code></strong></h4>
+<p>实现平滑的 S 形插值（而非线性）：</p>
+<pre><code class="language-hlsl">float smoothstep(float edge0, float edge1, float x);
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：创建自然过渡效果（如光晕、边缘淡化）。</li>
+</ul>
+<h4 id="42-mix">4.2 <strong><code>mix</code></strong></h4>
+<p>在某些 Shader 语言（如 GLSL）中，<code>mix</code> 等同于 <code>lerp</code>：</p>
+<pre><code class="language-hlsl">float mix(float a, float b, float t);
+</code></pre>
+<h3 id="5-性能注意事项"><strong>5. 性能注意事项</strong></h3>
+<ul>
+<li><strong>计算效率</strong>：<code>lerp</code> 是轻量级操作，直接对应硬件指令。</li>
+<li><strong>优化技巧</strong>：若多次使用相同的 <code>t</code>，可预计算 <code>(1-t)</code> 和 <code>t</code> 以减少乘法运算。</li>
+</ul>
+<h3 id="6-与其他函数组合"><strong>6. 与其他函数组合</strong></h3>
+<h4 id="61-结合-clamp-限制插值范围">6.1 <strong>结合 <code>clamp</code> 限制插值范围</strong></h4>
+<pre><code class="language-hlsl">float t = someValue;
+t = clamp(t, 0.0, 1.0);  // 确保 t 在 [0,1] 内
+fixed4 col = lerp(_ColorA, _ColorB, t);
+</code></pre>
+<h4 id="62-多阶段插值">6.2 <strong>多阶段插值</strong></h4>
+<pre><code class="language-hlsl">// 三阶段插值：红→绿→蓝
+float t = frac(_Time.y);  // 0~1 循环
+fixed4 col;
+if (t &lt; 0.5) {
+    col = lerp(_Red, _Green, t * 2);  // 0~0.5: 红→绿
+} else {
+    col = lerp(_Green, _Blue, (t - 0.5) * 2);  // 0.5~1: 绿→蓝
+}
+</code></pre>
+<h3 id="总结"><strong>总结</strong></h3>
+<p><code>lerp</code> 是 Shader 中最基础的数学函数之一，通过组合不同的插值因子（如时间、距离、法线），你可以实现：</p>
+<ul>
+<li>颜色渐变与混合</li>
+<li>基于条件的效果切换</li>
+<li>动画过渡</li>
+<li>透明度与遮罩</li>
+<li>程序化纹理生成</li>
+</ul>
+<hr>
+<p>在 Shader 编程中，除了基础的 <strong><code>lerp</code></strong>（线性插值）外，还有许多其他插值函数用于实现更复杂、更自然的过渡效果。以下是一些常用的插值函数及其应用场景：</p>
+<h3 id="1-smoothstep平滑插值"><strong>1. <code>smoothstep</code>（平滑插值）</strong></h3>
+<p>实现 S 形曲线插值，在两端变化缓慢，中间变化快速：</p>
+<pre><code class="language-hlsl">float smoothstep(float edge0, float edge1, float x);
+</code></pre>
+<ul>
+<li><strong>原理</strong>：当 <code>x ≤ edge0</code> 返回 0，当 <code>x ≥ edge1</code> 返回 1，中间使用 <code>3t²-2t³</code> 多项式（其中 <code>t</code> 是归一化的 <code>x</code>）。</li>
+<li><strong>应用场景</strong>：边缘淡化、光晕效果、自然过渡。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-hlsl">float t = smoothstep(0.2, 0.8, i.uv.x);  // 水平方向平滑过渡
+fixed4 col = lerp(_ColorA, _ColorB, t);  // 应用平滑插值
+</code></pre>
+<h3 id="2-step阶跃函数"><strong>2. <code>step</code>（阶跃函数）</strong></h3>
+<p>简单的二元阶跃函数，用于创建硬边界：</p>
+<pre><code class="language-hlsl">float step(float edge, float x);
+</code></pre>
+<ul>
+<li><strong>原理</strong>：当 <code>x &lt; edge</code> 返回 0，否则返回 1。</li>
+<li><strong>应用场景</strong>：阈值判断、棋盘格图案。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-hlsl">float grid = step(0.5, fract(i.uv.x * 10)) * step(0.5, fract(i.uv.y * 10));
+fixed4 col = lerp(_ColorA, _ColorB, grid);  // 创建棋盘格
+</code></pre>
+<h3 id="3-pow幂函数插值"><strong>3. <code>pow</code>（幂函数插值）</strong></h3>
+<p>使用幂函数调整插值曲线的形状：</p>
+<pre><code class="language-hlsl">float pow(float x, float y);
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：创建加速或减速效果（如 <code>pow(t, 2)</code> 加速，<code>pow(t, 0.5)</code> 减速）。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-hlsl">float t = _Time.y * 0.5;  // 时间因子
+float easedT = pow(t, 2);  // 加速插值
+fixed4 col = lerp(_ColorA, _ColorB, easedT);
+</code></pre>
+<h3 id="4-saturate范围限制"><strong>4. <code>saturate</code>（范围限制）</strong></h3>
+<p>将值限制在 <code>[0, 1]</code> 范围内，常用于避免插值溢出：</p>
+<pre><code class="language-hlsl">float saturate(float x);
+</code></pre>
+<ul>
+<li><strong>等价于</strong>：<code>clamp(x, 0.0, 1.0)</code>。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-hlsl">float t = sin(_Time.y) * 2.0;  // 范围 [-2, 2]
+t = saturate(t);  // 限制在 [0, 1]
+fixed4 col = lerp(_ColorA, _ColorB, t);
+</code></pre>
+<h3 id="5-smoothstep-的变体"><strong>5. <code>smoothstep</code> 的变体</strong></h3>
+<ul>
+<li><strong><code>smootherstep</code></strong>：比 <code>smoothstep</code> 更平滑的过渡，使用 <code>6t⁵-15t⁴+10t³</code> 多项式。</li>
+<li><strong>自定义平滑函数</strong>：<pre><code class="language-hlsl">float customSmooth(float t) {
+    return t * t * (3.0 - 2.0 * t);  // 类似 smoothstep 的自定义函数
+}
+</code></pre>
+</li>
+</ul>
+<h3 id="6-球形插值slerp"><strong>6. 球形插值（Slerp）</strong></h3>
+<p>用于向量的球面插值，保持向量长度不变：</p>
+<pre><code class="language-hlsl">float3 slerp(float3 a, float3 b, float t);
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：旋转动画、方向过渡。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-hlsl">float3 fromDir = float3(0, 0, 1);
+float3 toDir = float3(1, 0, 0);
+float3 finalDir = slerp(fromDir, toDir, _Time.y);
+</code></pre>
+<h3 id="7-贝塞尔曲线插值"><strong>7. 贝塞尔曲线插值</strong></h3>
+<p>实现非线性路径插值：</p>
+<pre><code class="language-hlsl">float bezier(float a, float b, float c, float d, float t) {
+    float u = 1 - t;
+    float tt = t * t;
+    float uu = u * u;
+    float uuu = uu * u;
+    float ttt = tt * t;
+    
+    return uuu * a + 3 * uu * t * b + 3 * u * tt * c + ttt * d;
+}
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：自定义动画曲线、复杂运动路径。</li>
+</ul>
+<h3 id="8-噪声函数如-perlin-simplex"><strong>8. 噪声函数（如 Perlin、Simplex）</strong></h3>
+<p>用于自然随机插值：</p>
+<pre><code class="language-hlsl">// Unity 内置噪声函数
+float noise(float2 p);
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：云朵、火焰、地形等自然效果。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-hlsl">float n = noise(i.uv * 10 + _Time.y);
+fixed4 col = lerp(_ColorA, _ColorB, n);  // 噪声驱动的颜色变化
+</code></pre>
+<h3 id="9-三次样条插值"><strong>9. 三次样条插值</strong></h3>
+<p>实现更平滑的多控制点插值：</p>
+<pre><code class="language-hlsl">float cubicSpline(float p0, float p1, float p2, float p3, float t) {
+    float a = -0.5 * p0 + 1.5 * p1 - 1.5 * p2 + 0.5 * p3;
+    float b = p0 - 2.5 * p1 + 2 * p2 - 0.5 * p3;
+    float c = -0.5 * p0 + 0.5 * p2;
+    float d = p1;
+    return a * t * t * t + b * t * t + c * t + d;
+}
+</code></pre>
+<ul>
+<li><strong>应用场景</strong>：多关键帧动画、平滑过渡。</li>
+</ul>
+<h3 id="10-自定义缓动函数"><strong>10. 自定义缓动函数</strong></h3>
+<p>通过数学函数创建特殊插值曲线：</p>
+<pre><code class="language-hlsl">// 弹性缓动
+float elasticOut(float t) {
+    return sin(13 * 3.14159 * t) * pow(2, -10 * t);
+}
+</code></pre>
+<h3 id="总结-2"><strong>总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>特点</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smoothstep</code></td>
+<td>S 形平滑过渡</td>
+<td>光晕、边缘淡化</td>
+</tr>
+<tr>
+<td><code>step</code></td>
+<td>硬边界阶跃</td>
+<td>阈值判断、棋盘格</td>
+</tr>
+<tr>
+<td><code>pow</code></td>
+<td>指数调整曲线</td>
+<td>加速/减速效果</td>
+</tr>
+<tr>
+<td><code>saturate</code></td>
+<td>范围限制</td>
+<td>防止插值溢出</td>
+</tr>
+<tr>
+<td><code>slerp</code></td>
+<td>球面插值</td>
+<td>向量方向过渡</td>
+</tr>
+<tr>
+<td>贝塞尔/样条</td>
+<td>多控制点插值</td>
+<td>复杂动画路径</td>
+</tr>
+<tr>
+<td>噪声函数</td>
+<td>随机自然插值</td>
+<td>自然效果（云、火）</td>
+</tr>
+</tbody>
+</table>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x08shader-han-shu-tex2d/" class="post-title gt-a-link">
+                    0x08.Shader函数tex2D
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

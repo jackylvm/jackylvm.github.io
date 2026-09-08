@@ -1,0 +1,312 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity 的Application类 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity 的Application类
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Unity的<code>Application</code>类提供了许多静态属性和方法，用于访问应用程序的运行时信息和控制应用程序的行为。以下是其主要静态属性和方法的分析：</p>
+<h3 id="一-常用静态属性">一、常用静态属性</h3>
+<ol>
+<li>
+<p><strong>基础信息属性</strong></p>
+<ul>
+<li><code>applicationIdentifier</code>：获取应用的唯一标识符（如Android的包名、iOS的Bundle ID）</li>
+<li><code>version</code>：应用版本号（在Player Settings中设置）</li>
+<li><code>companyName</code>：公司名称（在Player Settings中设置）</li>
+<li><code>productName</code>：产品名称（在Player Settings中设置）</li>
+</ul>
+</li>
+<li>
+<p><strong>运行状态属性</strong></p>
+<ul>
+<li><code>isEditor</code>：判断当前是否在Unity编辑器中运行</li>
+<li><code>isPlaying</code>：判断当前是否在播放模式（编辑器中）或运行状态（真机上）</li>
+<li><code>isFocused</code>：判断应用是否处于焦点状态</li>
+<li><code>runInBackground</code>：设置应用在后台是否继续运行</li>
+</ul>
+</li>
+<li>
+<p><strong>路径属性</strong></p>
+<ul>
+<li><code>dataPath</code>：应用程序数据目录的路径（只读）</li>
+<li><code>persistentDataPath</code>：持久化数据存储路径（可读写，适合保存用户数据）</li>
+<li><code>temporaryCachePath</code>：临时缓存路径（可读写，适合临时文件）</li>
+<li><code>streamingAssetsPath</code>：StreamingAssets文件夹的路径（只读）</li>
+</ul>
+</li>
+<li>
+<p><strong>平台相关属性</strong></p>
+<ul>
+<li><code>platform</code>：返回当前运行的平台（<code>RuntimePlatform</code>枚举）</li>
+<li><code>installMode</code>：返回应用的安装模式（<code>ApplicationInstallMode</code>枚举）</li>
+</ul>
+</li>
+</ol>
+<h3 id="二-常用静态方法">二、常用静态方法</h3>
+<ol>
+<li>
+<p><strong>应用控制方法</strong></p>
+<ul>
+<li><code>Quit()</code>：退出应用程序（在编辑器中无效）</li>
+<li><code>OpenURL(string url)</code>：打开指定的URL（可以是网页链接或本地文件路径）</li>
+<li><code>LoadLevel(string/int nameOrIndex)</code>：加载指定场景（旧版方法，建议使用SceneManager）</li>
+<li><code>LoadLevelAdditive(string/int nameOrIndex)</code>： additive方式加载场景（旧版方法）</li>
+</ul>
+</li>
+<li>
+<p><strong>数据管理方法</strong></p>
+<ul>
+<li><code>ExternalCall(string functionName, params object[] args)</code>：调用网页中的JavaScript函数（仅WebPlayer有效）</li>
+<li><code>CanStreamedLevelBeLoaded(int levelIndex)</code>：检查指定场景是否可以被加载</li>
+<li><code>GetStreamProgressForLevel(int levelIndex)</code>：获取场景的流式加载进度</li>
+</ul>
+</li>
+<li>
+<p><strong>网络相关方法</strong></p>
+<ul>
+<li><code>GetUserID()</code>：获取当前用户的唯一标识符</li>
+<li><code>RegisterLogCallback(Application.LogCallback callback)</code>：注册日志回调函数</li>
+</ul>
+</li>
+</ol>
+<h3 id="三-使用示例">三、使用示例</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class AppInfo : MonoBehaviour
+{
+    void Start()
+    {
+        // 输出应用信息
+        Debug.Log(&quot;应用版本: &quot; + Application.version);
+        Debug.Log(&quot;数据路径: &quot; + Application.dataPath);
+        Debug.Log(&quot;是否在编辑器中: &quot; + Application.isEditor);
+        
+        // 如果在移动设备上，退出按钮逻辑
+        if (Application.platform == RuntimePlatform.Android || 
+            Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            // 可以在这里添加退出确认逻辑
+        }
+    }
+    
+    public void ExitApp()
+    {
+        // 退出应用
+        Application.Quit();
+    }
+    
+    public void OpenWebsite()
+    {
+        // 打开网页
+        Application.OpenURL(&quot;https://unity.com&quot;);
+    }
+}
+</code></pre>
+<h3 id="四-注意事项">四、注意事项</h3>
+<ol>
+<li>部分属性和方法具有平台特异性，使用时需进行平台判断</li>
+<li><code>Quit()</code>方法在编辑器中无效，需在真机上测试</li>
+<li>路径相关属性在不同平台上返回的值有所不同，跨平台开发时需特别注意</li>
+<li>场景加载推荐使用<code>SceneManager</code>类（Unity 5.3+）替代旧版的<code>Application</code>加载方法</li>
+</ol>
+<p>通过<code>Application</code>类，开发者可以方便地获取应用信息、控制应用生命周期和管理文件路径，是Unity开发中非常重要的一个工具类。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/jia-ma-se-cai-kong-jian-he-xian-xing-se-cai-kong-jian/" class="post-title gt-a-link">
+                    伽马色彩空间和线性色彩空间
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

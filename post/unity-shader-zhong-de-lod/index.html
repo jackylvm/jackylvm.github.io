@@ -1,0 +1,371 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity Shader中的LOD | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity Shader中的LOD
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-05-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Unity Shader中，<strong>LOD</strong>（Level of Detail）是一个用于控制Shader复杂度和性能的重要机制。通过设置LOD值，你可以根据设备性能或场景需求，在运行时动态选择使用不同复杂度的SubShader，从而平衡渲染质量和性能。以下是其作用、用法和最佳实践：</p>
+<hr>
+<h3 id="lod的作用"><strong>LOD的作用</strong></h3>
+<ol>
+<li>
+<p><strong>性能优化</strong><br>
+在低端设备上使用简化的SubShader，降低GPU负载。</p>
+</li>
+<li>
+<p><strong>动态质量调整</strong><br>
+根据游戏运行时的性能表现（如帧率），动态切换Shader复杂度。</p>
+</li>
+<li>
+<p><strong>资源管理</strong><br>
+为不同质量级别定义特定的渲染逻辑，避免不必要的计算。</p>
+</li>
+</ol>
+<h3 id="语法与设置"><strong>语法与设置</strong></h3>
+<h4 id="1-为subshader设置lod值"><strong>1. 为SubShader设置LOD值</strong></h4>
+<p>每个SubShader可以通过<code>LOD</code>指令指定一个整数值：</p>
+<pre><code class="language-hlsl">SubShader {
+    LOD 300 // 指定此SubShader的LOD值为300
+    // 渲染代码
+}
+</code></pre>
+<h4 id="2-全局lod阈值控制"><strong>2. 全局LOD阈值控制</strong></h4>
+<p>在C#脚本中，可以设置全局LOD阈值，影响所有Shader的SubShader选择：</p>
+<pre><code class="language-csharp">// 设置全局LOD阈值为200
+Shader.globalMaximumLOD = 200;
+</code></pre>
+<h3 id="lod值的选择规则"><strong>LOD值的选择规则</strong></h3>
+<p>Unity会选择LOD值<strong>小于或等于</strong>全局阈值的<strong>最高</strong>SubShader：</p>
+<ul>
+<li>若<code>globalMaximumLOD = 200</code>，则只有LOD≤200的SubShader会被考虑。</li>
+<li>若存在多个符合条件的SubShader，Unity会选择LOD值最高的一个。</li>
+</ul>
+<h3 id="常见lod值约定"><strong>常见LOD值约定</strong></h3>
+<p>Unity没有严格规定LOD值的范围，但通常遵循以下约定：</p>
+<table>
+<thead>
+<tr>
+<th>LOD值</th>
+<th>复杂度描述</th>
+<th>典型应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>最低复杂度</td>
+<td>移动设备基础渲染（如顶点颜色）</td>
+</tr>
+<tr>
+<td>200</td>
+<td>中等复杂度</td>
+<td>基础纹理+光照（如Diffuse Shader）</td>
+</tr>
+<tr>
+<td>300</td>
+<td>较高复杂度</td>
+<td>法线贴图+高光（如Bumped Specular）</td>
+</tr>
+<tr>
+<td>400</td>
+<td>高复杂度</td>
+<td>复杂光照模型（如Standard Shader）</td>
+</tr>
+<tr>
+<td>500+</td>
+<td>最高复杂度（如次表面散射、SSR）</td>
+<td>高端PC/主机专用效果</td>
+</tr>
+</tbody>
+</table>
+<h3 id="示例根据lod切换subshader"><strong>示例：根据LOD切换SubShader</strong></h3>
+<pre><code class="language-hlsl">Shader &quot;Custom/LODShader&quot; {
+    // 最高质量SubShader（LOD 400）
+    SubShader {
+        LOD 400
+        Tags { &quot;RenderType&quot; = &quot;Opaque&quot; }
+        Pass {
+            // 包含法线贴图、高光、反射的完整渲染
+        }
+    }
+    
+    // 中等质量SubShader（LOD 200）
+    SubShader {
+        LOD 200
+        Tags { &quot;RenderType&quot; = &quot;Opaque&quot; }
+        Pass {
+            // 简化渲染（无边纹理、无反射）
+        }
+    }
+    
+    // 最低质量SubShader（LOD 100）
+    SubShader {
+        LOD 100
+        Tags { &quot;RenderType&quot; = &quot;Opaque&quot; }
+        Pass {
+            // 仅基础颜色渲染
+        }
+    }
+}
+</code></pre>
+<h3 id="与其他lod系统的协同"><strong>与其他LOD系统的协同</strong></h3>
+<h4 id="1-模型lod与shader-lod结合"><strong>1. 模型LOD与Shader LOD结合</strong></h4>
+<p>Unity的模型LOD（Mesh LOD）系统可与Shader LOD配合使用：</p>
+<pre><code class="language-csharp">// 当模型切换到低精度LOD时，降低Shader复杂度
+void Update() {
+    if (currentModelLOD == 2) { // 低精度LOD
+        Shader.globalMaximumLOD = 150; // 使用简化Shader
+    } else {
+        Shader.globalMaximumLOD = 300; // 使用完整Shader
+    }
+}
+</code></pre>
+<h4 id="2-lod组lod-group"><strong>2. LOD组（LOD Group）</strong></h4>
+<p>通过LOD Group组件，可以为整个GameObject设置多级LOD，结合Shader LOD实现更精细的控制。</p>
+<h3 id="最佳实践"><strong>最佳实践</strong></h3>
+<ol>
+<li>
+<p><strong>合理分级</strong></p>
+<ul>
+<li>为每个SubShader设置明确的LOD值，避免值过于接近导致选择混乱。</li>
+<li>通常设置2-3级LOD即可满足大多数需求。</li>
+</ul>
+</li>
+<li>
+<p><strong>性能测试</strong></p>
+<ul>
+<li>使用Profiler分析不同LOD设置下的GPU耗时，确保性能提升明显。</li>
+</ul>
+</li>
+<li>
+<p><strong>渐进式简化</strong></p>
+<ul>
+<li>从高到低逐级简化SubShader：移除法线贴图→简化光照模型→移除纹理采样。</li>
+</ul>
+</li>
+<li>
+<p><strong>动态调整</strong><br>
+在脚本中根据设备性能或实时帧率动态调整<code>Shader.globalMaximumLOD</code>：</p>
+<pre><code class="language-csharp">// 根据帧率动态调整LOD
+if (Application.targetFrameRate - currentFrameRate &gt; 10) {
+    Shader.globalMaximumLOD -= 50; // 降低LOD
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="注意事项"><strong>注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>Shader顺序</strong><br>
+SubShader的顺序仍会影响选择（即使LOD值符合要求），建议将高LOD SubShader放在前面。</p>
+</li>
+<li>
+<p><strong>兼容性</strong><br>
+确保每个SubShader都能正确渲染，避免在低LOD下出现视觉错误。</p>
+</li>
+<li>
+<p><strong>移动设备优化</strong><br>
+移动平台建议默认LOD≤200，仅在高端设备使用更高值。</p>
+</li>
+</ol>
+<p>通过合理使用LOD机制，你可以在不同性能的设备上提供一致的游戏体验，同时最大化视觉质量。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-shader-biao-qian-tagsxuan-xiang/" class="post-title gt-a-link">
+                    Unity Shader标签(Tags)选项
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

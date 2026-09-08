@@ -1,0 +1,319 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>高动态范围颜色(HDR) | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    高动态范围颜色(HDR)
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-06-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 的 Shader 编写过程中，<strong>HDR（High Dynamic Range，高动态范围）颜色</strong> 是一个重要概念，主要用于在图像渲染过程中保留更丰富的光照信息，特别是在涉及到发光（Emission）、Bloom 等后期效果时。以下是关于 HDR 颜色在 Unity Shader 中的详细说明：</p>
+<hr>
+<h3 id="一-hdr颜色的作用">🌈 一、HDR颜色的作用</h3>
+<p>HDR颜色的核心优势是它能表达<strong>超出0-1范围的颜色值</strong>（例如 <code>(10, 2, 1)</code> 这样的 RGB 值），这些高亮度值不会被立即压缩，而是在后处理阶段（如Bloom）中用来模拟真实世界中光线溢出的视觉效果。</p>
+<p>在 Unity 中典型用途：</p>
+<ul>
+<li>用于 <strong>Emission（自发光）</strong> 属性。</li>
+<li>用于 <strong>体积光、激光、爆炸</strong>、魔法特效等高亮区域。</li>
+<li>与 <strong>后处理 Bloom</strong> 搭配使用，模拟光晕效果。</li>
+</ul>
+<hr>
+<h3 id="二-在-shader-中如何设置-hdr-颜色">🧪 二、在 Shader 中如何设置 HDR 颜色</h3>
+<h4 id="1-在-shader-property-中声明支持-hdr-的颜色hlsl-或-shaderlab">1. 在 Shader Property 中声明支持 HDR 的颜色（HLSL 或 ShaderLab）：</h4>
+<pre><code class="language-shaderlab">[HDR]_EmissionColor(&quot;Emission Color&quot;, Color) = (1,1,1,1)
+</code></pre>
+<p>这段代码：</p>
+<ul>
+<li><code>Color</code> 表示类型为颜色。</li>
+<li><code>[HDR]</code> 属性让该字段支持 HDR 范围（在材质 Inspector 面板中可看到更亮的颜色值）。</li>
+<li>默认值 <code>(1,1,1,1)</code> 是线性色空间下的白色。</li>
+</ul>
+<blockquote>
+<p>注意：Unity 的 <code>Standard Shader</code> 中，Emission 的颜色属性本身就是 HDR 的。</p>
+</blockquote>
+<hr>
+<h4 id="2-在代码中处理-hdr-颜色">2. 在代码中处理 HDR 颜色</h4>
+<p>当你在 Shader 中使用 <code>_EmissionColor</code> 时，比如：</p>
+<pre><code class="language-hlsl">fixed3 emission = _EmissionColor.rgb;
+</code></pre>
+<p>你可以把这个颜色乘以一个强度因子以放大效果（如 10 或更高）：</p>
+<pre><code class="language-hlsl">fixed3 emission = _EmissionColor.rgb * 10.0;
+</code></pre>
+<p>这个值最终会被输出到 emissive 通道中：</p>
+<pre><code class="language-hlsl">return fixed4(emission, 1.0);
+</code></pre>
+<p>Unity 在开启后处理的前提下，会用 Bloom 等效果将这种高亮颜色做特效处理。</p>
+<hr>
+<h3 id="三-hdr颜色需要注意的问题">🔍 三、HDR颜色需要注意的问题</h3>
+<ol>
+<li><strong>后处理Bloom必须开启</strong>：HDR颜色的溢出效果只有在摄像机开启了 Bloom 才能被看到。</li>
+<li><strong>使用 HDR RenderTexture</strong>：在渲染路径中（如 Forward 或 Deferred），相机输出目标应为 HDR 否则会裁切颜色范围。</li>
+<li><strong>线性空间更真实</strong>：在项目设置中启用“Color Space: Linear”可以更真实地处理 HDR 光照。</li>
+</ol>
+<hr>
+<h3 id="四-实际例子实现一个-hdr-自发光材质">✅ 四、实际例子：实现一个 HDR 自发光材质</h3>
+<pre><code class="language-shaderlab">Shader &quot;Custom/HDR_Emission&quot;
+{
+    Properties
+    {
+        [HDR]_EmissionColor(&quot;Emission Color&quot;, Color) = (1,1,1,1)
+    }
+    SubShader
+    {
+        Tags { &quot;RenderType&quot;=&quot;Opaque&quot; }
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            fixed4 _EmissionColor;
+
+            struct appdata {
+                float4 vertex : POSITION;
+            };
+
+            struct v2f {
+                float4 pos : SV_POSITION;
+            };
+
+            v2f vert (appdata v) {
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                return o;
+            }
+
+            fixed4 frag (v2f i) : SV_Target {
+                return _EmissionColor; // HDR 颜色直接输出
+            }
+            ENDCG
+        }
+    }
+}
+</code></pre>
+<p>搭配 Bloom 后处理组件，你会看到颜色值越大，发光越明显。</p>
+<hr>
+<h3 id="总结">📌 总结</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HDR颜色意义</td>
+<td>表示大于 1 的亮度值，适合表达强光或发光区域</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>Emission、自发光材质、特效、体积光</td>
+</tr>
+<tr>
+<td>Shader中标注</td>
+<td><code>[HDR]_Color(...)</code></td>
+</tr>
+<tr>
+<td>与 Bloom 搭配</td>
+<td>实现光晕、发光溢出等真实效果</td>
+</tr>
+<tr>
+<td>色彩空间推荐</td>
+<td>使用 Linear 色彩空间提升真实感</td>
+</tr>
+</tbody>
+</table>
+<p>如果你需要我提供完整的发光 Shader + Bloom 效果展示或完整项目范例，也可以告诉我。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/cde-listlesstgreaterde-yi-xie-shi-yong-de-fang-fa/" class="post-title gt-a-link">
+                    C#的List&lt;T&gt;的一些实用的方法
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

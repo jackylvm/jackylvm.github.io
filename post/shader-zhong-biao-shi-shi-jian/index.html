@@ -1,0 +1,329 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Shader中表示时间 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Shader中表示时间
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-06-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity Shader 中，时间通常用于实现动画、周期性变化或随时间演进的效果。Unity 提供了几种内置方式来表示时间，</p>
+<hr>
+<h3 id="1-内置时间变量"><strong>1. 内置时间变量</strong></h3>
+<p>Unity 在 <code>UnityCG.cginc</code> 中定义了几个全局时间变量：</p>
+<h4 id="_time"><code>_Time</code></h4>
+<p>四维向量，包含不同时间尺度：</p>
+<pre><code class="language-hlsl">float4 _Time;  // (t/20, t, t*2, t*3)
+// t = 自游戏开始的时间（秒）
+</code></pre>
+<ul>
+<li><code>_Time.x</code>：<code>t/20</code>（缓慢变化）</li>
+<li><code>_Time.y</code>：<code>t</code>（常用，直接表示时间）</li>
+<li><code>_Time.z</code>：<code>t*2</code>（两倍速）</li>
+<li><code>_Time.w</code>：<code>t*3</code>（三倍速）</li>
+</ul>
+<p><strong>应用场景</strong>：基础动画、周期性变化。</p>
+<h4 id="_sintime-和-_costime"><code>_SinTime</code> 和 <code>_CosTime</code></h4>
+<p>预计算的正弦和余弦时间值：</p>
+<pre><code class="language-hlsl">float4 _SinTime;  // (sin(t/8), sin(t/4), sin(t/2), sin(t))
+float4 _CosTime;  // (cos(t/8), cos(t/4), cos(t/2), cos(t))
+</code></pre>
+<p><strong>应用场景</strong>：无需手动计算三角函数的平滑动画。</p>
+<h3 id="2-使用示例"><strong>2. 使用示例</strong></h3>
+<h4 id="21-纹理滚动流动效果">2.1 <strong>纹理滚动（流动效果）</strong></h4>
+<pre><code class="language-hlsl">fixed4 frag (v2f i) : SV_Target {
+    // 随时间水平滚动纹理
+    float2 scrolledUV = i.uv + float2(_Time.y * 0.5, 0);
+    fixed4 col = tex2D(_MainTex, scrolledUV);
+    return col;
+}
+</code></pre>
+<h4 id="22-颜色脉动效果">2.2 <strong>颜色脉动效果</strong></h4>
+<pre><code class="language-hlsl">fixed4 frag (v2f i) : SV_Target {
+    // 使用 _SinTime.w 实现颜色周期性变化（范围：-1 到 1）
+    float pulse = (_SinTime.w + 1) * 0.5;  // 转换为 0 到 1
+    fixed4 baseCol = tex2D(_MainTex, i.uv);
+    return baseCol * pulse;  // 颜色强度随时间脉动
+}
+</code></pre>
+<h4 id="23-波纹效果">2.3 <strong>波纹效果</strong></h4>
+<pre><code class="language-hlsl">fixed4 frag (v2f i) : SV_Target {
+    // 计算到中心的距离
+    float2 center = float2(0.5, 0.5);
+    float dist = distance(i.uv, center);
+    
+    // 随时间变化的波纹
+    float wave = sin(dist * 20 - _Time.y * 5);
+    wave = saturate(wave * 0.5 + 0.5);  // 转换为 0 到 1
+    
+    fixed4 col = tex2D(_MainTex, i.uv);
+    return col * wave;  // 应用波纹效果
+}
+</code></pre>
+<h3 id="3-自定义时间变量"><strong>3. 自定义时间变量</strong></h3>
+<p>若需要更精确的控制（如独立于游戏时间的效果），可通过 C# 脚本向 Shader 传递时间值：</p>
+<h4 id="31-shader-代码">3.1 <strong>Shader 代码</strong></h4>
+<pre><code class="language-hlsl">// 在 Shader 中声明属性
+uniform float _CustomTime;
+
+fixed4 frag (v2f i) : SV_Target {
+    float animProgress = frac(_CustomTime);  // 0~1 循环
+    // 使用 animProgress 控制动画...
+}
+</code></pre>
+<h4 id="32-c-脚本">3.2 <strong>C# 脚本</strong></h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class TimeController : MonoBehaviour {
+    public Material targetMaterial;
+    private float customTime = 0f;
+
+    void Update() {
+        customTime += Time.deltaTime;
+        targetMaterial.SetFloat(&quot;_CustomTime&quot;, customTime);
+    }
+}
+</code></pre>
+<h3 id="4-注意事项"><strong>4. 注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>时间精度</strong>：</p>
+<ul>
+<li><code>_Time</code> 基于游戏时间，受暂停、减速等影响。</li>
+<li>若需要不受游戏控制的时间，可使用 <code>Time.realtimeSinceStartup</code> 通过脚本传递。</li>
+</ul>
+</li>
+<li>
+<p><strong>性能优化</strong>：</p>
+<ul>
+<li>避免在片元着色器中频繁计算三角函数，优先使用 <code>_SinTime</code> 和 <code>_CosTime</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>多 Pass 一致性</strong>：</p>
+<ul>
+<li>在多 Pass Shader 中，不同 Pass 的时间可能略有差异，如需一致性可手动缓存时间值。</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><strong>总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>优点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_Time.y</code></td>
+<td>简单易用，内置支持</td>
+<td>基础动画、周期性变化</td>
+</tr>
+<tr>
+<td><code>_SinTime</code></td>
+<td>预计算三角函数，性能优</td>
+<td>平滑波动效果</td>
+</tr>
+<tr>
+<td>脚本传递时间</td>
+<td>精确控制，独立于游戏时间</td>
+<td>特殊效果（如 UI 动画）</td>
+</tr>
+</tbody>
+</table>
+<p>通过合理使用时间变量，你可以实现纹理动画、颜色变化、物理模拟等多种动态效果。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x09shader-han-shu-lerp/" class="post-title gt-a-link">
+                    0x09.Shader函数lerp
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x01. 设计模式的历史背景 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x01. 设计模式的历史背景
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-12-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>我们来详细梳理23种设计模式的历史背景，这背后是面向对象编程发展的一段关键历程，脉络非常清晰，我们分 起源铺垫 → 核心诞生 → 传播普及 三个阶段来讲，帮你吃透来龙去脉。</p>
+<h3 id="一-诞生前的铺垫为什么会出现设计模式1960s-1980s">一、 诞生前的铺垫：为什么会出现“设计模式”？（1960s-1980s）</h3>
+<p>23种设计模式不是凭空创造，而是对<strong>多年面向对象编程实践的总结</strong>，背后是软件工程从“混乱开发”到“规范化开发”的刚需，核心铺垫有3个关键节点：</p>
+<ol>
+<li>
+<p>面向对象编程（OOP）思想落地，缺乏统一实践标准<br>
+1960s 面向对象思想萌芽（Smalltalk语言雏形），1970s Smalltalk-72/76 正式确立OOP核心概念（类、对象、继承、多态），1980s C++ 把OOP带入工业级开发，越来越多开发者用OOP写复杂系统。<br>
+但问题来了：大家写法五花八门，<strong>相同问题有不同解法，代码复用性、可维护性天差地别</strong>，比如“怎么保证一个类只有一个实例”“怎么灵活扩展对象功能”，没人总结最优解，新手踩坑无数。</p>
+</li>
+<li>
+<p>“模式”思想先在建筑领域生根，跨界启发软件工程<br>
+设计模式的“模式”（Pattern）一词，最早来自<strong>建筑领域</strong>：1977年，建筑大师克里斯托弗·亚历山大出版《建筑模式语言》，提出“建筑模式”—— 总结建筑中反复出现的问题+最优解决方案（比如“客厅采光模式”“街道宽度模式”），能被复用。<br>
+这个思想被软件工程界关注：软件开发中也有大量“反复出现的问题”，能不能像建筑一样，总结成“软件模式”？1987年起，软件工程界开始讨论“软件模式”，为后续23种模式打下思想基础。</p>
+</li>
+<li>
+<p>复杂软件系统爆发，倒逼“可复用设计”需求<br>
+1980s末-1990s初，软件规模从“小工具”升级为“大型复杂系统”（比如企业级软件、操作系统），<strong>“代码复用”“易扩展”“低耦合”成了核心痛点</strong>：修改一个模块牵一发而动全身，新功能开发要重写大量代码，维护成本极高。<br>
+开发者迫切需要一套“现成的设计套路”，解决这些共性问题，而不是每次都从零摸索。</p>
+</li>
+</ol>
+<h3 id="二-核心诞生23种设计模式的封神之作1990-1994">二、 核心诞生：23种设计模式的“封神之作”（1990-1994）</h3>
+<p>这是最关键的阶段，核心就是**“四人帮（Gang of Four, GoF）”的总结与成书**，23种设计模式正式定型。</p>
+<ol>
+<li>
+<p>核心人物：四人帮（GoF）<br>
+4位都是资深面向对象开发者，有丰富的大型系统开发经验，核心贡献是把分散的“设计套路”系统化、标准化：</p>
+<ul>
+<li>埃里克·伽马（Erich Gamma）：后来参与JUnit、Eclipse开发</li>
+<li>理查德·赫尔姆（Richard Helm）</li>
+<li>拉尔夫·约翰逊（Ralph Johnson）</li>
+<li>约翰·弗利赛德斯（John Vlissides）</li>
+</ul>
+</li>
+<li>
+<p>诞生过程：从实践总结到成书，耗时4年<br>
+1990年起，4人基于自己的开发经验，加上梳理当时软件工程界的优秀设计实践，<strong>聚焦“面向对象软件的可复用设计”</strong>，筛选出最通用、最核心的设计套路：</p>
+<ul>
+<li>第一步：筛选标准—— 必须是“反复出现的问题”+“可复用的解决方案”+“不依赖具体语言”，能适配多数OOP场景；</li>
+<li>第二步：分类梳理—— 按“解决什么问题”分成3大类（创建型、结构型、行为型），避免混乱；</li>
+<li>第三步：完善细节—— 给每种模式定义“核心意图、适用场景、结构角色、优缺点”，让开发者能直接套用。<br>
+1994年，他们的著作《设计模式：可复用面向对象软件的基础》（<em>Design Patterns: Elements of Reusable Object-Oriented Software</em>）正式出版，书中明确提出<strong>23种设计模式</strong>，这也是23种模式的“官方源头”。</li>
+</ul>
+</li>
+<li>
+<p>为什么是23种？不是22也不是24？<br>
+没有绝对的“必须是23种”，核心是**“刚好覆盖面向对象设计的核心共性问题”**：</p>
+<ul>
+<li>创建型5种：解决“对象创建”的共性问题（怎么创建、怎么管控、怎么复用）；</li>
+<li>结构型7种：解决“类/对象组合”的共性问题（怎么组合更灵活、怎么解耦、怎么优化结构）；</li>
+<li>行为型11种：解决“对象交互/职责”的共性问题（怎么通信、怎么分配职责、怎么灵活变更行为）；<br>
+这23种刚好覆盖OOP开发中80%以上的通用设计问题，剩下的要么是场景太小众，要么是可复用性不强，因此没有纳入。</li>
+</ul>
+</li>
+</ol>
+<h3 id="三-传播与普及从小众手册到oop必学标准1994至今">三、 传播与普及：从“小众手册”到“OOP必学标准”（1994至今）</h3>
+<p>《设计模式》成书初期不算“爆款”，但随着OOP语言普及，逐渐成为软件工程的“圣经”，23种模式也成了行业标准。</p>
+<ol>
+<li>
+<p>1990s末：Java崛起，让设计模式“落地生根”<br>
+1995年Java发布，纯面向对象设计，且快速占领企业级开发市场。Java的核心类库（比如IO流、集合框架）大量使用23种设计模式（比如装饰器模式、迭代器模式），<strong>开发者学Java必学设计模式</strong>，23种模式第一次大规模普及。<br>
+例子：Java的<code>BufferedReader</code>是装饰器模式，<code>Iterator</code>是迭代器模式，<code>Runtime</code>是单例模式，直接把模式融入日常开发。</p>
+</li>
+<li>
+<p>2000s：多语言适配+框架普及，模式成为“通用知识”</p>
+<ul>
+<li>语言层面：C++、C#、Python、PHP等OOP语言，都开始用23种模式解决共性问题，模式不再依赖某一种语言；</li>
+<li>框架层面：主流开源框架（Spring、Struts、Hibernate）全程贯穿设计模式（Spring的IOC用工厂模式、AOP用代理模式、事件监听用观察者模式），学框架必须懂模式，进一步巩固其地位。</li>
+</ul>
+</li>
+<li>
+<p>发展与争议：模式不是“银弹”，但从未过时<br>
+随着软件开发发展，有人质疑“23种模式过时了”，但核心价值从未变，只是用法更理性：</p>
+<ul>
+<li>争议点：部分场景下，现代语言特性（比如Python的装饰器、Java的Lambda）能简化模式实现，无需严格套“模式结构”；</li>
+<li>核心价值：模式的本质是**“解耦、复用、可扩展”的设计思想**，而非固定代码结构，23种模式是这些思想的最佳载体；</li>
+<li>现状：至今仍是“高级开发者必备知识”，是架构设计、代码评审的核心参考，只是不再“强行套用”，而是“按需使用”。</li>
+</ul>
+</li>
+</ol>
+<h3 id="四-关键补充23种设计模式的2个核心定位">四、 关键补充：23种设计模式的2个核心定位</h3>
+<ol>
+<li>是“总结”而非“发明”：23种模式不是GoF凭空创造，而是对<strong>1980s-1990s优秀OOP设计实践的提炼</strong>，很多套路在成书前就有人用，只是没人系统化整理；</li>
+<li>是“通用套路”而非“语言规范”：不依赖具体编程语言，不管是Java、C++还是Python，核心思想一致，只是实现细节随语言特性调整。</li>
+</ol>
+<h3 id="五-延伸设计模式的后续发展">五、 延伸：设计模式的后续发展</h3>
+<p>GoF的23种是“基础核心”，后续软件工程界在其基础上延伸出更多细分模式，但都没超越其框架：</p>
+<ul>
+<li>企业级模式：比如MVC、分层模式，聚焦大型系统架构；</li>
+<li>并发模式：比如生产者-消费者、线程池，解决并发问题；</li>
+<li>分布式模式：比如服务注册发现、熔断降级，适配分布式系统；<br>
+这些都是23种基础模式在特定场景的延伸。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/you-xi-kai-fa-zhong-jiao-se-dao-di-shi-yong-na-ge-dan-ci/" class="post-title gt-a-link">
+                    游戏开发中,&#34;角色&#34;到底使用哪个单词
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

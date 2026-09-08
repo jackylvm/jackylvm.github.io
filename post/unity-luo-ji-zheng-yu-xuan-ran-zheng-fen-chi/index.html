@@ -1,0 +1,740 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity 逻辑帧与渲染帧分离 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity 逻辑帧与渲染帧分离
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-03-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="一-核心概念">一、核心概念</h2>
+<!-- more -->
+<ol>
+<li>
+<p><strong>渲染帧（Update）</strong></p>
+<ul>
+<li>频率不固定（30/60/120/波动）</li>
+<li>只负责<strong>画面表现、输入采集、音效</strong></li>
+<li>不处理影响游戏结果的逻辑</li>
+</ul>
+</li>
+<li>
+<p><strong>逻辑帧（FixedUpdate / 自定义 FixedTimestep）</strong></p>
+<ul>
+<li>固定频率（如 30Hz、50Hz、60Hz）</li>
+<li>负责<strong>游戏核心逻辑、物理、状态计算</strong></li>
+<li>保证所有客户端执行结果完全一致</li>
+</ul>
+</li>
+<li>
+<p><strong>分离目标</strong></p>
+<ul>
+<li>逻辑：<strong>稳定、精准、可复现</strong></li>
+<li>渲染：<strong>流畅、高帧率、不卡顿</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="二-推荐方案自定义固定时间步长最灵活">二、推荐方案：自定义固定时间步长（最灵活）</h2>
+<p>Unity 自带 <code>FixedUpdate</code> 可用，但<strong>自定义逻辑帧管理器</strong>更适合帧同步、战斗、网络游戏。</p>
+<h3 id="核心实现思路">核心实现思路</h3>
+<ol>
+<li>用一个<strong>累积时间计数器</strong>收集渲染帧流逝时间</li>
+<li>达到固定逻辑步长时，执行一次逻辑更新</li>
+<li>渲染帧只做<strong>插值渲染</strong>，不修改逻辑状态</li>
+</ol>
+<hr>
+<h2 id="三-完整可运行代码">三、完整可运行代码</h2>
+<h3 id="1-逻辑帧管理器全局单例">1. 逻辑帧管理器（全局单例）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 逻辑帧与渲染帧分离 核心管理器
+/// &lt;/summary&gt;
+public class LogicFrameManager : MonoBehaviour
+{
+    public static LogicFrameManager Instance { get; private set; }
+
+    [Header(&quot;逻辑帧配置（固定频率）&quot;)]
+    [Tooltip(&quot;逻辑帧率 30/50/60 推荐 50Hz&quot;)]
+    public int logicFrameRate = 50;
+
+    // 固定逻辑步长（秒）
+    private float _logicFixedDeltaTime;
+    // 累积时间
+    private float _accumulatedTime;
+    // 当前逻辑帧号
+    public int CurrentLogicFrame { get; private set; }
+
+    // 逻辑帧更新事件（所有逻辑脚本监听这个）
+    public delegate void LogicUpdateHandler();
+    public event LogicUpdateHandler OnLogicUpdate;
+
+    private void Awake()
+    {
+        // 单例
+        if (Instance != null &amp;&amp; Instance != this) Destroy(gameObject);
+        else { Instance = this; DontDestroyOnLoad(gameObject); }
+    }
+
+    private void Start()
+    {
+        // 计算固定步长
+        _logicFixedDeltaTime = 1.0f / logicFrameRate;
+        _accumulatedTime = 0f;
+        CurrentLogicFrame = 0;
+
+        // 关闭Unity自动物理，完全自己控制
+        Physics.autoSimulation = false;
+        Physics2D.autoSimulation = false;
+    }
+
+    private void Update()
+    {
+        // ====================== 渲染帧 ======================
+        // 1. 采集用户输入
+        // 2. 渲染表现（动画、特效、UI）
+        // 3. 插值平滑显示
+
+        // 累积渲染帧流逝时间
+        _accumulatedTime += Time.deltaTime;
+
+        // ====================== 逻辑帧 ======================
+        // 固定频率执行逻辑（可能一帧执行多次，防止卡顿）
+        while (_accumulatedTime &gt;= _logicFixedDeltaTime)
+        {
+            ExecuteLogicFrame();
+            _accumulatedTime -= _logicFixedDeltaTime;
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 执行一帧逻辑
+    /// &lt;/summary&gt;
+    private void ExecuteLogicFrame()
+    {
+        CurrentLogicFrame++;
+
+        // 1. 物理更新（固定步长）
+        Physics.Simulate(_logicFixedDeltaTime);
+        Physics2D.Simulate(_logicFixedDeltaTime);
+
+        // 2. 触发所有逻辑更新
+        OnLogicUpdate?.Invoke();
+    }
+
+    /// &lt;summary&gt;
+    /// 获取逻辑帧间隔（固定值）
+    /// &lt;/summary&gt;
+    public float GetLogicDeltaTime() =&gt; _logicFixedDeltaTime;
+}
+</code></pre>
+<h3 id="2-逻辑脚本只写逻辑">2. 逻辑脚本（只写逻辑）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 逻辑类：只处理游戏状态，不处理渲染
+/// &lt;/summary&gt;
+public class PlayerLogic : MonoBehaviour
+{
+    // 逻辑位置（真正决定游戏结果）
+    public Vector3 logicPosition;
+    // 逻辑速度
+    private Vector3 _logicVelocity;
+
+    private void Start()
+    {
+        logicPosition = transform.position;
+        // 注册逻辑帧更新
+        LogicFrameManager.Instance.OnLogicUpdate += LogicUpdate;
+    }
+
+    /// &lt;summary&gt;
+    /// 【逻辑帧】固定频率执行
+    /// &lt;/summary&gt;
+    private void LogicUpdate()
+    {
+        float deltaTime = LogicFrameManager.Instance.GetLogicDeltaTime();
+        
+        // 移动逻辑（精准、可复现）
+        _logicVelocity = new Vector3(1, 0, 0) * 5f;
+        logicPosition += _logicVelocity * deltaTime;
+    }
+
+    private void OnDestroy()
+    {
+        LogicFrameManager.Instance.OnLogicUpdate -= LogicUpdate;
+    }
+}
+</code></pre>
+<h3 id="3-渲染脚本只做表现">3. 渲染脚本（只做表现）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 渲染类：只负责画面显示，不修改逻辑
+/// &lt;/summary&gt;
+public class PlayerRender : MonoBehaviour
+{
+    public PlayerLogic playerLogic;
+    private Transform _modelTransform;
+
+    private void Awake()
+    {
+        _modelTransform = transform;
+    }
+
+    private void Update()
+    {
+        // ====================== 渲染帧 ======================
+        // 用插值让画面流畅（关键：分离的核心）
+        float interpFactor = LogicFrameManager.Instance.GetComponent&lt;LogicFrameManager&gt;()._accumulatedTime / 
+                              LogicFrameManager.Instance.GetLogicDeltaTime();
+        
+        // 平滑插值渲染，不影响逻辑
+        _modelTransform.position = Vector3.Lerp(
+            playerLogic.logicPosition, 
+            playerLogic.logicPosition + playerLogic._logicVelocity * LogicFrameManager.Instance.GetLogicDeltaTime(), 
+            interpFactor
+        );
+    }
+}
+</code></pre>
+<hr>
+<h2 id="四-使用步骤">四、使用步骤</h2>
+<ol>
+<li>创建空物体，挂载 <code>LogicFrameManager</code></li>
+<li>角色对象分两个脚本：
+<ul>
+<li><code>PlayerLogic</code>：<strong>逻辑状态</strong></li>
+<li><code>PlayerRender</code>：<strong>渲染表现</strong></li>
+</ul>
+</li>
+<li>所有影响游戏结果的代码，都写在 <code>OnLogicUpdate</code> 里</li>
+<li>所有画面、特效、UI，都写在 <code>Update</code> 里</li>
+</ol>
+<hr>
+<h2 id="五-关键规则必须遵守">五、关键规则（必须遵守）</h2>
+<h3 id="禁止在-update-写">❌ 禁止在 Update 写：</h3>
+<ul>
+<li>角色移动逻辑</li>
+<li>伤害计算</li>
+<li>技能判定</li>
+<li>物理模拟</li>
+<li>状态机变更</li>
+</ul>
+<h3 id="只在-logicupdate-写">✅ 只在 LogicUpdate 写：</h3>
+<ul>
+<li>游戏核心逻辑</li>
+<li>物理</li>
+<li>技能/AI/战斗</li>
+<li>所有会影响胜负的代码</li>
+</ul>
+<h3 id="只在-update-写">✅ 只在 Update 写：</h3>
+<ul>
+<li>画面显示</li>
+<li>动画、特效、音效</li>
+<li>UI 刷新</li>
+<li>摄像机抖动</li>
+<li>输入采集</li>
+</ul>
+<hr>
+<h2 id="六-进阶优化帧同步必备">六、进阶优化（帧同步必备）</h2>
+<ol>
+<li>
+<p><strong>固定浮点精度</strong><br>
+逻辑全部使用定点数（<code>float</code> → <code>fixed</code>），保证跨平台一致。</p>
+</li>
+<li>
+<p><strong>逻辑回滚与预测</strong><br>
+用于 MOBA、格斗游戏帧同步。</p>
+</li>
+<li>
+<p><strong>逻辑与数据彻底分离</strong></p>
+<ul>
+<li>LogicData：纯数据类</li>
+<li>LogicSystem：纯逻辑类</li>
+<li>RenderView：纯表现类</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="七-总结">七、总结</h2>
+<ol>
+<li><strong>分离核心</strong>：用<strong>累积时间</strong>驱动固定逻辑帧，渲染只做插值</li>
+<li><strong>逻辑帧</strong>：固定频率、精准、决定游戏结果</li>
+<li><strong>渲染帧</strong>：高帧率、流畅、只做表现</li>
+<li><strong>代码规范</strong>：逻辑写 <code>OnLogicUpdate</code>，表现写 <code>Update</code></li>
+</ol>
+<!-- more -->
+<h1 id="逻辑帧-渲染帧-数据同步">逻辑帧 ↔ 渲染帧 数据同步</h1>
+<h2 id="一-先记住-3-条铁律绝对不能违反">一、先记住 3 条铁律（绝对不能违反）</h2>
+<ol>
+<li><strong>逻辑 → 渲染 只能读，不能写</strong><br>
+渲染脚本<strong>永远不修改</strong>逻辑数据，只读取。</li>
+<li><strong>渲染 → 逻辑 只能传指令，不能传状态</strong><br>
+比如“按下跳跃”，而不是“把位置设为XX”。</li>
+<li><strong>所有游戏状态只由逻辑帧产生</strong><br>
+位置、血量、技能、状态机 → 全在逻辑层。</li>
+</ol>
+<hr>
+<h2 id="二-数据同步的-2-种核心方向">二、数据同步的 2 种核心方向</h2>
+<h3 id="1-最重要逻辑-渲染状态同步90场景">1. 【最重要】逻辑 → 渲染：状态同步（90%场景）</h3>
+<p>逻辑把<strong>最新的真实状态</strong>传给渲染，渲染负责<strong>平滑显示</strong>。</p>
+<ul>
+<li>同步数据：位置、旋转、血量、动画状态、特效触发</li>
+<li>渲染工作：<strong>插值平滑 + 表现播放</strong></li>
+</ul>
+<h3 id="2-渲染-逻辑输入指令同步">2. 渲染 → 逻辑：输入/指令同步</h3>
+<p>渲染采集用户输入，<strong>打包成指令</strong>发给逻辑，逻辑在下一帧执行。</p>
+<ul>
+<li>同步数据：移动、跳跃、技能、点击</li>
+<li>绝对不能直接改逻辑位置/状态</li>
+</ul>
+<hr>
+<h2 id="三-3-种最实用的数据同步方法直接用">三、3 种最实用的数据同步方法（直接用）</h2>
+<p>我按<strong>简单 → 进阶 → 高级</strong>给你完整实现。</p>
+<hr>
+<h1 id="方法1基础同步直接读取-线性插值-lerp">方法1：基础同步（直接读取 + 线性插值 Lerp）</h1>
+<p>适合：大多数动作、RPG、休闲游戏<br>
+<strong>原理</strong>：渲染每帧读取逻辑的最新状态，用<strong>插值</strong>让移动更丝滑，不跳帧。</p>
+<h3 id="完整代码直接复制">完整代码（直接复制）</h3>
+<h2 id="1-逻辑类存储所有真实状态">1. 逻辑类（存储所有真实状态）</h2>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 逻辑层：唯一的状态来源
+/// &lt;/summary&gt;
+public class PlayerLogic : MonoBehaviour
+{
+    // 【逻辑状态】所有数据都在这里
+    public Vector3 logicPos;       // 逻辑位置
+    public Quaternion logicRot;    // 逻辑旋转
+    public float logicHp;          // 逻辑血量
+    public bool isAttacking;        // 逻辑状态
+
+    private Vector3 moveDir;
+
+    void Start()
+    {
+        logicPos = transform.position;
+        logicRot = transform.rotation;
+        logicHp = 100;
+        
+        // 注册到逻辑帧
+        LogicFrameManager.Instance.OnLogicUpdate += LogicUpdate;
+    }
+
+    /// &lt;summary&gt;
+    /// 【逻辑帧】只更新状态，不碰渲染
+    /// &lt;/summary&gt;
+    void LogicUpdate()
+    {
+        float dt = LogicFrameManager.Instance.GetLogicDeltaTime();
+        
+        // 示例：一直向右移动
+        moveDir = Vector3.right;
+        logicPos += moveDir * 5f * dt;
+    }
+}
+</code></pre>
+<h2 id="2-渲染类只做同步-表现">2. 渲染类（只做同步 + 表现）</h2>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 渲染层：只从逻辑读数据，平滑显示
+/// &lt;/summary&gt;
+public class PlayerRender : MonoBehaviour
+{
+    public PlayerLogic logic;
+    private Transform modelTrans;
+
+    // 上一帧逻辑状态（用于插值）
+    private Vector3 _lastLogicPos;
+    private Quaternion _lastLogicRot;
+
+    void Awake()
+    {
+        modelTrans = transform;
+    }
+
+    /// &lt;summary&gt;
+    /// 每帧逻辑更新后，渲染层记录快照
+    /// &lt;/summary&gt;
+    void OnEnable()
+    {
+        LogicFrameManager.Instance.OnLogicUpdate += OnLogicStateUpdated;
+    }
+
+    /// &lt;summary&gt;
+    /// 【关键】每次逻辑帧结束，保存一份快照
+    /// &lt;/summary&gt;
+    void OnLogicStateUpdated()
+    {
+        _lastLogicPos = logic.logicPos;
+        _lastLogicRot = logic.logicRot;
+    }
+
+    /// &lt;summary&gt;
+    /// 【渲染帧】插值同步
+    /// &lt;/summary&gt;
+    void Update()
+    {
+        // 1. 获取插值因子 (0~1)
+        float interpFactor = LogicFrameManager.Instance.GetInterpFactor();
+
+        // 2. 位置同步：平滑插值（核心！）
+        modelTrans.position = Vector3.Lerp(
+            _lastLogicPos,    // 上一帧逻辑位置
+            logic.logicPos,   // 当前帧逻辑位置
+            interpFactor      // 插值比例
+        );
+
+        // 3. 旋转同步
+        modelTrans.rotation = Quaternion.Lerp(
+            _lastLogicRot,
+            logic.logicRot,
+            interpFactor
+        );
+
+        // 4. 数值同步（血条/UI，无需插值）
+        UpdateUIHp();
+
+        // 5. 动画/状态同步
+        UpdateAnimation();
+    }
+
+    void UpdateUIHp() { /* 直接读 logic.logicHp 赋值 */ }
+    void UpdateAnimation() { /* 直接读 logic.isAttacking 播动画 */ }
+}
+</code></pre>
+<h2 id="3-给管理器加一个插值因子必备">3. 给管理器加一个插值因子（必备）</h2>
+<p>在之前的 <code>LogicFrameManager</code> 里加这个方法：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 获取渲染插值因子 (0~1)
+/// &lt;/summary&gt;
+public float GetInterpFactor()
+{
+    return _accumulatedTime / _logicFixedDeltaTime;
+}
+</code></pre>
+<hr>
+<h1 id="方法2快照同步适合帧同步战斗moba">方法2：快照同步（适合帧同步/战斗/MOBA）</h1>
+<p>适合：需要<strong>回滚、重放、帧同步</strong>的游戏<br>
+<strong>原理</strong>：逻辑每帧生成一个<strong>数据快照（Snapshot）</strong>，渲染从快照队列中读取，做平滑表现。</p>
+<h3 id="核心结构">核心结构</h3>
+<pre><code class="language-csharp">// 逻辑快照：纯数据，可序列化、回滚、传输
+public struct LogicSnapshot
+{
+    public int frame;
+    public Vector3 pos;
+    public Quaternion rot;
+    public float hp;
+}
+</code></pre>
+<ul>
+<li>逻辑：每帧生成快照，存入队列</li>
+<li>渲染：从快照队列取<strong>最新两条数据</strong>做插值</li>
+</ul>
+<hr>
+<h1 id="方法3指令同步渲染-逻辑">方法3：指令同步（渲染 → 逻辑）</h1>
+<p><strong>渲染永远不直接改逻辑数据，只发指令！</strong></p>
+<h3 id="正确做法">正确做法：</h3>
+<pre><code class="language-csharp">// 渲染层 Update 里
+void Update()
+{
+    // 采集输入
+    if (Input.GetKeyDown(KeyCode.Space))
+    {
+        // 发指令给逻辑，不直接跳跃
+        logic.JumpCommand();
+    }
+}
+
+// 逻辑层
+bool wantJump;
+
+// 渲染调用：只是标记一个指令
+public void JumpCommand()
+{
+    wantJump = true;
+}
+
+// 真正执行：只在逻辑帧执行
+void LogicUpdate()
+{
+    if (wantJump)
+    {
+        // 跳跃逻辑
+        wantJump = false;
+    }
+}
+</code></pre>
+<hr>
+<h2 id="四-必须掌握的-4-种同步数据类型">四、必须掌握的 4 种同步数据类型</h2>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>同步方式</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>位置/旋转</strong></td>
+<td>线性插值 Lerp</td>
+<td>角色移动</td>
+</tr>
+<tr>
+<td><strong>数值（血量/分数）</strong></td>
+<td>直接赋值</td>
+<td>血条、UI</td>
+</tr>
+<tr>
+<td><strong>触发事件（受伤/技能）</strong></td>
+<td>布尔标记 + 重置</td>
+<td>特效、音效</td>
+</tr>
+<tr>
+<td><strong>动画状态</strong></td>
+<td>状态机直接同步</td>
+<td>idle/run/attack</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="五-最关键的总结同步流程">五、最关键的总结：同步流程</h2>
+<p>你只需要记住这个<strong>固定流程</strong>，永远不会乱：</p>
+<h3 id="一帧完整流程">一帧完整流程</h3>
+<ol>
+<li>
+<p><strong>渲染帧（Update）</strong></p>
+<ul>
+<li>采集输入 → 发指令给逻辑</li>
+<li>根据<strong>插值因子</strong>平滑显示模型</li>
+</ul>
+</li>
+<li>
+<p><strong>时间累积</strong></p>
+</li>
+<li>
+<p><strong>执行 N 次 逻辑帧（LogicUpdate）</strong></p>
+<ul>
+<li>处理指令</li>
+<li>更新位置、状态、物理</li>
+<li>生成新的状态数据</li>
+<li>给渲染层发送<strong>状态快照</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>渲染帧</strong></p>
+<ul>
+<li>使用<strong>新旧两份逻辑状态 + 插值</strong> → 流畅画面</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六-一句话核心">六、一句话核心</h2>
+<p><strong>逻辑帧生产数据，渲染帧消费数据；<br>
+逻辑决定世界是什么样，渲染只负责把它画得更流畅。</strong></p>
+<hr>
+<h3 id="总结">总结</h3>
+<ol>
+<li><strong>逻辑 → 渲染</strong>：用<strong>插值（Lerp）</strong> 同步位置/旋转，直接赋值同步数值</li>
+<li><strong>渲染 → 逻辑</strong>：只发<strong>指令/标记</strong>，绝不修改逻辑状态</li>
+<li><strong>同步关键</strong>：保存<strong>上一帧逻辑快照</strong>，渲染做插值</li>
+<li><strong>规则</strong>：单向数据流，渲染只读逻辑，逻辑不管渲染</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-vector2-su-cha-biao/" class="post-title gt-a-link">
+                    Unity Vector2 速查表
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

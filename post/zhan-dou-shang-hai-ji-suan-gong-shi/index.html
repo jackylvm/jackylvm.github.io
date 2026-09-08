@@ -1,0 +1,458 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>战斗伤害计算公式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    战斗伤害计算公式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-10-23 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>一整套<strong>完整可扩展的伤害计算公式体系</strong>，涵盖：</p>
+<ul>
+<li>普攻与技能伤害</li>
+<li>暴击与非暴击</li>
+<li>招架与非招架</li>
+<li>各类伤害、治疗、加成与减免</li>
+<li>支持属性比例调节与平衡参数</li>
+</ul>
+<hr>
+<h2 id="一-主要参与属性">🎯 一、主要参与属性</h2>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>英文代号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>攻击</td>
+<td>ATK</td>
+<td>攻击方攻击力</td>
+</tr>
+<tr>
+<td>防御</td>
+<td>DEF</td>
+<td>受击方防御力</td>
+</tr>
+<tr>
+<td>生命</td>
+<td>HP</td>
+<td>当前生命值（非直接参与公式）</td>
+</tr>
+<tr>
+<td>暴击率</td>
+<td>CRI</td>
+<td>造成暴击的概率</td>
+</tr>
+<tr>
+<td>暴击伤害</td>
+<td>CRIDMG</td>
+<td>暴击时的伤害倍率（如1.5表示150%）</td>
+</tr>
+<tr>
+<td>命中率</td>
+<td>HIT</td>
+<td>命中概率（与闪避对抗）</td>
+</tr>
+<tr>
+<td>闪避率</td>
+<td>EVA</td>
+<td>被攻击方闪避概率</td>
+</tr>
+<tr>
+<td>暴击抵抗</td>
+<td>CRI_RES</td>
+<td>被攻击方降低对方暴击率的能力</td>
+</tr>
+<tr>
+<td>暴伤减免</td>
+<td>CRIDMG_RED</td>
+<td>被攻击方减少暴击伤害的能力</td>
+</tr>
+<tr>
+<td>伤害加成</td>
+<td>DMG_ADD</td>
+<td>最终伤害加成（万金油类型）</td>
+</tr>
+<tr>
+<td>治疗加成</td>
+<td>HEAL_ADD</td>
+<td>施法者对治疗类技能的加成</td>
+</tr>
+<tr>
+<td>受到治疗加成</td>
+<td>HEAL_RECV_ADD</td>
+<td>受治疗方额外受到治疗的比例</td>
+</tr>
+<tr>
+<td>技能伤害加成</td>
+<td>SKILL_DMG_ADD</td>
+<td>技能类攻击的额外伤害比例</td>
+</tr>
+<tr>
+<td>招架概率</td>
+<td>PARRY_RATE</td>
+<td>被攻击方触发招架的概率</td>
+</tr>
+<tr>
+<td>招架效果</td>
+<td>PARRY_EFF</td>
+<td>招架时减伤比例（如0.5代表50%减伤）</td>
+</tr>
+<tr>
+<td>幸运一击概率</td>
+<td>LUCK_RATE</td>
+<td>特殊“幸运一击”触发概率，可视为额外暴击或特殊效果</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="️-二-伤害计算主流程">⚔️ 二、伤害计算主流程</h2>
+<p>以一次攻击为例：</p>
+<pre><code class="language-text">1. 命中判定
+2. 招架判定
+3. 暴击判定
+4. 计算基础伤害
+5. 应用各类加成与减免
+6. 应用招架/暴击等特殊修正
+7. 应用最终防御修正与上下限限制
+</code></pre>
+<hr>
+<h2 id="三-公式设计">🧮 三、公式设计</h2>
+<h3 id="1️⃣-命中判定">1️⃣ 命中判定</h3>
+<pre><code class="language-csharp">命中概率 = HIT / (HIT + EVA)
+是否命中 = 随机() &lt; 命中概率
+</code></pre>
+<blockquote>
+<p>如果未命中 → 伤害 = 0，结束。</p>
+</blockquote>
+<hr>
+<h3 id="2️⃣-招架判定">2️⃣ 招架判定</h3>
+<pre><code class="language-csharp">是否招架 = 随机() &lt; PARRY_RATE
+</code></pre>
+<blockquote>
+<p>如果招架成功 → 后续计算伤害 × (1 - PARRY_EFF)</p>
+</blockquote>
+<hr>
+<h3 id="3️⃣-暴击判定">3️⃣ 暴击判定</h3>
+<pre><code class="language-csharp">真实暴击率 = max(0, CRI - CRI_RES)
+是否暴击 = 随机() &lt; 真实暴击率
+</code></pre>
+<hr>
+<h3 id="4️⃣-基础伤害计算物理类">4️⃣ 基础伤害计算（物理类）</h3>
+<pre><code class="language-csharp">基础伤害 = (ATK^2) / (ATK + DEF) * 技能系数
+</code></pre>
+<blockquote>
+<ul>
+<li>这个形式（平方比）可以保证攻防差距不爆炸。</li>
+<li>“技能系数”通常来自技能配置（如普通攻击 1.0，技能 2.5）。</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="5️⃣-技能与通用加成">5️⃣ 技能与通用加成</h3>
+<pre><code class="language-csharp">伤害倍率 = 1 + DMG_ADD + SKILL_DMG_ADD
+</code></pre>
+<blockquote>
+<p>乘到基础伤害上。</p>
+</blockquote>
+<hr>
+<h3 id="6️⃣-暴击修正">6️⃣ 暴击修正</h3>
+<pre><code class="language-csharp">if (是否暴击)
+    暴击系数 = (CRIDMG - CRIDMG_RED)
+else
+    暴击系数 = 1
+</code></pre>
+<hr>
+<h3 id="7️⃣-招架修正">7️⃣ 招架修正</h3>
+<pre><code class="language-csharp">if (是否招架)
+    招架系数 = 1 - PARRY_EFF
+else
+    招架系数 = 1
+</code></pre>
+<hr>
+<h3 id="8️⃣-幸运一击修正可选">8️⃣ 幸运一击修正（可选）</h3>
+<pre><code class="language-csharp">if (随机() &lt; LUCK_RATE)
+    幸运系数 = 1.5 ~ 2.0  // 可配置
+else
+    幸运系数 = 1
+</code></pre>
+<hr>
+<h3 id="9️⃣-最终伤害公式">9️⃣ 最终伤害公式</h3>
+<pre><code class="language-csharp">最终伤害 = 基础伤害 × 伤害倍率 × 暴击系数 × 招架系数 × 幸运系数
+</code></pre>
+<p>再限制：</p>
+<pre><code class="language-csharp">最终伤害 = max(1, 最终伤害)
+</code></pre>
+<hr>
+<h2 id="四-治疗类公式">💚 四、治疗类公式</h2>
+<h3 id="1️⃣-普通治疗技能">1️⃣ 普通治疗技能</h3>
+<pre><code class="language-csharp">治疗量 = (施法者.ATK * 技能系数) × (1 + HEAL_ADD) × (1 + 目标.HEAL_RECV_ADD)
+</code></pre>
+<h3 id="2️⃣-暴击治疗可选规则">2️⃣ 暴击治疗（可选规则）</h3>
+<pre><code class="language-csharp">如果随机() &lt; (CRI - CRI_RES)
+    治疗量 ×= (CRIDMG - CRIDMG_RED)
+</code></pre>
+<hr>
+<h2 id="五-完整伪代码实现示例">🔧 五、完整伪代码实现示例</h2>
+<pre><code class="language-csharp">float CalculateDamage(Character attacker, Character defender, Skill skill)
+{
+    // 命中判定
+    float hitChance = attacker.HIT / (attacker.HIT + defender.EVA);
+    if (Random.value &gt; hitChance)
+        return 0f; // Miss
+
+    // 招架
+    bool parry = Random.value &lt; defender.PARRY_RATE;
+    float parryFactor = parry ? (1f - defender.PARRY_EFF) : 1f;
+
+    // 暴击
+    float realCritRate = Mathf.Max(0, attacker.CRI - defender.CRI_RES);
+    bool crit = Random.value &lt; realCritRate;
+    float critFactor = crit ? (attacker.CRIDMG - defender.CRIDMG_RED) : 1f;
+
+    // 幸运一击
+    bool lucky = Random.value &lt; attacker.LUCK_RATE;
+    float luckyFactor = lucky ? 1.5f : 1f;
+
+    // 基础伤害
+    float baseDamage = (attacker.ATK * attacker.ATK) / (attacker.ATK + defender.DEF);
+    baseDamage *= skill.DamageScale; // 技能系数
+
+    // 各类加成
+    float totalFactor = (1 + attacker.DMG_ADD + skill.SkillDamageAdd) * parryFactor * critFactor * luckyFactor;
+
+    // 最终伤害
+    float finalDamage = baseDamage * totalFactor;
+    return Mathf.Max(1, finalDamage);
+}
+</code></pre>
+<hr>
+<h2 id="️-六-公式调优建议">⚙️ 六、公式调优建议</h2>
+<table>
+<thead>
+<tr>
+<th>调整点</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>攻防差异太大</td>
+<td>用 <code>(ATK^2)/(ATK+DEF)</code> 替代 <code>ATK-DEF</code> 模式</td>
+</tr>
+<tr>
+<td>暴击过强</td>
+<td>调整 CRIDMG 默认值从 2.0 → 1.5</td>
+</tr>
+<tr>
+<td>招架过弱</td>
+<td>增加“反击”效果（例如招架后50%概率反击）</td>
+</tr>
+<tr>
+<td>技能差异太小</td>
+<td>使用技能系数 0.8~3.0 区间</td>
+</tr>
+<tr>
+<td>防御成长太快</td>
+<td>改为 <code>(ATK / (DEF + 常数))</code> 结构</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>是否希望我帮你把这套公式<strong>整理成一份可配置的 Excel 表 + JSON + Unity 脚本读取模板</strong>？<br>
+那样你可以直接在 Unity 中挂到角色身上测试实际战斗效果。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/zai-unity-li-mian-shi-yong-user32dll/" class="post-title gt-a-link">
+                    在Unity里面使用user32.dll
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x07.Shader函数clamp | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x07.Shader函数clamp
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-06-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/60e52J_k-Hr/" class="post-tags">
+                            # 基础函数
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity Shader 中，<code>clamp</code> 是一个常用的内置函数，用于将值限制在指定的范围内。</p>
+<h3 id="基本语法"><strong>基本语法</strong></h3>
+<p><code>clamp</code> 函数有两种主要形式：</p>
+<ol>
+<li>
+<p><strong>标量形式</strong>：</p>
+<pre><code class="language-hlsl">float clamp(float value, float min, float max);
+</code></pre>
+<p>将 <code>value</code> 限制在 <code>[min, max]</code> 范围内。若 <code>value &lt; min</code>，返回 <code>min</code>；若 <code>value &gt; max</code>，返回 <code>max</code>；否则返回 <code>value</code> 本身。</p>
+</li>
+<li>
+<p><strong>向量形式</strong>：</p>
+<pre><code class="language-hlsl">float2 clamp(float2 value, float2 min, float2 max);
+float3 clamp(float3 value, float3 min, float3 max);
+// 其他向量类型（float4、half2 等）同理
+</code></pre>
+<p>对向量的每个分量分别进行 clamping 操作。</p>
+</li>
+</ol>
+<h3 id="常见应用场景"><strong>常见应用场景</strong></h3>
+<h4 id="1-限制纹理坐标">1. <strong>限制纹理坐标</strong></h4>
+<p>防止纹理坐标超出 <code>[0, 1]</code> 范围，避免采样错误：</p>
+<pre><code class="language-hlsl">float2 clampedUV = clamp(uv, 0.0, 1.0);  // 将 UV 限制在 [0,1] 内
+fixed4 texColor = tex2D(_MainTex, clampedUV);
+</code></pre>
+<h4 id="2-颜色值归一化">2. <strong>颜色值归一化</strong></h4>
+<p>确保颜色值在 <code>[0, 1]</code> 范围内，避免过亮或过暗：</p>
+<pre><code class="language-hlsl">fixed3 color = someCalculation();
+color = clamp(color, 0.0, 1.0);  // 防止颜色溢出
+</code></pre>
+<h4 id="3-平滑过渡阈值">3. <strong>平滑过渡阈值</strong></h4>
+<p>结合 <code>smoothstep</code> 实现渐变效果：</p>
+<pre><code class="language-hlsl">float t = someValue;
+t = clamp(t, 0.0, 1.0);  // 确保 t 在 [0,1] 内，避免 smoothstep 异常
+float smoothValue = smoothstep(0.2, 0.8, t);
+</code></pre>
+<h4 id="4-光照计算">4. <strong>光照计算</strong></h4>
+<p>限制点积结果为非负值，避免阴影区域出现负值：</p>
+<pre><code class="language-hlsl">float ndotl = dot(normal, lightDir);
+ndotl = clamp(ndotl, 0.0, 1.0);  // 确保点积结果在 [0,1] 内
+</code></pre>
+<h3 id="代码示例"><strong>代码示例</strong></h3>
+<p>以下是一个完整的 Shader 示例，展示 <code>clamp</code> 的用法：</p>
+<pre><code class="language-hlsl">Shader &quot;Custom/ClampExample&quot; {
+    Properties {
+        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+        _ClampMin (&quot;Clamp Min&quot;, Range(0, 1)) = 0.2
+        _ClampMax (&quot;Clamp Max&quot;, Range(0, 1)) = 0.8
+    }
+    SubShader {
+        Pass {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include &quot;UnityCG.cginc&quot;
+
+            struct appdata {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            sampler2D _MainTex;
+            float _ClampMin;
+            float _ClampMax;
+
+            v2f vert (appdata v) {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            fixed4 frag (v2f i) : SV_Target {
+                // 示例1：限制纹理坐标（防止超出边界）
+                float2 clampedUV = clamp(i.uv, 0.0, 1.0);
+                fixed4 texColor = tex2D(_MainTex, clampedUV);
+
+                // 示例2：调整亮度并限制在 [_ClampMin, _ClampMax] 范围内
+                fixed3 brightenedColor = texColor.rgb * 1.5;  // 增加亮度
+                brightenedColor = clamp(brightenedColor, _ClampMin, _ClampMax;
+
+                return fixed4(brightenedColor, texColor.a);
+            }
+            ENDCG
+        }
+    }
+}
+</code></pre>
+<h3 id="注意事项"><strong>注意事项</strong></h3>
+<ol>
+<li><strong>性能</strong>：<code>clamp</code> 是一个轻量级操作，但在复杂计算中频繁调用可能影响性能。</li>
+<li><strong>向量分量</strong>：对向量使用 <code>clamp</code> 时，确保 <code>min</code> 和 <code>max</code> 向量的每个分量都符合逻辑。</li>
+<li><strong>替代实现</strong>：若需要自定义 clamping 逻辑，可手动实现：<pre><code class="language-hlsl">float customClamp(float value, float min, float max) {
+    return value &lt; min ? min : (value &gt; max ? max : value);
+}
+</code></pre>
+</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x06shader-han-shu-mod/" class="post-title gt-a-link">
+                    0x06.Shader函数mod
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

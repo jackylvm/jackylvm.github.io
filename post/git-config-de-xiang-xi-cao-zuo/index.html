@@ -1,0 +1,387 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>git config 的详细操作 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    git config 的详细操作
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-09-08 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/YEcVqVmnIV/" class="post-tags">
+                            # Git
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="git-config-完整详细操作">git config 完整详细操作</h1>
+<p><code>git config</code> 用来配置 Git 的各项参数，分为<strong>三个作用域</strong>，优先级：本地 &gt; 全局 &gt; 系统。</p>
+<table>
+<thead>
+<tr>
+<th>作用域</th>
+<th>参数</th>
+<th>配置文件位置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统级</td>
+<td><code>--system</code></td>
+<td>Linux:<code>/etc/gitconfig</code>；Windows:<code>Git安装目录/etc/gitconfig</code></td>
+<td>本机所有用户，需要管理员权限</td>
+</tr>
+<tr>
+<td>全局(用户级)</td>
+<td><code>--global</code></td>
+<td>Linux:<code>~/.gitconfig</code>；Windows:<code>C:\Users\用户名\.gitconfig</code></td>
+<td>当前用户所有仓库，最常用</td>
+</tr>
+<tr>
+<td>本地(仓库级)</td>
+<td><code>--local</code></td>
+<td>仓库目录下 <code>.git/config</code></td>
+<td>仅当前这个git仓库，默认不加参数就是<code>--local</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>优先级：<strong>本地 &gt; 全局 &gt; 系统</strong>，同名配置本地会覆盖全局。</p>
+</blockquote>
+<h2 id="一-查看配置">一、查看配置</h2>
+<h3 id="1-查看全部配置">1. 查看全部配置</h3>
+<pre><code class="language-bash"># 查看所有合并后的配置（最终生效）
+git config --list
+git config -l
+
+# 查看系统配置
+git config --system --list
+# 查看全局配置
+git config --global --list
+# 查看当前仓库本地配置
+git config --local --list
+</code></pre>
+<h3 id="2-查看单个配置项">2. 查看单个配置项</h3>
+<pre><code class="language-bash">git config --global user.name
+git config user.email
+</code></pre>
+<h3 id="3-查看配置文件原始内容">3. 查看配置文件原始内容</h3>
+<pre><code class="language-bash"># 直接打开全局配置文件编辑
+git config --global --edit
+# 编辑本地仓库配置
+git config --local --edit
+</code></pre>
+<h2 id="二-设置配置set">二、设置配置（set）</h2>
+<h3 id="1-最基础用户名邮箱提交身份">1. 最基础：用户名邮箱（提交身份）</h3>
+<blockquote>
+<p><strong>全局：当前电脑所有仓库共用身份</strong></p>
+</blockquote>
+<pre><code class="language-bash">git config --global user.name &quot;张三&quot;
+git config --global user.email &quot;zhangsan@shturl.&quot;
+</code></pre>
+<blockquote>
+<p><strong>本地：仅当前仓库，适合多账号（公司/个人）</strong></p>
+</blockquote>
+<pre><code class="language-bash">git config --local user.name &quot;公司账号名&quot;
+git config --local user.email &quot;work@company.com&quot;
+</code></pre>
+<h3 id="2-设置编辑器">2. 设置编辑器</h3>
+<pre><code class="language-bash"># 全局设置vscode为git默认编辑器
+git config --global core.editor &quot;code --wait&quot;
+
+# windows notepad++
+git config --global core.editor &quot;'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin&quot;
+</code></pre>
+<h3 id="3-换行符配置windows必看">3. 换行符配置（Windows必看）</h3>
+<pre><code class="language-bash"># windows：提交转LF，检出转CRLF（默认）
+git config --global core.autocrlf true
+
+# mac/linux：只检出不转换
+git config --global core.autocrlf input
+
+# 关闭自动转换（不推荐）
+git config --global core.autocrlf false
+</code></pre>
+<h3 id="4-别名-alias简化命令">4. 别名 alias（简化命令）</h3>
+<pre><code class="language-bash"># 示例：git st 代替 git status
+git config --global alias.st status
+
+# git ci = git commit
+git config --global alias.ci commit
+
+# git br = git branch
+git config --global alias.br branch
+
+# git lg 漂亮日志
+git config --global alias.lg &quot;log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit&quot;
+</code></pre>
+<p>使用：直接 <code>git lg</code></p>
+<h3 id="5-其他高频配置">5. 其他高频配置</h3>
+<pre><code class="language-bash"># 禁止git自动合并冲突
+git config --global merge.conflictstyle diff3
+
+# 设置默认pull策略 rebase（推荐，减少多余merge提交）
+git config --global pull.rebase true
+
+# 设置默认分支名，git init新建仓库默认main而不是master
+git config --global init.defaultBranch main
+
+# 缓存https密码凭证（记住账号密码）
+git config --global credential.helper store
+# windows/mac 使用系统密钥链
+git config --global credential.helper manager-core
+</code></pre>
+<h2 id="三-删除配置-unset">三、删除配置 unset</h2>
+<p>语法：<code>git config [--global/--local] --unset 配置名</code></p>
+<pre><code class="language-bash"># 删除全局用户名
+git config --global --unset user.name
+
+# 删除本地仓库email
+git config --local --unset user.email
+
+# 删除别名
+git config --global --unset alias.lg
+</code></pre>
+<blockquote>
+<p>如果同一个key有多条值，会删第一条；多条删除加 <code>--unset-all</code></p>
+</blockquote>
+<pre><code class="language-bash">git config --global --unset-all remote.origin.fetch
+</code></pre>
+<h2 id="四-增删多值配置add-get-all">四、增删多值配置（add / get-all）</h2>
+<p>有些配置可以有多个值</p>
+<pre><code class="language-bash"># 添加多条值
+git config --global --add remote.origin.fetch &quot;+refs/pull/*/head:refs/remotes/origin/pr/*&quot;
+
+# 获取该key全部值
+git config --global --get-all remote.origin.fetch
+</code></pre>
+<h2 id="五-实战多git账号场景最常用">五、实战：多git账号场景（最常用）</h2>
+<p>场景：电脑同时用 GitHub 和公司 GitLab，不同仓库不同邮箱用户名。</p>
+<ol>
+<li>不设置全局 user.name / user.email</li>
+<li><strong>每个仓库进入目录单独设置 --local</strong></li>
+</ol>
+<pre><code class="language-bash"># github仓库目录下执行
+git config --local user.name &quot;mygithub&quot;
+git config --local user.email &quot;my@github.com&quot;
+
+# 公司gitlab仓库目录下执行
+git config --local user.name &quot;workname&quot;
+git config --local user.email &quot;work@corp.com&quot;
+</code></pre>
+<blockquote>
+<p>提交时优先读取本地local配置，没有才读global。</p>
+</blockquote>
+<h2 id="六-直接手动修改配置文件">六、直接手动修改配置文件</h2>
+<ul>
+<li>全局：<code>~/.gitconfig</code>（windows 用户目录下）</li>
+<li>本地仓库：<code>.git/config</code><br>
+直接文本编辑器修改保存，和 git config 命令等价。</li>
+</ul>
+<h2 id="七-常见坑">七、常见坑</h2>
+<ol>
+<li>设置完用户名邮箱，旧提交不会变！只影响<strong>新的commit</strong>，历史提交需要 <code>git filter‑repo</code> 重写。</li>
+<li>执行 <code>git config --global</code> 必须不在git仓库文件夹内也可以执行。</li>
+<li><code>git config -l</code> 看到重复的配置项：文件里写了多条，用 <code>--unset-all</code>清理。</li>
+<li>https克隆记住密码失效：检查 <code>credential.helper</code> 设置。</li>
+</ol>
+<h2 id="常用速查表">常用速查表</h2>
+<pre><code class="language-bash"># 查看全部配置
+git config -l
+# 设置全局身份
+git config --global user.name &quot;xxx&quot;
+git config --global user.email &quot;xxx@xx.com&quot;
+# 设置别名
+git config --global alias.st status
+# 删除配置
+git config --global --unset user.name
+# 编辑配置文件
+git config --global -e
+# 默认拉取使用rebase
+git config --global pull.rebase true
+# init默认分支main
+git config --global init.defaultBranch main
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/fnm-pm2-ecosystemconfigjs-de-xiang-mu-mo-ban/" class="post-title gt-a-link">
+                    fnm + pm2 + ecosystem.config.js 的项目模板
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

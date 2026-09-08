@@ -1,0 +1,510 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>设计一个属性管理系统 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    设计一个属性管理系统
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-10-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在游戏中设计一个灵活、可扩展的角色属性管理系统，需要兼顾<strong>基础属性定义</strong>、<strong>属性计算逻辑</strong>、<strong>动态变化（如buff/debuff）</strong>、<strong>属性联动</strong>（如攻击影响伤害）等核心需求。以下是一套可落地的设计方案，结合面向对象思想和游戏开发实践，支持单机/多人游戏场景。</p>
+<hr>
+<h3 id="一-核心需求分析">一、核心需求分析</h3>
+<p>角色属性系统需满足：</p>
+<ol>
+<li>支持基础属性（攻击、防御、血量等）和衍生属性（如暴击率、吸血率）；</li>
+<li>允许动态修改（如装备加成、技能buff、临时debuff）；</li>
+<li>属性变化时能触发联动逻辑（如血量变化更新UI、攻击变化影响伤害公式）；</li>
+<li>可扩展（新增属性无需大幅改核心代码）；</li>
+<li>支持属性依赖关系（如“最大血量”受“体质”影响）。</li>
+</ol>
+<h3 id="二-系统设计方案">二、系统设计方案</h3>
+<h4 id="1-定义属性类型枚举常量">1. 定义属性类型（枚举/常量）</h4>
+<p>先明确属性的分类和标识，用枚举定义所有可能的属性类型，方便管理和扩展：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 属性类型枚举（可根据游戏需求扩展）
+/// &lt;/summary&gt;
+public enum AttributeType
+{
+    // 基础属性（直接影响衍生属性）
+    Strength,   // 力量（影响物理攻击）
+    Agility,    // 敏捷（影响暴击率、闪避）
+    Intelligence, // 智力（影响法术攻击、蓝量）
+    Vitality,   // 体质（影响最大血量、回血）
+
+    // 衍生属性（直接参与战斗计算）
+    MaxHP,      // 最大血量
+    CurrentHP,  // 当前血量
+    PhysicalAttack, // 物理攻击
+    MagicalAttack,  // 法术攻击
+    PhysicalDefense, // 物理防御
+    MagicalDefense,  // 法术防御
+    CriticalChance,  // 暴击率（0-100%）
+    CriticalDamage,  // 暴击伤害倍率（150%即1.5）
+    Haste,      // 攻击速度加成（%）
+}
+</code></pre>
+<h4 id="2-属性数据结构attribute">2. 属性数据结构（Attribute）</h4>
+<p>每个属性需要存储<strong>基础值</strong>（如角色等级自带）、<strong>加成值</strong>（如装备/ buff）、<strong>最终值</strong>（计算结果），以及是否可修改、是否受百分比加成等配置：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 单个属性的数据结构
+/// &lt;/summary&gt;
+public class Attribute
+{
+    public AttributeType Type { get; } // 属性类型
+    public float BaseValue { get; private set; } // 基础值（如等级、种族自带）
+    public float AdditiveValue { get; private set; } // 加法加成（如装备+10攻击）
+    public float MultiplicativeValue { get; private set; } // 乘法加成（如buff+20%攻击）
+    public float FinalValue { get; private set; } // 最终值（Base * (1 + Multiplicative) + Additive）
+    public bool IsModifiable { get; } // 是否允许被外部修改（如当前血量可改，基础力量不可改）
+
+    // 构造函数：初始化属性类型和基础配置
+    public Attribute(AttributeType type, float baseValue, bool isModifiable = true)
+    {
+        Type = type;
+        BaseValue = baseValue;
+        IsModifiable = isModifiable;
+        AdditiveValue = 0;
+        MultiplicativeValue = 0;
+        UpdateFinalValue();
+    }
+
+    // 更新最终值（核心计算逻辑）
+    private void UpdateFinalValue()
+    {
+        // 公式：最终值 = 基础值 * (1 + 乘法加成) + 加法加成
+        // 特殊处理：百分比属性（如暴击率）可能有上限（如最高100%）
+        FinalValue = BaseValue * (1 + MultiplicativeValue) + AdditiveValue;
+        if (Type == AttributeType.CriticalChance)
+        {
+            FinalValue = Mathf.Clamp(FinalValue, 0, 100); // 暴击率上限100%
+        }
+    }
+
+    // 提供修改接口（根据是否可修改做校验）
+    public void ModifyBaseValue(float delta)
+    {
+        if (!IsModifiable) return;
+        BaseValue += delta;
+        UpdateFinalValue();
+    }
+
+    public void AddAdditive(float value)
+    {
+        if (!IsModifiable) return;
+        AdditiveValue += value;
+        UpdateFinalValue();
+    }
+
+    public void AddMultiplicative(float value)
+    {
+        if (!IsModifiable) return;
+        MultiplicativeValue += value;
+        UpdateFinalValue();
+    }
+
+    // 重置加成（如buff消失时）
+    public void ResetAdditives()
+    {
+        AdditiveValue = 0;
+        MultiplicativeValue = 0;
+        UpdateFinalValue();
+    }
+}
+</code></pre>
+<h4 id="3-属性管理器attributemanager">3. 属性管理器（AttributeManager）</h4>
+<p>作为核心控制器，负责管理所有属性的创建、修改、查询，并处理属性变化事件：</p>
+<pre><code class="language-csharp">public class AttributeManager
+{
+    private readonly Dictionary&lt;AttributeType, Attribute&gt; _attributes = new();
+    // 属性变化事件（外部可订阅，如UI更新、战斗逻辑）
+    public event Action&lt;AttributeType, float&gt; OnAttributeChanged;
+
+    // 初始化角色基础属性（根据角色模板、等级等）
+    public void InitBaseAttributes(CharacterData data)
+    {
+        // 从角色数据加载基础属性（示例：体质决定最大血量）
+        AddAttribute(AttributeType.Vitality, data.Vitality);
+        AddAttribute(AttributeType.MaxHP, CalculateMaxHP(data.Vitality)); // 依赖体质
+        AddAttribute(AttributeType.CurrentHP, GetFinalValue(AttributeType.MaxHP)); // 初始血量=最大血量
+        AddAttribute(AttributeType.Strength, data.Strength);
+        AddAttribute(AttributeType.PhysicalAttack, CalculatePhysicalAttack(data.Strength)); // 依赖力量
+        // ... 其他属性
+    }
+
+    // 添加属性到管理器
+    private void AddAttribute(AttributeType type, float baseValue, bool isModifiable = true)
+    {
+        if (!_attributes.ContainsKey(type))
+        {
+            _attributes[type] = new Attribute(type, baseValue, isModifiable);
+        }
+    }
+
+    // 获取属性最终值（外部查询用，如战斗时获取攻击力）
+    public float GetFinalValue(AttributeType type)
+    {
+        return _attributes.TryGetValue(type, out var attr) ? attr.FinalValue : 0;
+    }
+
+    // 修改属性（对外提供的安全接口）
+    public void ModifyAttribute(AttributeType type, float value, ModifyType modifyType)
+    {
+        if (!_attributes.TryGetValue(type, out var attr)) return;
+
+        switch (modifyType)
+        {
+            case ModifyType.Base:
+                attr.ModifyBaseValue(value);
+                break;
+            case ModifyType.Additive:
+                attr.AddAdditive(value);
+                break;
+            case ModifyType.Multiplicative:
+                attr.AddMultiplicative(value);
+                break;
+        }
+
+        // 触发属性变化事件（如通知UI更新）
+        OnAttributeChanged?.Invoke(type, attr.FinalValue);
+
+        // 特殊处理：当前血量不能超过最大血量
+        if (type == AttributeType.MaxHP)
+        {
+            var currentHP = _attributes[AttributeType.CurrentHP];
+            currentHP.ModifyBaseValue(Mathf.Min(currentHP.FinalValue, attr.FinalValue) - currentHP.FinalValue);
+        }
+    }
+
+    // 计算衍生属性（如最大血量=体质*10 + 50）
+    private float CalculateMaxHP(float vitality) =&gt; vitality * 10 + 50;
+    // 物理攻击=力量*2
+    private float CalculatePhysicalAttack(float strength) =&gt; strength * 2;
+
+    // 清除所有临时加成（如角色死亡后重置buff）
+    public void ClearTemporaryModifiers()
+    {
+        foreach (var attr in _attributes.Values)
+        {
+            attr.ResetAdditives();
+            OnAttributeChanged?.Invoke(attr.Type, attr.FinalValue);
+        }
+    }
+}
+
+// 修改类型（区分基础值、加法加成、乘法加成）
+public enum ModifyType
+{
+    Base,        // 修改基础值（如升级增加力量）
+    Additive,    // 加法加成（如装备+5攻击）
+    Multiplicative // 乘法加成（如技能+10%攻击）
+}
+</code></pre>
+<h4 id="4-动态效果管理buffdebuff">4. 动态效果管理（Buff/Debuff）</h4>
+<p>通过“效果系统”与属性系统联动，实现临时属性变化（如“力量+20”“暴击率+15%”）：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 临时属性效果（如buff）
+/// &lt;/summary&gt;
+public class AttributeBuff
+{
+    public AttributeType TargetType; // 影响的属性
+    public float Value; // 加成值
+    public ModifyType ModifyType; // 加法/乘法
+    public float Duration; // 持续时间（秒）
+
+    private AttributeManager _attrManager;
+    private bool _isActive;
+
+    public AttributeBuff(AttributeManager manager, AttributeType type, float value, ModifyType modifyType, float duration)
+    {
+        _attrManager = manager;
+        TargetType = type;
+        Value = value;
+        ModifyType = modifyType;
+        Duration = duration;
+    }
+
+    // 应用buff（添加属性加成）
+    public void Apply()
+    {
+        if (_isActive) return;
+        _attrManager.ModifyAttribute(TargetType, Value, ModifyType);
+        _isActive = true;
+        // 启动计时器，到期后移除
+        TimerManager.Instance.StartTimer(Duration, Remove);
+    }
+
+    // 移除buff（撤销属性加成）
+    public void Remove()
+    {
+        if (!_isActive) return;
+        // 撤销加成（值取负）
+        _attrManager.ModifyAttribute(TargetType, -Value, ModifyType);
+        _isActive = false;
+    }
+}
+</code></pre>
+<h4 id="5-外部交互如ui-战斗">5. 外部交互（如UI、战斗）</h4>
+<p>属性系统通过事件与外部模块解耦，例如：</p>
+<pre><code class="language-csharp">// UI面板订阅属性变化事件
+public class UIBloodBar : MonoBehaviour
+{
+    private Slider _hpSlider;
+
+    private void Start()
+    {
+        // 获取角色的属性管理器
+        var attrManager = PlayerController.Instance.AttributeManager;
+        // 订阅血量变化事件
+        attrManager.OnAttributeChanged += OnHPChanged;
+        // 初始化显示
+        _hpSlider.maxValue = attrManager.GetFinalValue(AttributeType.MaxHP);
+        _hpSlider.value = attrManager.GetFinalValue(AttributeType.CurrentHP);
+    }
+
+    private void OnHPChanged(AttributeType type, float value)
+    {
+        if (type == AttributeType.CurrentHP)
+        {
+            _hpSlider.value = value;
+        }
+        else if (type == AttributeType.MaxHP)
+        {
+            _hpSlider.maxValue = value;
+        }
+    }
+}
+
+// 战斗系统使用属性计算伤害
+public class CombatSystem
+{
+    public float CalculateDamage(Character attacker, Character defender)
+    {
+        var attack = attacker.AttributeManager.GetFinalValue(AttributeType.PhysicalAttack);
+        var defense = defender.AttributeManager.GetFinalValue(AttributeType.PhysicalDefense);
+        // 伤害公式：攻击 - 防御/2（示例）
+        var damage = Mathf.Max(1, attack - defense / 2);
+        
+        // 检查是否暴击
+        var critChance = attacker.AttributeManager.GetFinalValue(AttributeType.CriticalChance);
+        if (Random.value * 100 &lt; critChance)
+        {
+            var critMulti = attacker.AttributeManager.GetFinalValue(AttributeType.CriticalDamage);
+            damage *= critMulti;
+        }
+        return damage;
+    }
+}
+</code></pre>
+<h3 id="三-系统扩展与优化">三、系统扩展与优化</h3>
+<ol>
+<li><strong>属性分组</strong>：将属性按“战斗”“生存”“资源”分组，方便批量查询或修改（如“所有防御属性+10%”）。</li>
+<li><strong>属性依赖配置表</strong>：用Excel配置衍生属性的计算公式（如<code>MaxHP = Vitality * 10 + 50</code>），通过配置表加载，避免硬编码。</li>
+<li><strong>性能优化</strong>：频繁变化的属性（如当前血量）可缓存最终值；属性计算复杂时（如多乘区加成），用“预计算”减少实时计算开销。</li>
+<li><strong>网络同步</strong>：多人游戏中，仅同步关键属性变化（如当前血量、buff添加/移除），避免全量同步。</li>
+</ol>
+<h3 id="四-总结">四、总结</h3>
+<p>该设计通过<strong>属性类型枚举</strong>定义范围，<strong>Attribute类</strong>封装单属性数据与计算，<strong>AttributeManager</strong>统一管理并触发事件，结合<strong>Buff系统</strong>实现动态变化，最终通过事件与UI、战斗等模块解耦。核心优势是：</p>
+<ul>
+<li>可扩展性：新增属性只需添加枚举和计算逻辑，无需修改管理器核心代码；</li>
+<li>灵活性：支持基础值、加法/乘法加成，满足装备、技能、buff等多种场景；</li>
+<li>低耦合：通过事件通知外部模块，避免直接依赖。</li>
+</ul>
+<p>可根据游戏复杂度（如是否需要属性克制、元素加成）进一步扩展，例如增加“属性系数表”或“临时状态叠加逻辑”。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/zai-you-xi-kai-fa-zhong-property-he-attribute-zen-me-shi-yong/" class="post-title gt-a-link">
+                    在游戏开发中,Property和Attribute怎么使用
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

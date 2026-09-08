@@ -1,0 +1,351 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x09.装饰器模式移除某个节点的问题 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x09.装饰器模式移除某个节点的问题
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong>纯正的“装饰器模式”最大的痛点</strong>。</p>
+<p>在标准的装饰器模式中，把对象一层层包起来（添加功能）非常容易，但<strong>想要从中间抽掉某一层（移除功能），是非常困难甚至丑陋的。</strong></p>
+<p>想象一下那个“俄罗斯套娃”的例子：最外面是魔法护盾，中间是钢铁护甲，最里面是玩家肉体。如果此时“钢铁护甲”的耐久度没了，碎了，你怎么在不破坏最外层“魔法护盾”的情况下，把中间那层抽出来？</p>
+<p>最外层的护盾只知道它的下一层是一个 <code>IDamageHandler</code>，它根本不知道里面是不是护甲。</p>
+<p>为了解决这个问题，在实际的游戏开发中，我们通常有以下三种策略：</p>
+<hr>
+<h3 id="方法一简单粗暴的推倒重来-rebuild-策略">方法一：简单粗暴的“推倒重来” (Rebuild 策略)</h3>
+<p>既然从中间抽出一层很麻烦，那我们就<strong>把所有衣服脱光，重新穿一遍（跳过坏掉的那件）</strong>。</p>
+<p>在实际代码中，我们可以用一个“列表”来记录玩家当前拥有的所有 Buff。当某个 Buff 需要移除时，我们不是去修改装饰器的链条，而是更新这个列表，然后重新生成整个装饰器链。</p>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerDefenseSystem : MonoBehaviour
+{
+    // 记录玩家当前所有的“附魔/Buff”标识
+    private List&lt;string&gt; activeBuffs = new List&lt;string&gt;();
+
+    // 核心玩家肉体
+    private IDamageHandler basePlayer = new NakedPlayer();
+    
+    // 当前正在生效的最终防御链
+    private IDamageHandler currentDefenseChain;
+
+    void Start()
+    {
+        // 初始状态
+        currentDefenseChain = basePlayer;
+    }
+
+    // 添加 Buff
+    public void AddBuff(string buffName)
+    {
+        if (!activeBuffs.Contains(buffName))
+        {
+            activeBuffs.Add(buffName);
+            RebuildDefenseChain(); // 重新穿衣服
+        }
+    }
+
+    // 移除 Buff (解决你的痛点)
+    public void RemoveBuff(string buffName)
+    {
+        if (activeBuffs.Contains(buffName))
+        {
+            activeBuffs.Remove(buffName);
+            RebuildDefenseChain(); // 重新穿衣服
+        }
+    }
+
+    // 核心逻辑：根据当前的 Buff 列表，从内到外重新包装一次
+    private void RebuildDefenseChain()
+    {
+        // 1. 先回到最基础的肉体状态
+        currentDefenseChain = basePlayer;
+
+        // 2. 根据列表，一层一层把衣服套上去
+        foreach (string buff in activeBuffs)
+        {
+            if (buff == &quot;IronArmor&quot;)
+            {
+                currentDefenseChain = new IronArmor(currentDefenseChain);
+            }
+            else if (buff == &quot;MagicShield&quot;)
+            {
+                currentDefenseChain = new MagicShield(currentDefenseChain);
+            }
+        }
+        
+        Debug.Log(&quot;防御系统已重构，当前剩余 Buff 数量：&quot; + activeBuffs.Count);
+    }
+}
+
+</code></pre>
+<p><strong>优点：</strong> 代码极其干净，绝对不会出现链条断裂引发的空指针异常。<br>
+<strong>缺点：</strong> 每次添加/删除 Buff 都要重新实例化（<code>new</code>）所有的装饰器，如果 Buff 极其频繁地改变，可能会产生一些 GC（垃圾回收）压力。</p>
+<hr>
+<h3 id="方法二给装饰器增加脱钩功能-链表解绑">方法二：给装饰器增加“脱钩”功能 (链表解绑)</h3>
+<p>如果你不想推倒重来，就必须打破一点点面向对象的封闭性，让每一层装饰器都有能力“剥离”自己或者剥离自己的下一层。这本质上就是把装饰器链当成一个<strong>单向链表</strong>来操作。</p>
+<pre><code class="language-csharp">// 修改后的接口，增加一个剥离自身的方法
+public interface IDamageHandler
+{
+    float ProcessDamage(float rawDamage);
+    
+    // 尝试从链条中移除指定的类型的装饰器，并返回缝合后的新链条
+    IDamageHandler RemoveDecorator(System.Type typeToRemove);
+}
+
+</code></pre>
+<p>这种写法的具体实现会非常烧脑和绕（涉及到链表节点的删除和重新指向），对于初学者来说容易写出 Bug，而且违背了装饰器模式“各司其职”的初衷，<strong>极其不推荐在日常开发中使用</strong>。</p>
+<hr>
+<h3 id="方法三-行业标准答案修改器列表模式">方法三：🌟 行业标准答案（修改器列表模式）</h3>
+<p>这里我要对你坦诚相见：<strong>在真实的商业 Unity 游戏开发中，针对频繁增加和移除的 Buff 系统，我们几乎不用纯粹的 GoF 装饰器模式！</strong></p>
+<p>我们会使用一种变体，通常被称为 <strong>修改器模式 (Modifier Pattern)</strong>，它融合了策略模式和一点点责任链模式的思想。<br>
+相比于“相互嵌套”，它直接用一个 <code>List</code> 来管理所有的“衣服”，想要脱哪件，直接从 List 里面 Remove 掉就行了。</p>
+<p><strong>这才是你真正在 Unity 中应该写出的代码：</strong></p>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using UnityEngine;
+
+// 1. 定义一个防御修改器接口（不再相互包裹了）
+public interface IDefenseModifier
+{
+    float ModifyDamage(float currentDamage);
+}
+
+// 2. 具体的修改器
+public class IronArmorModifier : IDefenseModifier
+{
+    public float ModifyDamage(float currentDamage) { return currentDamage * 0.5f; }
+}
+
+public class MagicShieldModifier : IDefenseModifier
+{
+    public float ModifyDamage(float currentDamage) { return Mathf.Max(0, currentDamage - 20f); }
+}
+
+// 3. 玩家的防御管理器
+public class ModernPlayerDefense : MonoBehaviour
+{
+    // 直接用一个 List 装所有的 Buff ！（想要移除哪个，太简单了）
+    private List&lt;IDefenseModifier&gt; modifiers = new List&lt;IDefenseModifier&gt;();
+
+    public void AddModifier(IDefenseModifier mod)
+    {
+        modifiers.Add(mod);
+    }
+
+    // 【解决你的问题】极其轻松地移除特定 Buff
+    public void RemoveModifier(IDefenseModifier mod)
+    {
+        modifiers.Remove(mod);
+    }
+
+    // 结算伤害时，遍历 List 即可
+    public void TakeDamage(float rawDamage)
+    {
+        float finalDamage = rawDamage;
+
+        // 像流水线一样，把伤害依次经过所有的修改器
+        foreach (var mod in modifiers)
+        {
+            finalDamage = mod.ModifyDamage(finalDamage);
+        }
+
+        Debug.Log($&quot;原始伤害 {rawDamage}，经过 {modifiers.Count} 层过滤后，最终承受伤害 {finalDamage}&quot;);
+    }
+}
+
+</code></pre>
+<h3 id="总结时刻">💡 总结时刻</h3>
+<ul>
+<li>如果你是在面试，或者写静态的功能扩展（比如配置不同品种的咖啡和配料），回答“纯正的装饰器模式”。</li>
+<li>如果你遇到了需要在运行时<strong>频繁、随机地移除某一个中间层</strong>（比如游戏里的动态 Buff/Debuff 系统），赶紧丢掉纯装饰器模式，拥抱<strong>修改器列表 (List of Modifiers)</strong>。设计模式是死的，如何根据实际需求灵活变通，才是高级程序员的智慧。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x08zhuang-shi-qi-mo-shi-de-ling-yi-ge-shi-li/" class="post-title gt-a-link">
+                    0x08.装饰器模式的另一个示例
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

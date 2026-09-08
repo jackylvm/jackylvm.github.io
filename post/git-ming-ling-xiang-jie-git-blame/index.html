@@ -1,0 +1,249 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x03.Git命令详解-git blame | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x03.Git命令详解-git blame
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-05-22 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/YEcVqVmnIV/" class="post-tags">
+                            # Git
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong><code>git blame</code></strong> 是 Git 里用来<strong>逐行追溯代码修改历史</strong>的命令，核心作用是：<strong>查看文件里每一行代码，最后是被谁、在哪个提交、什么时候修改的</strong>。</p>
+<h3 id="一-字面意思">一、字面意思</h3>
+<ul>
+<li><strong>blame</strong> 本义：<strong>责备、归咎于</strong></li>
+<li>在 Git 里是中性工具义：<strong>“这行代码最后一次修改，归属于哪个提交/开发者”</strong></li>
+<li>别名：<code>git annotate</code>（含义完全一样）</li>
+</ul>
+<h3 id="二-作用与输出">二、作用与输出</h3>
+<p>执行：</p>
+<pre><code class="language-bash">git blame 文件名
+</code></pre>
+<p>典型输出格式：</p>
+<pre><code>a1b2c3d (张三  2026-01-15 10:30 +0800  1)  #include &lt;stdio.h&gt;
+d4e5f6g (李四  2026-02-20 14:15 +0800  2)  int main() {
+a1b2c3d (张三  2026-01-15 10:30 +0800  3)      printf(&quot;hello\n&quot;);
+d4e5f6g (李四  2026-02-20 14:15 +0800  4)      return 0;
+d4e5f6g (李四  2026-02-20 14:15 +0800  5)  }
+</code></pre>
+<p>每列含义：</p>
+<ol>
+<li><strong>短提交哈希</strong>（a1b2c3d）</li>
+<li><strong>作者</strong>（张三）</li>
+<li><strong>修改时间</strong></li>
+<li><strong>行号</strong></li>
+<li><strong>代码内容</strong></li>
+</ol>
+<h3 id="三-常用场景">三、常用场景</h3>
+<ul>
+<li>线上出 bug，想知道<strong>谁最后改了这行</strong></li>
+<li>看不懂某段代码，<strong>找原作者咨询</strong></li>
+<li>代码 review：<strong>确认每行的修改来源与责任</strong></li>
+<li>重构时：<strong>了解代码的历史变迁</strong></li>
+</ul>
+<h3 id="四-常用选项">四、常用选项</h3>
+<ul>
+<li>只看某几行：<pre><code class="language-bash">git blame -L 10,20 文件名  # 只看第10～20行
+</code></pre>
+</li>
+<li>忽略空格/换行变化（只看实质性代码修改）：<pre><code class="language-bash">git blame -w 文件名
+</code></pre>
+</li>
+<li>显示作者邮箱：<pre><code class="language-bash">git blame -e 文件名
+</code></pre>
+</li>
+</ul>
+<h3 id="五-容易混淆">五、容易混淆</h3>
+<ul>
+<li><strong><code>git blame</code></strong>：<strong>行级、空间上</strong>看“最后一次修改是谁”</li>
+<li><strong><code>git log</code></strong>：<strong>提交级、时间上</strong>看“整个项目/文件的提交历史”</li>
+</ul>
+<p>简单记：<strong><code>blame</code> = 查行 → 谁改的；<code>log</code> = 查提交 → 改了什么</strong>。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/textmeshpro-fu-wen-ben-biao-qian-su-cha/" class="post-title gt-a-link">
+                    TextMeshPro富文本标签速查
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

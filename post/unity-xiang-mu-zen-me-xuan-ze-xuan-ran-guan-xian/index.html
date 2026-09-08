@@ -1,0 +1,332 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity项目怎么选择渲染管线 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity项目怎么选择渲染管线
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-04-01 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/FoINkg9q5-/" class="post-tags">
+                            # 渲染管线
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/uJnyPKC3X32/" class="post-tags">
+                            # 启项目
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>每次都会纠结怎么选,还是记录一下吧</p>
+<!-- more -->
+<p><strong>内置管线</strong>作为 Unity 的默认渲染方案，具有开箱即用的优势，适合快速原型开发与简单项目。它支持基础的光照、阴影和后处理效果，但在复杂场景下性能表现有限，且缺乏对现代渲染技术的深度优化。由于其传统的渲染流程，在跨平台兼容性上需依赖手动配置，更适用于对画面要求不高的中小型项目或教育类应用。<br>
+<strong>通用渲染管线（URP）</strong> 是轻量级且可扩展的解决方案，专为多平台高效渲染设计。它通过简化渲染路径和优化资源管理，在保证中等视觉质量的同时显著降低性能开销，尤其适合移动游戏、独立游戏和 2D 项目。URP 支持可编程渲染功能，允许开发者通过自定义着色器实现风格化效果，如卡通渲染或水墨风格。其强大的跨平台兼容性使其成为跨设备开发的理想选择。<br>
+<strong>高清渲染管线（HDRP）</strong> 则专注于高端视觉表现，支持高动态范围（HDR）渲染、实时全局光照和电影级后处理效果。它通过物理基于渲染（PBR）技术实现逼真的材质表现，适合 AAA 级游戏、影视动画和虚拟现实项目。然而，HDRP 对硬件要求苛刻，开发过程中需平衡画质与性能，且学习曲线陡峭，更适合预算充足、追求极致画面的大型团队。<br>
+三者的选择需根据项目定位综合考量：内置管线适合快速验证创意；URP 在性能与画质间取得平衡，适合多平台发布；HDRP 则为追求顶尖视觉效果的项目提供技术支持。开发者可根据目标平台、美术风格和资源限制灵活切换渲染管线，利用 Unity 生态系统的工具链实现高效开发。</p>
+<!-- more -->
+<table>
+<thead>
+<tr>
+<th>渲染管线类型</th>
+<th>视觉效果</th>
+<th>性能表现</th>
+<th>开发难度与效率</th>
+<th>平台兼容性</th>
+<th>适用项目类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内置管线</td>
+<td>具备基础渲染功能，能满足一般视觉需求，但相比 HDRP 和优化后的 URP，在效果丰富度和质量上稍逊一筹</td>
+<td>性能表现因场景和使用方式而异，在复杂场景下可能性能不佳</td>
+<td>较为传统，对于熟悉 Unity 旧版本的开发者容易上手，但灵活性和可扩展性不足</td>
+<td>支持多种平台，但对于不同平台的优化可能需要更多手动操作</td>
+<td>对视觉效果要求不极致、追求快速开发和兼容性的项目，或早期基于 Unity 内置管线开发的项目延续</td>
+</tr>
+<tr>
+<td>URP（通用渲染管线）</td>
+<td>能达到不错视觉效果，虽在光照、阴影和后处理效果方面相对 HDRP 有限，但可满足多数项目需求，适合简洁风格或性能优先的游戏</td>
+<td>经过优化，性能开销低，资源使用高效，在配置较低设备也有良好表现</td>
+<td>相对简单易懂，配置和使用便捷，渲染流程简洁，调试和优化容易，上手快，能缩短开发周期</td>
+<td>跨平台兼容性好，可在多种平台稳定运行，同一套代码适配不同平台</td>
+<td>对性能要求高、开发周期短的项目，如独立游戏、移动游戏、教育类游戏，以及 2D 游戏或风格化 3D 游戏</td>
+</tr>
+<tr>
+<td>HDRP（高清渲染管线）</td>
+<td>提供高质量视觉体验，支持高动态范围渲染、实时全局光照、精细阴影及丰富后处理效果，画面逼真精美</td>
+<td>性能开销大，需要较高硬件配置支持，在低端设备可能出现性能问题</td>
+<td>功能复杂，需较高技术水平和渲染知识，学习和开发周期长</td>
+<td>支持多种平台，但在某些低端设备表现不佳</td>
+<td>对视觉效果有极高要求、预算充足、开发周期长的大型项目，如 AAA 级 3D 游戏、影视级实时渲染项目</td>
+</tr>
+</tbody>
+</table>
+<!-- more -->
+<h2 id="使用hdrp的好处">使用HDRP的好处</h2>
+<p>在游戏开发中使用Unity的高清渲染管线（HDRP）有诸多好处:</p>
+<h3 id="视觉效果提升">视觉效果提升</h3>
+<ul>
+<li><strong>高动态范围（HDR）渲染</strong>：HDRP支持高动态范围渲染，能呈现出更丰富的色彩和亮度范围。与传统的低动态范围（LDR）渲染相比，HDR可以让画面中的亮部更亮，暗部更暗，同时保留更多的细节。比如在一个有强烈阳光照射的户外场景中，阳光照耀的部分会非常明亮耀眼，而阴影部分依然能看清细节，使画面更加逼真。</li>
+<li><strong>逼真的光照效果</strong>：提供了多种先进的光照模型和技术，如实时全局光照、反射探头、阴影效果等。实时全局光照可以模拟光线在场景中的多次反射和散射，让场景光照更加自然和真实。反射探头能捕捉周围环境的反射信息，使物体表面的反射效果更加准确，例如金属物体的反射会更加逼真。阴影效果也更加细腻，能够根据光源的位置和强度实时生成高质量的阴影。</li>
+<li><strong>丰富的后处理效果</strong>：包含了一系列强大的后处理效果，如色彩校正、景深、模糊、泛光等。通过这些后处理效果，可以增强游戏的视觉风格和氛围。例如，使用景深效果可以突出游戏中的主体元素，使背景虚化，营造出类似电影的视觉效果；泛光效果可以让发光物体周围产生光晕，增强视觉冲击力。</li>
+</ul>
+<h3 id="技术特性优势">技术特性优势</h3>
+<ul>
+<li><strong>跨平台支持</strong>：HDRP可以在多种平台上运行，包括PC、主机和移动设备等。并且针对不同平台进行了优化，能够在保证高质量视觉效果的同时，实现较好的性能表现。开发者可以在不同平台上使用相同的渲染管线和资源，减少了跨平台开发的难度和工作量。</li>
+<li><strong>可编程性和扩展性</strong>：HDRP具有较高的可编程性，开发者可以使用Shader Graph和Visual Effect Graph等工具自定义着色器和视觉效果。Shader Graph允许开发者通过可视化的方式创建和编辑着色器，无需编写复杂的代码；Visual Effect Graph则可以用于创建各种复杂的粒子效果和视觉特效。此外，HDRP还支持自定义渲染通道和脚本化渲染，开发者可以根据项目需求进行深度定制。</li>
+<li><strong>与Unity生态系统集成</strong>：作为Unity引擎的一部分，HDRP与Unity的其他功能和工具紧密集成。例如，它可以与Unity的动画系统、物理系统、导航系统等协同工作，为开发者提供一个完整的游戏开发解决方案。同时，HDRP也可以与Unity Asset Store中的各种资源和插件兼容，方便开发者获取和使用更多的素材和功能。</li>
+</ul>
+<h3 id="工作流程优化">工作流程优化</h3>
+<ul>
+<li><strong>高效的材质管理</strong>：HDRP提供了一套统一的材质系统，使开发者可以更方便地管理和调整材质的属性。材质的创建、编辑和应用都更加直观和高效，并且可以通过材质实例化来实现不同物体之间的材质共享和差异化。此外，HDRP还支持对材质进行实时预览和调整，提高了开发效率。</li>
+<li><strong>可视化编辑界面</strong>：HDRP的许多功能都提供了可视化的编辑界面，如光照设置、后处理效果调整等。开发者可以通过直观的界面操作来调整各种参数，而无需编写复杂的代码。这种可视化的编辑方式降低了开发门槛，使美术人员和非技术人员也能够参与到游戏的视觉效果制作中。</li>
+<li><strong>性能优化工具</strong>：HDRP提供了一些性能优化工具和技术，帮助开发者在保证视觉效果的前提下，优化游戏的性能。例如，光照烘焙可以将静态光照信息预先计算并存储在光照贴图中，减少实时光照计算的开销；LOD（Level of Detail）系统可以根据物体与相机的距离动态调整物体的细节程度，提高渲染性能。</li>
+</ul>
+<h2 id="使用urp的好处">使用URP的好处</h2>
+<p>通用渲染管线（Universal Render Pipeline，简称URP）是Unity引擎推出的轻量级、可扩展的渲染管线，旨在为不同平台和项目类型提供高效且高质量的渲染解决方案。</p>
+<h3 id="核心特性">核心特性</h3>
+<ul>
+<li><strong>性能优化</strong>：URP经过专门优化，能够在多种硬件平台上实现高效渲染。它采用了简洁的渲染流程，减少了不必要的计算开销，从而降低了对硬件资源的需求。例如，在移动设备上，URP可以通过优化光照计算、减少渲染通道等方式，显著提高游戏的帧率和性能表现。</li>
+<li><strong>跨平台兼容性</strong>：支持广泛的平台，包括PC、移动设备（iOS和Android）、主机（如PlayStation、Xbox）以及网页平台等。开发者可以使用同一套渲染管线代码为不同平台开发游戏，大大减少了跨平台开发的工作量和成本。</li>
+<li><strong>可扩展性</strong>：具有高度的可扩展性，开发者可以根据项目的具体需求对其进行定制和扩展。通过编写自定义的渲染脚本、着色器和渲染功能，开发者可以实现独特的视觉效果和渲染逻辑。例如，开发者可以自定义后处理效果、光照模型等。</li>
+<li><strong>简化的工作流程</strong>：提供了直观的可视化配置界面，使得开发者可以轻松地对渲染管线进行设置和调整。同时，它与Unity的其他工具和功能紧密集成，如材质编辑器、光照系统等，进一步简化了开发流程，提高了开发效率。</li>
+</ul>
+<h3 id="光照系统">光照系统</h3>
+<ul>
+<li><strong>实时光照</strong>：支持实时直接光照和阴影，能够模拟出自然而逼真的光照效果。它提供了多种光照类型，如平行光、点光源、聚光灯等，并且可以对光照的颜色、强度、阴影类型等参数进行精细调整。</li>
+<li><strong>烘焙光照</strong>：允许开发者将静态光照信息预先计算并存储在光照贴图中，从而减少实时光照计算的开销。烘焙光照可以与实时光照相结合，实现更加复杂和真实的光照效果。</li>
+<li><strong>Lightweight Shadows</strong>：采用了轻量级的阴影算法，在保证阴影质量的同时，降低了对性能的影响。开发者可以根据需要选择不同的阴影类型和分辨率，以平衡性能和视觉效果。</li>
+</ul>
+<h3 id="后处理效果">后处理效果</h3>
+<ul>
+<li><strong>内置后处理效果</strong>：提供了一系列内置的后处理效果，如色彩校正、景深、模糊、泛光等。这些后处理效果可以通过简单的配置和调整来增强游戏的视觉风格和氛围。</li>
+<li><strong>自定义后处理效果</strong>：开发者可以使用Shader Graph或编写自定义着色器来创建自己的后处理效果。这使得开发者能够实现独特的视觉效果，满足项目的特定需求。</li>
+</ul>
+<h3 id="材质系统">材质系统</h3>
+<ul>
+<li><strong>简化的材质工作流程</strong>：提供了一套简化的材质系统，使得开发者可以更方便地创建和管理材质。材质的创建和编辑过程更加直观，并且可以通过材质实例化来实现不同物体之间的材质共享和差异化。</li>
+<li><strong>支持多种纹理类型</strong>：支持多种纹理类型，如漫反射纹理、法线纹理、高光纹理等。开发者可以使用这些纹理来增加物体的细节和真实感。</li>
+</ul>
+<h3 id="适用项目类型">适用项目类型</h3>
+<ul>
+<li><strong>移动游戏</strong>：由于其性能优化和跨平台兼容性，URP非常适合开发移动游戏。它可以在保证游戏视觉效果的同时，确保在各种移动设备上都能有良好的性能表现。</li>
+<li><strong>独立游戏</strong>：对于独立游戏开发者来说，URP提供了一个简单易用且功能强大的渲染解决方案。它可以帮助开发者快速实现自己的创意，同时降低开发成本和难度。</li>
+<li><strong>教育和模拟应用</strong>：在教育和模拟应用领域，URP可以用于创建逼真的场景和交互体验。其可扩展性和简化的工作流程使得开发者能够快速开发出高质量的应用程序。</li>
+<li><strong>2D游戏</strong>：URP对2D游戏开发提供了良好的支持，包括2D光照、2D后处理效果等。开发者可以使用URP来创建具有高质量视觉效果的2D游戏。</li>
+</ul>
+<h2 id="选择urp还是hdrp">选择URP还是HDRP</h2>
+<p>在Unity中选择通用渲染管线（URP）还是高清渲染管线（HDRP），可以从以下几个维度来考量：</p>
+<h3 id="视觉效果">视觉效果</h3>
+<ul>
+<li><strong>URP</strong>：能够达成不错的视觉呈现，不过相较于HDRP，其在光照、阴影和后处理效果等方面的表现相对有限。它主要适用于追求简洁风格或者性能优先的游戏，像2D游戏、低多边形风格的3D游戏，能在确保视觉效果可接受的基础上，保证较好的性能。</li>
+<li><strong>HDRP</strong>：侧重于提供高质量的视觉体验，支持高动态范围渲染、实时全局光照、精细的阴影效果以及丰富的后处理效果。它能让游戏画面更加逼真和精美，适合对视觉效果要求极高的项目，例如AAA级别的3D游戏、影视级别的实时渲染场景。</li>
+</ul>
+<h3 id="性能表现">性能表现</h3>
+<ul>
+<li><strong>URP</strong>：经过优化，性能开销较低，在资源使用上更为高效。这使得它在配置较低的设备上也能有良好的表现，特别适合移动平台游戏、网页游戏以及对性能要求较高的VR/AR应用。</li>
+<li><strong>HDRP</strong>：由于具备更高级的渲染功能，所以性能开销较大。这就需要相对较高的硬件配置来支持，在低端设备上可能会出现性能问题。不过，对于高端PC和主机平台上的游戏，HDRP能够充分发挥硬件性能，提供极致的视觉效果。</li>
+</ul>
+<h3 id="开发难度与效率">开发难度与效率</h3>
+<ul>
+<li><strong>URP</strong>：相对简单易懂，其配置和使用都较为便捷。对于初学者或者开发团队资源有限的项目来说，URP更容易上手，能够更快地完成开发工作。此外，URP的渲染流程相对简洁，开发过程中的调试和优化也更加容易。</li>
+<li><strong>HDRP</strong>：功能复杂，需要开发者具备较高的技术水平和渲染知识。在使用HDRP时，开发者需要花费更多的时间来学习和掌握其各种功能和设置，开发周期可能会相对较长。不过，一旦掌握了HDRP的使用方法，开发者可以利用其强大的功能实现更加复杂和精美的视觉效果。</li>
+</ul>
+<h3 id="平台兼容性">平台兼容性</h3>
+<ul>
+<li><strong>URP</strong>：具有良好的跨平台兼容性，能够在多种平台上稳定运行，包括PC、移动设备、主机和网页等。这使得开发者可以使用同一套渲染管线代码来开发不同平台的游戏，减少了开发成本和工作量。</li>
+<li><strong>HDRP</strong>：虽然也支持多种平台，但在某些低端设备上可能无法正常运行或者性能表现不佳。因此，在选择HDRP时，需要考虑目标平台的硬件配置和性能要求。</li>
+</ul>
+<h3 id="适用项目类型-2">适用项目类型</h3>
+<ul>
+<li><strong>URP</strong>：适合对性能要求较高、开发周期较短的项目，如独立游戏、移动游戏、教育类游戏等。此外，对于2D游戏或者风格化的3D游戏，URP也能够提供足够的视觉效果。</li>
+<li><strong>HDRP</strong>：适用于对视觉效果有极高要求、预算充足、开发周期较长的大型项目，如AAA级3D游戏、影视级实时渲染项目等。</li>
+</ul>
+<p>总之，选择URP还是HDRP需要根据项目的具体需求、目标平台、开发团队的技术水平和资源等因素来综合考虑。如果项目对性能要求较高、开发周期较短，且对视觉效果的要求不是特别苛刻，那么URP可能是更好的选择；如果项目对视觉效果有极高的要求，且有足够的资源和时间来进行开发和优化，那么HDRP则更适合。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-xiang-mu-jie-gou/" class="post-title gt-a-link">
+                    Unity项目结构
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

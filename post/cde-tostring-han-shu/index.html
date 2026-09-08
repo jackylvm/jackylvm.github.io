@@ -1,0 +1,315 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>C#的ToString函数 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    C#的ToString函数
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/WgyNS3Ry33/" class="post-tags">
+                            # C#
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/xvMds3QNF3k/" class="post-tags">
+                            # DotNet
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/7XAvlZ2NdEm/" class="post-tags">
+                            # .net
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 C# 中，<code>ToString()</code> 是一个非常基础且常用的方法，所有类型（包括自定义类型）都继承自 <code>object</code> 类的 <code>ToString()</code> 方法，其主要作用是将对象转换为字符串表示形式。</p>
+<h3 id="1-基本用法">1. 基本用法</h3>
+<ul>
+<li>
+<p><strong>默认实现</strong>：对于基础数据类型（如 <code>int</code>、<code>float</code>、<code>DateTime</code> 等），<code>ToString()</code> 有默认实现，会返回该类型的常规字符串表示。</p>
+<pre><code class="language-csharp">int num = 123;
+string str = num.ToString(); // 结果为 &quot;123&quot;
+
+DateTime dt = new DateTime(2023, 10, 1);
+string dateStr = dt.ToString(); // 结果类似 &quot;2023/10/1 0:00:00&quot;（取决于系统文化）
+</code></pre>
+</li>
+<li>
+<p><strong>自定义类型</strong>：默认情况下，自定义类的 <code>ToString()</code> 会返回类的全名（命名空间 + 类名）。通常需要重写该方法以返回有意义的字符串：</p>
+<pre><code class="language-csharp">public class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    
+    // 重写 ToString()
+    public override string ToString()
+    {
+        return $&quot;{Name}, {Age}岁&quot;;
+    }
+}
+
+// 使用
+Person p = new Person { Name = &quot;张三&quot;, Age = 25 };
+string personStr = p.ToString(); // 结果为 &quot;张三, 25岁&quot;
+</code></pre>
+</li>
+</ul>
+<h3 id="2-格式化字符串format-specifier">2. 格式化字符串（Format Specifier）</h3>
+<p>许多基础类型（如数值、日期、枚举等）的 <code>ToString()</code> 支持<strong>格式化字符串</strong>，用于控制转换后的字符串格式。语法为：</p>
+<pre><code class="language-csharp">变量.ToString(&quot;格式化字符串&quot;);
+</code></pre>
+<h4 id="1数值类型格式化">（1）数值类型格式化</h4>
+<ul>
+<li>
+<p><strong>标准格式</strong>（如 <code>F</code>、<code>N</code>、<code>C</code> 等）：</p>
+<ul>
+<li><code>F</code>：固定小数位数（<code>F0</code> 无小数，<code>F2</code> 保留2位小数）<pre><code class="language-csharp">double num = 123.456;
+Console.WriteLine(num.ToString(&quot;F0&quot;)); // &quot;123&quot;（四舍五入）
+Console.WriteLine(num.ToString(&quot;F2&quot;)); // &quot;123.46&quot;
+</code></pre>
+</li>
+<li><code>N</code>：带千位分隔符（可指定小数位数）<pre><code class="language-csharp">int bigNum = 1234567;
+Console.WriteLine(bigNum.ToString(&quot;N0&quot;)); // &quot;1,234,567&quot;
+</code></pre>
+</li>
+<li><code>C</code>：货币格式（受系统文化影响）<pre><code class="language-csharp">decimal money = 123.45m;
+Console.WriteLine(money.ToString(&quot;C&quot;)); // 中文环境下为 &quot;￥123.45&quot;
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>自定义格式</strong>（如 <code>0</code>、<code>#</code>、<code>.</code> 等）：</p>
+<ul>
+<li><code>0</code>：强制占位（位数不足时补0）</li>
+<li><code>#</code>：可选占位（位数不足时不显示）</li>
+</ul>
+<pre><code class="language-csharp">double num = 12.3;
+Console.WriteLine(num.ToString(&quot;000.00&quot;)); // &quot;012.30&quot;（补0）
+Console.WriteLine(num.ToString(&quot;###.##&quot;)); // &quot;12.3&quot;（不补0）
+</code></pre>
+</li>
+</ul>
+<h4 id="2日期时间格式化">（2）日期时间格式化</h4>
+<p>通过格式化字符串控制日期时间的显示格式：</p>
+<pre><code class="language-csharp">DateTime dt = new DateTime(2023, 10, 1, 14, 30, 0);
+
+Console.WriteLine(dt.ToString(&quot;yyyy-MM-dd&quot;)); // &quot;2023-10-01&quot;
+Console.WriteLine(dt.ToString(&quot;HH:mm:ss&quot;));   // &quot;14:30:00&quot;
+Console.WriteLine(dt.ToString(&quot;yyyy年MM月dd日 HH:mm&quot;)); // &quot;2023年10月01日 14:30&quot;
+</code></pre>
+<h4 id="3枚举类型格式化">（3）枚举类型格式化</h4>
+<p>枚举的 <code>ToString()</code> 可返回枚举值的名称，也可通过格式符返回数值：</p>
+<pre><code class="language-csharp">enum Status { Success, Error, Pending }
+
+Status s = Status.Success;
+Console.WriteLine(s.ToString());      // &quot;Success&quot;（默认返回名称）
+Console.WriteLine(s.ToString(&quot;D&quot;));   // &quot;0&quot;（返回数值）
+Console.WriteLine(s.ToString(&quot;X&quot;));   // &quot;00000000&quot;（返回十六进制）
+</code></pre>
+<h3 id="3-文化相关格式化iformatprovider">3. 文化相关格式化（IFormatProvider）</h3>
+<p><code>ToString()</code> 还有一个重载方法，可指定文化（<code>CultureInfo</code>），用于处理不同地区的格式差异（如数字分隔符、日期格式等）：</p>
+<pre><code class="language-csharp">double num = 1234.56;
+
+// 美国文化（千位分隔符为逗号，小数点为点）
+Console.WriteLine(num.ToString(&quot;N&quot;, CultureInfo.InvariantCulture)); // &quot;1,234.56&quot;
+
+// 德国文化（千位分隔符为点，小数点为逗号）
+Console.WriteLine(num.ToString(&quot;N&quot;, new CultureInfo(&quot;de-DE&quot;))); // &quot;1.234,56&quot;
+</code></pre>
+<h3 id="4-注意事项">4. 注意事项</h3>
+<ul>
+<li><strong>空值处理</strong>：如果对象为 <code>null</code>，调用 <code>ToString()</code> 会抛出 <code>NullReferenceException</code>，需提前判断：<pre><code class="language-csharp">object obj = null;
+string str = obj?.ToString() ?? &quot;null&quot;; // 安全处理空值
+</code></pre>
+</li>
+<li><strong>性能</strong>：频繁调用 <code>ToString()</code> 可能影响性能（尤其是复杂对象），需合理使用。</li>
+<li><strong>自定义格式</strong>：对于复杂的格式化需求，建议重写 <code>ToString()</code> 或使用专门的格式化工具类。</li>
+</ul>
+<p>总之，<code>ToString()</code> 是类型转换为字符串的核心方法，灵活使用其格式化功能可以满足各种字符串表示需求。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/zai-czhong-shi-yong-timespan/" class="post-title gt-a-link">
+                    在C#中使用TimeSpan
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

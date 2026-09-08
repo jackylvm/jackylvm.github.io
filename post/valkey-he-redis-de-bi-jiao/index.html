@@ -1,0 +1,325 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Valkey和Redis的比较 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Valkey和Redis的比较
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-22 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/FLI9aGQA57/" class="post-tags">
+                            # KV型数据库
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/-8-XXrHLTq/" class="post-tags">
+                            # 数据库
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Valkey 和 Redis 均为高性能的<strong>开源内存数据库</strong>，二者在核心功能和应用场景上高度重合，但在项目背景、发展路径和技术细节上存在关键差异。以下从核心概念、对比分析、适用场景等维度展开详细解析，帮助你清晰理解二者的关系与选择逻辑。</p>
+<h2 id="一-核心概念与项目背景">一、核心概念与项目背景</h2>
+<p>要理解 Valkey 和 Redis 的关联，需先明确二者的“渊源”——Valkey 本质是 Redis 社区为应对<strong>项目治理争议</strong>而衍生的“分支项目”，而非完全独立的全新数据库。</p>
+<h3 id="1-redis内存数据库的标杆">1. Redis：内存数据库的“标杆”</h3>
+<ul>
+<li><strong>项目起源</strong>：由意大利开发者 Salvatore Sanfilippo（昵称 antirez）于 2009 年创建，2013 年起由 Redis Labs（后更名为 <strong>Redis, Inc.</strong>）主导商业运营和核心开发。</li>
+<li><strong>定位</strong>：业界最主流的<strong>键值（Key-Value）存储数据库</strong>，支持字符串、哈希、列表、集合、有序集合等多种数据结构，兼具缓存、消息队列、会话存储等多重能力，因“高性能、低延迟”成为互联网架构的核心组件（如电商缓存、实时排行榜、分布式锁等场景）。</li>
+<li><strong>争议导火索</strong>：2023 年，Redis, Inc. 宣布对 Redis 许可证进行调整——将核心代码从 <strong>BSD 协议</strong>（完全开源，允许商业使用且无强制开源要求）变更为 <strong>Redis Source Available License (RSAL)</strong> + <strong>Server Side Public License (SSPL)</strong>。这两种协议虽仍允许免费使用，但限制了“将 Redis 作为服务（SaaS）商业化”的行为（如云厂商直接基于 Redis 提供托管服务却不贡献代码），引发社区和云厂商（如 AWS、Google Cloud）的强烈反对，认为其偏离了“开源精神”。</li>
+</ul>
+<h3 id="2-valkeyredis-社区的分支替代方案">2. Valkey：Redis 社区的“分支替代方案”</h3>
+<ul>
+<li><strong>项目起源</strong>：2023 年 9 月，由 <strong>AWS、Google Cloud、Meta（原 Facebook）</strong> 三大技术巨头联合发起，核心目标是“延续 Redis 的开源属性”——基于 Redis 6.2.6 版本的代码分支开发，完全采用 <strong>BSD 协议</strong>（与 Redis 早期协议一致），确保商业使用和二次开发无限制。</li>
+<li><strong>定位</strong>：作为 Redis 的“开源兼容替代方案”，致力于保持与 Redis 的<strong>API 完全兼容</strong>（即基于 Redis 开发的应用可无缝迁移至 Valkey），同时由社区主导迭代，避免单一公司对项目的“绝对控制”。</li>
+<li><strong>发展现状</strong>：截至 2024 年 5 月，Valkey 已发布多个稳定版本（如 7.2.x、8.0 预览版），逐步补齐 Redis 后续版本的核心功能（如模块化、持久化优化），并吸引了 Redis 原核心贡献者加入，社区生态快速扩张。</li>
+</ul>
+<h2 id="二-valkey-与-redis-的核心对比">二、Valkey 与 Redis 的核心对比</h2>
+<p>二者在功能上高度重叠，但在许可证、治理模式、生态支持等维度存在显著差异，具体对比如下表：</p>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>Redis（当前版本）</th>
+<th>Valkey</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>开源许可证</strong></td>
+<td>RSAL + SSPL 协议（非严格开源，限制商业化 SaaS 场景）</td>
+<td>BSD 协议（完全开源，无商业使用限制，兼容传统开源生态）</td>
+</tr>
+<tr>
+<td><strong>项目治理</strong></td>
+<td>由 Redis, Inc. 主导开发和决策，社区贡献需遵循公司规则</td>
+<td>社区主导（由 AWS、Google、Meta 等联合维护，决策更去中心化）</td>
+</tr>
+<tr>
+<td><strong>功能兼容性</strong></td>
+<td>作为“上游项目”，功能迭代更快（如支持 Redis Stack、向量数据库插件）</td>
+<td>基于 Redis 分支开发，确保与 Redis 6.2+ 版本 API 完全兼容，逐步同步新功能</td>
+</tr>
+<tr>
+<td><strong>商业支持</strong></td>
+<td>Redis, Inc. 提供官方企业级支持（如 Redis Enterprise），云厂商支持需单独合作</td>
+<td>无官方商业支持，由 AWS、Google Cloud 等云厂商提供托管服务（如 AWS ElastiCache for Valkey）</td>
+</tr>
+<tr>
+<td><strong>持久化与高可用</strong></td>
+<td>支持 RDB、AOF 持久化，Redis Cluster 集群方案成熟</td>
+<td>完全继承 RDB、AOF 机制，Cluster 集群逻辑与 Redis 兼容，可直接复用集群部署工具</td>
+</tr>
+<tr>
+<td><strong>生态工具</strong></td>
+<td>生态成熟（如 Redis CLI、Redis Insight 可视化工具、多种语言客户端）</td>
+<td>兼容 Redis 所有客户端（如 Jedis、redis-py），工具链可直接复用，生态逐步独立</td>
+</tr>
+<tr>
+<td><strong>适用场景限制</strong></td>
+<td>云厂商若基于 Redis 提供托管服务，需向 Redis, Inc. 支付授权费，否则可能侵权</td>
+<td>云厂商可自由基于 Valkey 提供托管服务，无授权成本，适合商业化场景</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三-关键差异许可证与商业化限制">三、关键差异：许可证与商业化限制</h2>
+<p>许可证是二者最核心的区别，直接影响企业的技术选型，需重点理解：</p>
+<ul>
+<li>
+<p><strong>Redis 的 RSAL/SSPL 协议限制</strong>：<br>
+若企业将 Redis 部署为“对外提供服务的 SaaS 产品”（如云厂商的托管缓存服务），必须向 Redis, Inc. 申请授权并支付费用；但“内部自用”（如企业自己的电商缓存、会话存储）不受限制。这一限制导致 AWS、Google 等云厂商无法再免费提供 Redis 托管服务，转而支持 Valkey。</p>
+</li>
+<li>
+<p><strong>Valkey 的 BSD 协议优势</strong>：<br>
+BSD 协议是传统开源协议（与 Nginx、MySQL 早期协议一致），允许企业：</p>
+<ol>
+<li>免费使用、修改源代码；</li>
+<li>将修改后的代码闭源商业化（如集成到自有产品中）；</li>
+<li>无需向 Valkey 社区贡献代码，也无需支付授权费。<br>
+这对云厂商和企业级用户极为友好，无商业化合规风险。</li>
+</ol>
+</li>
+</ul>
+<h2 id="四-如何选择valkey-还是-redis">四、如何选择：Valkey 还是 Redis？</h2>
+<p>技术选型需结合<strong>使用场景、合规要求、商业支持需求</strong>三方面综合判断，以下为具体建议：</p>
+<h3 id="1-优先选择-valkey-的场景">1. 优先选择 Valkey 的场景</h3>
+<ul>
+<li><strong>云厂商托管服务需求</strong>：若企业依赖云厂商的托管缓存服务（如 AWS、Google Cloud），Valkey 是首选——云厂商可自由提供 Valkey 托管服务，无授权成本，服务稳定性和性价比更高。</li>
+<li><strong>开源合规与商业化需求</strong>：若企业计划基于开源内存数据库开发商业产品（如 SaaS 缓存服务），Valkey 的 BSD 协议可避免法律风险，无需担心许可证限制。</li>
+<li><strong>社区治理偏好</strong>：若企业重视“去中心化的社区治理”，不希望依赖单一公司主导的项目，Valkey 的社区模式更符合需求。</li>
+</ul>
+<h3 id="2-优先选择-redis-的场景">2. 优先选择 Redis 的场景</h3>
+<ul>
+<li><strong>需要官方商业支持</strong>：若企业对数据库的稳定性要求极高（如金融核心系统），需要官方技术支持和 SLA 保障，Redis, Inc. 提供的 Redis Enterprise 是更可靠的选择（需支付商业费用）。</li>
+<li><strong>依赖 Redis 专属功能</strong>：若业务需使用 Redis 独有的功能（如 Redis Stack 的时序数据库、向量搜索插件，或 Redis Enterprise 的跨区域集群），当前 Valkey 尚未完全同步，需暂时选择 Redis。</li>
+<li><strong>内部自用且无商业化计划</strong>：若企业仅将数据库用于内部系统（如缓存、消息队列），不涉及对外提供服务，Redis 的 RSAL/SSPL 协议无限制，且功能迭代更快，可继续使用 Redis。</li>
+</ul>
+<h3 id="3-迁移成本无缝切换的可行性">3. 迁移成本：无缝切换的可行性</h3>
+<p>由于 Valkey 与 Redis 的 API 完全兼容，基于 Redis 开发的应用可<strong>零代码修改迁移至 Valkey</strong>：</p>
+<ul>
+<li>客户端（如 Java 的 Jedis、Python 的 redis-py）无需更换，只需修改连接地址；</li>
+<li>持久化文件（RDB/AOF）可直接导入 Valkey，数据无丢失；</li>
+<li>集群部署方案（如 Redis Cluster）可直接复用，只需将节点替换为 Valkey 实例。</li>
+</ul>
+<h2 id="五-未来发展趋势预测">五、未来发展趋势预测</h2>
+<ol>
+<li><strong>Redis 的分化</strong>：Redis, Inc. 可能继续聚焦“商业版生态”（如 Redis Enterprise、Redis Stack），开源版本的迭代速度可能放缓，逐步与社区需求脱节。</li>
+<li><strong>Valkey 的崛起</strong>：随着云厂商的持续投入（如 AWS、Google 将 Valkey 纳入核心托管服务）和社区贡献者的加入，Valkey 有望在 1-2 年内成为“开源内存数据库”的主流选择，完全替代 Redis 在开源生态中的地位。</li>
+<li><strong>生态分流</strong>：长期来看，二者可能形成“商业版（Redis）+ 开源版（Valkey）”的分流格局，企业可根据自身需求选择——追求稳定商业支持选 Redis，追求开源自由选 Valkey。</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>Valkey 并非“颠覆 Redis”的全新产品，而是 Redis 社区为“回归开源本质”而产生的兼容替代方案。二者的核心差异在于<strong>许可证和治理模式</strong>，功能上高度兼容，迁移成本极低。</p>
+<ul>
+<li>若你是<strong>云厂商、需商业化的企业</strong>，或重视开源合规性，Valkey 是更安全的选择；</li>
+<li>若你是<strong>内部自用、需官方商业支持</strong>，或依赖 Redis 专属功能，可暂时选择 Redis。</li>
+</ul>
+<p>无论选择哪款，二者均能满足高性能内存数据库的核心需求（缓存、键值存储、集群高可用），技术选型的关键在于“合规性”和“长期生态支持”。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-application-lei/" class="post-title gt-a-link">
+                    Unity 的Application类
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

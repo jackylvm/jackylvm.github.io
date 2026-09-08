@@ -1,0 +1,337 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x01.GoF经典的23种设计模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x01.GoF经典的23种设计模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>著名的 GoF 23 种设计模式，不用试图一次性死记硬背，当你在开发中遇到“代码太乱”、“修改牵一发而动全身”的痛苦时刻，翻开这份笔记，看看哪个模式的“核心思想”正中你的痛点，那就是你该把它引入代码的最佳时机！</p>
+<p>为了方便深度记忆，按照三大分类，为每一个模式详细梳理了它的<strong>核心思想</strong>、<strong>在 Unity 游戏开发中的实战场景</strong>，以及它的<strong>避坑心法</strong>。</p>
+<hr>
+<h3 id="一-创建型模式-creational-patterns">一、 创建型模式 (Creational Patterns)</h3>
+<p>这类模式的核心目标是“解耦对象的实例化过程”。也就是把你代码里到处飞的 <code>new</code> 关键字或者 <code>Instantiate</code> 统一管理起来，让系统在面对扩展时更加从容。</p>
+<h4 id="1-单例模式-singleton">1. 单例模式 (Singleton)</h4>
+<ul>
+<li><strong>核心思想：</strong> 霸道总裁，保证一个类在整个程序运行期间，有且只有一个实例，并提供一个全局唯一的访问点。</li>
+<li><strong>Unity 实战场景：</strong> 全局的游戏流程管理器 (<code>GameManager</code>)、音效播放器 (<code>AudioManager</code>)、全局 UI 调度中心。</li>
+<li><strong>避坑心法：</strong> 这是新手最容易滥用的模式。过度使用会导致代码耦合度极高（俗称“意大利面条代码”），且隐藏了类之间的依赖关系。非全局唯一的核心控制类，请尽量不用。</li>
+</ul>
+<h4 id="2-工厂方法模式-factory-method">2. 工厂方法模式 (Factory Method)</h4>
+<ul>
+<li><strong>核心思想：</strong> 代工生产。定义一个用于创建对象的接口，但把具体的实例化延迟到子类中。客户端只需要知道“我要什么”，不需要知道“怎么造”。</li>
+<li><strong>Unity 实战场景：</strong> 根据字符串或枚举，动态生成不同种类的普通敌人（史莱姆、哥布林）、不同类型的掉落物。</li>
+<li><strong>避坑心法：</strong> 在 Unity 中，工厂模式必须结合“对象池（Object Pool）”一起使用，避免频繁的实例化和销毁带来灾难性的 GC（垃圾回收）卡顿。</li>
+</ul>
+<h4 id="3-抽象工厂模式-abstract-factory">3. 抽象工厂模式 (Abstract Factory)</h4>
+<ul>
+<li><strong>核心思想：</strong> 成套打包生产。提供一个创建一系列相关或相互依赖对象的接口，确保生产出来的“产品族”不会串台。</li>
+<li><strong>Unity 实战场景：</strong> RTS 游戏中一键生成“人类阵营”的全套兵种（近战、远程、魔法）；或者一键切换全套 UI 风格（科幻风格的一套按钮、弹窗 vs 奇幻风格的一套）。</li>
+<li><strong>避坑心法：</strong> 非常死板。如果你经常需要增加新的产品种类（比如突然要加一个“飞行兵种”），你需要修改所有的抽象类和具体工厂类，严重违背开闭原则。</li>
+</ul>
+<h4 id="4-建造者模式-builder">4. 建造者模式 (Builder)</h4>
+<ul>
+<li><strong>核心思想：</strong> 链式拼装。将一个复杂对象的“构建过程”与它的“最终表现”分离，让你能像搭乐高一样，分步骤拼装出属性极多的对象。</li>
+<li><strong>Unity 实战场景：</strong> 动态配置拥有几十个属性的终极 Boss（血量、移速、武器、掉落列表等）；编写优雅的 Http 网络请求工具类；利用代码进行地图的地形随机生成（Procedural Generation）。</li>
+<li><strong>避坑心法：</strong> 如果你的对象只有两三个固定属性，直接通过构造函数或对象初始化器赋值即可，没必要为了用而用，徒增代码量。</li>
+</ul>
+<h4 id="5-原型模式-prototype">5. 原型模式 (Prototype)</h4>
+<ul>
+<li><strong>核心思想：</strong> 克隆大师。不通过常规方式创建新对象，而是直接拿一个配置好的现成对象作为“原型”，通过复制它来产生新对象。</li>
+<li><strong>Unity 实战场景：</strong> 每天都在用的 <code>Instantiate(Prefab)</code> 本质上就是引擎底层提供的高效原型模式。手写纯 C# 数据时，可用于保存和复制怪物中途变化的状态数据。</li>
+<li><strong>避坑心法：</strong> 在 C# 中手写克隆逻辑时，死死记住“深拷贝”与“浅拷贝”的区别。如果原型肚子里有引用类型数据，必须深入进去把内部对象也 <code>new</code> 出来，否则克隆体会和原型共享同一份内存数据。</li>
+</ul>
+<hr>
+<h3 id="二-结构型模式-structural-patterns">二、 结构型模式 (Structural Patterns)</h3>
+<p>这类模式的核心目标是“将不同的类和对象组合成更大的结构”，就像转换插头或者搭积木一样，让原本不兼容的接口能一起工作。</p>
+<h4 id="6-适配器模式-adapter">6. 适配器模式 (Adapter)</h4>
+<ul>
+<li><strong>核心思想：</strong> 转换插头。把一个类的接口，转换成客户端期望的另一个接口，让原本因接口不兼容而不能一起工作的类能够协同作战。</li>
+<li><strong>Unity 实战场景：</strong> 接入第三方的广告 SDK 或内购 SDK 时，各家的 API 都不一样，你可以写一个 <code>IAdAdapter</code> 接口，把不同平台的 SDK 包装成一致的调用方法；或者新老系统交替时兼容旧代码。</li>
+<li><strong>避坑心法：</strong> 适配器是系统设计有缺陷或接入外部不可控代码时的补救措施。如果在项目初期自己设计架构，应该尽量统一接口，而不是依赖适配器。</li>
+</ul>
+<h4 id="7-桥接模式-bridge">7. 桥接模式 (Bridge)</h4>
+<ul>
+<li><strong>核心思想：</strong> 拆分维度。将“抽象部分”与它的“实现部分”分离，使它们都可以独立地变化。用“组合”来代替“多层继承”。</li>
+<li><strong>Unity 实战场景：</strong> RPG 游戏的武器系统。武器种类（剑、弓、法杖）是一个维度，武器附魔属性（火、冰、毒）是另一个维度。通过桥接，你可以让【剑】持有【火属性】的引用，而不是去写 <code>FireSword</code>, <code>IceBow</code> 这种无数的继承子类。</li>
+</ul>
+<h4 id="8-组合模式-composite">8. 组合模式 (Composite)</h4>
+<ul>
+<li><strong>核心思想：</strong> 树形结构。将对象组合成树状层次结构，并且让客户端能以一致的方式处理“单个对象”和“对象组合”。</li>
+<li><strong>Unity 实战场景：</strong> 复杂的技能天赋树；游戏内的文件系统逻辑；甚至 Unity 的 <code>Transform</code> 父子层级结构本身就是组合模式的体现（对父节点执行缩放，所有子节点跟着缩放）。</li>
+</ul>
+<h4 id="9-装饰器模式-decorator">9. 装饰器模式 (Decorator)</h4>
+<ul>
+<li><strong>核心思想：</strong> 俄罗斯套娃。动态地给一个对象添加额外的功能。相比于继承生成无数子类，它通过把对象“包裹”起来的方式扩展功能。</li>
+<li><strong>Unity 实战场景：</strong> 角色多重 Buff / Debuff 的伤害叠加与结算系统；武器装备的多词条属性计算。</li>
+<li><strong>避坑心法：</strong> 标准的装饰器模式很难从中间抽离某一层。在 Unity 的 Buff 系统中，更推荐使用变体——“修改器列表 (List of Modifiers)”，方便随时添加和移除特定效果。</li>
+</ul>
+<h4 id="10-外观模式-facade">10. 外观模式 (Facade)</h4>
+<ul>
+<li><strong>核心思想：</strong> 前台接待员。为子系统中的一组复杂接口提供一个统一的高层界面。隐藏内部杂乱的细节，只暴露出简单的一键式调用。</li>
+<li><strong>Unity 实战场景：</strong> 游戏启动/场景切换时的统筹安排。主菜单按钮只需调用 <code>GameFacade.StartGame()</code>，外观类去负责调度读取存档、异步加载场景、切换 BGM 等底层细节。</li>
+<li><strong>避坑心法：</strong> 外观类只负责“路由转发”，不要在外观类里去写具体的业务逻辑（比如计算分数、判定碰撞），保持它作为一个“单纯的调度员”。</li>
+</ul>
+<h4 id="11-享元模式-flyweight">11. 享元模式 (Flyweight)</h4>
+<ul>
+<li><strong>核心思想：</strong> 共享单车。运用共享技术，极大地减少内存中大量细粒度对象的数量。剥离出可以共享的内部状态，只保留独有的外部状态。</li>
+<li><strong>Unity 实战场景：</strong> 渲染成千上万片树叶或同屏万人同模小兵时的 GPU Instancing 技术；把 1000 只哥布林的共同基础属性（最大血量、模型路径）抽取成一个 <code>ScriptableObject</code>，让所有哥布林共享这一份数据，而不是每只都在内存里存一份。</li>
+</ul>
+<h4 id="12-代理模式-proxy">12. 代理模式 (Proxy)</h4>
+<ul>
+<li><strong>核心思想：</strong> 中介替身。为其他对象提供一种代理，以控制对这个对象的访问。可以在访问真实对象前后做一些额外操作。</li>
+<li><strong>Unity 实战场景：</strong> 资源懒加载（Virtual Proxy）：当大图片没有完全加载完时，代理先显示一张低清马赛克图；网络游戏同步（Remote Proxy）：玩家在本地操控的其实是服务器角色的“代理影子”。</li>
+</ul>
+<hr>
+<h3 id="三-行为型模式-behavioral-patterns">三、 行为型模式 (Behavioral Patterns)</h3>
+<p>这类模式不仅关注类和对象本身，更关注“它们之间的通信方式、职责分配和算法流转”。</p>
+<h4 id="13-责任链模式-chain-of-responsibility">13. 责任链模式 (Chain of Responsibility)</h4>
+<ul>
+<li><strong>核心思想：</strong> 击鼓传花。将请求的发送者和接收者解耦，让多个对象都有机会处理这个请求。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它。</li>
+<li><strong>Unity 实战场景：</strong> UI 的事件穿透与拦截（比如点击屏幕，弹窗先拦截，如果弹窗不管，再传给底层的游戏摇杆）；层层递进的伤害减免护盾系统。</li>
+</ul>
+<h4 id="14-命令模式-command">14. 命令模式 (Command)</h4>
+<ul>
+<li><strong>核心思想：</strong> 指令胶囊。将一个请求封装为一个具体对象。使得你可以用不同的请求参数化其他对象，最强大的是它天然支持“撤销（Undo）”和“队列操作”。</li>
+<li><strong>Unity 实战场景：</strong> 战棋游戏的悔棋功能；RTS 游戏的单位行动队列（按住 Shift 下达多个连续指令）；玩家输入系统的按键映射重绑。</li>
+</ul>
+<h4 id="15-解释器模式-interpreter">15. 解释器模式 (Interpreter)</h4>
+<ul>
+<li><strong>核心思想：</strong> 创造语法。给定一种特定语言，定义它的文法表示，并定义一个解释器用来解释该语言中的句子。</li>
+<li><strong>Unity 实战场景：</strong> 极少在常规业务中使用。主要用于开发特定的规则引擎、剧情脚本解析器，或者游戏内开发者控制台（Console）的指令解析逻辑。</li>
+</ul>
+<h4 id="16-迭代器模式-iterator">16. 迭代器模式 (Iterator)</h4>
+<ul>
+<li><strong>核心思想：</strong> 遍历神器。提供一种方法顺序访问一个聚合对象中的各个元素，而又不暴露其内部的表示（不论底层是数组、链表还是哈希表）。</li>
+<li><strong>Unity 实战场景：</strong> C# 语言已经将其做到了极致。你每天使用的 <code>foreach</code> 循环，以及协程里的 <code>IEnumerator</code>，本质上就是极其完善的迭代器模式。</li>
+</ul>
+<h4 id="17-中介者模式-mediator">17. 中介者模式 (Mediator)</h4>
+<ul>
+<li><strong>核心思想：</strong> 交通枢纽。用一个中介对象来封装一系列对象之间的交互。使得各对象不需要显式地相互引用，从而使其耦合松散。</li>
+<li><strong>Unity 实战场景：</strong> 极其复杂的 UI 界面（比如带有联动效果的英雄装备栏）。各个 UI 槽位之间不要互相获取组件，而是全部向 <code>EquipMediator</code> 汇报，由中介者统一调度高亮或解锁，消灭蜘蛛网般的网状依赖。</li>
+</ul>
+<h4 id="18-备忘录模式-memento">18. 备忘录模式 (Memento)</h4>
+<ul>
+<li><strong>核心思想：</strong> 时光倒流。在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便以后恢复。</li>
+<li><strong>Unity 实战场景：</strong> 游戏中的存档与读档机制（Save / Load System）；解密游戏中让时间倒流到 5 秒前；关卡编辑器里的 Ctrl+Z 撤销功能。</li>
+</ul>
+<h4 id="19-观察者模式-observer">19. 观察者模式 (Observer)</h4>
+<ul>
+<li><strong>核心思想：</strong> 广播电台。定义了一对多的依赖关系，当发布者状态发生改变时，所有订阅者都会自动得到通知并更新。</li>
+<li><strong>Unity 实战场景：</strong> 事件驱动系统的绝对核心。玩家受击广播给 UI 和音效。在 C# 中完美对应 <code>event</code> 和 <code>Action</code>，在 Unity 面板中对应 <code>UnityEvent</code>。</li>
+<li><strong>避坑心法：</strong> 致命的内存泄漏警告！有订阅 (<code>+=</code>) 必须要有退订 (<code>-=</code>)，绝对不能把已经被 <code>Destroy</code> 的对象留在事件监听列表里。</li>
+</ul>
+<h4 id="20-状态模式-state">20. 状态模式 (State)</h4>
+<ul>
+<li><strong>核心思想：</strong> 自我切换。允许对象在其内部状态改变时改变它的行为。对象本身负责何时以及如何转换到下一个状态。</li>
+<li><strong>Unity 实战场景：</strong> 角色和敌人的有限状态机（FSM）。解决 <code>Update</code> 中可怕的巨型 <code>switch-case</code> 语句。Unity 官方的 <code>Animator</code> 窗口和 <code>StateMachineBehaviour</code> 就是状态模式的完美可视化体现。</li>
+</ul>
+<h4 id="21-策略模式-strategy">21. 策略模式 (Strategy)</h4>
+<ul>
+<li><strong>核心思想：</strong> 锦囊妙计。定义一系列可互相替换的算法，将每个算法封装起来。让算法的变化独立于使用它的客户端（客户端主动决定使用哪个策略）。</li>
+<li><strong>Unity 实战场景：</strong> 主动切换武器的开火模式（单发、散弹、激光）；替换不同的寻路算法。在 Unity 中结合 <code>ScriptableObject</code> 是最优雅的数据驱动策略写法。</li>
+</ul>
+<h4 id="22-模板方法模式-template-method">22. 模板方法模式 (Template Method)</h4>
+<ul>
+<li><strong>核心思想：</strong> 填空题。在一个方法中定义一个算法的骨架流程，而将一些具体步骤的实现延迟到子类中。</li>
+<li><strong>Unity 实战场景：</strong> 各种敌人的基础 AI 流程。基类定义好骨架：<code>void UpdateAI() { FindTarget(); MoveToTarget(); Attack(); }</code>，然后让“近战怪物”和“远程法师”子类去重写具体的寻找、移动和攻击方法。</li>
+</ul>
+<h4 id="23-访问者模式-visitor">23. 访问者模式 (Visitor)</h4>
+<ul>
+<li><strong>核心思想：</strong> 查房医生。表示一个作用于某对象结构中的各元素的操作。它使你可以在不改变各元素类的前提下，定义作用于这些元素的新操作。</li>
+<li><strong>Unity 实战场景：</strong> 比较冷门且复杂。通常用在当场景里有几百个不同种类的物体，你需要统一对它们执行一种临时且复杂的操作（比如“全图施加一种特殊的核辐射数值分析”）时，为了不修改这几百个物体的原有代码，使用访问者进去“查房”处理数据。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/behavior-designer-decoratorsxiu-shi-jie-dian-su-cha-biao-2/" class="post-title gt-a-link">
+                    Behavior Designer Decorators(修饰节点)速查表2
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

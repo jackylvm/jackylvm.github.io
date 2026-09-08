@@ -1,0 +1,376 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity Inspector C# 属性修饰器 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity Inspector C# 属性修饰器
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-02-05 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/WgyNS3Ry33/" class="post-tags">
+                            # C#
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>为了方便查阅和使用，我把常用Unity Inspector C#属性修饰器按“功能分类”整理成结构化表格，包含核心作用、语法示例和使用场景，兼顾实用性和可读性：</p>
+<table>
+<thead>
+<tr>
+<th>功能分类</th>
+<th>修饰器名称</th>
+<th>核心作用</th>
+<th>语法示例</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>布局优化</td>
+<td>[Header(&quot;标题&quot;)]</td>
+<td>为字段分组添加标题，区分不同模块</td>
+<td>[Header(&quot;移动设置&quot;)] public float speed;</td>
+<td>字段较多时，按功能分组（如移动/攻击/UI）</td>
+</tr>
+<tr>
+<td>布局优化</td>
+<td>[Space(数值)]</td>
+<td>在字段间添加指定像素的空白间距，优化面板可读性</td>
+<td>[Space(10)] public int damage;</td>
+<td>避免字段拥挤，提升面板整洁度</td>
+</tr>
+<tr>
+<td>布局优化</td>
+<td>[Tooltip(&quot;提示文本&quot;)]</td>
+<td>鼠标悬停字段时显示说明，减少注释依赖</td>
+<td>[Tooltip(&quot;角色移动速度（m/s）&quot;)] public float speed;</td>
+<td>字段用途不直观时，添加操作/数值说明</td>
+</tr>
+<tr>
+<td>字段控制</td>
+<td>[Range(min, max)]</td>
+<td>将数值字段转为滑块输入，限制输入范围</td>
+<td>[Range(0, 100)] public float hp;</td>
+<td>需限制数值区间（如血量、音量、速度）</td>
+</tr>
+<tr>
+<td>字段控制</td>
+<td>[Min(数值)]</td>
+<td>限制字段最小值（仅限制输入，无滑块）</td>
+<td>[Min(0)] public float gravity;</td>
+<td>只需下限（如重力、冷却时间）</td>
+</tr>
+<tr>
+<td>字段控制</td>
+<td>[Max(数值)]</td>
+<td>限制字段最大值（仅限制输入，无滑块）</td>
+<td>[Max(10)] public int maxLevel;</td>
+<td>只需上限（如最大等级、最大数量）</td>
+</tr>
+<tr>
+<td>字段控制</td>
+<td>[TextArea(minLine, maxLine)]</td>
+<td>多行文本输入框，支持自动换行和滚动</td>
+<td>[TextArea(2, 5)] public string desc;</td>
+<td>长文本描述（如角色介绍、任务说明）</td>
+</tr>
+<tr>
+<td>字段控制</td>
+<td>[Multiline(行数)]</td>
+<td>固定行数的多行文本，不自动滚动</td>
+<td>[Multiline(3)] public string note;</td>
+<td>短文本备注（如调试信息、简单说明）</td>
+</tr>
+<tr>
+<td>显示/序列化</td>
+<td>[SerializeField]</td>
+<td>强制序列化私有/保护字段，在Inspector显示（不改变访问权限）</td>
+<td>[SerializeField] private int coin;</td>
+<td>需暴露私有字段给编辑器，不允许代码修改</td>
+</tr>
+<tr>
+<td>显示/序列化</td>
+<td>[HideInInspector]</td>
+<td>隐藏公有字段，不在Inspector显示（仍会序列化）</td>
+<td>[HideInInspector] public bool isDebug;</td>
+<td>公有字段无需手动编辑（如运行时自动赋值）</td>
+</tr>
+<tr>
+<td>显示/序列化</td>
+<td>[NonSerialized]</td>
+<td>不序列化字段，也不在Inspector显示（公有/私有均生效）</td>
+<td>[NonSerialized] public string tempData;</td>
+<td>临时数据（如缓存、计算结果），无需持久化</td>
+</tr>
+<tr>
+<td>显示/序列化</td>
+<td>[SerializeReference]</td>
+<td>支持多态类型序列化，保留子类实例信息</td>
+<td>[SerializeReference] public BaseSkill skill;</td>
+<td>多态场景（如技能系统、道具系统）</td>
+</tr>
+<tr>
+<td>显示/序列化</td>
+<td>[FormerlySerializedAs(&quot;旧字段名&quot;)]</td>
+<td>字段重命名后，保留旧数据（避免丢失配置）</td>
+<td>[FormerlySerializedAs(&quot;oldHp&quot;)] public int currentHp;</td>
+<td>迭代时修改字段名，需保留历史配置</td>
+</tr>
+<tr>
+<td>功能扩展</td>
+<td>[ContextMenu(&quot;按钮名称&quot;)]</td>
+<td>在组件右键菜单添加自定义按钮，执行指定方法</td>
+<td>[ContextMenu(&quot;ResetData&quot;)] void ResetData(){}</td>
+<td>调试/快捷操作（如重置数据、生成配置）</td>
+</tr>
+<tr>
+<td>功能扩展</td>
+<td>[ContextMenuItem(&quot;按钮名&quot;, &quot;方法名&quot;)]</td>
+<td>为单个字段添加右键菜单按钮</td>
+<td>[ContextMenuItem(&quot;测试伤害&quot;, &quot;TestDamage&quot;)] public int damage;</td>
+<td>针对单个字段的快捷操作（如测试数值效果）</td>
+</tr>
+<tr>
+<td>功能扩展</td>
+<td>[ExecuteInEditMode]</td>
+<td>脚本在编辑器模式下执行（运行时仍生效）</td>
+<td>[ExecuteInEditMode] public class EditorTool : MonoBehaviour {}</td>
+<td>编辑器工具（如场景布局、资源检查）</td>
+</tr>
+<tr>
+<td>功能扩展</td>
+<td>[ExecuteAlways]</td>
+<td>脚本在编辑器模式、预制体模式、运行时均执行</td>
+<td>[ExecuteAlways] public class GlobalTool : MonoBehaviour {}</td>
+<td>全局工具（如日志输出、资源监控）</td>
+</tr>
+<tr>
+<td>组件约束</td>
+<td>[DisallowMultipleComponent]</td>
+<td>禁止组件在同一GameObject上重复挂载</td>
+<td>[DisallowMultipleComponent] public class PlayerController : MonoBehaviour {}</td>
+<td>核心组件（如玩家控制、相机管理），避免冲突</td>
+</tr>
+<tr>
+<td>组件约束</td>
+<td>[RequireComponent(typeof(目标组件))]</td>
+<td>挂载当前组件时，自动添加依赖组件（不可移除）</td>
+<td>[RequireComponent(typeof(Rigidbody))] public class MoveController : MonoBehaviour {}</td>
+<td>依赖其他组件的脚本（如移动需刚体）</td>
+</tr>
+<tr>
+<td>菜单自定义</td>
+<td>[AddComponentMenu(&quot;菜单路径/组件名&quot;)]</td>
+<td>自定义组件在Editor菜单中的路径，方便查找</td>
+<td>[AddComponentMenu(&quot;Game/Player/PlayerController&quot;)] public class PlayerController : MonoBehaviour {}</td>
+<td>项目组件较多时，按功能分类整理菜单</td>
+</tr>
+<tr>
+<td>其他实用</td>
+<td>[ColorUsage(bool, bool)]</td>
+<td>控制颜色选择器是否支持Alpha通道、HDR</td>
+<td>[ColorUsage(false, true)] public Color hdrColor;</td>
+<td>需要HDR颜色（如灯光、特效）或禁用透明通道</td>
+</tr>
+<tr>
+<td>其他实用</td>
+<td>[GradientUsage(bool)]</td>
+<td>控制渐变选择器是否支持 HDR</td>
+<td>[GradientUsage(true)] public Gradient skillGradient;</td>
+<td>特效渐变（如技能光效、伤害飘字）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="补充说明">补充说明</h3>
+<ol>
+<li>修饰器支持组合使用，例如：<code>[Header(&quot;攻击设置&quot;)][Space(8)][Range(10, 50)] public int attackDamage;</code></li>
+<li>所有修饰器需放在字段/类定义上方，语法严格遵循C#属性规范</li>
+<li>部分修饰器（如<code>[SerializeReference]</code>）需Unity 2019.3+版本支持，使用前注意版本兼容性</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/nlp-luo-ji-ceng-ci-mo-xing-an-li/" class="post-title gt-a-link">
+                    NLP逻辑层次模型案例
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

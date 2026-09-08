@@ -1,0 +1,322 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>关于Unity的SetPass | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    关于Unity的SetPass
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-05 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 中，<strong>SetPass Calls（SetPass 调用）</strong> 是渲染管线中核心的性能指标之一，本质是 GPU 切换渲染状态（着色器 Pass、材质、纹理、渲染目标等）的次数，直接反映渲染效率的高低。下面从核心概念、影响因素、优化方法等维度全面解析：</p>
+<h3 id="一-核心概念setpass-calls-是什么">一、核心概念：SetPass Calls 是什么？</h3>
+<p>Unity 的渲染流程中，每个<strong>材质（Material）</strong> 关联的<strong>着色器（Shader）</strong> 会包含一个或多个 <code>Pass</code>（渲染通道）。当 GPU 渲染一批物体时：</p>
+<ol>
+<li>若物体使用的材质/Pass 与上一批完全一致，GPU 可批量渲染，无需切换状态；</li>
+<li>若材质/Pass 不同，GPU 必须停止当前渲染，切换到新的渲染状态（即触发一次 <code>SetPass Call</code>），再继续渲染。</li>
+</ol>
+<p>简单来说：<strong>SetPass Calls 次数 = GPU 切换渲染状态的次数</strong>，次数越多，GPU 空等（状态切换）的时间越长，渲染性能越差（尤其移动端/低配设备）。</p>
+<h3 id="二-setpass-calls-的计算逻辑">二、SetPass Calls 的计算逻辑</h3>
+<p>Unity 编辑器的 <strong>Stats 面板</strong>（Game 视图右上角打开）可实时查看 <code>SetPass Calls</code> 数值，其计算规则：</p>
+<ul>
+<li>每个独立的 <code>Pass</code> 切换触发 1 次调用；</li>
+<li>即使是同一材质，若渲染目标（如 RenderTexture）、深度测试、混合模式等状态变化，也会触发新的调用；</li>
+<li>批处理（静态/动态批处理）能合并相同状态的物体，减少调用次数。</li>
+</ul>
+<p>示例：</p>
+<ul>
+<li>场景中有 100 个使用<strong>相同材质/相同 Pass</strong> 的立方体：开启静态批处理后，SetPass Calls = 1；</li>
+<li>场景中有 100 个立方体，50 个用材质 A，50 个用材质 B（同 Shader 不同 Pass）：SetPass Calls = 2；</li>
+<li>若 100 个立方体用 100 种不同材质：SetPass Calls = 100（性能极差）。</li>
+</ul>
+<h3 id="三-影响-setpass-calls-飙升的常见原因">三、影响 SetPass Calls 飙升的常见原因</h3>
+<ol>
+<li>
+<p><strong>材质/Shader 碎片化</strong></p>
+<ul>
+<li>大量不同材质（即使仅纹理/颜色不同）、Shader 包含多个 Pass（如 ForwardAdd 用于实时光照）；</li>
+<li>示例：每个物体单独改材质颜色，导致材质实例化（Material Instance），失去批处理条件。</li>
+</ul>
+</li>
+<li>
+<p><strong>批处理失效</strong></p>
+<ul>
+<li>静态批处理：物体未标记为 <code>Static</code>、顶点数超过阈值（默认 300）、使用动态纹理（如 RenderTexture）；</li>
+<li>动态批处理：物体顶点数超过阈值（移动端<sub>300，PC</sub>400）、使用非统一缩放（如 (2,1,1)）、包含多子网格；</li>
+<li>SRP Batcher 未开启（URP/HDRP 专属优化）。</li>
+</ul>
+</li>
+<li>
+<p><strong>渲染状态频繁切换</strong></p>
+<ul>
+<li>混合模式（Blend）、深度测试（ZTest）、模板测试（Stencil）变化；</li>
+<li>渲染目标切换（如多次渲染到 RenderTexture）；</li>
+<li>光照变化（如实时光照数量多，触发 ForwardAdd Pass）。</li>
+</ul>
+</li>
+<li>
+<p><strong>UI 渲染（UGUI）</strong></p>
+<ul>
+<li>UGUI 每个“不同材质/图集”的 UI 元素会触发 SetPass 调用；</li>
+<li>示例：分散的小图集、每个 Text 用不同字体材质，导致 UI 的 SetPass Calls 暴增。</li>
+</ul>
+</li>
+</ol>
+<h3 id="四-优化-setpass-calls-的核心方法">四、优化 SetPass Calls 的核心方法</h3>
+<h4 id="1-启用批处理最核心">1. 启用批处理（最核心）</h4>
+<table>
+<thead>
+<tr>
+<th>批处理类型</th>
+<th>适用场景</th>
+<th>开启/优化方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静态批处理</td>
+<td>静止物体（建筑、道具）</td>
+<td>标记物体为 <code>Static</code>；PlayerSettings 中开启 <code>Static Batching</code>；合并静态物体的网格</td>
+</tr>
+<tr>
+<td>动态批处理</td>
+<td>动态小物体（粒子、小怪）</td>
+<td>PlayerSettings 中开启 <code>Dynamic Batching</code>；控制物体顶点数（&lt;300）；统一缩放</td>
+</tr>
+<tr>
+<td>SRP Batcher（URP/HDRP）</td>
+<td>所有物体</td>
+<td>开启 <code>SRP Batcher</code>（Project Settings → Graphics）；Shader 按 SRP 规范编写</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-减少材质shader-碎片化">2. 减少材质/Shader 碎片化</h4>
+<ul>
+<li><strong>材质复用</strong>：避免为每个物体创建独立材质，共用材质实例（仅修改属性时用 <code>MaterialPropertyBlock</code>，而非实例化材质）；<pre><code class="language-csharp">// 推荐：用 MaterialPropertyBlock 修改属性，不实例化材质
+MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+renderer.GetPropertyBlock(mpb);
+mpb.SetColor(&quot;_Color&quot;, Color.Red);
+renderer.SetPropertyBlock(mpb);
+</code></pre>
+</li>
+<li><strong>合并 Shader Pass</strong>：减少 Shader 中的 Pass 数量（如用 SRP 合并非光照 Pass）；</li>
+<li><strong>使用图集（Atlas）</strong>：将多个纹理合并为一张图集，减少材质切换（UI/3D 物体均适用）。</li>
+</ul>
+<h4 id="3-优化渲染状态">3. 优化渲染状态</h4>
+<ul>
+<li><strong>统一渲染状态</strong>：尽量让物体使用相同的混合模式、深度测试规则；</li>
+<li><strong>减少实时光照</strong>：实时光照会触发 ForwardAdd Pass，优先用烘焙光照（Lightmap）；</li>
+<li><strong>合批渲染目标</strong>：减少频繁切换 RenderTexture，批量渲染到同一目标。</li>
+</ul>
+<h4 id="4-ugui-专项优化">4. UGUI 专项优化</h4>
+<ul>
+<li><strong>合并 UI 图集</strong>：将所有 UI 图片合并到少量图集，避免每个图片一个材质；</li>
+<li><strong>简化 Text 材质</strong>：共用字体材质，避免每个 Text 单独实例化材质；</li>
+<li><strong>禁用不必要的 Canvas</strong>：Canvas 重建会触发额外的 SetPass 调用，非可见时禁用。</li>
+</ul>
+<h3 id="五-关键注意事项">五、关键注意事项</h3>
+<ol>
+<li><strong>SetPass Calls 不是唯一指标</strong>：需结合 <code>Triangles</code>（三角面数）、<code>Vertices</code>（顶点数）、<code>GPU Instancing</code> 综合分析；</li>
+<li><strong>SRP Batcher 优先级高于传统批处理</strong>：URP/HDRP 项目优先开启 SRP Batcher，其原理是按 Shader 分组渲染，而非按材质，能大幅减少 SetPass 调用；</li>
+<li><strong>移动端敏感</strong>：移动端 GPU 状态切换开销远高于 PC/主机，SetPass Calls 超过 200-300 可能出现掉帧，PC 可接受更高数值（但仍需控制）。</li>
+</ol>
+<h3 id="六-调试工具">六、调试工具</h3>
+<ul>
+<li><strong>Stats 面板</strong>：实时查看 SetPass Calls 数值；</li>
+<li><strong>Frame Debugger</strong>：逐帧分析渲染流程，定位触发 SetPass 调用的物体/材质；</li>
+<li><strong>Profiler（Render 模块）</strong>：深入分析渲染耗时，找到 SetPass 调用的性能瓶颈。</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>SetPass Calls 是衡量 Unity 渲染状态切换效率的核心指标，优化的核心思路是<strong>减少 GPU 状态切换次数</strong>：通过批处理、材质复用、图集合并、统一渲染状态等方式，将 SetPass Calls 控制在合理范围（移动端 &lt; 200，PC &lt; 500），可显著提升渲染性能。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/cde-action-shi-zen-me-shi-xian-de/" class="post-title gt-a-link">
+                    C#的Action是怎么实现的
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

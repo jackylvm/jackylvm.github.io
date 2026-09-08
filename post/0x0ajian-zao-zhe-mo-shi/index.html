@@ -1,0 +1,394 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x0a.建造者模式  | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x0a.建造者模式 
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>我们已经把创建型模式中的“大魔王”们（单例、工厂、抽象工厂）聊完了，现在迎来创建型模式里的最后一位高手——<strong>建造者模式（Builder Pattern）</strong>。</p>
+<p>如果说工厂模式关注的是“<strong>选哪种产品</strong>来生产”，那么建造者模式关注的则是“<strong>如何一步一步组装</strong>一个极其复杂的产品”。</p>
+<p>在 Unity 开发中，它是解决“构造函数爆炸”和“对象参数太多”的绝对神器！</p>
+<h3 id="为什么要用建造者模式">💡 为什么要用建造者模式？</h3>
+<p>假设你正在做一款 RPG 游戏，需要动态生成各种各样的 NPC 或敌人。一个复杂的敌人可能包含以下属性：名字、血量、速度、攻击力、防御力、武器预制体、护甲类型、是否是 Boss、AI 脚本类型……</p>
+<p><strong>新手的灾难写法（构造函数爆炸）：</strong><br>
+你可能会在 C# 中写一个拥有十几个参数的构造函数：</p>
+<pre><code class="language-csharp">public Enemy(string name, int hp, float speed, int atk, int def, GameObject weapon, bool isBoss, string aiType) { ... }
+
+</code></pre>
+<p>这会导致两个巨大的痛苦：</p>
+<ol>
+<li><strong>极难阅读：</strong> 传参时一长串数字和字符串 <code>new Enemy(&quot;恶魔&quot;, 5000, 2.5f, 150, 80, swordPrefab, true, &quot;Aggressive&quot;)</code>，根本分不清哪个数字代表什么。</li>
+<li><strong>缺乏灵活性：</strong> 如果你只想创建一个普通的史莱姆，绝大多数参数都是默认值，你却不得不传一堆无意义的参数（或者写十几个不同版本的重载构造函数）。</li>
+</ol>
+<p><strong>建造者模式的优雅解法：</strong><br>
+把复杂对象的构建过程抽离出来，允许你通过<strong>链式调用（Fluent API）</strong>，像拼乐高积木一样，需要什么属性就加什么属性，最后大喊一声 <code>Build()</code> 搞定！</p>
+<hr>
+<h3 id="一-unity-中最实用的链式建造者-fluent-builder">一、 🌟 Unity 中最实用的链式建造者 (Fluent Builder)</h3>
+<p>这是 C# 开发者最喜欢的写法，利用 <code>return this;</code> 实现丝滑的连写。</p>
+<h4 id="1-复杂的产品敌人数据类-enemycharacter">1. 复杂的产品：敌人数据类 (EnemyCharacter)</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class EnemyCharacter
+{
+    // 拥有大量的属性
+    public string Name { get; set; }
+    public int Health { get; set; }
+    public float MoveSpeed { get; set; }
+    public int AttackPower { get; set; }
+    public GameObject WeaponPrefab { get; set; }
+    public bool IsBoss { get; set; }
+
+    // 打印一下信息，验证组装结果
+    public void Introduce()
+    {
+        Debug.Log($&quot;生成成功 -&gt; 名字: {Name}, 血量: {Health}, 速度: {MoveSpeed}, 攻击力: {AttackPower}, 是否是Boss: {IsBoss}&quot;);
+    }
+}
+
+</code></pre>
+<h4 id="2-核心建造者类-enemybuilder">2. 核心：建造者类 (EnemyBuilder)</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class EnemyBuilder
+{
+    // 内部持有一个正在构建的产品实例
+    private EnemyCharacter _enemy = new EnemyCharacter();
+
+    // 构造函数中可以设置一些默认值
+    public EnemyBuilder()
+    {
+        _enemy.Health = 100;
+        _enemy.MoveSpeed = 3.5f;
+        _enemy.AttackPower = 10;
+        _enemy.IsBoss = false;
+    }
+
+    // 关键点：每个设置属性的方法都返回 Builder 自己 (this)
+    public EnemyBuilder SetName(string name)
+    {
+        _enemy.Name = name;
+        return this; 
+    }
+
+    public EnemyBuilder SetHealth(int hp)
+    {
+        _enemy.Health = hp;
+        return this;
+    }
+
+    public EnemyBuilder SetSpeed(float speed)
+    {
+        _enemy.MoveSpeed = speed;
+        return this;
+    }
+
+    public EnemyBuilder SetAttack(int atk)
+    {
+        _enemy.AttackPower = atk;
+        return this;
+    }
+
+    public EnemyBuilder SetWeapon(GameObject weapon)
+    {
+        _enemy.WeaponPrefab = weapon;
+        return this;
+    }
+
+    public EnemyBuilder MarkAsBoss()
+    {
+        _enemy.IsBoss = true;
+        _enemy.Health *= 5; // Boss 血量翻 5 倍
+        return this;
+    }
+
+    // 最终的组装方法：把造好的产品交出去
+    public EnemyCharacter Build()
+    {
+        // 可以在这里进行最后的合法性校验
+        if (string.IsNullOrEmpty(_enemy.Name))
+        {
+            _enemy.Name = &quot;未命名怪物&quot;;
+        }
+        
+        return _enemy;
+    }
+}
+
+</code></pre>
+<h4 id="3-在-unity-中使用优雅得让人感动">3. 在 Unity 中使用（优雅得让人感动）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class EnemySpawner : MonoBehaviour
+{
+    public GameObject goldenSwordPrefab; // 在面板拖入的武器
+
+    void Start()
+    {
+        // 场景 1：我们需要造一只普通的史莱姆（很多属性用默认的就行）
+        EnemyCharacter slime = new EnemyBuilder()
+            .SetName(&quot;小史莱姆&quot;)
+            .SetSpeed(1.5f)
+            .Build(); // 完工！
+            
+        slime.Introduce();
+
+
+        // 场景 2：我们需要造一个极其强悍的终极大 Boss
+        EnemyCharacter boss = new EnemyBuilder()
+            .SetName(&quot;不灭魔王&quot;)
+            .SetHealth(2000)
+            .SetAttack(999)
+            .SetWeapon(goldenSwordPrefab)
+            .MarkAsBoss() // 触发 Boss 逻辑
+            .Build(); // 完工！
+
+        boss.Introduce();
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="二-进阶引入指挥者-director-固定配方">二、 进阶：引入“指挥者” (Director) —— 固定配方</h3>
+<p>在标准的 GoF 建造者模式中，还有一个可选的角色叫 <strong>指挥者（Director）</strong>。它的作用是<strong>封装常用的“组装配方”</strong>。</p>
+<p>如果你的游戏里经常需要批量生产同一种配置的怪物（比如“标准的远程弓箭手”），你不需要每次都自己去连一串 <code>Set</code>，你可以把这个配方交给 Director。</p>
+<pre><code class="language-csharp">// 指挥者：负责规定建造的步骤和配方
+public class EnemyDirector
+{
+    // 传入一个建造者，指挥它去按照特定配方建造
+    public EnemyCharacter ConstructStandardGoblin(EnemyBuilder builder)
+    {
+        return builder
+            .SetName(&quot;哥布林步兵&quot;)
+            .SetHealth(80)
+            .SetSpeed(4.5f)
+            .SetAttack(15)
+            .Build();
+    }
+
+    public EnemyCharacter ConstructEliteKnight(EnemyBuilder builder, GameObject coolSword)
+    {
+        return builder
+            .SetName(&quot;精英圣骑士&quot;)
+            .SetHealth(500)
+            .SetSpeed(3.0f)
+            .SetAttack(50)
+            .SetWeapon(coolSword)
+            .Build();
+    }
+}
+
+</code></pre>
+<p><strong>使用 Director：</strong></p>
+<pre><code class="language-csharp">EnemyBuilder builder = new EnemyBuilder();
+EnemyDirector director = new EnemyDirector();
+
+// 直接问导演要一个标准哥布林
+EnemyCharacter goblin = director.ConstructStandardGoblin(builder);
+
+</code></pre>
+<hr>
+<h3 id="建造者模式在-unity-中的其他神级应用">💡 建造者模式在 Unity 中的其他神级应用</h3>
+<p>除了用来配置复杂的数据，建造者模式在 Unity 的以下领域简直是绝对的主角：</p>
+<ol>
+<li><strong>关卡 / 地图随机生成 (Procedural Generation)：</strong><br>
+当你需要用代码动态生成一个迷宫、地下城或星球表面时，由于工序繁多（先生成网格 -&gt; 刷地形高度 -&gt; 布置植被 -&gt; 放置怪物 -&gt; 烘焙灯光），使用一个 <code>MapBuilder</code> 能够把极其杂乱的工序管理得井井有条。</li>
+<li><strong>网络请求工具类封装：</strong><br>
+在 Unity 中向服务器发请求时，我们常常需要自定义 Header、Body、Token。用建造者模式可以写出超爽的代码：<br>
+<code>HttpBuilder.Create().SetUrl(&quot;api/login&quot;).AddParam(&quot;user&quot;, &quot;123&quot;).SetTimeout(5f).Post();</code></li>
+</ol>
+<h3 id="避坑指南">🚨 避坑指南</h3>
+<ul>
+<li><strong>不要为了用而用：</strong> 如果你的类只有两三个属性，且基本固定不变，直接用 C# 的大括号初始化器 <code>new Enemy { Name = &quot;A&quot;, Health = 10 };</code> 就足够了，没必要为了这几个变量凭空多写一个 Builder 类。</li>
+<li><strong>状态重置问题：</strong> 如果你的 Builder 实例在 <code>Build()</code> 完之后还要重复利用，别忘了在 <code>Build()</code> 的瞬间把内部的临时对象 <code>new</code> 一个新的，防止下一个怪物污染了上一个怪物的属性。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x09zhuang-shi-qi-mo-shi-yi-chu-mou-ge-jie-dian-de-wen-ti/" class="post-title gt-a-link">
+                    0x09.装饰器模式移除某个节点的问题
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

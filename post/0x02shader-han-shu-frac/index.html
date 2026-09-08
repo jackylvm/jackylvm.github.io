@@ -1,0 +1,305 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x03.Shader函数frac | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x03.Shader函数frac
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-04-19 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/60e52J_k-Hr/" class="post-tags">
+                            # 基础函数
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Shader编程里，<code>frac</code> 函数是一个极为常用的数学函数，它在多种图形效果的实现中发挥着重要作用。下面将详细介绍 <code>frac</code> 函数。</p>
+<!-- more -->
+<figure data-type="image" tabindex="1"><img src="https://jackylvm.github.io/post-images/1745070862926.png" alt="" loading="lazy"></figure>
+<pre><code class="language-glsl">Shader &quot;ShaderLearning/Shader08&quot;
+{
+    Properties
+    {
+        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+    }
+    SubShader
+    {
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;UnityCG.cginc&quot;
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            sampler2D _MainTex;
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                float r = frac(i.uv.x * 10);
+                return fixed4(r, 0, 0, 1);
+            }
+            ENDCG
+        }
+    }
+}
+</code></pre>
+<h3 id="功能">功能</h3>
+<p><code>frac</code> 函数的主要功能是返回一个数的小数部分。其数学原理为：对于给定的数 <code>x</code>，<code>frac(x)</code> 等同于 <code>x - floor(x)</code>，这里的 <code>floor(x)</code> 是取小于或等于 <code>x</code> 的最大整数。</p>
+<h3 id="语法">语法</h3>
+<p>在不同的Shader语言中，<code>frac</code> 函数的使用方式基本一致。以下是一些常见Shader语言中的示例：</p>
+<h4 id="glslopengl-shading-language">GLSL（OpenGL Shading Language）</h4>
+<pre><code class="language-glsl">float frac(float x);
+vec2 frac(vec2 x);
+vec3 frac(vec3 x);
+vec4 frac(vec4 x);
+</code></pre>
+<h4 id="hlslhigh-level-shading-language">HLSL（High-Level Shading Language）</h4>
+<pre><code class="language-hlsl">float frac(float x);
+float2 frac(float2 x);
+float3 frac(float3 x);
+float4 frac(float4 x);
+</code></pre>
+<h3 id="示例代码">示例代码</h3>
+<p>以下是一个简单的GLSL示例，展示了 <code>frac</code> 函数的使用：</p>
+<pre><code class="language-glsl">#version 330 core
+
+out vec4 FragColor;
+
+void main()
+{
+    // 定义一个浮点数
+    float value = 3.14;
+
+    // 使用frac函数获取小数部分
+    float fractionalPart = frac(value);
+
+    // 输出小数部分
+    FragColor = vec4(fractionalPart, fractionalPart, fractionalPart, 1.0);
+}
+</code></pre>
+<h3 id="应用场景">应用场景</h3>
+<ul>
+<li><strong>纹理动画</strong>：借助 <code>frac</code> 函数可以实现纹理的循环滚动效果。比如，在纹理坐标上加上一个随时间变化的值，再使用 <code>frac</code> 函数处理，这样纹理就会循环滚动。</li>
+<li><strong>噪声生成</strong>：在生成噪声纹理时，<code>frac</code> 函数可用于确保随机值处于 <code>[0, 1]</code> 区间内。</li>
+<li><strong>颜色渐变</strong>：<code>frac</code> 函数能用于创建周期性的颜色渐变效果。</li>
+</ul>
+<h3 id="注意事项">注意事项</h3>
+<ul>
+<li><code>frac</code> 函数的输入参数可以是标量、向量，函数会对向量的每个分量分别进行处理。</li>
+<li>由于浮点数精度的问题，在使用 <code>frac</code> 函数时可能会出现一些微小的误差。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x02shader-han-shu-smoothstep/" class="post-title gt-a-link">
+                    0x02.Shader函数smoothstep
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

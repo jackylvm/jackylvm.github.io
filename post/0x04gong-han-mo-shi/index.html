@@ -1,0 +1,369 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x04.工厂模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x04.工厂模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>工厂模式（Factory Pattern）<strong>解决的则是</strong>“如何优雅地创建对象”的问题。</p>
+<p>在 Unity 开发中，我们经常需要生成（Spawn）各种东西：敌人、子弹、掉落物、特效。如果你在代码里到处写 <code>Instantiate(prefab)</code>，一旦你需要修改生成逻辑（比如给生成的怪物加上特定的等级、或者引入对象池），你就得把所有写了 <code>Instantiate</code> 的地方都改一遍。</p>
+<p>工厂模式的核心思想就是：<strong>把“创建对象”的过程封装起来，交给一个专门的“工厂”去处理。</strong> 外部代码不需要知道对象是怎么被 new（或 Instantiate）出来的，只需要向工厂“要”就行了。</p>
+<p>为了让你循序渐进地理解，我们分两种最常见的写法来演示：<strong>简单工厂</strong> 和 <strong>工厂方法</strong>。</p>
+<hr>
+<h3 id="准备工作定义我们要生产的产品">准备工作：定义我们要生产的“产品”</h3>
+<p>假设我们正在做一款 RPG 游戏，需要生成不同的敌人（Slime 和 Orc）。首先，我们需要为所有敌人定义一个共同的基类或接口，这样工厂生产出来的东西就可以统一管理。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 所有敌人的基类
+public abstract class Enemy : MonoBehaviour
+{
+    public abstract void Attack();
+}
+
+// 具体敌人 A：史莱姆
+public class Slime : Enemy
+{
+    public override void Attack()
+    {
+        Debug.Log(&quot;史莱姆吐出了酸液！&quot;);
+    }
+}
+
+// 具体敌人 B：兽人
+public class Orc : Enemy
+{
+    public override void Attack()
+    {
+        Debug.Log(&quot;兽人挥舞了巨斧！&quot;);
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="一-简单工厂-simple-factory-unity中最常见的做法">一、 简单工厂 (Simple Factory) —— Unity中最常见的做法</h3>
+<p>“简单工厂”其实并不是 GoF 23 种设计模式之一，但它非常实用，是初学者最应该掌握的。在 Unity 中，我们可以用一个统一的 <code>EnemyFactory</code> 脚本来管理所有敌人的预制体（Prefab），并根据传入的参数来决定生成谁。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class SimpleEnemyFactory : MonoBehaviour
+{
+    // 在 Inspector 面板中拖入对应的预制体
+    [Header(&quot;Enemy Prefabs&quot;)]
+    public GameObject slimePrefab;
+    public GameObject orcPrefab;
+
+    // 也可以定义一个枚举，比用字符串更安全，不容易拼错
+    public enum EnemyType { Slime, Orc }
+
+    // 工厂的生产方法
+    public Enemy CreateEnemy(EnemyType type, Vector3 spawnPosition)
+    {
+        GameObject enemyObj = null;
+
+        // 根据传入的类型，决定实例化哪个预制体
+        switch (type)
+        {
+            case EnemyType.Slime:
+                enemyObj = Instantiate(slimePrefab, spawnPosition, Quaternion.identity);
+                break;
+            case EnemyType.Orc:
+                enemyObj = Instantiate(orcPrefab, spawnPosition, Quaternion.identity);
+                break;
+            default:
+                Debug.LogError(&quot;未知的敌人类型！&quot;);
+                return null;
+        }
+
+        // 可以统一在这里进行初始化操作，比如播放出生特效、设置初始等级等
+        // PlaySpawnEffect(spawnPosition);
+
+        return enemyObj.GetComponent&lt;Enemy&gt;();
+    }
+}
+
+</code></pre>
+<p><strong>如何使用它？</strong><br>
+客户端代码（比如关卡管理器）不再需要自己去实例化预制体了：</p>
+<pre><code class="language-csharp">public class LevelManager : MonoBehaviour
+{
+    // 引用我们的工厂
+    public SimpleEnemyFactory enemyFactory;
+
+    void Start()
+    {
+        // 告诉工厂：给我一个史莱姆，放在原点
+        Enemy enemy1 = enemyFactory.CreateEnemy(SimpleEnemyFactory.EnemyType.Slime, Vector3.zero);
+        enemy1.Attack(); 
+
+        // 告诉工厂：给我一个兽人，放在(2,0,0)的位置
+        Enemy enemy2 = enemyFactory.CreateEnemy(SimpleEnemyFactory.EnemyType.Orc, new Vector3(2, 0, 0));
+        enemy2.Attack();
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="二-工厂方法模式-factory-method-进阶解耦">二、 工厂方法模式 (Factory Method) —— 进阶解耦</h3>
+<p><strong>简单工厂的缺点是什么？</strong> 假设你以后要给游戏增加 10 种新怪物（龙、哥布林、骷髅……），你的 <code>switch</code> 语句就会变得无限长。这就违背了设计模式中非常重要的一条原则：<strong>开闭原则（对扩展开放，对修改封闭）</strong>。我们希望在增加新怪物时，不要去修改现有的工厂代码。</p>
+<p>“工厂方法”的做法是：<strong>定义一个创建对象的抽象方法，让子类工厂去决定到底要实例化谁。</strong></p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 1. 定义一个抽象工厂基类
+public abstract class EnemySpawner : MonoBehaviour
+{
+    // 这是一个抽象的工厂方法，交由子类去实现具体的生成逻辑
+    public abstract Enemy Spawn(Vector3 position);
+    
+    // 我们还可以在基类里写一些所有生成器通用的逻辑
+    protected void PlaySpawnSound()
+    {
+        Debug.Log(&quot;播放了怪物出生的通用音效&quot;);
+    }
+}
+
+// 2. 具体的史莱姆生成器 (Slime Factory)
+public class SlimeSpawner : EnemySpawner
+{
+    public GameObject slimePrefab; // 只关心史莱姆的预制体
+
+    public override Enemy Spawn(Vector3 position)
+    {
+        GameObject obj = Instantiate(slimePrefab, position, Quaternion.identity);
+        PlaySpawnSound();
+        return obj.GetComponent&lt;Enemy&gt;();
+    }
+}
+
+// 3. 具体的兽人生成器 (Orc Factory)
+public class OrcSpawner : EnemySpawner
+{
+    public GameObject orcPrefab; // 只关心兽人的预制体
+
+    public override Enemy Spawn(Vector3 position)
+    {
+        GameObject obj = Instantiate(orcPrefab, position, Quaternion.identity);
+        PlaySpawnSound();
+        // 兽人可以有自己特殊的出生逻辑，比如出生自带激怒效果
+        obj.GetComponent&lt;Orc&gt;().Enrage();
+        return obj.GetComponent&lt;Enemy&gt;();
+    }
+}
+
+</code></pre>
+<p><strong>如何使用它？</strong><br>
+这种方式的好处是，调用者根本不知道、也不需要关心到底有几种怪物。它只对着 <code>EnemySpawner</code> 这个抽象类说话。</p>
+<pre><code class="language-csharp">public class SpawnPoint : MonoBehaviour
+{
+    // 这里我们可以拖入 SlimeSpawner，也可以拖入 OrcSpawner
+    // 关卡设计师在 Inspector 里随意配置，代码一行都不用改！
+    public EnemySpawner spawner; 
+
+    void Start()
+    {
+        // 直接调用生成，不管 spawner 肚子里装的是史莱姆还是兽人工厂
+        Enemy spawnedEnemy = spawner.Spawn(transform.position);
+        spawnedEnemy.Attack();
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="总结与建议-unity-特供版">💡 总结与建议 (Unity 特供版)</h3>
+<ol>
+<li><strong>什么时候用简单工厂？</strong><br>
+如果你的产品种类固定（比如只有3种不同颜色的金币），或者数量很少，用简单工厂（带 switch/if-else）是最高效、最直观的，不要为了炫技而强行拆分。</li>
+<li><strong>什么时候用工厂方法？</strong><br>
+当你的产品种类非常多，且经常需要扩展（比如有 50 种敌人、上百种技能特效），或者每种产品的“生成过程”都很复杂（不仅仅是 Instantiate，还需要读取配置表、绑定特定数据等），使用<strong>工厂方法</strong>能让代码更干净，团队协作时也不容易引起冲突。</li>
+<li><strong>终极形态：结合对象池（Object Pool）。</strong><br>
+在 Unity 中，频繁地 <code>Instantiate</code> 和 <code>Destroy</code> 会导致严重的性能问题（GC 卡顿）。在实际商业项目中，<strong>工厂模式几乎总是和对象池配合使用的</strong>：工厂在生产对象时，不再是 <code>Instantiate</code>，而是优先从对象池里“捞”一个隐藏的预制体出来。这样你的代码架构既优雅，性能又极其强悍！</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x03chou-xiang-gong-han-mo-shi/" class="post-title gt-a-link">
+                    0x03.抽象工厂模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

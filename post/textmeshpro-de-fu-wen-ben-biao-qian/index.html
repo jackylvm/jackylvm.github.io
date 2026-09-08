@@ -1,0 +1,399 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>TextMeshPro的富文本标签 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    TextMeshPro的富文本标签
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-05-22 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Ts8wE1eu0E/" class="post-tags">
+                            # UI
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/yeA9sehEoM/" class="post-tags">
+                            # 字符串
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>TextMeshPro（简称TMP）的富文本标签（Rich Text Tags）是一套类HTML的标记语法，直接写在文本字符串中，可实现<strong>颜色、大小、粗细、斜体、下划线、删除线、上标/下标、对齐、边距、缩进、图文混排、超链接、自定义样式、垂直偏移、透明度、背景高亮、换行</strong>等效果，且支持嵌套与动态拼接。</p>
+<p>下面按功能分类，给出<strong>完整标签说明+可直接复制的示例+效果说明</strong>。</p>
+<hr>
+<h3 id="一-基础文本样式最常用">一、基础文本样式（最常用）</h3>
+<h4 id="1-b-粗体bold">1. <code>&lt;b&gt;</code> 粗体（Bold）</h4>
+<ul>
+<li>说明：文本加粗，需闭合标签</li>
+<li>示例：<code>正常文本 &lt;b&gt;粗体文本&lt;/b&gt; 正常文本</code></li>
+<li>效果：正常文本 <strong>粗体文本</strong> 正常文本</li>
+</ul>
+<h4 id="2-i-斜体italic">2. <code>&lt;i&gt;</code> 斜体（Italic）</h4>
+<ul>
+<li>说明：文本倾斜，需闭合标签</li>
+<li>示例：<code>正常文本 &lt;i&gt;斜体文本&lt;/i&gt; 正常文本</code></li>
+<li>效果：正常文本 <em>斜体文本</em> 正常文本</li>
+</ul>
+<h4 id="3-u-下划线underline">3. <code>&lt;u&gt;</code> 下划线（Underline）</h4>
+<ul>
+<li>说明：文本下方加线，需闭合标签</li>
+<li>示例：<code>正常文本 &lt;u&gt;下划线文本&lt;/u&gt; 正常文本</code></li>
+<li>效果：正常文本 <u>下划线文本</u> 正常文本</li>
+</ul>
+<h4 id="4-s-删除线strikethrough">4. <code>&lt;s&gt;</code> 删除线（Strikethrough）</h4>
+<ul>
+<li>说明：文本中间加线，需闭合标签</li>
+<li>示例：<code>原价 &lt;s&gt;100元&lt;/s&gt; 现价60元</code></li>
+<li>效果：原价 <s>100元</s> 现价60元</li>
+</ul>
+<h4 id="5-allcaps-全大写all-caps">5. <code>&lt;allcaps&gt;</code> 全大写（All Caps）</h4>
+<ul>
+<li>说明：文本强制转为大写，需闭合标签</li>
+<li>示例：<code>小写转大写：&lt;allcaps&gt;hello world&lt;/allcaps&gt;</code></li>
+<li>效果：小写转大写：HELLO WORLD</li>
+</ul>
+<h4 id="6-smallcaps-小型大写small-caps">6. <code>&lt;smallcaps&gt;</code> 小型大写（Small Caps）</h4>
+<ul>
+<li>说明：小写字母转为小型大写，需闭合标签</li>
+<li>示例：<code>普通文本 &lt;smallcaps&gt;small caps&lt;/smallcaps&gt; 普通文本</code></li>
+<li>效果：普通文本 SMALL CAPS 普通文本</li>
+</ul>
+<hr>
+<h3 id="二-颜色与透明度">二、颜色与透明度</h3>
+<h4 id="7-color-文本颜色color">7. <code>&lt;color&gt;</code> 文本颜色（Color）</h4>
+<ul>
+<li>说明：支持<strong>颜色名、十六进制（#RGB/#RRGGBB/#RRGGBBAA）、RGBA值</strong>，需闭合标签</li>
+<li>示例1（颜色名）：<code>&lt;color=red&gt;红色文本&lt;/color&gt; &lt;color=blue&gt;蓝色文本&lt;/color&gt;</code></li>
+<li>示例2（十六进制）：<code>&lt;color=#FF6B6B&gt;浅红&lt;/color&gt; &lt;color=#00FF0080&gt;半透绿&lt;/color&gt;</code></li>
+<li>效果：红色文本、蓝色文本、浅红、半透绿</li>
+</ul>
+<h4 id="8-alpha-透明度alpha">8. <code>&lt;alpha&gt;</code> 透明度（Alpha）</h4>
+<ul>
+<li>说明：仅控制透明度（00=全透明，FF=不透明），<strong>自闭合或作用到末尾</strong></li>
+<li>示例：<code>不透明文本 &lt;alpha=#80&gt;半透明文本 &lt;alpha=#30&gt;更透明文本</code></li>
+<li>效果：不透明文本 → 半透明 → 更透明</li>
+</ul>
+<h4 id="9-mark-背景高亮markhighlight">9. <code>&lt;mark&gt;</code> 背景高亮（Mark/Highlight）</h4>
+<ul>
+<li>说明：给文本加背景色，需闭合标签</li>
+<li>示例：<code>普通文本 &lt;mark=#FFFF00&gt;黄色高亮&lt;/mark&gt; 普通文本</code></li>
+<li>效果：普通文本 <mark style="background-color: #FFFF00;">黄色高亮</mark> 普通文本</li>
+</ul>
+<hr>
+<h3 id="三-字体大小与缩放">三、字体大小与缩放</h3>
+<h4 id="10-size-字体大小size">10. <code>&lt;size&gt;</code> 字体大小（Size）</h4>
+<ul>
+<li>说明：支持<strong>像素(px)、字体单位(em)、百分比(%)</strong>，需闭合标签</li>
+<li>示例1（像素）：<code>正常大小 &lt;size=30&gt;30像素&lt;/size&gt; 正常大小</code></li>
+<li>示例2（em）：<code>正常 &lt;size=2em&gt;2倍大小&lt;/size&gt; 正常</code></li>
+<li>示例3（百分比）：<code>正常 &lt;size=150%&gt;1.5倍&lt;/size&gt; 正常</code></li>
+<li>效果：按数值放大/缩小文本</li>
+</ul>
+<hr>
+<h3 id="四-上标与下标科学化学式常用">四、上标与下标（科学/化学式常用）</h3>
+<h4 id="11-sup-上标superscript">11. <code>&lt;sup&gt;</code> 上标（Superscript）</h4>
+<ul>
+<li>说明：文本上移、缩小，需闭合标签</li>
+<li>示例：<code>平方：X&lt;sup&gt;2&lt;/sup&gt; 立方：Y&lt;sup&gt;3&lt;/sup&gt;</code></li>
+<li>效果：平方：X² 立方：Y³</li>
+</ul>
+<h4 id="12-sub-下标subscript">12. <code>&lt;sub&gt;</code> 下标（Subscript）</h4>
+<ul>
+<li>说明：文本下移、缩小，需闭合标签</li>
+<li>示例：<code>水：H&lt;sub&gt;2&lt;/sub&gt;O 二氧化碳：CO&lt;sub&gt;2&lt;/sub&gt;</code></li>
+<li>效果：水：H₂O 二氧化碳：CO₂</li>
+</ul>
+<hr>
+<h3 id="五-布局与对齐">五、布局与对齐</h3>
+<h4 id="13-align-文本对齐align">13. <code>&lt;align&gt;</code> 文本对齐（Align）</h4>
+<ul>
+<li>说明：作用于<strong>后续整段文本</strong>，支持left/center/right/justify/flush，<strong>自闭合</strong></li>
+<li>示例：</li>
+</ul>
+<pre><code>&lt;align=left&gt;左对齐文本
+&lt;align=center&gt;居中对齐文本
+&lt;align=right&gt;右对齐文本
+&lt;align=justify&gt;两端对齐文本（自动拉伸间距填满行）
+</code></pre>
+<ul>
+<li>效果：分别左/中/右/两端对齐</li>
+</ul>
+<h4 id="14-indent-首行缩进indent">14. <code>&lt;indent&gt;</code> 首行缩进（Indent）</h4>
+<ul>
+<li>说明：首行缩进，支持px/em/%，<strong>作用于后续所有行</strong></li>
+<li>示例：<code>&lt;indent=2em&gt;首行缩进2字符，后续行也缩进</code></li>
+<li>效果：首行及后续行均缩进2em</li>
+</ul>
+<h4 id="15-margin-左右边距margin">15. <code>&lt;margin&gt;</code> 左右边距（Margin）</h4>
+<ul>
+<li>说明：文本左右留空，支持px/em/%；可单独用<code>margin-left</code>/<code>margin-right</code></li>
+<li>示例：<code>普通文本 &lt;margin=10%&gt;左右留10%边距&lt;/margin&gt; 普通文本</code></li>
+<li>效果：指定文本左右留白</li>
+</ul>
+<h4 id="16-voffset-垂直偏移vertical-offset">16. <code>&lt;voffset&gt;</code> 垂直偏移（Vertical Offset）</h4>
+<ul>
+<li>说明：文本基线上下偏移，支持px/em；<strong>正值上移，负值下移</strong></li>
+<li>示例：<code>基线文本 &lt;voffset=10&gt;上移10px&lt;/voffset&gt; &lt;voffset=-10&gt;下移10px&lt;/voffset&gt;</code></li>
+<li>效果：基线文本 → 上移 → 下移</li>
+</ul>
+<h4 id="17-br-换行line-break">17. <code>&lt;br&gt;</code> 换行（Line Break）</h4>
+<ul>
+<li>说明：强制换行，<strong>自闭合</strong></li>
+<li>示例：<code>第一行文本&lt;br&gt;第二行文本</code></li>
+<li>效果：<br>
+第一行文本<br>
+第二行文本</li>
+</ul>
+<hr>
+<h3 id="六-图文混排sprite">六、图文混排（Sprite）</h3>
+<h4 id="18-sprite-插入精灵图片sprite">18. <code>&lt;sprite&gt;</code> 插入精灵图片（Sprite）</h4>
+<ul>
+<li>说明：需提前创建<strong>TMP Sprite Asset</strong>并放入<code>Resources/Sprites</code>；支持<code>index</code>（索引）/<code>name</code>（名称）/<code>scale</code>（缩放）/<code>color</code>（着色）/<code>rotation</code>（旋转），<strong>自闭合</strong></li>
+<li>前提：创建Sprite Asset→拖入图集→设置为TMP默认Sprite Asset</li>
+<li>示例1（索引）：<code>点赞 &lt;sprite index=0 scale=0.8&gt; 收藏 &lt;sprite index=1&gt;</code></li>
+<li>示例2（名称+颜色）：<code>红心 &lt;sprite name=heart color=#FF0000 scale=1.2&gt;</code></li>
+<li>效果：文本中插入自定义图标，支持缩放/着色/旋转</li>
+</ul>
+<hr>
+<h3 id="七-超链接可交互">七、超链接（可交互）</h3>
+<h4 id="19-link-超链接link">19. <code>&lt;link&gt;</code> 超链接（Link）</h4>
+<ul>
+<li>说明：给文本添加<strong>唯一ID热区</strong>，需闭合标签；配合脚本监听点击事件</li>
+<li>示例：<code>点击 &lt;color=blue&gt;&lt;link=&quot;btn_confirm&quot;&gt;确认&lt;/link&gt;&lt;/color&gt; 继续</code></li>
+<li>脚本监听（C#）：</li>
+</ul>
+<pre><code class="language-csharp">// 注册监听
+TMPro_EventManager.OnLinkClick += OnLinkClicked;
+// 取消监听
+void OnDisable() =&gt; TMPro_EventManager.OnLinkClick -= OnLinkClicked;
+// 回调
+void OnLinkClicked(object sender, LinkClickArgs e) {
+    if (e.linkID == &quot;btn_confirm&quot;) Debug.Log(&quot;确认链接被点击&quot;);
+}
+</code></pre>
+<ul>
+<li>效果：“确认”文本变为可点击热区，点击触发回调</li>
+</ul>
+<hr>
+<h3 id="八-自定义样式style">八、自定义样式（Style）</h3>
+<h4 id="20-style-自定义样式style">20. <code>&lt;style&gt;</code> 自定义样式（Style）</h4>
+<ul>
+<li>说明：提前在<strong>TMP Style Sheet</strong>中定义样式（如标题、警告），通过名称引用，需闭合标签</li>
+<li>前提：创建Style Sheet→添加样式（设置颜色、大小、粗体等）→TMP组件指定Style Sheet</li>
+<li>示例：<code>&lt;style=&quot;Title&quot;&gt;这是标题样式&lt;/style&gt; 普通文本</code></li>
+<li>效果：应用预设的自定义样式（如大号、粗体、蓝色）</li>
+</ul>
+<hr>
+<h3 id="九-高级字体与材质">九、高级：字体与材质</h3>
+<h4 id="21-font-指定字体材质font">21. <code>&lt;font&gt;</code> 指定字体/材质（Font）</h4>
+<ul>
+<li>说明：切换字体或材质，需闭合标签；需提前导入字体到项目</li>
+<li>示例：<code>默认字体 &lt;font=&quot;Arial&quot;&gt;Arial字体&lt;/font&gt; 默认字体</code></li>
+<li>效果：指定文本使用自定义字体</li>
+</ul>
+<hr>
+<h3 id="十-通用规则必看">十、通用规则（必看）</h3>
+<ol>
+<li><strong>语法</strong>：标签用<code>&lt;&gt;</code>包裹，闭合标签加<code>/</code>；属性值可加引号（<code>=&quot;red&quot;</code>）或不加（<code>=red</code>），<strong>等号两侧不能有空格</strong>。</li>
+<li><strong>嵌套</strong>：支持嵌套（如<code>&lt;b&gt;&lt;color=red&gt;粗红&lt;/color&gt;&lt;/b&gt;</code>），但需<strong>正确闭合</strong>。</li>
+<li><strong>优先级</strong>：同类型标签<strong>后生效覆盖前</strong>（如<code>&lt;color=red&gt;红&lt;color=blue&gt;蓝&lt;/color&gt;</code>）。</li>
+<li><strong>自闭合</strong>：无内容标签（<code>&lt;br&gt;</code>/<code>&lt;sprite&gt;</code>/<code>&lt;align&gt;</code>）无需闭合。</li>
+<li><strong>启用Rich Text</strong>：TMP组件勾选<strong>Rich Text</strong>选项，否则标签不生效。</li>
+</ol>
+<hr>
+<h3 id="常用组合示例直接复制可用">常用组合示例（直接复制可用）</h3>
+<pre><code class="language-csharp">// 1. 彩色粗体+删除线
+tmpText.text = &quot;&lt;b&gt;&lt;color=#FF0000&gt;&lt;s&gt;原价：99元&lt;/s&gt;&lt;/color&gt;&lt;/b&gt; &lt;color=#00FF00&gt;现价：59元&lt;/color&gt;&quot;;
+
+// 2. 图文混排+上标
+tmpText.text = &quot;能量 &lt;sprite name=energy scale=0.9&gt; 100&lt;sup&gt;+&lt;/sup&gt;&quot;;
+
+// 3. 超链接+高亮
+tmpText.text = &quot;请阅读 &lt;mark=#FFFF00&gt;&lt;link=&quot;link_terms&quot;&gt;用户协议&lt;/link&gt;&lt;/mark&gt;&quot;;
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/ru-he-kai-fa-yi-kuan-shu-ru-fa/" class="post-title gt-a-link">
+                    如何开发一款输入法
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

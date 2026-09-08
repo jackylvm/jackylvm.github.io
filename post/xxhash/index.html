@@ -1,0 +1,309 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>xxHash | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    xxHash
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-15 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/zJdLx295LPI/" class="post-tags">
+                            # 数学方法
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>xxHash是由Yann Collet于2012年开发的超高速非加密哈希算法，主打接近内存读写极限的性能，广泛用于数据校验、哈希表构建、文件去重等场景。以下从核心信息、特性、应用等方面详细介绍：</p>
+<h3 id="核心版本与规格">核心版本与规格</h3>
+<p>xxHash提供多个版本，适配不同哈希长度需求，具体如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>哈希长度</th>
+<th>核心特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XXH32</td>
+<td>32位</td>
+<td>早期基础版本，适合对哈希长度要求不高的场景</td>
+</tr>
+<tr>
+<td>XXH64</td>
+<td>64位</td>
+<td>较XXH32性能更优，应用广泛</td>
+</tr>
+<tr>
+<td>XXH3_64bits</td>
+<td>64位</td>
+<td>XXH3系列的64位版本，性能全面提升，尤其优化小数据处理</td>
+</tr>
+<tr>
+<td>XXH3_128bits</td>
+<td>128位</td>
+<td>XXH3系列的128位版本，提供更长哈希值，降低碰撞概率</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="关键特性">关键特性</h3>
+<ol>
+<li><strong>极致性能</strong>：XXH3在现代CPU（如Intel i7-9700K）上吞吐量可达31.5GB/s，接近内存读写速度上限，远超MD5、SHA-1等传统算法。</li>
+<li><strong>良好哈希质量</strong>：通过SMHasher测试套件，哈希值分布均匀，实际应用中碰撞率低，满足非加密场景的可靠性需求。</li>
+<li><strong>跨平台兼容</strong>：纯C编写，代码简洁，可在多种架构（x86、ARM等）和操作系统上运行，且不同平台生成的哈希值一致。</li>
+<li><strong>灵活易用</strong>：支持增量哈希和流式处理，可处理超大文件或持续数据流；支持设置种子（seed），便于生成不同哈希结果以适配负载均衡等场景。</li>
+<li><strong>开源免费</strong>：采用BSD 2-Clause许可证，可自由用于商业和开源项目。</li>
+</ol>
+<hr>
+<h3 id="核心应用场景">核心应用场景</h3>
+<p>xxHash凭借高性能和良好的哈希质量，被广泛应用于多个领域：</p>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>典型应用</th>
+<th>用途说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据库</td>
+<td>MySQL、RocksDB、ClickHouse</td>
+<td>用于数据分片、索引构建、数据校验</td>
+</tr>
+<tr>
+<td>文件传输/存储</td>
+<td>rsync、LZ4、Netflix</td>
+<td>文件完整性校验、重复文件检测、数据去重</td>
+</tr>
+<tr>
+<td>游戏开发</td>
+<td>Minecraft、CoD Black Ops、Cocos2D</td>
+<td>资源校验、缓存管理、快速数据比较</td>
+</tr>
+<tr>
+<td>系统工具</td>
+<td>Linux内核、HAProxy、Visual Studio</td>
+<td>数据处理加速、负载均衡、内存数据索引</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="使用限制与注意事项">使用限制与注意事项</h3>
+<ul>
+<li><strong>非加密属性</strong>：xxHash不具备抗碰撞攻击、不可逆等加密哈希特性，不可用于密码存储、数字签名等安全敏感场景，此类场景应使用SHA-256、SHA-3等加密哈希算法。</li>
+<li><strong>碰撞概率</strong>：虽碰撞率低，但理论上仍存在碰撞可能，对哈希唯一性要求极高的场景（如唯一标识符生成），需结合业务逻辑额外处理。</li>
+</ul>
+<hr>
+<h3 id="快速使用示例cunity环境适配">快速使用示例（C#，Unity环境适配）</h3>
+<p>以下是Unity中使用xxHash计算字符串哈希值的简单示例（需引入xxHash的C#绑定库，如<a href="https://github.com/brandondahler/XXHashSharp">XXHashSharp</a>）：</p>
+<pre><code class="language-csharp">using XXHashSharp;
+using UnityEngine;
+
+public class XXHashExample : MonoBehaviour
+{
+    void Start()
+    {
+        string data = &quot;UnityGameDev&quot;;
+        ulong seed = 123456;
+        // 计算64位哈希值
+        ulong hash64 = XXHash.XXH64(data, seed);
+        Debug.Log($&quot;XXH64 Hash: {hash64:X}&quot;);
+        // 计算32位哈希值
+        uint hash32 = XXHash.XXH32(data, (uint)seed);
+        Debug.Log($&quot;XXH32 Hash: {hash32:X}&quot;);
+    }
+}
+</code></pre>
+<hr>
+<h3 id="总结">总结</h3>
+<p>xxHash是非加密哈希领域的高性能算法，尤其适合对速度要求高、安全性要求低的场景。在Unity开发中，可用于资源校验、缓存键生成、数据分片等，帮助提升游戏运行效率和数据处理速度。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/shi-me-shi-hash-zhi/" class="post-title gt-a-link">
+                    什么是Hash值
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

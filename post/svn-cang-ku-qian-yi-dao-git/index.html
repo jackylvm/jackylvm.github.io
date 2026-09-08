@@ -1,0 +1,278 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>SVN 仓库迁移到 Git  | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SVN 仓库迁移到 Git 
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>将SVN仓库迁移到Git是一个常见的版本控制系统迁移需求，整个过程可以通过Git自带的<code>git svn</code>工具完成。以下是详细的迁移步骤：</p>
+<h3 id="准备工作"><strong>准备工作</strong></h3>
+<ol>
+<li>
+<p><strong>安装必要工具</strong></p>
+<ul>
+<li>安装Git（包含<code>git svn</code>工具）</li>
+<li>确保能访问SVN仓库（知道SVN仓库URL、有读取权限）</li>
+</ul>
+</li>
+<li>
+<p><strong>收集SVN用户信息</strong><br>
+SVN使用用户名，而Git使用邮箱格式的身份标识，需要创建用户映射文件（如<code>users.txt</code>）：</p>
+<pre><code>svn_username = Git Name &lt;git_email@example.com&gt;
+</code></pre>
+<p>可以通过以下命令导出所有SVN提交者，再手动补充邮箱：</p>
+<pre><code class="language-bash">svn log --quiet https://svn.example.com/project | grep -E &quot;r[0-9]+ \| .+ \|&quot; | awk '{print $3}' | sort | uniq
+</code></pre>
+</li>
+</ol>
+<h3 id="迁移步骤"><strong>迁移步骤</strong></h3>
+<h4 id="1-克隆svn仓库到本地git仓库">1. <strong>克隆SVN仓库到本地Git仓库</strong></h4>
+<p>使用<code>git svn clone</code>命令将SVN仓库转换为Git仓库，同时关联用户信息：</p>
+<pre><code class="language-bash">git svn clone [SVN仓库URL] --no-metadata --authors-file=users.txt [本地目录名]
+</code></pre>
+<ul>
+<li><code>--no-metadata</code>：忽略SVN特有的元数据</li>
+<li><code>--authors-file</code>：指定用户映射文件</li>
+<li>示例：<pre><code class="language-bash">git svn clone http://svn.example.com/svn/project --no-metadata --authors-file=users.txt my-git-repo
+</code></pre>
+</li>
+</ul>
+<h4 id="2-处理分支和标签">2. <strong>处理分支和标签</strong></h4>
+<p>SVN的分支和标签结构与Git不同，需要手动转换：</p>
+<ul>
+<li>
+<p><strong>转换标签</strong>（SVN的tags通常在<code>tags/</code>目录）：</p>
+<pre><code class="language-bash">cd my-git-repo
+# 列出所有SVN标签
+git branch -r
+# 将SVN标签转换为Git标签
+for tag in `git branch -r | grep &quot;tags/&quot; | sed 's/tags\///'`; do
+  git tag $tag refs/remotes/tags/$tag
+  git branch -r -d tags/$tag
+done
+</code></pre>
+</li>
+<li>
+<p><strong>转换分支</strong>（SVN的分支通常在<code>branches/</code>目录）：</p>
+<pre><code class="language-bash"># 将SVN分支转换为Git本地分支
+for branch in `git branch -r | grep &quot;branches/&quot; | sed 's/branches\///'`; do
+  git checkout -b $branch refs/remotes/branches/$branch
+done
+</code></pre>
+</li>
+</ul>
+<h4 id="3-清理svn残留信息">3. <strong>清理SVN残留信息</strong></h4>
+<p>移除与SVN相关的配置，彻底转为纯Git仓库：</p>
+<pre><code class="language-bash">git config --remove-section svn-remote.svn  # 移除SVN远程配置
+</code></pre>
+<h4 id="4-推送到git远程仓库">4. <strong>推送到Git远程仓库</strong></h4>
+<ol>
+<li>在Git服务（如GitHub、GitLab）创建一个新的空仓库</li>
+<li>将本地Git仓库推送到远程：<pre><code class="language-bash">git remote add origin [Git仓库URL]  # 添加远程仓库
+git push -u origin --all  # 推送所有分支
+git push -u origin --tags  # 推送所有标签
+</code></pre>
+</li>
+</ol>
+<h3 id="注意事项"><strong>注意事项</strong></h3>
+<ol>
+<li><strong>大型仓库</strong>：如果SVN仓库历史悠久、体积大，克隆过程可能很慢，可添加<code>--revision</code>参数指定起始版本（如<code>-r 1000:</code>从版本1000开始）。</li>
+<li><strong>提交历史</strong>：迁移后会保留完整的提交历史，但SVN的特定功能（如锁、属性）可能无法完全转换。</li>
+<li><strong>后续协作</strong>：迁移完成后，团队成员需重新克隆Git仓库，原SVN仓库可停止使用。</li>
+</ol>
+<p>如果需要更复杂的迁移（如处理二进制文件、过滤历史），可以使用<code>svn2git</code>工具（基于<code>git svn</code>的封装，功能更强大）。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-qie-huan-fen-bian-lu/" class="post-title gt-a-link">
+                    Unity切换分辨率
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

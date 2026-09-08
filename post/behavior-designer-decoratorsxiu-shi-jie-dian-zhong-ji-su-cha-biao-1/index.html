@@ -1,0 +1,467 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Behavior Designer Decorators(修饰节点)速查表1 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Behavior Designer Decorators(修饰节点)速查表1
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-05-23 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/CjzF_95ZFz/" class="post-tags">
+                            # Behavior Designer
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong>核心定义</strong>：Decorators（修饰器）<strong>只包裹一个子节点</strong>，作用是<strong>修改子节点的返回结果、执行次数、执行时机、执行条件</strong>，相当于给单个行为“加buff、加限制、改规则”。</p>
+<p><strong>核心区别</strong>：Composites（组合节点）= 管理多个子节点；Decorators（修饰节点）= 修饰单个子节点</p>
+<hr>
+<h2 id="一-全部-decorators-节点总览官方全量">一、全部 Decorators 节点总览（官方全量）</h2>
+<p>Behavior Designer 常用修饰节点共11个，按<strong>使用率从高到低</strong>排序，全覆盖实战用法。</p>
+<hr>
+<h2 id="二-高频必用-decorators90-项目都会用">二、高频必用 Decorators（90% 项目都会用）</h2>
+<h3 id="1-inverter反转器">1. Inverter（反转器）★★★★★</h3>
+<p><strong>核心功能</strong>：<strong>颠倒子节点的返回结果</strong></p>
+<p><strong>执行规则</strong>：</p>
+<ul>
+<li>
+<p>子节点 Success → 父节点 Failure</p>
+</li>
+<li>
+<p>子节点 Failure → 父节点 Success</p>
+</li>
+<li>
+<p>子节点 Running → 保持 Running（不变化）</p>
+</li>
+</ul>
+<p><strong>极简口诀</strong>：成功变失败，失败变成功，运行不变</p>
+<p><strong>实战场景</strong>：取反判断</p>
+<ul>
+<li>
+<p>CanSeeTarget（看见目标）+ Inverter → <strong>看不见目标</strong></p>
+</li>
+<li>
+<p>用于：看不见目标就停止、看不见就巡逻</p>
+</li>
+</ul>
+<h3 id="2-repeater重复执行">2. Repeater（重复执行）★★★★★</h3>
+<p><strong>核心功能</strong>：<strong>无限/指定次数重复执行子节点</strong></p>
+<p><strong>执行规则</strong>：</p>
+<ul>
+<li>
+<p>可设置 Repeat Count：次数，0 = 无限循环</p>
+</li>
+<li>
+<p>无论子节点成功/失败，都会继续重复</p>
+</li>
+<li>
+<p>可选：End On Success / End On Failure（满足条件停止）</p>
+</li>
+</ul>
+<p><strong>极简口诀</strong>：不停重复做，直到触发停止条件</p>
+<p><strong>实战场景</strong>：</p>
+<ul>
+<li>
+<p>无限巡逻、无限追击</p>
+</li>
+<li>
+<p>一直移动，直到抵达目标</p>
+</li>
+</ul>
+<h3 id="3-until-success直到成功">3. Until Success（直到成功）★★★★☆</h3>
+<p><strong>核心功能</strong>：<strong>一直执行子节点，直到返回成功才停止</strong></p>
+<p><strong>执行规则</strong>：</p>
+<ul>
+<li>
+<p>子节点 Failure → 重复执行</p>
+</li>
+<li>
+<p>子节点 Success → 停止，整体返回成功</p>
+</li>
+<li>
+<p>Running 持续运行</p>
+</li>
+</ul>
+<p><strong>极简口诀</strong>：失败就重试，成功就结束</p>
+<p><strong>实战场景</strong>：</p>
+<ul>
+<li>
+<p>一直寻路，直到到达目标点</p>
+</li>
+<li>
+<p>一直检测，直到条件满足</p>
+</li>
+</ul>
+<h3 id="4-until-failure直到失败">4. Until Failure（直到失败）★★★★☆</h3>
+<p><strong>核心功能</strong>：<strong>一直执行子节点，直到返回失败才停止</strong></p>
+<p><strong>执行规则</strong>：</p>
+<ul>
+<li>
+<p>子节点 Success → 重复执行</p>
+</li>
+<li>
+<p>子节点 Failure → 停止，整体返回失败</p>
+</li>
+</ul>
+<p><strong>极简口诀</strong>：成功就循环，失败就终止</p>
+<p><strong>实战场景</strong>：</p>
+<ul>
+<li>
+<p>持续追击敌人，直到敌人丢失视野</p>
+</li>
+<li>
+<p>持续站立待机，直到触发新行为</p>
+</li>
+</ul>
+<hr>
+<h2 id="三-进阶常用-decorators优化行为逻辑必备">三、进阶常用 Decorators（优化行为逻辑必备）</h2>
+<h3 id="5-timeout超时限制">5. Timeout（超时限制）★★★★</h3>
+<p><strong>核心功能</strong>：<strong>给子节点加最大执行时间，超时强制终止</strong></p>
+<p><strong>执行规则</strong>：</p>
+<ul>
+<li>
+<p>规定时间内子节点完成 → 返回对应结果</p>
+</li>
+<li>
+<p>超时未完成 → 强制终止，返回 Failure</p>
+</li>
+</ul>
+<p><strong>极简口诀</strong>：限时执行，超时失败</p>
+<p><strong>实战场景</strong>：</p>
+<ul>
+<li>
+<p>追击敌人最多追5秒，追不上就放弃</p>
+</li>
+<li>
+<p>寻路超时取消移动，防止卡死</p>
+</li>
+</ul>
+<h3 id="6-conditional-evaluator条件刷新修饰">6. Conditional Evaluator（条件刷新修饰）★★★☆</h3>
+<p><strong>核心功能</strong>：<strong>每帧重新判断条件，动态控制子节点是否可执行</strong></p>
+<p><strong>执行规则</strong>：实时刷新条件，不卡帧、不缓存结果</p>
+<p><strong>实战场景</strong>：动态视野检测、实时状态判定，解决行为树缓存不刷新的问题</p>
+<h3 id="7-repeat-n-times指定次数循环">7. Repeat N Times（指定次数循环）★★★</h3>
+<p><strong>核心功能</strong>：严格执行 N 次后结束</p>
+<p><strong>极简口诀</strong>：固定次数，跑完就停</p>
+<p><strong>实战场景</strong>：播放3次受伤动画、连续2次攻击</p>
+<hr>
+<h2 id="四-小众但实用-decorators特殊逻辑专用">四、小众但实用 Decorators（特殊逻辑专用）</h2>
+<h3 id="8-always-success强制成功">8. Always Success（强制成功）</h3>
+<p><strong>功能</strong>：<strong>无视子节点结果，整体永远返回 Success</strong></p>
+<p><strong>场景</strong>：兜底行为，防止分支卡死，比如待机、收尾动作</p>
+<h3 id="9-always-failure强制失败">9. Always Failure（强制失败）</h3>
+<p><strong>功能</strong>：<strong>无视子节点结果，整体永远返回 Failure</strong></p>
+<p><strong>场景</strong>：临时禁用某条行为分支、屏蔽指定逻辑</p>
+<h3 id="10-run-once只执行一次">10. Run Once（只执行一次）</h3>
+<p><strong>功能</strong>：行为树运行期间<strong>只触发一次</strong>，之后永久跳过</p>
+<p><strong>场景</strong>：出生初始化、首次触发提示、单次 buff 生效</p>
+<h3 id="11-delay延迟执行">11. Delay（延迟执行）</h3>
+<p><strong>功能</strong>：延迟指定时间后，再执行子节点</p>
+<p><strong>场景</strong>：延迟攻击、延迟转身、延迟结束动作</p>
+<hr>
+<h2 id="五-decorators-极速记忆口诀必背">五、Decorators 极速记忆口诀（必背）</h2>
+<ul>
+<li>
+<p><strong>Inverter</strong>：结果取反，运行不变</p>
+</li>
+<li>
+<p><strong>Repeater</strong>：无限复读，按需停止</p>
+</li>
+<li>
+<p><strong>Until Success</strong>：失败重试，成功退出</p>
+</li>
+<li>
+<p><strong>Until Failure</strong>：成功循环，失败退出</p>
+</li>
+<li>
+<p><strong>Timeout</strong>：限时执行，超时作废</p>
+</li>
+<li>
+<p><strong>Always Success/Failure</strong>：强制固定返回值</p>
+</li>
+<li>
+<p><strong>Run Once</strong>：一生一次，绝不重复</p>
+</li>
+</ul>
+<hr>
+<h2 id="六-高频组合实战你当前ai逻辑适配">六、高频组合实战（你当前AI逻辑适配）</h2>
+<h3 id="案例看不见目标就停止修饰节点经典用法">案例：看不见目标就停止（修饰节点经典用法）</h3>
+<p>原逻辑：看见目标→移动，看不见→停止</p>
+<p><strong>最简优化结构</strong>：</p>
+<pre><code class="language-Plain">Selector
+├─ Sequence
+│  ├─ CanSeeTarget
+│  └─ MoveToTarget（Repeater 无限移动）
+└─ Inverter + CanSeeTarget（取反：看不见目标）
+</code></pre>
+<hr>
+<h2 id="七-终极避坑注意事项">七、终极避坑注意事项</h2>
+<ul>
+<li>
+<p>Decorator <strong>只能包裹单个节点</strong>，不能直接包裹多个，多节点需外层套 Sequence/Selector</p>
+</li>
+<li>
+<p>Inverter <strong>不修改 Running 状态</strong>，只会反转 Success/Failure</p>
+</li>
+<li>
+<p>Repeater 默认无限循环，不设置停止条件会卡死行为树</p>
+</li>
+<li>
+<p>Until Success/Until Failure 是<strong>动态重试</strong>，比 Repeater 更智能，优先使用</p>
+</li>
+</ul>
+<hr>
+<h2 id="八-节点功能汇总表">八、节点功能汇总表</h2>
+<table>
+<thead>
+<tr>
+<th>节点名称</th>
+<th>核心作用</th>
+<th>返回值特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inverter</td>
+<td>反转执行结果</td>
+<td>成功↔失败，运行不变</td>
+<td>条件取反判断</td>
+</tr>
+<tr>
+<td>Repeater</td>
+<td>重复执行子节点</td>
+<td>可无限/指定次数循环</td>
+<td>持续移动、持续巡逻</td>
+</tr>
+<tr>
+<td>Until Success</td>
+<td>失败重试，成功停止</td>
+<td>成功即终止</td>
+<td>重试寻路、等待条件</td>
+</tr>
+<tr>
+<td>Until Failure</td>
+<td>成功循环，失败停止</td>
+<td>失败即终止</td>
+<td>持续追击、持续待机</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>限制最大执行时长</td>
+<td>超时强制失败</td>
+<td>防止AI卡死、限时行为</td>
+</tr>
+<tr>
+<td>Always Success</td>
+<td>强制返回成功</td>
+<td>无视子节点结果</td>
+<td>兜底分支、防止树卡死</td>
+</tr>
+<tr>
+<td>Always Failure</td>
+<td>强制返回失败</td>
+<td>无视子节点结果</td>
+<td>临时屏蔽行为分支</td>
+</tr>
+<tr>
+<td>Run Once</td>
+<td>仅执行一次</td>
+<td>执行后永久跳过</td>
+<td>初始化、单次触发逻辑</td>
+</tr>
+<tr>
+<td>Delay</td>
+<td>延迟执行子节点</td>
+<td>等待后执行对应结果</td>
+<td>延时动作、节奏控制</td>
+</tr>
+</tbody>
+</table>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/behavior-designer-compositeszu-he-jie-dian-su-cha-biao-2/" class="post-title gt-a-link">
+                    Behavior Designer Composites(组合节点)速查表2
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

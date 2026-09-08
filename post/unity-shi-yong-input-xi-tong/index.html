@@ -1,0 +1,571 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity使用Input系统 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity使用Input系统
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-18 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/FVHpv0oUUp/" class="post-tags">
+                            # 输入输出
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 中获取鼠标和键盘输入，核心依赖 <strong>旧版 Input Manager</strong>（简单直观）或 <strong>新版 Input System</strong>（功能强大）。以下是两种系统的具体实现方法，覆盖「键盘按键检测、轴向输入、鼠标位置/按键/滚轮、拖拽」等核心场景，直接复制代码即可使用。</p>
+<h2 id="一-旧版-input-manager推荐快速开发简单项目">一、旧版 Input Manager（推荐快速开发/简单项目）</h2>
+<p>无需额外安装，直接通过 <code>Input</code> 类静态 API 调用，适合原型开发或简单交互。</p>
+<h3 id="1-键盘输入按键检测-轴向移动">1. 键盘输入（按键检测 + 轴向移动）</h3>
+<h4 id="1单个按键检测按下抬起长按">（1）单个按键检测（按下/抬起/长按）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class KeyboardInputDemo : MonoBehaviour
+{
+    void Update()
+    {
+        // 1. 按键按下（单次触发，如跳跃、射击）
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(&quot;空格键按下（单次触发）&quot;);
+        }
+
+        // 2. 按键抬起（单次触发）
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Debug.Log(&quot;ESC键抬起（单次触发）&quot;);
+        }
+
+        // 3. 按键长按（持续触发，如加速）
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Debug.Log(&quot;左Shift长按中（持续触发）&quot;);
+        }
+
+        // 4. 字母/数字键检测
+        if (Input.GetKeyDown(KeyCode.A)) Debug.Log(&quot;A键按下&quot;);
+        if (Input.GetKeyDown(KeyCode.1)) Debug.Log(&quot;数字1按下&quot;);
+    }
+}
+</code></pre>
+<h4 id="2轴向输入wasd方向键适合移动">（2）轴向输入（WASD/方向键，适合移动）</h4>
+<p>Unity 默认配置了 <code>Horizontal</code>（水平）和 <code>Vertical</code>（垂直）轴，直接获取 <code>-1~1</code> 的数值，支持平滑过渡：</p>
+<pre><code class="language-csharp">public class PlayerMovement : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+
+    void Update()
+    {
+        // 水平轴：A/左箭头=-1，D/右箭头=1，无操作=0
+        float horizontal = Input.GetAxis(&quot;Horizontal&quot;);
+        // 垂直轴：S/下箭头=-1，W/上箭头=1，无操作=0
+        float vertical = Input.GetAxis(&quot;Vertical&quot;);
+
+        // 计算移动方向（normalized 避免斜向移动速度过快）
+        Vector3 moveDir = new Vector3(horizontal, 0, vertical).normalized;
+        // 平移物体（Time.deltaTime 使移动速度与帧率无关）
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+    }
+}
+</code></pre>
+<ul>
+<li>平滑 vs 即时：
+<ul>
+<li><code>Input.GetAxis(&quot;Horizontal&quot;)</code>：带渐变（从 0→1 有过渡），适合平滑移动。</li>
+<li><code>Input.GetAxisRaw(&quot;Horizontal&quot;)</code>：无渐变（直接返回 -1/0/1），适合快速响应（如菜单切换）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-鼠标输入位置按键滚轮拖拽">2. 鼠标输入（位置/按键/滚轮/拖拽）</h3>
+<h4 id="1鼠标按键检测左键右键中键">（1）鼠标按键检测（左键/右键/中键）</h4>
+<p>通过索引区分按键：<code>0=左键，1=右键，2=中键</code></p>
+<pre><code class="language-csharp">public class MouseInputDemo : MonoBehaviour
+{
+    void Update()
+    {
+        // 左键按下（单次触发，如点击交互）
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log(&quot;鼠标左键按下&quot;);
+        }
+
+        // 右键长按（持续触发，如拖拽）
+        if (Input.GetMouseButton(1))
+        {
+            Debug.Log(&quot;鼠标右键长按中&quot;);
+        }
+
+        // 中键抬起（单次触发，如取消操作）
+        if (Input.GetMouseButtonUp(2))
+        {
+            Debug.Log(&quot;鼠标中键抬起&quot;);
+        }
+    }
+}
+</code></pre>
+<h4 id="2鼠标位置屏幕坐标">（2）鼠标位置（屏幕坐标）</h4>
+<p>屏幕坐标原点在 <strong>左下角</strong>（x=0,y=0），右上角为（x=Screen.width, y=Screen.height）：</p>
+<pre><code class="language-csharp">void Update()
+{
+    // 获取鼠标屏幕坐标
+    Vector3 mouseScreenPos = Input.mousePosition;
+    Debug.Log($&quot;鼠标位置：X={mouseScreenPos.x}, Y={mouseScreenPos.y}&quot;);
+
+    // 示例：让物体跟随鼠标（2D项目）
+    if (Camera.main.orthographic) // 判断是否为2D相机
+    {
+        // 屏幕坐标 → 世界坐标（2D需设置z轴为0）
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+        mouseWorldPos.z = 0; // 2D项目避免z轴偏移
+        transform.position = mouseWorldPos;
+    }
+}
+</code></pre>
+<h4 id="3鼠标滚轮缩放滚动">（3）鼠标滚轮（缩放/滚动）</h4>
+<p>通过 <code>Input.mouseScrollDelta.y</code> 获取滚动量（向上=正值，向下=负值）：</p>
+<pre><code class="language-csharp">public class MouseScrollDemo : MonoBehaviour
+{
+    public float scaleSpeed = 0.1f;
+    public Vector3 minScale = new Vector3(0.5f, 0.5f, 0.5f); // 最小缩放
+    public Vector3 maxScale = new Vector3(2f, 2f, 2f); // 最大缩放
+
+    void Update()
+    {
+        // 获取滚轮滚动量（y轴为垂直滚动，x轴为水平滚动（部分鼠标支持））
+        float scroll = Input.mouseScrollDelta.y;
+
+        // 缩放物体
+        transform.localScale += new Vector3(scroll * scaleSpeed, scroll * scaleSpeed, scroll * scaleSpeed);
+        // 限制缩放范围（避免过大/过小）
+        transform.localScale = Vector3.ClampMagnitude(transform.localScale, maxScale.magnitude);
+        transform.localScale = Vector3.Max(transform.localScale, minScale);
+    }
+}
+</code></pre>
+<h4 id="4鼠标拖拽世界空间需-collider">（4）鼠标拖拽（世界空间，需 Collider）</h4>
+<p>物体必须有 <code>Collider</code>（如 BoxCollider）才能响应鼠标点击，通过「按下+位置变化」实现拖拽：</p>
+<pre><code class="language-csharp">public class MouseDragDemo : MonoBehaviour
+{
+    private bool isDragging = false;
+    private Vector3 offset; // 鼠标与物体的偏移（避免瞬移）
+
+    // 鼠标点击物体时触发（需 Collider）
+    void OnMouseDown()
+    {
+        // 射线检测：将鼠标屏幕坐标转换为世界射线
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            // 计算物体中心与射线命中点的偏移
+            offset = transform.position - hit.point;
+            isDragging = true;
+        }
+    }
+
+    // 鼠标抬起时结束拖拽
+    void OnMouseUp()
+    {
+        isDragging = false;
+    }
+
+    void Update()
+    {
+        if (isDragging)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                // 保持偏移，平滑拖拽
+                transform.position = hit.point + offset;
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="二-新版-input-system推荐复杂项目多平台">二、新版 Input System（推荐复杂项目/多平台）</h2>
+<p>功能更强（支持多设备、按键重映射、自定义输入），需先安装包，适合复杂交互或多平台项目。</p>
+<h3 id="1-前期配置3步">1. 前期配置（3步）</h3>
+<ol>
+<li>安装包：<code>Window → Package Manager → 搜索 Input System → 安装</code>（安装后重启 Unity）。</li>
+<li>创建输入资源：右键 Project 窗口 → <code>Input Actions</code> → 命名（如 <code>PlayerInputActions</code>）。</li>
+<li>配置输入映射（双击打开配置窗口）：
+<ul>
+<li>新建 <code>Action Map</code>（如 <code>Player</code>）。</li>
+<li>添加 Action 并绑定按键（示例）：
+<table>
+<thead>
+<tr>
+<th>Action 名称</th>
+<th>类型</th>
+<th>绑定内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Move</td>
+<td>Value→Vector2</td>
+<td>WASD + 方向键（Keyboard/W/A/S/D + Arrow Keys）</td>
+</tr>
+<tr>
+<td>Jump</td>
+<td>Button</td>
+<td>空格键（Keyboard/Space）</td>
+</tr>
+<tr>
+<td>LeftClick</td>
+<td>Button</td>
+<td>鼠标左键（Mouse/Left Button）</td>
+</tr>
+<tr>
+<td>MousePos</td>
+<td>Value→Vector2</td>
+<td>鼠标位置（Mouse/Position）</td>
+</tr>
+<tr>
+<td>MouseScroll</td>
+<td>Value→Vector2</td>
+<td>鼠标滚轮（Mouse/Scroll）</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-代码中使用回调实时读取">2. 代码中使用（回调/实时读取）</h3>
+<h4 id="1键盘输入移动-跳跃">（1）键盘输入（移动 + 跳跃）</h4>
+<p>通过回调函数响应输入，更灵活：</p>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class NewInputKeyboardDemo : MonoBehaviour
+{
+    private PlayerInputActions inputActions;
+    public float moveSpeed = 5f;
+
+    void Awake()
+    {
+        // 初始化输入资源
+        inputActions = new PlayerInputActions();
+
+        // 绑定跳跃回调（按下时触发）
+        inputActions.Player.Jump.performed += OnJump;
+
+        // 绑定移动回调（持续触发，输入变化时调用）
+        inputActions.Player.Move.performed += OnMove;
+        inputActions.Player.Move.canceled += OnMoveCanceled; // 移动停止时触发
+    }
+
+    // 跳跃逻辑
+    void OnJump(InputAction.CallbackContext context)
+    {
+        Debug.Log(&quot;跳跃触发（新版Input）&quot;);
+        GetComponent&lt;Rigidbody&gt;().AddForce(Vector3.up * 5f, ForceMode.Impulse);
+    }
+
+    // 移动逻辑
+    void OnMove(InputAction.CallbackContext context)
+    {
+        // 读取移动输入（Vector2：x=水平，y=垂直）
+        Vector2 moveInput = context.ReadValue&lt;Vector2&gt;();
+        Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+    }
+
+    // 移动停止时的逻辑
+    void OnMoveCanceled(InputAction.CallbackContext context)
+    {
+        Debug.Log(&quot;移动停止&quot;);
+    }
+
+    // 启用/禁用输入（避免后台触发）
+    void OnEnable() =&gt; inputActions.Enable();
+    void OnDisable() =&gt; inputActions.Disable();
+}
+</code></pre>
+<h4 id="2鼠标输入位置点击滚轮">（2）鼠标输入（位置/点击/滚轮）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class NewInputMouseDemo : MonoBehaviour
+{
+    private PlayerInputActions inputActions;
+
+    void Awake()
+    {
+        inputActions = new PlayerInputActions();
+
+        // 鼠标左键点击回调
+        inputActions.Player.LeftClick.performed += ctx =&gt; Debug.Log(&quot;鼠标左键点击（新版Input）&quot;);
+
+        // 鼠标滚轮回调
+        inputActions.Player.MouseScroll.performed += ctx =&gt;
+        {
+            Vector2 scroll = ctx.ReadValue&lt;Vector2&gt;();
+            Debug.Log($&quot;滚轮滚动：Y={scroll.y}&quot;);
+            // 缩放逻辑（同旧版）
+            transform.localScale += new Vector3(scroll.y * 0.1f, scroll.y * 0.1f, scroll.y * 0.1f);
+        };
+    }
+
+    void Update()
+    {
+        // 实时读取鼠标位置（屏幕坐标）
+        Vector2 mousePos = inputActions.Player.MousePos.ReadValue&lt;Vector2&gt;();
+        Debug.Log($&quot;鼠标位置（新版）：X={mousePos.x}, Y={mousePos.y}&quot;);
+    }
+
+    void OnEnable() =&gt; inputActions.Enable();
+    void OnDisable() =&gt; inputActions.Disable();
+}
+</code></pre>
+<h2 id="三-关键注意事项避坑指南">三、关键注意事项（避坑指南）</h2>
+<ol>
+<li>
+<p><strong>物体不响应鼠标事件？</strong></p>
+<ul>
+<li>必须给物体添加 <code>Collider</code>（如 BoxCollider、SphereCollider），且 <code>Is Trigger</code> 未勾选（或勾选后用 <code>OnTrigger</code> 事件）。</li>
+<li>确保相机是「MainCamera」（或代码中指定正确相机，如 <code>Camera.main</code> 替换为自定义相机引用）。</li>
+</ul>
+</li>
+<li>
+<p><strong>坐标转换问题（屏幕→世界）</strong></p>
+<ul>
+<li>3D 项目：必须用 <code>Camera.ScreenPointToRay</code>（射线检测）获取世界坐标，不能直接用 <code>ScreenToWorldPoint</code>（会忽略深度）。</li>
+<li>2D 项目：<code>ScreenToWorldPoint</code> 需手动设置 z 轴（如 <code>mouseWorldPos.z = 0</code>），否则物体可能消失。</li>
+</ul>
+</li>
+<li>
+<p><strong>输入延迟/不流畅？</strong></p>
+<ul>
+<li>旧版：<code>Input.GetAxis</code> 有平滑过渡，如需即时响应改用 <code>Input.GetAxisRaw</code>。</li>
+<li>新版：Action 类型选择「Button」（单次触发）或「Value」（持续输入），避免回调逻辑过重。</li>
+</ul>
+</li>
+<li>
+<p><strong>多按键冲突？</strong></p>
+<ul>
+<li>用 <code>Input.GetKeyDown</code> 时，避免同时检测多个按键（如 <code>A</code> 和 <code>D</code> 同时按下），可通过 <code>Input.GetAxis</code> 自动处理（返回 0）。</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结">总结</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐方案</th>
+<th>核心优势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>快速原型/简单交互</td>
+<td>旧版 Input Manager</td>
+<td>无需配置，代码简洁</td>
+</tr>
+<tr>
+<td>复杂项目/多平台</td>
+<td>新版 Input System</td>
+<td>支持重映射、多设备，扩展性强</td>
+</tr>
+<tr>
+<td>移动类输入（WASD）</td>
+<td>轴向输入（GetAxis）</td>
+<td>平滑过渡，避免斜向速度过快</td>
+</tr>
+<tr>
+<td>鼠标拖拽/点击</td>
+<td>Collider + 射线检测</td>
+<td>精准响应物体交互</td>
+</tr>
+</tbody>
+</table>
+<p>根据项目复杂度选择输入系统，核心逻辑可直接复用上述代码，如需扩展（如自定义按键、多设备支持），可进一步配置 Input 系统的参数。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-shu-ru-xi-tong/" class="post-title gt-a-link">
+                    Unity的输入系统
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

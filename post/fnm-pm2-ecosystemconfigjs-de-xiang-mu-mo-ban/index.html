@@ -1,0 +1,368 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>fnm + pm2 + ecosystem.config.js 的项目模板 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    fnm + pm2 + ecosystem.config.js 的项目模板
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-09-07 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/PvIm3WToXo/" class="post-tags">
+                            # node
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/poJ7-ZDZoNB/" class="post-tags">
+                            # nodejs
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="1-环境前提">1、环境前提</h2>
+<p>已安装 fnm，确认你的 node 真实二进制路径</p>
+<pre><code class="language-bash"># 拿到node绝对路径，复制输出结果备用
+fnm which node
+</code></pre>
+<p>示例输出：<br>
+<code>/root/.fnm/node-versions/v22.14.0/installation/bin/node</code></p>
+<blockquote>
+<p>这个路径要填进 <code>interpreter</code>，pm2系统服务不读shell的fnm环境变量。</p>
+</blockquote>
+<h2 id="2-项目目录结构">2、项目目录结构</h2>
+<pre><code>your-project/
+├── app.js                     # node入口
+├── ecosystem.config.js        # pm2配置（复制下面）
+├── logs/                      # pm2输出日志目录，手动创建
+├── package.json
+└── .gitignore
+</code></pre>
+<p>创建logs文件夹</p>
+<pre><code class="language-bash">mkdir -p logs
+</code></pre>
+<h3 id="ecosystemconfigjs直接复制修改两处name-interpreter路径">ecosystem.config.js（直接复制修改两处：name、interpreter路径）</h3>
+<pre><code class="language-js">module.exports = {
+  apps: [
+    {
+      name: &quot;node-api&quot;,                  // 你的服务名称，自己改
+      script: &quot;./app.js&quot;,
+      interpreter: &quot;/root/.fnm/node-versions/v22.14.0/installation/bin/node&quot;, // ⚠️替换成 fnm which node 的输出
+      instances: &quot;max&quot;,
+      exec_mode: &quot;cluster&quot;,
+
+      // 生产环境变量
+      env: {
+        NODE_ENV: &quot;production&quot;,
+        PORT: 3000
+      },
+      // 开发环境变量
+      env_dev: {
+        NODE_ENV: &quot;development&quot;,
+        PORT: 3001
+      },
+
+      autorestart: true,
+      watch: false,                       // 生产务必关闭；开发改为 true
+      watch_options: {
+        ignored: [&quot;node_modules&quot;, &quot;logs&quot;]
+      },
+      max_memory_restart: &quot;500M&quot;,         // 内存超限自动重启
+      restart_delay: 3000,                // 崩溃后延迟3s再重启，防止死循环
+      min_uptime: &quot;10s&quot;,
+
+      // 日志
+      out_file: &quot;./logs/out.log&quot;,
+      error_file: &quot;./logs/err.log&quot;,
+      merge_logs: true,
+      log_date_format: &quot;YYYY-MM-DD HH:mm:ss&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="gitignore">.gitignore</h3>
+<pre><code>node_modules
+logs
+ecosystem.config.js
+</code></pre>
+<blockquote>
+<p>不要把 ecosystem.config.js 提交git，本机node绝对路径不一样，可以保存一份 <code>ecosystem.config.sample.js</code> 给团队参考。</p>
+</blockquote>
+<h2 id="3-安装pm2当前fnm-node版本下全局安装">3、安装pm2（当前fnm node版本下全局安装）</h2>
+<pre><code class="language-bash">npm install pm2 -g
+pm2 -v
+</code></pre>
+<h2 id="4-启动服务">4、启动服务</h2>
+<pre><code class="language-bash"># 生产环境启动
+pm2 start ecosystem.config.js --env production
+
+# 开发环境启动
+# pm2 start ecosystem.config.js --env dev
+
+# 查看状态
+pm2 list
+
+# 看日志
+pm2 logs node-api
+</code></pre>
+<h2 id="5-配置开机自启fnm环境关键步骤">5、配置开机自启（fnm环境关键步骤）</h2>
+<blockquote>
+<p>interpreter已经写好node绝对路径，开机就不会跑系统node了</p>
+</blockquote>
+<pre><code class="language-bash"># 生成开机服务脚本，执行它输出的命令
+pm2 startup
+
+# 保存当前pm2进程快照，服务器重启自动拉起
+pm2 save
+</code></pre>
+<p>验证：<code>pm2 save</code> 会生成 <code>~/.pm2/dump.pm2</code>。<br>
+测试：服务器重启后执行 <code>pm2 list</code>，应用应自动 online。</p>
+<h3 id="开机自启相关命令">开机自启相关命令</h3>
+<pre><code class="language-bash">pm2 save          # 更新快照；新增/删除服务后务必执行
+pm2 cleardump     # 清除开机保存的服务
+pm2 unstartup     # 移除pm2开机服务
+pm2 resurrect     # 手动恢复快照
+</code></pre>
+<h2 id="6-安装日志切割-pm2logrotate生产必装">6、安装日志切割 pm2‑logrotate（生产必装）</h2>
+<pre><code class="language-bash">pm2 install pm2-logrotate
+
+# 设置规则：单文件最大100M，保留最近30份日志
+pm2 set pm2-logrotate:max_size 100M
+pm2 set pm2-logrotate:retain 30
+</code></pre>
+<h2 id="7-完整部署上线脚本deploysh可复制">7、完整部署上线脚本（deploy.sh，可复制）</h2>
+<blockquote>
+<p>更新代码零停机发布脚本，<code>pm2 reload</code> 集群优雅重载不中断连接<br>
+新建 <code>deploy.sh</code></p>
+</blockquote>
+<pre><code class="language-bash">#!/bin/bash
+
+echo &quot;===== pull code =====&quot;
+git pull
+
+echo &quot;===== install dependencies =====&quot;
+npm install --production
+
+echo &quot;===== pm2 reload zero downtime =====&quot;
+pm2 reload ecosystem.config.js --env production
+
+echo &quot;===== show status =====&quot;
+pm2 list
+</code></pre>
+<p>赋予执行权限</p>
+<pre><code class="language-bash">chmod +x deploy.sh
+</code></pre>
+<p>以后上线只需要：</p>
+<pre><code class="language-bash">./deploy.sh
+</code></pre>
+<blockquote>
+<p>注意：<code>reload</code> 仅对 <code>cluster</code> 模式生效；fork模式请使用 <code>pm2 restart</code>。</p>
+</blockquote>
+<h2 id="8-常用日常操作集合">8、常用日常操作集合</h2>
+<pre><code class="language-bash">pm2 list
+pm2 show node-api
+pm2 logs node-api --lines 200
+pm2 monit
+
+# 停止
+pm2 stop node-api
+# 删除
+pm2 delete node-api
+# 清空日志
+pm2 flush
+</code></pre>
+<h2 id="9-常见校验清单">9、常见校验清单</h2>
+<p>部署完核对3点：</p>
+<ol>
+<li><code>pm2 show node-api</code> → interpreter 显示的路径是你的 fnm node，不是系统node</li>
+<li><code>pm2 list</code> 中 restart 数值为0，不持续上涨</li>
+<li>服务器重启，应用自动 online</li>
+</ol>
+<h2 id="10-切换node版本之后操作">10、切换node版本之后操作</h2>
+<p>如果 fnm 切换了新的node版本：</p>
+<ol>
+<li>修改 <code>ecosystem.config.js</code> 里面 <code>interpreter</code> 为新的 <code>fnm which node</code> 路径</li>
+<li><code>npm install pm2 -g</code>（新版本node也要全局装pm2）</li>
+<li><code>pm2 reload ecosystem.config.js --env production</code></li>
+<li><code>pm2 save</code> 更新开机快照</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/pm2-de-xiang-xi-shi-yong-jiao-cheng/" class="post-title gt-a-link">
+                    pm2 的详细使用教程
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

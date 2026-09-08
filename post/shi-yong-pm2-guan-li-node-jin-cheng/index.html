@@ -1,0 +1,350 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>使用 pm2 管理 node 进程 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    使用 pm2 管理 node 进程
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-09-07 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/PvIm3WToXo/" class="post-tags">
+                            # node
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/poJ7-ZDZoNB/" class="post-tags">
+                            # nodejs
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="pm2-管理-nodejs-进程">PM2 管理 Node.js 进程</h1>
+<p>PM2 是 Node 生产环境进程管理工具：后台运行、守护进程、自动重启、日志、负载均衡集群、开机自启。</p>
+<blockquote>
+<p>前提：已经用 fnm/nvm 装好 Node + npm</p>
+</blockquote>
+<h2 id="1-安装-pm2">1. 安装 pm2</h2>
+<pre><code>npm install pm2 -g
+</code></pre>
+<p>验证</p>
+<pre><code>pm2 --version
+</code></pre>
+<h2 id="2-基础启动命令">2. 基础启动命令</h2>
+<h3 id="普通启动">普通启动</h3>
+<pre><code># 启动入口文件 app.js，命名服务名叫 myapp
+pm2 start app.js --name myapp
+
+# 指定 node 参数
+pm2 start app.js --name myapp -- --max-old-space-size=2048
+</code></pre>
+<h3 id="集群模式多核负载均衡">集群模式（多核负载均衡）</h3>
+<pre><code># max：根据CPU核心数自动创建进程
+pm2 start app.js -i max --name my-cluster
+# 指定4个实例
+pm2 start app.js -i 4 --name my-cluster
+</code></pre>
+<h3 id="其他启动方式">其他启动方式</h3>
+<pre><code># 启动 npm script，例如 npm run start
+pm2 start npm --name myapp -- run start
+
+# 重启已存在的应用
+pm2 restart myapp
+
+# 重载（0停机，集群模式优雅重载，不杀死连接）
+pm2 reload myapp
+
+# 停止
+pm2 stop myapp
+
+# 删除进程（从pm2列表移除）
+pm2 delete myapp
+</code></pre>
+<h2 id="3-查看状态与日志">3. 查看状态与日志</h2>
+<pre><code># 查看进程列表
+pm2 list
+pm2 ls
+
+# 实时日志
+pm2 logs
+# 只看某个应用日志
+pm2 logs myapp
+# 错误日志
+pm2 logs myapp --err
+# 限制行数
+pm2 logs --lines 200
+
+# 监控面板 cpu/memory
+pm2 monit
+
+# 显示应用详情
+pm2 show myapp
+</code></pre>
+<h2 id="4-配置文件-ecosystemconfigjs推荐生产使用">4. 配置文件 ecosystem.config.js（推荐生产使用）</h2>
+<p>生成配置模板</p>
+<pre><code>pm2 init simple
+</code></pre>
+<p>示例 <code>ecosystem.config.js</code></p>
+<pre><code>module.exports = {
+  apps: [
+    {
+      name: &quot;my-server&quot;,
+      script: &quot;./app.js&quot;,
+      instances: &quot;max&quot;,      // 集群实例数
+      exec_mode: &quot;cluster&quot;,  // cluster/fork
+      env: {
+        NODE_ENV: &quot;production&quot;,
+        PORT: 3000
+      },
+      watch: false,          // 生产关闭watch；开发可设true文件变动重启
+      max_memory_restart: &quot;300M&quot;, // 内存超过自动重启
+      out_file: &quot;./logs/out.log&quot;,
+      error_file: &quot;./logs/err.log&quot;,
+      merge_logs: true,
+      autorestart: true,     // 程序崩溃自动重启
+    }
+  ]
+}
+</code></pre>
+<p>使用配置文件操作：</p>
+<pre><code>pm2 start ecosystem.config.js
+pm2 restart ecosystem.config.js
+pm2 stop ecosystem.config.js
+pm2 delete ecosystem.config.js
+</code></pre>
+<h2 id="5-开机自启服务器重启自动跑pm2应用">5. 开机自启（服务器重启自动跑pm2应用）</h2>
+<pre><code># 生成开机启动脚本
+pm2 startup
+
+# 保存当前pm2进程列表，开机恢复
+pm2 save
+
+# 如果想清除保存的进程列表
+pm2 resurrect
+pm2 cleardump
+</code></pre>
+<blockquote>
+<p>⚠️ fnm 用户坑点：<br>
+pm2 startup 生成的系统服务默认使用系统node，<strong>不会读取 shell fnm 环境变量</strong>。<br>
+两种解决：</p>
+</blockquote>
+<ol>
+<li>在 <code>ecosystem.config.js</code> 指定 <code>interpreter</code> 指向 fnm 的 node 二进制路径</li>
+</ol>
+<pre><code>interpreter: &quot;/home/xxx/.fnm/node-versions/v22.14.0/installation/bin/node&quot;
+</code></pre>
+<ol start="2">
+<li>或者用 <code>pm2 startup</code> 之后，在系统service里手动指定 PATH。</li>
+</ol>
+<h2 id="6-常用命令速查">6. 常用命令速查</h2>
+<pre><code>pm2 list                     # 进程列表
+pm2 start|restart|stop|del  # 启动/重启/停止/删除
+pm2 reload &lt;app&gt;             # 零停机重载（集群）
+pm2 logs                     # 日志
+pm2 monit                    # 监控
+pm2 save                     # 保存进程快照
+pm2 startup                  # 开机自启
+pm2 flush                    # 清空全部日志
+</code></pre>
+<h2 id="7-开发-vs-生产注意点">7. 开发 vs 生产注意点</h2>
+<ul>
+<li>开发环境：可以开启 <code>watch:true</code>，文件修改自动重启</li>
+<li><strong>生产环境务必关闭 watch</strong>，避免磁盘IO和意外重启</li>
+<li><code>reload</code> 用于集群优雅更新；<code>restart</code> 是硬杀进程重启</li>
+</ul>
+<h2 id="8-常见问题">8. 常见问题</h2>
+<ol>
+<li>pm2 启动用的不是 fnm 的 node 版本</li>
+</ol>
+<blockquote>
+<p>pm2是系统服务，不读取shell环境，需要显式指定 interpreter 绝对路径。</p>
+</blockquote>
+<ol start="2">
+<li>应用不断自动重启<br>
+看 <code>pm2 logs</code>，大概率代码报错、端口占用、内存溢出。</li>
+<li>日志文件越来越大<br>
+可以搭配 pm2-logrotate 做日志切割：</li>
+</ol>
+<pre><code>pm2 install pm2-logrotate
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/fnm-he-nvm-you-shi-me-qu-bie/" class="post-title gt-a-link">
+                    fnm 和 nvm 有什么区别？
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

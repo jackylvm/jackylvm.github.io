@@ -1,0 +1,420 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Input System Package | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Input System Package
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-15 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/sUWm8HNCRa/" class="post-tags">
+                            # Input
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="一-重要前提启用新输入系统必做">一、重要前提：启用新输入系统（必做！）</h2>
+<p>安装完Input System后，Unity会弹框提示你<strong>重启Unity并启用新输入系统</strong>，如果没弹框，手动设置：</p>
+<ol>
+<li>打开 <code>Edit -&gt; Project Settings -&gt; Player</code></li>
+<li>在 <code>Other Settings</code> 里找到 <strong>Active Input Handling</strong></li>
+<li>选择 <strong>Input System Package (New)</strong></li>
+<li>点击重启Unity，配置生效</li>
+</ol>
+<blockquote>
+<p>⚠️ 注意：新旧输入系统默认<strong>互斥</strong>，启用新系统后，旧的 <code>Input.GetKey/Input.GetAxis</code> 这类API会失效，二选一即可。</p>
+</blockquote>
+<hr>
+<h2 id="二-方案一纯代码直接调用推荐最简最快90场景够用">二、方案一：纯代码直接调用（推荐！最简最快，90%场景够用）</h2>
+<p>这种方式<strong>无需创建任何Input Action资产、无需绑定、无需配置</strong>，直接在脚本里写代码就能获取键盘输入，和旧输入系统的写法最接近，<strong>新手首选、开发效率最高</strong>，也是最常用的方式。</p>
+<h3 id="核心apikeyboardcurrent">✅ 核心API：<code>Keyboard.current</code></h3>
+<p><code>Keyboard.current</code> 是Input System的核心键盘实例对象，通过它可以获取<strong>任意键盘按键</strong>的所有状态，全局唯一，直接调用即可。</p>
+<h3 id="核心按键状态api3种最常用必记">🔸 核心按键状态API（3种最常用，必记）</h3>
+<p>所有键盘按键都支持这3个核心状态判断，<strong>用法完全统一</strong>，格式：<code>Keyboard.current.按键名称.状态</code></p>
+<ol>
+<li><strong><code>.wasPressedThisFrame</code></strong> → 【按下瞬间】：按键<strong>在当前帧被按下</strong>，只会触发1次（比如：按下空格跳一下、按下J攻击一次）</li>
+<li><strong><code>.wasReleasedThisFrame</code></strong> → 【抬起瞬间】：按键<strong>在当前帧被松开</strong>，只会触发1次（比如：松开Shift取消冲刺）</li>
+<li><strong><code>.isPressed</code></strong> → 【持续按住】：按键<strong>当前处于按住状态</strong>，每一帧都会触发（比如：按住WASD移动、按住空格持续上浮）</li>
+</ol>
+<h3 id="完整代码示例复制即用含移动按键触发持续按住">✅ 完整代码示例（复制即用，含移动+按键触发+持续按住）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+// 必须引入这个命名空间！缺一不可
+using UnityEngine.InputSystem;
+
+public class KeyboardInputTest : MonoBehaviour
+{
+    [Header(&quot;移动速度&quot;)]
+    public float moveSpeed = 5f;
+
+    private Vector3 moveDir;
+
+    void Update()
+    {
+        // ========== 1. 核心：获取键盘实例 ==========
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard == null) return; // 保险判断：防止无键盘设备时报错
+
+        // ========== 2. 【持续按住】- 典型场景：WASD移动 ==========
+        moveDir = Vector3.zero;
+        if (keyboard.wKey.isPressed) moveDir += Vector3.forward;
+        if (keyboard.sKey.isPressed) moveDir += Vector3.back;
+        if (keyboard.aKey.isPressed) moveDir += Vector3.left;
+        if (keyboard.dKey.isPressed) moveDir += Vector3.right;
+        // 移动归一化，防止斜向移动速度翻倍
+        transform.Translate(moveDir.normalized * moveSpeed * Time.deltaTime);
+
+        // ========== 3. 【按下瞬间】- 典型场景：按下空格跳跃、按下J攻击 ==========
+        if (keyboard.spaceKey.wasPressedThisFrame)
+        {
+            Debug.Log(&quot;空格被按下了！跳跃/触发技能&quot;);
+        }
+        if (keyboard.jKey.wasPressedThisFrame)
+        {
+            Debug.Log(&quot;J键按下！普通攻击&quot;);
+        }
+
+        // ========== 4. 【抬起瞬间】- 典型场景：松开Shift取消加速 ==========
+        if (keyboard.leftShiftKey.wasReleasedThisFrame)
+        {
+            Debug.Log(&quot;左Shift松开！取消冲刺&quot;);
+            moveSpeed = 5f; // 恢复原速
+        }
+        if (keyboard.leftShiftKey.isPressed)
+        {
+            moveSpeed = 10f; // 按住Shift加速
+        }
+    }
+}
+</code></pre>
+<hr>
+<h2 id="三-方案二input-action-可视化配置进阶方案推荐团队大型项目">三、方案二：Input Action 可视化配置（进阶方案，推荐团队/大型项目）</h2>
+<p>这是Input System的<strong>标准/推荐用法</strong>，也是设计初衷：<strong>输入逻辑和业务逻辑完全解耦</strong>，支持可视化配置、一键切换键鼠/手柄/触屏，支持组合键、多按键映射同一个行为，适合中大型项目/团队协作。</p>
+<h3 id="核心步骤4步搞定清晰易懂">✅ 核心步骤（4步搞定，清晰易懂）</h3>
+<h4 id="step-1创建-input-action-资产文件">Step 1：创建 Input Action 资产文件</h4>
+<p>在Project窗口右键 → <code>Input Actions</code> → 创建一个资产文件（比如命名为 <code>PlayerInputActions</code>）</p>
+<h4 id="step-2可视化配置按键映射">Step 2：可视化配置按键映射</h4>
+<p>双击刚创建的<code>PlayerInputActions</code>，打开配置窗口，操作如下：</p>
+<ol>
+<li>左侧点击 <code>+</code> → 新建一个<strong>Action Map</strong>（比如命名为<code>Player</code>，代表玩家的所有输入行为）</li>
+<li>选中<code>Player</code> → 右侧点击 <code>+</code> → 新建<strong>Action</strong>（配置具体行为，比如：<code>Move</code>移动、<code>Jump</code>跳跃、<code>Attack</code>攻击）</li>
+<li>配置Action的绑定：
+<ul>
+<li>选中<code>Move</code> → 点击右侧<code>+</code> → <code>Add Binding</code> → 选择<code>Keyboard</code> → 绑定<code>W/A/S/D</code> 或 <code>↑/←/↓/→</code></li>
+<li>选中<code>Jump</code> → 绑定<code>Space 空格</code></li>
+<li>选中<code>Attack</code> → 绑定<code>J</code>/<code>K</code>（可以绑定多个按键）</li>
+</ul>
+</li>
+<li>保存配置窗口（Ctrl+S）</li>
+</ol>
+<h4 id="step-3脚本中绑定并使用-input-action">Step 3：脚本中绑定并使用 Input Action</h4>
+<p>有两种绑定方式，这里推荐<strong>最简单的C#脚本直接绑定</strong>（还有一种是通过<code>PlayerInput</code>组件绑定，更傻瓜式，文末补充），脚本如下：</p>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerInputActionTest : MonoBehaviour
+{
+    // 拖拽步骤1创建的Input Actions资产文件到这里
+    public PlayerInputActions playerInputActions;
+
+    private void Awake()
+    {
+        // 启用Input Action映射（必须！否则无法响应输入）
+        playerInputActions.Enable();
+    }
+
+    private void Update()
+    {
+        // 1. 获取【移动】输入 - 直接返回Vector2向量（x=左右，y=前后），无需手动判断WASD！
+        Vector2 moveVec = playerInputActions.Player.Move.ReadValue&lt;Vector2&gt;();
+        transform.Translate(new Vector3(moveVec.x, 0, moveVec.y) * 5f * Time.deltaTime);
+
+        // 2. 判断【跳跃】按下瞬间
+        if (playerInputActions.Player.Jump.WasPressedThisFrame())
+        {
+            Debug.Log(&quot;跳跃触发&quot;);
+        }
+
+        // 3. 判断【攻击】按下瞬间
+        if (playerInputActions.Player.Attack.WasPressedThisFrame())
+        {
+            Debug.Log(&quot;攻击触发&quot;);
+        }
+    }
+
+    // 必写：销毁时禁用，防止内存泄漏
+    private void OnDestroy()
+    {
+        playerInputActions.Disable();
+    }
+}
+</code></pre>
+<h4 id="step-4挂载脚本并赋值">Step 4：挂载脚本并赋值</h4>
+<p>把脚本挂载到场景物体上 → 在Inspector面板，把创建的<code>PlayerInputActions</code>资产拖拽到脚本的<code>playerInputActions</code>字段 → 运行即可生效。</p>
+<h3 id="这种方案的核心优势">✅ 这种方案的核心优势</h3>
+<ol>
+<li>输入和逻辑解耦：改按键不用改代码，直接在配置窗口改绑定即可</li>
+<li>扩展性极强：一键添加手柄支持，手柄的左摇杆自动映射到<code>Move</code>，无需改代码</li>
+<li>支持组合键、按键优先级、多按键映射，适合复杂输入逻辑</li>
+</ol>
+<hr>
+<h2 id="四-最全常用键盘按键名称api速查表必收藏">四、最全常用键盘按键名称（API速查表，必收藏！）</h2>
+<p><code>Keyboard.current.xxx</code> 中的 <code>xxx</code> 就是按键名称，<strong>严格大小写</strong>，下面是开发中99%会用到的按键，直接复制使用：</p>
+<h3 id="方向移动键">✅ 方向/移动键</h3>
+<p><code>wKey</code>/<code>aKey</code>/<code>sKey</code>/<code>dKey</code> 、 <code>upArrowKey</code>(↑)、<code>leftArrowKey</code>(←)、<code>downArrowKey</code>(↓)、<code>rightArrowKey</code>(→)</p>
+<h3 id="功能键">✅ 功能键</h3>
+<p><code>spaceKey</code>(空格)、<code>enterKey</code>(回车)、<code>escapeKey</code>(ESC)、<code>tabKey</code>(Tab)、<code>backspaceKey</code>(退格)</p>
+<h3 id="字母键a-z">✅ 字母键（A-Z）</h3>
+<p><code>aKey</code> ~ <code>zKey</code> （例：<code>jKey</code>、<code>kKey</code>、<code>qKey</code>、<code>eKey</code>）</p>
+<h3 id="数字键键盘顶部小键盘">✅ 数字键（键盘顶部+小键盘）</h3>
+<p>顶部数字：<code>digit1Key</code>(1) ~ <code>digit9Key</code>(9)、<code>digit0Key</code>(0)<br>
+小键盘数字：<code>numpad1Key</code> ~ <code>numpad9Key</code>、<code>numpad0Key</code></p>
+<h3 id="修饰键组合键常用">✅ 修饰键（组合键常用）</h3>
+<p><code>leftShiftKey</code>(左Shift)、<code>rightShiftKey</code>(右Shift)、<code>leftCtrlKey</code>(左Ctrl)、<code>rightCtrlKey</code>(右Ctrl)<br>
+<code>leftAltKey</code>(左Alt)、<code>rightAltKey</code>(右Alt)、<code>leftMetaKey</code>(Win键)、<code>rightMetaKey</code>(Mac Cmd)</p>
+<h3 id="符号键">✅ 符号键</h3>
+<p><code>minusKey</code>(-)、<code>equalsKey</code>(=)、<code>commaKey</code>(,)、<code>periodKey</code>(.)、<code>slashKey</code>(/)、<code>backslashKey</code>()</p>
+<hr>
+<h2 id="五-常见问题-避坑指南必看解决90报错">五、常见问题 &amp; 避坑指南（必看！解决90%报错）</h2>
+<h3 id="报错1the-name-keyboard-does-not-exist-in-the-current-context">❌ 报错1：<code>The name 'Keyboard' does not exist in the current context</code></h3>
+<p>✅ 解决：脚本顶部<strong>忘记引入命名空间</strong> → 加上这行：<code>using UnityEngine.InputSystem;</code></p>
+<h3 id="报错2keyboardcurrent-一直是null按键无响应">❌ 报错2：<code>Keyboard.current</code> 一直是<code>null</code>，按键无响应</h3>
+<p>✅ 解决：<strong>没有启用新输入系统</strong> → 回到本文最顶部，重新配置 <code>Player -&gt; Active Input Handling = Input System Package</code> 并重启Unity</p>
+<h3 id="问题3按下按键触发多次想要只触发一次">❌ 问题3：按下按键触发多次，想要只触发一次</h3>
+<p>✅ 解决：不要用 <code>.isPressed</code> 做单次触发逻辑，<strong>改用 <code>.wasPressedThisFrame</code></strong>，这个API是「帧级触发」，只会在按下的那一帧返回true。</p>
+<h3 id="问题4斜向移动时速度比单方向快一倍">❌ 问题4：斜向移动时速度比单方向快一倍</h3>
+<p>✅ 解决：对移动向量做<strong>归一化处理</strong> → <code>moveDir.normalized</code>，参考方案一的代码示例。</p>
+<h3 id="问题5input-action-配置后无响应">❌ 问题5：Input Action 配置后无响应</h3>
+<p>✅ 解决：<strong>必须调用 <code>.Enable()</code> 启用</strong>，在<code>Awake()</code>中启用，<code>OnDestroy()</code>中禁用，参考方案二的代码。</p>
+<hr>
+<h2 id="六-新旧输入系统-核心api对比快速迁移必看">六、新旧输入系统 核心API对比（快速迁移必看）</h2>
+<p>如果你是从旧的<code>Input</code>系统迁移过来的，这个对比表能让你瞬间对应上，无缝切换：</p>
+<table>
+<thead>
+<tr>
+<th>旧输入系统（Input）</th>
+<th>新输入系统（Input System）</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Input.GetKeyDown(KeyCode.Space)</code></td>
+<td><code>Keyboard.current.spaceKey.wasPressedThisFrame</code></td>
+<td>按键按下瞬间</td>
+</tr>
+<tr>
+<td><code>Input.GetKeyUp(KeyCode.Space)</code></td>
+<td><code>Keyboard.current.spaceKey.wasReleasedThisFrame</code></td>
+<td>按键抬起瞬间</td>
+</tr>
+<tr>
+<td><code>Input.GetKey(KeyCode.W)</code></td>
+<td><code>Keyboard.current.wKey.isPressed</code></td>
+<td>按键持续按住</td>
+</tr>
+<tr>
+<td><code>Input.GetAxis(&quot;Horizontal&quot;)</code></td>
+<td><code>Keyboard.current.dKey.isPressed - Keyboard.current.aKey.isPressed</code></td>
+<td>水平轴输入</td>
+</tr>
+<tr>
+<td><code>Input.GetAxis(&quot;Vertical&quot;)</code></td>
+<td><code>Keyboard.current.wKey.isPressed - Keyboard.current.sKey.isPressed</code></td>
+<td>垂直轴输入</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="总结两种方案怎么选">✅ 总结（两种方案怎么选？）</h2>
+<ol>
+<li><strong>纯代码方案（<code>Keyboard.current</code>）</strong>：<strong>新手首选、快速开发首选</strong>，代码简洁、无需配置、上手即用，适合独立开发、小型项目、快速原型验证，90%的个人开发场景够用。</li>
+<li><strong>Input Action方案</strong>：<strong>进阶首选、团队/大型项目首选</strong>，输入与逻辑解耦、扩展性极强、支持多设备无缝切换，是Input System的标准用法，稍微学一点配置成本，后期收益巨大。</li>
+</ol>
+<p>两种方案的核心按键状态判断逻辑是一致的：<code>按下瞬间/抬起瞬间/持续按住</code>，掌握这三个核心逻辑，就能搞定所有键盘输入需求啦！</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-burst/" class="post-title gt-a-link">
+                    Unity的Burst
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

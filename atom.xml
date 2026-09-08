@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://jackylvm.github.io</id>
+    <title>路虽远行则将至. 事虽难做则必成!</title>
+    <updated>2026-09-08T03:36:05.742Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://jackylvm.github.io"/>
+    <link rel="self" href="https://jackylvm.github.io/atom.xml"/>
+    <subtitle>&lt;h3&gt;低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!&lt;/h3&gt;</subtitle>
+    <logo>https://jackylvm.github.io/images/avatar.png</logo>
+    <icon>https://jackylvm.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2026, 路虽远行则将至. 事虽难做则必成!</rights>
+    <entry>
+        <title type="html"><![CDATA[git config 的详细操作]]></title>
+        <id>https://jackylvm.github.io/post/git-config-de-xiang-xi-cao-zuo/</id>
+        <link href="https://jackylvm.github.io/post/git-config-de-xiang-xi-cao-zuo/">
+        </link>
+        <updated>2026-09-08T03:33:52.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[fnm + pm2 + ecosystem.config.js 的项目模板]]></title>
+        <id>https://jackylvm.github.io/post/fnm-pm2-ecosystemconfigjs-de-xiang-mu-mo-ban/</id>
+        <link href="https://jackylvm.github.io/post/fnm-pm2-ecosystemconfigjs-de-xiang-mu-mo-ban/">
+        </link>
+        <updated>2026-09-07T06:20:33.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pm2 的详细使用教程]]></title>
+        <id>https://jackylvm.github.io/post/pm2-de-xiang-xi-shi-yong-jiao-cheng/</id>
+        <link href="https://jackylvm.github.io/post/pm2-de-xiang-xi-shi-yong-jiao-cheng/">
+        </link>
+        <updated>2026-09-07T06:18:30.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用 pm2 管理 node 进程]]></title>
+        <id>https://jackylvm.github.io/post/shi-yong-pm2-guan-li-node-jin-cheng/</id>
+        <link href="https://jackylvm.github.io/post/shi-yong-pm2-guan-li-node-jin-cheng/">
+        </link>
+        <updated>2026-09-07T05:02:34.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[fnm 和 nvm 有什么区别？]]></title>
+        <id>https://jackylvm.github.io/post/fnm-he-nvm-you-shi-me-qu-bie/</id>
+        <link href="https://jackylvm.github.io/post/fnm-he-nvm-you-shi-me-qu-bie/">
+        </link>
+        <updated>2026-09-07T04:54:42.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用 fnm 管理 node]]></title>
+        <id>https://jackylvm.github.io/post/shi-yong-fnm-guan-li-node/</id>
+        <link href="https://jackylvm.github.io/post/shi-yong-fnm-guan-li-node/">
+        </link>
+        <updated>2026-09-07T04:53:20.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Unity LayoutElement]]></title>
+        <id>https://jackylvm.github.io/post/unity-layoutelement/</id>
+        <link href="https://jackylvm.github.io/post/unity-layoutelement/">
+        </link>
+        <updated>2026-07-29T09:21:45.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ZString vs StringBuilder]]></title>
+        <id>https://jackylvm.github.io/post/zstring-vs-stringbuilder/</id>
+        <link href="https://jackylvm.github.io/post/zstring-vs-stringbuilder/">
+        </link>
+        <updated>2026-07-29T09:04:53.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Steering Behavior 是什么?]]></title>
+        <id>https://jackylvm.github.io/post/steering-behavior-shi-shi-me/</id>
+        <link href="https://jackylvm.github.io/post/steering-behavior-shi-shi-me/">
+        </link>
+        <updated>2026-07-29T09:01:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>简单介绍Steering Behavior,了解它的核心内容是什么</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>简单介绍Steering Behavior,了解它的核心内容是什么</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Unity TextMeshPro 图文混排实用指南]]></title>
+        <id>https://jackylvm.github.io/post/unity-textmeshpro-tu-wen-hun-pai-shi-yong-zhi-nan/</id>
+        <link href="https://jackylvm.github.io/post/unity-textmeshpro-tu-wen-hun-pai-shi-yong-zhi-nan/">
+        </link>
+        <updated>2026-06-25T07:07:23.000Z</updated>
+    </entry>
+</feed>

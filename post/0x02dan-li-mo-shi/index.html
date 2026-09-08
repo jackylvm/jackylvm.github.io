@@ -1,0 +1,359 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x02.单例模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x02.单例模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 开发中，<strong>单例模式（Singleton）</strong> 绝对是你最常遇到的模式之一。它非常适合用来管理全局唯一的状态或系统，例如：<code>GameManager</code>（游戏流程管理）、<code>AudioManager</code>（音效管理）、<code>UIManager</code>（界面管理）等。</p>
+<p>在 Unity 中实现单例通常有两种方式：一种是<strong>继承自 <code>MonoBehaviour</code> 的单例</strong>（可以挂载到游戏物体上），另一种是<strong>纯 C# 的单例</strong>（不挂载到物体上）。下面我为你详细演示这两种最常用的代码写法。</p>
+<hr>
+<h3 id="一-最常用的继承自-monobehaviour-的单例">一、 最常用的：继承自 <code>MonoBehaviour</code> 的单例</h3>
+<p>这是 Unity 开发者最常用的一种写法。它的好处是你可以把它挂载到场景中的一个 GameObject 上，并且可以在 Inspector 面板中配置参数。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    // 1. 定义一个公共的静态属性，允许其他任何类访问它，但只能在内部赋值
+    public static GameManager Instance { get; private set; }
+
+    // 测试用的全局数据
+    public int playerScore = 0;
+
+    private void Awake()
+    {
+        // 2. 检查场景中是否已经存在了一个 GameManager 实例
+        if (Instance != null &amp;&amp; Instance != this)
+        {
+            // 如果存在且不是当前这个，说明场景里多了一个，必须销毁掉，保证“唯一性”
+            Destroy(this.gameObject);
+            return;
+        }
+
+        // 3. 如果没有实例，就把自己赋值给 Instance
+        Instance = this;
+
+        // 4. (可选) 让这个单例在切换场景时（LoadScene）不会被销毁
+        // 这对于全局管理器来说非常有用
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    // 提供给外部调用的测试方法
+    public void AddScore(int points)
+    {
+        playerScore += points;
+        Debug.Log(&quot;当前分数: &quot; + playerScore);
+    }
+}
+
+</code></pre>
+<p><strong>如何使用它？</strong><br>
+在游戏中的任何其他脚本里，你都不需要使用 <code>GameObject.Find()</code> 或 <code>GetComponent()</code> 去找它，直接通过类名调用即可：</p>
+<pre><code class="language-csharp">public class Player : MonoBehaviour
+{
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(&quot;Coin&quot;))
+        {
+            // 直接通过 Instance 访问并调用方法
+            GameManager.Instance.AddScore(10);
+            Destroy(other.gameObject);
+        }
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="二-进阶实用版泛型单例基类-generic-singleton">二、 进阶实用版：泛型单例基类 (Generic Singleton)</h3>
+<p>当你的游戏变得复杂时，你可能会写 <code>AudioManager</code>、<code>UIManager</code>、<code>InputManager</code>。如果每个脚本都把上面的 <code>Awake</code> 逻辑写一遍，代码会很冗余。<br>
+作为 Unity 开发者，我们通常会写一个<strong>泛型单例基类</strong>，以后任何管理器只要继承它，就自动变成了单例！</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// T 代表任何继承自 MonoBehaviour 的类
+public class Singleton&lt;T&gt; : MonoBehaviour where T : MonoBehaviour
+{
+    private static T _instance;
+
+    public static T Instance
+    {
+        get
+        {
+            // 如果实例不存在，尝试在场景中找一下
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType&lt;T&gt;();
+                
+                // 如果场景中连挂载了该脚本的物体都没有，就自动创建一个并挂载
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(T).Name + &quot; (Singleton)&quot;);
+                    _instance = singletonObject.AddComponent&lt;T&gt;();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    protected virtual void Awake()
+    {
+        // 确保实例的唯一性
+        if (_instance != null &amp;&amp; _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this as T;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
+}
+
+</code></pre>
+<p><strong>如何使用泛型单例？</strong><br>
+极其简单！比如你要新建一个音效管理器，只需要让它继承 <code>Singleton&lt;AudioManager&gt;</code> 即可：</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 继承泛型基类，它立刻就拥有了单例的所有特性
+public class AudioManager : Singleton&lt;AudioManager&gt; 
+{
+    public void PlaySound(string soundName)
+    {
+        Debug.Log(&quot;播放音效: &quot; + soundName);
+    }
+}
+
+// 在其他地方调用：
+// AudioManager.Instance.PlaySound(&quot;Explosion&quot;);
+
+</code></pre>
+<hr>
+<h3 id="三-纯-c-单例不继承-monobehaviour">三、 纯 C# 单例（不继承 <code>MonoBehaviour</code>）</h3>
+<p>并不是所有数据都需要挂载到 GameObject 上（比如玩家的存档数据、游戏配置数据）。对于这种纯数据类，我们可以使用纯 C# 单例。</p>
+<pre><code class="language-csharp">public class PlayerDataManager
+{
+    // 1. 静态私有实例
+    private static PlayerDataManager _instance;
+
+    // 2. 将构造函数设为 private，防止外部使用 new 关键字创建新对象
+    private PlayerDataManager() 
+    {
+        // 这里可以进行初始化，比如从硬盘读取存档
+        Health = 100;
+    }
+
+    // 3. 静态公有属性，用于获取实例
+    public static PlayerDataManager Instance
+    {
+        get
+        {
+            // 延迟实例化：只有在第一次调用时才创建对象
+            if (_instance == null)
+            {
+                _instance = new PlayerDataManager();
+            }
+            return _instance;
+        }
+    }
+
+    public int Health { get; set; }
+}
+
+</code></pre>
+<h3 id="避坑指南关于单例的缺点">💡 避坑指南（关于单例的缺点）</h3>
+<p>单例模式虽然好用，但它是 Unity 新手最容易滥用的模式：</p>
+<ol>
+<li><strong>不要把什么东西都做成单例。</strong> 比如玩家（Player）和敌人（Enemy）就不应该做成单例，因为未来你可能会想做双人模式或者多敌人。</li>
+<li><strong>隐藏的依赖关系：</strong> 过多使用单例会让代码耦合度变高（任何脚本都在随意调用 <code>GameManager.Instance</code>），这会导致后期排查 Bug 和修改代码变得困难。<strong>建议只在必须全局共享的核心管理器上使用单例。</strong></li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x01gof-jing-dian-de-23-chong-she-ji-mo-shi/" class="post-title gt-a-link">
+                    0x01.GoF经典的23种设计模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

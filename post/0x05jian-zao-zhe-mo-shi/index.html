@@ -1,0 +1,647 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x05. 建造者模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x05. 建造者模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-12-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="建造者模式">建造者模式</h2>
+<!-- more -->
+<p>在Unity中使用C#实现<strong>建造者模式</strong>，核心是解决「复杂对象的分步构建与表示分离」问题。结合游戏开发典型场景——<strong>自定义游戏角色（包含外观、属性、技能等多个组件）</strong>，能直观体现建造者模式“分步组装、灵活定制”的核心特性（比如创建“肉盾战士”“爆发法师”等不同配置的角色，复用同一套构建流程）</p>
+<h3 id="一-核心思路建造者模式">一、核心思路（建造者模式）</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>对应实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品</td>
+<td><code>GameCharacter</code>（游戏角色）</td>
+<td>复杂对象，包含多个组件（外观、属性、技能、装备）</td>
+</tr>
+<tr>
+<td>抽象建造者</td>
+<td><code>ICharacterBuilder</code>（角色建造者接口）</td>
+<td>定义构建产品各个组件的抽象方法（BuildAppearance/Attributes/Skills等）</td>
+</tr>
+<tr>
+<td>具体建造者</td>
+<td><code>WarriorBuilder</code>/<code>MageBuilder</code></td>
+<td>实现抽象建造者，定制不同角色的组件构建逻辑（肉盾战士/爆发法师）</td>
+</tr>
+<tr>
+<td>指挥者</td>
+<td><code>CharacterDirector</code>（角色指挥者）</td>
+<td>封装构建流程（固定“外观→属性→技能→装备”的构建顺序），客户端只需调用指挥者，无需关心步骤</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td><code>GameManager</code>（挂载到Unity物体）</td>
+<td>指定具体建造者，通过指挥者完成复杂对象的构建</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-完整代码实现">二、完整代码实现</h3>
+<h4 id="1-产品类gamecharacter复杂对象游戏角色">1. 产品类：<code>GameCharacter</code>（复杂对象——游戏角色）</h4>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using UnityEngine;
+
+/// &lt;summary&gt;
+/// 复杂产品：游戏角色（包含多个组件）
+/// &lt;/summary&gt;
+public class GameCharacter
+{
+    // 角色基础信息
+    public string Name { get; set; }
+    public string RoleType { get; set; } // 战士/法师/刺客
+
+    // 组件1：外观
+    public string Appearance { get; set; } // 模型/皮肤
+    // 组件2：属性
+    public int Hp { get; set; }
+    public int Attack { get; set; }
+    public int Defense { get; set; }
+    // 组件3：技能
+    public List&lt;string&gt; Skills { get; set; } = new List&lt;string&gt;();
+    // 组件4：装备
+    public string Weapon { get; set; }
+    public string Armor { get; set; }
+
+    // 展示角色配置
+    public void ShowInfo()
+    {
+        Debug.Log($&quot;========== 角色配置完成 ==========\n&quot; +
+                  $&quot;角色名称：{Name}\n&quot; +
+                  $&quot;角色类型：{RoleType}\n&quot; +
+                  $&quot;外观：{Appearance}\n&quot; +
+                  $&quot;属性：HP={Hp} | 攻击={Attack} | 防御={Defense}\n&quot; +
+                  $&quot;技能：{string.Join(&quot;、&quot;, Skills)}\n&quot; +
+                  $&quot;装备：{Weapon} + {Armor}\n&quot; +
+                  &quot;==================================&quot;);
+    }
+}
+</code></pre>
+<h4 id="2-抽象建造者icharacterbuilder定义构建步骤">2. 抽象建造者：<code>ICharacterBuilder</code>（定义构建步骤）</h4>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 抽象建造者：定义构建角色各个组件的方法
+/// &lt;/summary&gt;
+public interface ICharacterBuilder
+{
+    // 初始化角色基础信息
+    void InitBaseInfo(string name);
+    // 构建外观
+    void BuildAppearance();
+    // 构建属性
+    void BuildAttributes();
+    // 构建技能
+    void BuildSkills();
+    // 构建装备
+    void BuildEquipment();
+    // 获取最终构建的角色
+    GameCharacter GetResult();
+}
+</code></pre>
+<h4 id="3-具体建造者定制不同角色战士法师">3. 具体建造者：定制不同角色（战士/法师）</h4>
+<h5 id="31-肉盾战士建造者warriorbuilder">3.1 肉盾战士建造者：<code>WarriorBuilder</code></h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 具体建造者1：肉盾战士建造者（高血量、高防御、近战技能）
+/// &lt;/summary&gt;
+public class WarriorBuilder : ICharacterBuilder
+{
+    private GameCharacter _character = new GameCharacter();
+
+    public void InitBaseInfo(string name)
+    {
+        _character.Name = name;
+        _character.RoleType = &quot;肉盾战士&quot;;
+        Debug.Log($&quot;[战士建造者] 初始化角色：{name}&quot;);
+    }
+
+    public void BuildAppearance()
+    {
+        // Unity特有逻辑：可在此加载战士预制体/皮肤
+        _character.Appearance = &quot;重甲战士模型 + 红色皮肤&quot;;
+        Debug.Log($&quot;[战士建造者] 构建外观：{_character.Appearance}&quot;);
+    }
+
+    public void BuildAttributes()
+    {
+        _character.Hp = 2000; // 高血量
+        _character.Attack = 300;
+        _character.Defense = 800; // 高防御
+        Debug.Log($&quot;[战士建造者] 构建属性：HP={_character.Hp} 攻击={_character.Attack} 防御={_character.Defense}&quot;);
+    }
+
+    public void BuildSkills()
+    {
+        _character.Skills.AddRange(new[] { &quot;盾击&quot;, &quot;嘲讽&quot;, &quot;生命回复&quot;, &quot;范围劈砍&quot; });
+        Debug.Log($&quot;[战士建造者] 构建技能：{string.Join(&quot;、&quot;, _character.Skills)}&quot;);
+    }
+
+    public void BuildEquipment()
+    {
+        _character.Weapon = &quot;巨型战斧&quot;;
+        _character.Armor = &quot;熔岩重甲&quot;;
+        Debug.Log($&quot;[战士建造者] 构建装备：{_character.Weapon} + {_character.Armor}&quot;);
+    }
+
+    public GameCharacter GetResult()
+    {
+        return _character;
+    }
+}
+</code></pre>
+<h5 id="32-爆发法师建造者magebuilder">3.2 爆发法师建造者：<code>MageBuilder</code></h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 具体建造者2：爆发法师建造者（低血量、高攻击、法术技能）
+/// &lt;/summary&gt;
+public class MageBuilder : ICharacterBuilder
+{
+    private GameCharacter _character = new GameCharacter();
+
+    public void InitBaseInfo(string name)
+    {
+        _character.Name = name;
+        _character.RoleType = &quot;爆发法师&quot;;
+        Debug.Log($&quot;[法师建造者] 初始化角色：{name}&quot;);
+    }
+
+    public void BuildAppearance()
+    {
+        _character.Appearance = &quot;法袍模型 + 蓝色特效皮肤&quot;;
+        Debug.Log($&quot;[法师建造者] 构建外观：{_character.Appearance}&quot;);
+    }
+
+    public void BuildAttributes()
+    {
+        _character.Hp = 800; // 低血量
+        _character.Attack = 1200; // 高攻击
+        _character.Defense = 200;
+        Debug.Log($&quot;[法师建造者] 构建属性：HP={_character.Hp} 攻击={_character.Attack} 防御={_character.Defense}&quot;);
+    }
+
+    public void BuildSkills()
+    {
+        _character.Skills.AddRange(new[] { &quot;火球术&quot;, &quot;冰锥术&quot;, &quot;法术暴击&quot;, &quot;瞬移&quot; });
+        Debug.Log($&quot;[法师建造者] 构建技能：{string.Join(&quot;、&quot;, _character.Skills)}&quot;);
+    }
+
+    public void BuildEquipment()
+    {
+        _character.Weapon = &quot;烈焰法杖&quot;;
+        _character.Armor = &quot;秘法披风&quot;;
+        Debug.Log($&quot;[法师建造者] 构建装备：{_character.Weapon} + {_character.Armor}&quot;);
+    }
+
+    public GameCharacter GetResult()
+    {
+        return _character;
+    }
+}
+</code></pre>
+<h4 id="4-指挥者characterdirector封装构建流程">4. 指挥者：<code>CharacterDirector</code>（封装构建流程）</h4>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 指挥者：固定角色构建的流程（外观→属性→技能→装备），解耦构建步骤与客户端
+/// &lt;/summary&gt;
+public class CharacterDirector
+{
+    private readonly ICharacterBuilder _builder;
+
+    // 传入具体建造者
+    public CharacterDirector(ICharacterBuilder builder)
+    {
+        _builder = builder;
+    }
+
+    /// &lt;summary&gt;
+    /// 构建完整角色（固定流程）
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;name&quot;&gt;角色名称&lt;/param&gt;
+    /// &lt;returns&gt;构建完成的角色&lt;/returns&gt;
+    public GameCharacter ConstructCharacter(string name)
+    {
+        Debug.Log(&quot;\n========== 开始构建角色 ==========&quot;);
+        _builder.InitBaseInfo(name);
+        _builder.BuildAppearance();
+        _builder.BuildAttributes();
+        _builder.BuildSkills();
+        _builder.BuildEquipment();
+        Debug.Log(&quot;========== 角色构建完成 ==========\n&quot;);
+        return _builder.GetResult();
+    }
+}
+</code></pre>
+<h4 id="5-客户端调用gamemanagerunity场景挂载">5. 客户端调用：<code>GameManager</code>（Unity场景挂载）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 游戏管理器（客户端）：通过指挥者+建造者创建定制化角色
+/// &lt;/summary&gt;
+public class GameManager : MonoBehaviour
+{
+    private void Start()
+    {
+        // ========== 1. 构建肉盾战士 ==========
+        // 步骤1：创建具体建造者（战士）
+        ICharacterBuilder warriorBuilder = new WarriorBuilder();
+        // 步骤2：创建指挥者，传入建造者
+        CharacterDirector warriorDirector = new CharacterDirector(warriorBuilder);
+        // 步骤3：指挥者执行构建流程，获取角色
+        GameCharacter warrior = warriorDirector.ConstructCharacter(&quot;钢铁守卫&quot;);
+        // 展示角色信息
+        warrior.ShowInfo();
+
+        // ========== 2. 构建爆发法师 ==========
+        Debug.Log(&quot;\n-----------------------------------\n&quot;);
+        ICharacterBuilder mageBuilder = new MageBuilder();
+        CharacterDirector mageDirector = new CharacterDirector(mageBuilder);
+        GameCharacter mage = mageDirector.ConstructCharacter(&quot;寒冰法师&quot;);
+        mage.ShowInfo();
+    }
+}
+</code></pre>
+<h3 id="三-unity运行效果">三、Unity运行效果</h3>
+<p>将<code>GameManager</code>挂载到场景任意物体（如MainCamera），运行后控制台输出：</p>
+<pre><code>========== 开始构建角色 ==========
+[战士建造者] 初始化角色：钢铁守卫
+[战士建造者] 构建外观：重甲战士模型 + 红色皮肤
+[战士建造者] 构建属性：HP=2000 攻击=300 防御=800
+[战士建造者] 构建技能：盾击、嘲讽、生命回复、范围劈砍
+[战士建造者] 构建装备：巨型战斧 + 熔岩重甲
+========== 角色构建完成 ==========
+
+========== 角色配置完成 ==========
+角色名称：钢铁守卫
+角色类型：肉盾战士
+外观：重甲战士模型 + 红色皮肤
+属性：HP=2000 | 攻击=300 | 防御=800
+技能：盾击、嘲讽、生命回复、范围劈砍
+装备：巨型战斧 + 熔岩重甲
+==================================
+
+-----------------------------------
+
+========== 开始构建角色 ==========
+[法师建造者] 初始化角色：寒冰法师
+[法师建造者] 构建外观：法袍模型 + 蓝色特效皮肤
+[法师建造者] 构建属性：HP=800 攻击=1200 防御=200
+[法师建造者] 构建技能：火球术、冰锥术、法术暴击、瞬移
+[法师建造者] 构建装备：烈焰法杖 + 秘法披风
+========== 角色构建完成 ==========
+
+========== 角色配置完成 ==========
+角色名称：寒冰法师
+角色类型：爆发法师
+外观：法袍模型 + 蓝色特效皮肤
+属性：HP=800 | 攻击=1200 | 防御=200
+技能：火球术、冰锥术、法术暴击、瞬移
+装备：烈焰法杖 + 秘法披风
+==================================
+</code></pre>
+<h3 id="四-unity场景扩展贴合实际开发">四、Unity场景扩展（贴合实际开发）</h3>
+<h4 id="1-新增角色类型刺客">1. 新增角色类型（刺客）</h4>
+<p>建造者模式扩展新角色极便捷，仅需新增<strong>具体建造者</strong>，无需修改指挥者和原有代码：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 新增具体建造者：刺客建造者（高攻速、隐身技能）
+/// &lt;/summary&gt;
+public class AssassinBuilder : ICharacterBuilder
+{
+    private GameCharacter _character = new GameCharacter();
+
+    public void InitBaseInfo(string name)
+    {
+        _character.Name = name;
+        _character.RoleType = &quot;敏捷刺客&quot;;
+    }
+
+    public void BuildAppearance() =&gt; _character.Appearance = &quot;潜行模型 + 黑色皮肤&quot;;
+    public void BuildAttributes()
+    {
+        _character.Hp = 1000;
+        _character.Attack = 700;
+        _character.Defense = 300;
+    }
+    public void BuildSkills() =&gt; _character.Skills.AddRange(new[] { &quot;隐身&quot;, &quot;背刺&quot;, &quot;暴击连击&quot;, &quot;致盲&quot; });
+    public void BuildEquipment()
+    {
+        _character.Weapon = &quot;淬毒匕首&quot;;
+        _character.Armor = &quot;暗影皮甲&quot;;
+    }
+    public GameCharacter GetResult() =&gt; _character;
+}
+
+// 客户端调用新增刺客
+private void Start()
+{
+    // ... 原有战士/法师代码
+    Debug.Log(&quot;\n-----------------------------------\n&quot;);
+    ICharacterBuilder assassinBuilder = new AssassinBuilder();
+    CharacterDirector assassinDirector = new CharacterDirector(assassinBuilder);
+    GameCharacter assassin = assassinDirector.ConstructCharacter(&quot;影刃&quot;);
+    assassin.ShowInfo();
+}
+</code></pre>
+<h4 id="2-结合unity预制体与资源加载">2. 结合Unity预制体与资源加载</h4>
+<p>实际项目中，可在<code>BuildAppearance</code>方法中加载角色预制体、设置材质/特效：</p>
+<pre><code class="language-csharp">public void BuildAppearance()
+{
+    // 加载Resources下的战士预制体
+    GameObject warriorPrefab = Resources.Load&lt;GameObject&gt;(&quot;Prefabs/Warrior&quot;);
+    if (warriorPrefab != null)
+    {
+        GameObject warriorObj = Instantiate(warriorPrefab, Vector3.zero, Quaternion.identity);
+        // 设置皮肤材质
+        Renderer renderer = warriorObj.GetComponentInChildren&lt;Renderer&gt;();
+        renderer.material = Resources.Load&lt;Material&gt;(&quot;Materials/RedWarriorSkin&quot;);
+        _character.Appearance = &quot;重甲战士模型 + 红色皮肤（已加载预制体）&quot;;
+    }
+}
+</code></pre>
+<h4 id="3-动态调整构建流程可选步骤">3. 动态调整构建流程（可选步骤）</h4>
+<p>指挥者可提供“精简构建”方法（比如只构建基础属性，不加载技能/装备）：</p>
+<pre><code class="language-csharp">public class CharacterDirector
+{
+    // ... 原有代码
+
+    /// &lt;summary&gt;
+    /// 精简构建：仅初始化+外观+属性（用于新手角色）
+    /// &lt;/summary&gt;
+    public GameCharacter ConstructSimpleCharacter(string name)
+    {
+        Debug.Log(&quot;\n========== 开始精简构建角色 ==========&quot;);
+        _builder.InitBaseInfo(name);
+        _builder.BuildAppearance();
+        _builder.BuildAttributes();
+        Debug.Log(&quot;========== 精简构建完成 ==========\n&quot;);
+        return _builder.GetResult();
+    }
+}
+
+// 客户端调用精简构建
+GameCharacter noviceWarrior = warriorDirector.ConstructSimpleCharacter(&quot;新手战士&quot;);
+noviceWarrior.ShowInfo(); // 技能/装备为空，仅基础信息
+</code></pre>
+<h4 id="4-链式调用优化简化客户端代码">4. 链式调用优化（简化客户端代码）</h4>
+<p>可将建造者改为链式调用，省去指挥者（适合灵活定制步骤的场景）：</p>
+<pre><code class="language-csharp">public class WarriorBuilder : ICharacterBuilder
+{
+    // ... 原有字段/方法
+
+    // 链式调用扩展
+    public WarriorBuilder WithName(string name)
+    {
+        InitBaseInfo(name);
+        return this;
+    }
+
+    public WarriorBuilder WithAppearance()
+    {
+        BuildAppearance();
+        return this;
+    }
+
+    public WarriorBuilder WithAttributes()
+    {
+        BuildAttributes();
+        return this;
+    }
+
+    // 最终构建
+    public GameCharacter Build()
+    {
+        return _character;
+    }
+}
+
+// 客户端链式调用
+GameCharacter customWarrior = new WarriorBuilder()
+    .WithName(&quot;自定义战士&quot;)
+    .WithAppearance()
+    .WithAttributes()
+    .Build();
+</code></pre>
+<h3 id="五-建造者模式核心优势unity场景">五、建造者模式核心优势（Unity场景）</h3>
+<ol>
+<li><strong>分步构建，灵活定制</strong>：复杂角色的组件（外观/属性/技能）可分步构建，支持“完整构建”“精简构建”等不同流程；</li>
+<li><strong>解耦构建与表示</strong>：客户端无需知道角色的具体构建细节，只需通过指挥者/建造者获取最终对象；</li>
+<li><strong>复用构建流程</strong>：新增角色（刺客/射手）时，仅需新增具体建造者，指挥者的构建流程可完全复用；</li>
+<li><strong>避免多参数构造器</strong>：相比<code>GameCharacter</code>的多参数构造器（如<code>new GameCharacter(&quot;钢铁守卫&quot;, 2000, 300, 800, ...)</code>），建造者模式更清晰、易维护。</li>
+</ol>
+<h3 id="六-建造者模式-vs-工厂模式unity场景对比">六、建造者模式 vs 工厂模式（Unity场景对比）</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>核心差异</th>
+<th>Unity适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工厂模式</td>
+<td>关注“创建对象”，一键生成</td>
+<td>简单对象创建（单个道具、基础敌人）</td>
+</tr>
+<tr>
+<td>建造者模式</td>
+<td>关注“组装对象”，分步定制</td>
+<td>复杂对象创建（角色定制、关卡配置、UI面板组装）</td>
+</tr>
+</tbody>
+</table>
+<p>建造者模式是Unity中开发“高定制化复杂对象”的首选模式，比如角色创建、关卡生成、复杂UI面板组装（包含按钮、文本、图标等多个组件）都非常适用。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x04chou-xiang-gong-han-mo-shi/" class="post-title gt-a-link">
+                    0x04. 抽象工厂模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

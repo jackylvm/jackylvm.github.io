@@ -1,0 +1,821 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x07. 观察者模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x07. 观察者模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-12-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="观察者模式">观察者模式</h2>
+<!-- more -->
+<p>在Unity中使用C#实现<strong>观察者模式（Observer Pattern）</strong>，核心是定义「一对多」的依赖关系：当被观察者（主题）状态变化时，所有注册的观察者会自动收到通知并更新。结合游戏开发典型场景——<strong>游戏事件系统（如血量变化、任务完成、道具收集）</strong>，能直观体现观察者模式“解耦事件发布者与订阅者”的核心特性。</p>
+<h3 id="一-核心思路观察者模式">一、核心思路（观察者模式）</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>对应实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抽象被观察者（主题）</td>
+<td><code>IObservable</code>（接口）</td>
+<td>定义注册/移除观察者、通知观察者的抽象方法</td>
+</tr>
+<tr>
+<td>具体被观察者</td>
+<td><code>PlayerCharacter</code>（玩家角色）</td>
+<td>维护状态（血量/金币），状态变化时主动通知所有观察者</td>
+</tr>
+<tr>
+<td>抽象观察者</td>
+<td><code>IObserver</code>（接口）</td>
+<td>定义接收通知的抽象方法（<code>OnNotify</code>）</td>
+</tr>
+<tr>
+<td>具体观察者</td>
+<td><code>UIBloodObserver</code>/<code>AudioObserver</code>/<code>MissionObserver</code></td>
+<td>实现观察者接口，接收通知后执行具体逻辑（更新UI、播放音效、完成任务）</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td><code>GameManager</code>（挂载到Unity物体）</td>
+<td>初始化被观察者和观察者，完成注册绑定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-完整代码实现">二、完整代码实现</h3>
+<h4 id="1-核心接口定义抽象被观察者抽象观察者">1. 核心接口定义（抽象被观察者+抽象观察者）</h4>
+<h5 id="11-事件类型枚举统一事件标识">1.1 事件类型枚举（统一事件标识）</h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 游戏事件类型（被观察者通知的事件标识）
+/// &lt;/summary&gt;
+public enum GameEventType
+{
+    PlayerHpChanged,   // 玩家血量变化
+    PlayerGoldChanged, // 玩家金币变化
+    MissionCompleted   // 任务完成
+}
+
+/// &lt;summary&gt;
+/// 事件数据（传递给观察者的具体信息）
+/// &lt;/summary&gt;
+public class GameEventData
+{
+    public GameEventType EventType; // 事件类型
+    public object Data;             // 事件附加数据（如血量值、金币数）
+    public object Sender;           // 事件发送者（被观察者）
+}
+</code></pre>
+<h5 id="12-抽象观察者接口iobserver">1.2 抽象观察者接口：<code>IObserver</code></h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 抽象观察者接口：定义接收通知的方法
+/// &lt;/summary&gt;
+public interface IObserver
+{
+    /// &lt;summary&gt;
+    /// 接收被观察者的通知
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;eventData&quot;&gt;事件数据&lt;/param&gt;
+    void OnNotify(GameEventData eventData);
+}
+</code></pre>
+<h5 id="13-抽象被观察者接口iobservable">1.3 抽象被观察者接口：<code>IObservable</code></h5>
+<pre><code class="language-csharp">using System.Collections.Generic;
+
+/// &lt;summary&gt;
+/// 抽象被观察者接口：定义注册/移除/通知观察者的方法
+/// &lt;/summary&gt;
+public interface IObservable
+{
+    // 注册观察者
+    void AddObserver(IObserver observer);
+    // 移除观察者
+    void RemoveObserver(IObserver observer);
+    // 通知所有观察者
+    void NotifyObservers(GameEventData eventData);
+}
+</code></pre>
+<h4 id="2-具体被观察者playercharacter玩家角色">2. 具体被观察者：<code>PlayerCharacter</code>（玩家角色）</h4>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using UnityEngine;
+
+/// &lt;summary&gt;
+/// 具体被观察者：玩家角色（维护血量/金币状态，状态变化时通知观察者）
+/// &lt;/summary&gt;
+public class PlayerCharacter : MonoBehaviour, IObservable
+{
+    // 观察者列表
+    private readonly List&lt;IObserver&gt; _observers = new List&lt;IObserver&gt;();
+
+    // 玩家状态
+    private int _hp;
+    public int Hp
+    {
+        get =&gt; _hp;
+        set
+        {
+            if (_hp != value)
+            {
+                _hp = value;
+                // 血量变化，通知所有观察者
+                NotifyObservers(new GameEventData
+                {
+                    EventType = GameEventType.PlayerHpChanged,
+                    Data = _hp,
+                    Sender = this
+                });
+            }
+        }
+    }
+
+    private int _gold;
+    public int Gold
+    {
+        get =&gt; _gold;
+        set
+        {
+            if (_gold != value)
+            {
+                _gold = value;
+                // 金币变化，通知所有观察者
+                NotifyObservers(new GameEventData
+                {
+                    EventType = GameEventType.PlayerGoldChanged,
+                    Data = _gold,
+                    Sender = this
+                });
+            }
+        }
+    }
+
+    // 注册观察者
+    public void AddObserver(IObserver observer)
+    {
+        if (!_observers.Contains(observer))
+        {
+            _observers.Add(observer);
+            Debug.Log($&quot;[玩家角色] 注册观察者：{observer.GetType().Name}&quot;);
+        }
+    }
+
+    // 移除观察者
+    public void RemoveObserver(IObserver observer)
+    {
+        if (_observers.Contains(observer))
+        {
+            _observers.Remove(observer);
+            Debug.Log($&quot;[玩家角色] 移除观察者：{observer.GetType().Name}&quot;);
+        }
+    }
+
+    // 通知所有观察者
+    public void NotifyObservers(GameEventData eventData)
+    {
+        Debug.Log($&quot;\n[玩家角色] 触发事件：{eventData.EventType}，开始通知观察者...&quot;);
+        foreach (var observer in _observers)
+        {
+            observer.OnNotify(eventData);
+        }
+    }
+
+    // 模拟玩家受击（血量减少）
+    public void TakeDamage(int damage)
+    {
+        Debug.Log($&quot;\n[玩家角色] 受到{damage}点伤害！&quot;);
+        Hp -= damage;
+    }
+
+    // 模拟玩家拾取金币
+    public void CollectGold(int amount)
+    {
+        Debug.Log($&quot;\n[玩家角色] 拾取{amount}枚金币！&quot;);
+        Gold += amount;
+    }
+
+    // 模拟任务完成
+    public void CompleteMission(string missionName)
+    {
+        Debug.Log($&quot;\n[玩家角色] 完成任务：{missionName}！&quot;);
+        NotifyObservers(new GameEventData
+        {
+            EventType = GameEventType.MissionCompleted,
+            Data = missionName,
+            Sender = this
+        });
+    }
+}
+</code></pre>
+<h4 id="3-具体观察者实现ui音效任务系统">3. 具体观察者实现（UI/音效/任务系统）</h4>
+<h5 id="31-ui血量观察者uibloodobserver">3.1 UI血量观察者：<code>UIBloodObserver</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.UI;
+
+/// &lt;summary&gt;
+/// 具体观察者1：UI血量观察者（接收血量变化通知，更新血条）
+/// &lt;/summary&gt;
+public class UIBloodObserver : MonoBehaviour, IObserver
+{
+    public Slider bloodSlider; // 拖入Unity血条Slider
+
+    private void Awake()
+    {
+        // 初始化血条最大值
+        if (bloodSlider != null)
+        {
+            bloodSlider.maxValue = 100;
+            bloodSlider.value = 100;
+        }
+    }
+
+    public void OnNotify(GameEventData eventData)
+    {
+        // 只处理血量变化事件
+        if (eventData.EventType == GameEventType.PlayerHpChanged)
+        {
+            int currentHp = (int)eventData.Data;
+            Debug.Log($&quot;[UI血量观察者] 接收血量变化通知，更新血条为{currentHp}！&quot;);
+            
+            if (bloodSlider != null)
+            {
+                bloodSlider.value = currentHp;
+            }
+
+            // 血量低于0时触发额外逻辑
+            if (currentHp &lt;= 0)
+            {
+                Debug.Log(&quot;[UI血量观察者] 玩家血量为0，显示死亡界面！&quot;);
+            }
+        }
+    }
+}
+</code></pre>
+<h5 id="32-音效观察者audioobserver">3.2 音效观察者：<code>AudioObserver</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 具体观察者2：音效观察者（接收事件通知，播放对应音效）
+/// &lt;/summary&gt;
+public class AudioObserver : MonoBehaviour, IObserver
+{
+    public AudioSource audioSource; // 拖入Unity音频源
+    public AudioClip hurtClip;      // 受击音效
+    public AudioClip goldClip;      // 拾取金币音效
+    public AudioClip missionClip;   // 任务完成音效
+
+    public void OnNotify(GameEventData eventData)
+    {
+        if (audioSource == null) return;
+
+        // 根据不同事件播放对应音效
+        switch (eventData.EventType)
+        {
+            case GameEventType.PlayerHpChanged:
+                int hp = (int)eventData.Data;
+                if (hp &lt; ((PlayerCharacter)eventData.Sender).Hp + 1) // 血量减少时播放受击音效
+                {
+                    audioSource.PlayOneShot(hurtClip);
+                    Debug.Log($&quot;[音效观察者] 播放受击音效！&quot;);
+                }
+                break;
+            case GameEventType.PlayerGoldChanged:
+                audioSource.PlayOneShot(goldClip);
+                Debug.Log($&quot;[音效观察者] 播放拾取金币音效！&quot;);
+                break;
+            case GameEventType.MissionCompleted:
+                audioSource.PlayOneShot(missionClip);
+                Debug.Log($&quot;[音效观察者] 播放任务完成音效！&quot;);
+                break;
+        }
+    }
+}
+</code></pre>
+<h5 id="33-任务观察者missionobserver">3.3 任务观察者：<code>MissionObserver</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 具体观察者3：任务观察者（接收任务完成通知，发放奖励）
+/// &lt;/summary&gt;
+public class MissionObserver : MonoBehaviour, IObserver
+{
+    private PlayerCharacter _player; // 玩家引用
+
+    private void Awake()
+    {
+        // 获取玩家角色组件
+        _player = FindObjectOfType&lt;PlayerCharacter&gt;();
+    }
+
+    public void OnNotify(GameEventData eventData)
+    {
+        // 只处理任务完成事件
+        if (eventData.EventType == GameEventType.MissionCompleted)
+        {
+            string missionName = (string)eventData.Data;
+            Debug.Log($&quot;[任务观察者] 接收任务完成通知：{missionName}&quot;);
+            
+            // 根据任务名称发放奖励
+            switch (missionName)
+            {
+                case &quot;新手任务&quot;:
+                    _player.Gold += 100; // 奖励100金币
+                    _player.Hp = 100;    // 满血
+                    Debug.Log($&quot;[任务观察者] 发放新手任务奖励：100金币 + 满血！&quot;);
+                    break;
+                case &quot;击杀BOSS&quot;:
+                    _player.Gold += 500;
+                    Debug.Log($&quot;[任务观察者] 发放击杀BOSS奖励：500金币！&quot;);
+                    break;
+            }
+        }
+    }
+}
+</code></pre>
+<h4 id="4-客户端调用gamemanagerunity场景挂载">4. 客户端调用：<code>GameManager</code>（Unity场景挂载）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 游戏管理器（客户端）：初始化观察者与被观察者的绑定，模拟游戏事件
+/// &lt;/summary&gt;
+public class GameManager : MonoBehaviour
+{
+    public PlayerCharacter player; // 拖入玩家角色物体
+    public UIBloodObserver uiBloodObserver; // 拖入UI血量观察者物体
+    public AudioObserver audioObserver;     // 拖入音效观察者物体
+    public MissionObserver missionObserver; // 拖入任务观察者物体
+
+    private void Start()
+    {
+        // 初始化玩家初始状态
+        player.Hp = 100;
+        player.Gold = 0;
+
+        // 注册所有观察者到玩家（被观察者）
+        player.AddObserver(uiBloodObserver);
+        player.AddObserver(audioObserver);
+        player.AddObserver(missionObserver);
+
+        // 模拟游戏流程
+        SimulateGameProcess();
+    }
+
+    /// &lt;summary&gt;
+    /// 模拟游戏事件流程
+    /// &lt;/summary&gt;
+    private void SimulateGameProcess()
+    {
+        // 1. 玩家受击
+        player.TakeDamage(20);
+        
+        // 2. 玩家拾取金币
+        player.CollectGold(50);
+        
+        // 3. 玩家完成新手任务
+        player.CompleteMission(&quot;新手任务&quot;);
+        
+        // 4. 玩家再次受击
+        player.TakeDamage(30);
+        
+        // 5. 移除UI血量观察者（后续血量变化不再更新UI）
+        player.RemoveObserver(uiBloodObserver);
+        
+        // 6. 玩家再次受击（UI不再更新，音效仍会播放）
+        player.TakeDamage(40);
+    }
+}
+</code></pre>
+<h3 id="三-unity场景配置与运行效果">三、Unity场景配置与运行效果</h3>
+<h4 id="1-场景配置步骤">1. 场景配置步骤</h4>
+<ol>
+<li>创建空物体命名为<code>Player</code>，挂载<code>PlayerCharacter</code>脚本；</li>
+<li>创建UI Canvas，添加Slider作为血条，命名为<code>BloodSlider</code>，挂载<code>UIBloodObserver</code>脚本，并将Slider拖入脚本的<code>bloodSlider</code>字段；</li>
+<li>创建空物体命名为<code>AudioManager</code>，添加AudioSource组件，挂载<code>AudioObserver</code>脚本，拖入对应的音效Clip；</li>
+<li>创建空物体命名为<code>MissionManager</code>，挂载<code>MissionObserver</code>脚本；</li>
+<li>创建空物体命名为<code>GameManager</code>，挂载<code>GameManager</code>脚本，将上述<code>Player</code>、<code>UIBloodObserver</code>、<code>AudioObserver</code>、<code>MissionObserver</code>拖入对应字段；</li>
+<li>运行场景，控制台输出如下：</li>
+</ol>
+<pre><code>[玩家角色] 注册观察者：UIBloodObserver
+[玩家角色] 注册观察者：AudioObserver
+[玩家角色] 注册观察者：MissionObserver
+
+[玩家角色] 受到20点伤害！
+
+[玩家角色] 触发事件：PlayerHpChanged，开始通知观察者...
+[UI血量观察者] 接收血量变化通知，更新血条为80！
+[音效观察者] 播放受击音效！
+
+[玩家角色] 拾取50枚金币！
+
+[玩家角色] 触发事件：PlayerGoldChanged，开始通知观察者...
+[音效观察者] 播放拾取金币音效！
+
+[玩家角色] 完成任务：新手任务！
+
+[玩家角色] 触发事件：MissionCompleted，开始通知观察者...
+[任务观察者] 接收任务完成通知：新手任务
+[任务观察者] 发放新手任务奖励：100金币 + 满血！
+
+[玩家角色] 触发事件：PlayerGoldChanged，开始通知观察者...
+[音效观察者] 播放拾取金币音效！
+
+[玩家角色] 触发事件：PlayerHpChanged，开始通知观察者...
+[UI血量观察者] 接收血量变化通知，更新血条为100！
+
+[玩家角色] 受到30点伤害！
+
+[玩家角色] 触发事件：PlayerHpChanged，开始通知观察者...
+[UI血量观察者] 接收血量变化通知，更新血条为70！
+[音效观察者] 播放受击音效！
+
+[玩家角色] 移除观察者：UIBloodObserver
+
+[玩家角色] 受到40点伤害！
+
+[玩家角色] 触发事件：PlayerHpChanged，开始通知观察者...
+[音效观察者] 播放受击音效！
+</code></pre>
+<h3 id="四-unity场景扩展贴合实际开发">四、Unity场景扩展（贴合实际开发）</h3>
+<h4 id="1-通用事件中心全局观察者模式">1. 通用事件中心（全局观察者模式）</h4>
+<p>实际项目中常用「全局事件中心」替代单个被观察者，实现跨模块解耦：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 全局事件中心（单例）：统一管理所有事件的订阅/发布
+/// &lt;/summary&gt;
+public class EventCenter : IObservable
+{
+    // 单例实例
+    private static EventCenter _instance;
+    public static EventCenter Instance =&gt; _instance ?? (_instance = new EventCenter());
+
+    // 按事件类型分组存储观察者
+    private Dictionary&lt;GameEventType, List&lt;IObserver&gt;&gt; _eventObservers = new Dictionary&lt;GameEventType, List&lt;IObserver&gt;&gt;();
+
+    // 注册观察者（指定关注的事件类型）
+    public void AddObserver(GameEventType eventType, IObserver observer)
+    {
+        if (!_eventObservers.ContainsKey(eventType))
+        {
+            _eventObservers[eventType] = new List&lt;IObserver&gt;();
+        }
+        if (!_eventObservers[eventType].Contains(observer))
+        {
+            _eventObservers[eventType].Add(observer);
+        }
+    }
+
+    // 移除观察者
+    public void RemoveObserver(GameEventType eventType, IObserver observer)
+    {
+        if (_eventObservers.ContainsKey(eventType) &amp;&amp; _eventObservers[eventType].Contains(observer))
+        {
+            _eventObservers[eventType].Remove(observer);
+        }
+    }
+
+    // 发布事件（通知对应类型的所有观察者）
+    public void NotifyObservers(GameEventData eventData)
+    {
+        if (_eventObservers.ContainsKey(eventData.EventType))
+        {
+            foreach (var observer in _eventObservers[eventData.EventType])
+            {
+                observer.OnNotify(eventData);
+            }
+        }
+    }
+
+    // 兼容原有接口（无事件类型的注册，默认关注所有事件）
+    public void AddObserver(IObserver observer)
+    {
+        foreach (var eventType in System.Enum.GetValues(typeof(GameEventType)))
+        {
+            AddObserver((GameEventType)eventType, observer);
+        }
+    }
+
+    public void RemoveObserver(IObserver observer)
+    {
+        foreach (var eventType in System.Enum.GetValues(typeof(GameEventType)))
+        {
+            RemoveObserver((GameEventType)eventType, observer);
+        }
+    }
+}
+
+// 玩家角色中使用全局事件中心发布事件
+public class PlayerCharacter : MonoBehaviour
+{
+    private void TakeDamage(int damage)
+    {
+        Hp -= damage;
+        // 发布事件到全局中心
+        EventCenter.Instance.NotifyObservers(new GameEventData
+        {
+            EventType = GameEventType.PlayerHpChanged,
+            Data = Hp,
+            Sender = this
+        });
+    }
+}
+
+// 观察者订阅指定事件
+public class UIBloodObserver : MonoBehaviour, IObserver
+{
+    private void Awake()
+    {
+        // 只订阅血量变化事件
+        EventCenter.Instance.AddObserver(GameEventType.PlayerHpChanged, this);
+    }
+
+    private void OnDestroy()
+    {
+        // 销毁时移除订阅，避免内存泄漏
+        EventCenter.Instance.RemoveObserver(GameEventType.PlayerHpChanged, this);
+    }
+}
+</code></pre>
+<h4 id="2-避免空引用与内存泄漏">2. 避免空引用与内存泄漏</h4>
+<ul>
+<li><strong>销毁时移除观察者</strong>：在观察者的<code>OnDestroy</code>中移除订阅，防止空引用报错：<pre><code class="language-csharp">private void OnDestroy()
+{
+    if (player != null)
+    {
+        player.RemoveObserver(this);
+    }
+}
+</code></pre>
+</li>
+<li><strong>弱引用观察者</strong>：使用<code>WeakReference</code>包装观察者，避免观察者销毁后仍被引用：<pre><code class="language-csharp">private readonly List&lt;WeakReference&lt;IObserver&gt;&gt; _observers = new List&lt;WeakReference&lt;IObserver&gt;&gt;();
+
+public void AddObserver(IObserver observer)
+{
+    _observers.Add(new WeakReference&lt;IObserver&gt;(observer));
+}
+
+public void NotifyObservers(GameEventData eventData)
+{
+    // 清理无效的弱引用
+    _observers.RemoveAll(w =&gt; !w.TryGetTarget(out _));
+    
+    foreach (var weakRef in _observers)
+    {
+        if (weakRef.TryGetTarget(out var observer))
+        {
+            observer.OnNotify(eventData);
+        }
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h4 id="3-结合unity事件unityevent">3. 结合Unity事件（UnityEvent）</h4>
+<p>Unity内置的<code>UnityEvent</code>本质是观察者模式的封装，可结合使用简化UI交互：</p>
+<pre><code class="language-csharp">using UnityEngine.Events;
+
+public class PlayerCharacter : MonoBehaviour
+{
+    // Unity事件（可视化配置观察者）
+    public UnityEvent&lt;int&gt; OnHpChanged; 
+    public UnityEvent&lt;int&gt; OnGoldChanged;
+
+    private int _hp;
+    public int Hp
+    {
+        get =&gt; _hp;
+        set
+        {
+            _hp = value;
+            OnHpChanged?.Invoke(_hp); // 触发Unity事件
+        }
+    }
+
+    // 其他逻辑...
+}
+</code></pre>
+<p>在Inspector面板中，可直接将UI血条的更新方法拖入<code>OnHpChanged</code>事件，无需手动注册观察者。</p>
+<h3 id="五-观察者模式核心优势unity场景">五、观察者模式核心优势（Unity场景）</h3>
+<ol>
+<li><strong>解耦发布者与订阅者</strong>：玩家角色无需知道UI、音效、任务系统的存在，只需发布事件；观察者也无需知道事件的发布者，只需处理事件，模块间完全解耦；</li>
+<li><strong>灵活扩展</strong>：新增观察者（如“成就系统观察者”）时，无需修改玩家角色代码，只需实现<code>IObserver</code>并注册，符合“开闭原则”；</li>
+<li><strong>多对多通信</strong>：一个事件可被多个观察者处理（血量变化同时更新UI、播放音效、记录日志），一个观察者也可处理多个事件；</li>
+<li><strong>动态绑定/解绑</strong>：可在运行时动态注册/移除观察者（如暂停游戏时移除音效观察者，恢复时重新注册）。</li>
+</ol>
+<h3 id="六-观察者模式-vs-其他模式unity场景对比">六、观察者模式 vs 其他模式（Unity场景对比）</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>核心差异</th>
+<th>Unity适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>观察者模式</td>
+<td>一对多事件通知，解耦通信</td>
+<td>游戏事件系统（血量/金币/任务/成就）、UI交互、状态同步</td>
+</tr>
+<tr>
+<td>责任链模式</td>
+<td>请求沿链传递，单个处理者</td>
+<td>审批流程、伤害计算链、输入事件处理</td>
+</tr>
+<tr>
+<td>中介者模式</td>
+<td>多对象交互通过中介封装</td>
+<td>聊天室、多UI组件联动、游戏对象交互管理</td>
+</tr>
+</tbody>
+</table>
+<p>观察者模式是Unity开发中<strong>使用最广泛的设计模式之一</strong>，几乎所有游戏的事件系统、UI交互、状态同步都会用到，是实现模块解耦的核心手段。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x06wai-guan-mo-shi/" class="post-title gt-a-link">
+                    0x06. 外观模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>C#对目录和文件的处理 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    C#对目录和文件的处理
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-22 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Fgvh8BqG1a/" class="post-tags">
+                            # 文件
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/kfFafspx38v/" class="post-tags">
+                            # 目录
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/4LqO0N0dBwX/" class="post-tags">
+                            # 文件夹
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 C# 中，处理目录和文件主要依赖 <code>System.IO</code> 命名空间下的类，这些类提供了跨平台的文件系统操作能力。以下是核心功能的总结及示例：</p>
+<h3 id="一-核心类与功能分类">一、核心类与功能分类</h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>核心类/方法</th>
+<th>主要功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>目录操作</strong></td>
+<td><code>Directory</code>、<code>DirectoryInfo</code></td>
+<td>创建、删除、移动目录，获取目录列表等</td>
+</tr>
+<tr>
+<td><strong>文件操作</strong></td>
+<td><code>File</code>、<code>FileInfo</code></td>
+<td>创建、删除、复制、移动文件，读写文件内容</td>
+</tr>
+<tr>
+<td><strong>路径处理</strong></td>
+<td><code>Path</code> 静态类</td>
+<td>路径拼接、获取文件名/扩展名、父目录等</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-常用操作示例">二、常用操作示例</h3>
+<h4 id="1-路径处理path-类">1. 路径处理（<code>Path</code> 类）</h4>
+<p>用于路径字符串的解析和拼接（跨平台自动适配分隔符）：</p>
+<pre><code class="language-csharp">using System.IO;
+
+// 拼接路径（避免手动写 &quot;\&quot; 或 &quot;/&quot;）
+string dirPath = Path.Combine(Application.persistentDataPath, &quot;saveData&quot;);
+string filePath = Path.Combine(dirPath, &quot;userInfo.txt&quot;);
+
+// 获取文件名（含扩展名）
+string fileName = Path.GetFileName(filePath); // 结果：userInfo.txt
+
+// 获取文件扩展名
+string ext = Path.GetExtension(filePath); // 结果：.txt
+
+// 获取父目录路径
+string parentDir = Path.GetDirectoryName(dirPath); // 结果：Application.persistentDataPath
+</code></pre>
+<h4 id="2-目录操作">2. 目录操作</h4>
+<h5 id="1directory-静态类适合简单操作">（1）<code>Directory</code> 静态类（适合简单操作）</h5>
+<pre><code class="language-csharp">// 检查目录是否存在
+if (Directory.Exists(dirPath))
+{
+    // 删除目录（递归删除子目录和文件）
+    Directory.Delete(dirPath, recursive: true);
+}
+
+// 创建目录（自动创建不存在的父目录）
+Directory.CreateDirectory(dirPath);
+
+// 获取目录下的所有子目录
+string[] subDirs = Directory.GetDirectories(dirPath);
+
+// 获取目录下的所有文件（可加筛选条件）
+string[] files = Directory.GetFiles(dirPath, &quot;*.txt&quot;); // 只获取txt文件
+</code></pre>
+<h5 id="2directoryinfo-类适合多次操作同一目录">（2）<code>DirectoryInfo</code> 类（适合多次操作同一目录）</h5>
+<pre><code class="language-csharp">// 初始化目录对象
+DirectoryInfo dirInfo = new DirectoryInfo(dirPath);
+
+// 创建目录
+if (!dirInfo.Exists)
+{
+    dirInfo.Create();
+}
+
+// 获取最后修改时间
+DateTime lastWriteTime = dirInfo.LastWriteTime;
+
+// 移动目录（剪切到新位置）
+dirInfo.MoveTo(Path.Combine(Application.persistentDataPath, &quot;oldData&quot;));
+</code></pre>
+<h4 id="3-文件操作">3. 文件操作</h4>
+<h5 id="1file-静态类适合简单读写">（1）<code>File</code> 静态类（适合简单读写）</h5>
+<pre><code class="language-csharp">// 写入文本文件（覆盖模式）
+string content = &quot;用户名：test\n分数：100&quot;;
+File.WriteAllText(filePath, content, System.Text.Encoding.UTF8);
+
+// 追加文本到文件
+File.AppendAllText(filePath, &quot;\n等级：A&quot;);
+
+// 读取文件内容
+string readContent = File.ReadAllText(filePath);
+
+// 复制文件（第三个参数：是否覆盖已存在文件）
+string copyPath = Path.Combine(dirPath, &quot;userInfo_backup.txt&quot;);
+File.Copy(filePath, copyPath, overwrite: true);
+
+// 删除文件
+if (File.Exists(copyPath))
+{
+    File.Delete(copyPath);
+}
+</code></pre>
+<h5 id="2fileinfo-类适合大文件或多次操作">（2）<code>FileInfo</code> 类（适合大文件或多次操作）</h5>
+<pre><code class="language-csharp">// 初始化文件对象
+FileInfo fileInfo = new FileInfo(filePath);
+
+// 检查文件是否存在
+if (fileInfo.Exists)
+{
+    // 获取文件大小（字节）
+    long fileSize = fileInfo.Length;
+
+    // 移动文件（剪切到新位置）
+    fileInfo.MoveTo(Path.Combine(dirPath, &quot;userInfo_new.txt&quot;));
+}
+
+// 流式写入（适合大文件，避免一次性加载到内存）
+using (FileStream fs = fileInfo.OpenWrite())
+{
+    byte[] data = System.Text.Encoding.UTF8.GetBytes(&quot;大文件内容...&quot;);
+    fs.Write(data, 0, data.Length);
+}
+</code></pre>
+<h3 id="三-关键注意事项">三、关键注意事项</h3>
+<ol>
+<li>
+<p><strong>异常处理</strong>：文件操作可能抛出异常（如权限不足、文件被占用），建议用 <code>try-catch</code> 包裹：</p>
+<pre><code class="language-csharp">try
+{
+    File.WriteAllText(filePath, &quot;内容&quot;);
+}
+catch (IOException ex)
+{
+    Debug.LogError(&quot;文件写入失败：&quot; + ex.Message);
+}
+</code></pre>
+</li>
+<li>
+<p><strong><code>using</code> 语句</strong>：操作 <code>FileStream</code> 等非托管资源时，用 <code>using</code> 自动释放资源，避免内存泄漏。</p>
+</li>
+<li>
+<p><strong>跨平台兼容</strong>：</p>
+<ul>
+<li>路径分隔符用 <code>Path.DirectorySeparatorChar</code>（自动适配 Windows 的 <code>\</code> 和 Linux/macOS 的 <code>/</code>）。</li>
+<li>避免硬编码绝对路径（如 <code>C:\</code>），优先使用相对路径或系统特殊目录（如 <code>Application.persistentDataPath</code>）。</li>
+</ul>
+</li>
+</ol>
+<p>通过上述类和方法，可实现对目录和文件的完整管理，从简单的创建删除到复杂的流式读写均能覆盖。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/redis-de-shi-yong/" class="post-title gt-a-link">
+                    Redis的使用
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

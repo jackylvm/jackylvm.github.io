@@ -1,0 +1,458 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的Time类 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的Time类
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-05 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="unity-time-类详解及使用场景举例">Unity Time 类详解及使用场景举例</h1>
+<p>Unity 的 <code>Time</code> 类是处理<strong>时间相关逻辑</strong>的核心工具类，提供了与游戏运行时间、帧率、时间缩放相关的关键属性和方法，几乎所有需要“随时间变化”的逻辑（如移动、动画、冷却、计时）都依赖它。其核心价值是<strong>屏蔽硬件性能差异</strong>，让逻辑在不同帧率设备上表现一致，同时支持时间暂停、慢动作等特殊效果。</p>
+<h2 id="一-time-类核心属性分类">一、Time 类核心属性分类</h2>
+<p>按功能可分为 4 大类：<strong>基础时间属性</strong>（绝对/相对时间）、<strong>帧率相关属性</strong>、<strong>时间缩放相关属性</strong>、<strong>deltaTime 系列</strong>（帧时间核心），以下逐一详解并附使用场景。</p>
+<h2 id="二-核心属性详解-实用场景举例">二、核心属性详解 + 实用场景举例</h2>
+<h3 id="1-基础时间属性记录游戏系统绝对时间">1. 基础时间属性（记录游戏/系统绝对时间）</h3>
+<p>这类属性不受帧率、<code>Time.timeScale</code> 影响，用于记录“真实流逝时间”或“游戏运行总时长”。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>官方定义</th>
+<th>通俗解释</th>
+<th>使用场景</th>
+<th>代码示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Time.time</code></td>
+<td>游戏启动到当前帧的总时间（秒），受 <code>timeScale</code> 影响</td>
+<td>游戏内“相对时间”，暂停时（<code>timeScale=0</code>）会停止增长</td>
+<td>记录游戏单局时长、技能持续时间（非实时冷却）</td>
+<td>例：统计玩家存活时间<br><code>float survivalTime = Time.time - startTime;</code>（startTime 是游戏开始时记录的 Time.time）</td>
+</tr>
+<tr>
+<td><code>Time.realtimeSinceStartup</code></td>
+<td>游戏启动到当前的真实时间（秒），不受 <code>timeScale</code> 和暂停影响</td>
+<td>系统级“绝对时间”，哪怕游戏暂停/后台运行也会增长</td>
+<td>实时冷却（如后台倒计时）、防作弊计时、性能监控</td>
+<td>例：后台倒计时（切换应用仍继续）<br><code>float coolDown = 10f;</code><br><code>float lastUseTime = Time.realtimeSinceStartup;</code><br><code>if (Time.realtimeSinceStartup - lastUseTime &gt;= coolDown) { 允许使用技能; }</code></td>
+</tr>
+<tr>
+<td><code>Time.unscaledTime</code></td>
+<td>游戏启动到当前帧的总时间（秒），不受 <code>timeScale</code> 影响</td>
+<td>游戏内“绝对时间”，暂停时仍会增长（区别于 realtimeSinceStartup：不包含游戏后台时间）</td>
+<td>暂停时仍需运行的逻辑（如暂停菜单倒计时、UI 动画）</td>
+<td>例：暂停时显示“3秒后继续”<br><code>float pauseEndTime = Time.unscaledTime + 3f;</code><br><code>void Update() {</code><br>  <code>if (isPaused) {</code><br>    <code>float remain = pauseEndTime - Time.unscaledTime;</code><br>    <code>if (remain &lt;= 0) 取消暂停;</code><br>  <code>}</code><br>}</td>
+</tr>
+<tr>
+<td><code>Time.fixedTime</code></td>
+<td>固定更新（<code>FixedUpdate</code>）的累计时间，受 <code>timeScale</code> 影响</td>
+<td>专门用于物理/固定步逻辑的“时间轴”</td>
+<td>物理相关的计时（如刚体运动时长、固定步冷却）</td>
+<td>例：每 2 秒触发一次物理检测<br><code>float fixedInterval = 2f;</code><br><code>if (Time.fixedTime - lastFixedCheckTime &gt;= fixedInterval) {</code><br>  <code>Physics.OverlapSphere(transform.position, 5f);</code><br>  <code>lastFixedCheckTime = Time.fixedTime;</code><br>}</td>
+</tr>
+<tr>
+<td><code>Time.unscaledFixedTime</code></td>
+<td>固定更新的累计时间，不受 <code>timeScale</code> 影响</td>
+<td>固定步逻辑中的“绝对时间”</td>
+<td>暂停时仍需执行的固定步逻辑（如暂停时的物理碰撞检测）</td>
+<td>例：暂停时检测玩家是否点击物体（用物理射线）<br><code>void FixedUpdate() {</code><br>  <code>if (isPaused &amp;&amp; Time.unscaledFixedTime - lastCheckTime &gt;= 0.1f) {</code><br>    <code>Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);</code><br>    <code>lastCheckTime = Time.unscaledFixedTime;</code><br>  <code>}</code><br>}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-deltatime-系列帧时间核心最常用">2. deltaTime 系列（帧时间核心，最常用）</h3>
+<p><code>deltaTime</code> 表示“上一帧到当前帧的时间间隔（秒）”，是<strong>实现帧率无关逻辑</strong>的关键——无论设备帧率是 30fps 还是 60fps，相同逻辑的移动速度、动画进度都会一致。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>核心特点</th>
+<th>适用场景</th>
+<th>代码示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Time.deltaTime</code></td>
+<td>受 <code>timeScale</code> 影响（暂停时为 0）</td>
+<td>游戏核心逻辑（移动、旋转、普通动画、随时间增长的数值）</td>
+<td>例1：物体匀速移动（帧率无关）<br><code>float speed = 5f; // 每秒移动5米</code><br><code>transform.Translate(Vector3.forward * speed * Time.deltaTime);</code><br><br>例2：数值随时间增长（如能量恢复）<br><code>float energyRecoveryRate = 10f; // 每秒恢复10点能量</code><br><code>energy += energyRecoveryRate * Time.deltaTime;</code></td>
+</tr>
+<tr>
+<td><code>Time.unscaledDeltaTime</code></td>
+<td>不受 <code>timeScale</code> 影响（暂停时仍有值）</td>
+<td>暂停时需继续的逻辑（UI 动画、暂停菜单滚动、实时倒计时）</td>
+<td>例：暂停时 UI 面板淡入<br><code>CanvasGroup alphaGroup;</code><br><code>float fadeSpeed = 2f;</code><br><code>void Update() {</code><br>  <code>if (isPaused) {</code><br>    <code>alphaGroup.alpha += fadeSpeed * Time.unscaledDeltaTime;</code><br>    <code>alphaGroup.alpha = Mathf.Clamp01(alphaGroup.alpha);</code><br>  <code>}</code><br>}</td>
+</tr>
+<tr>
+<td><code>Time.fixedDeltaTime</code></td>
+<td>固定时间间隔（默认 0.02 秒 = 50 帧/秒），用于 <code>FixedUpdate</code></td>
+<td>物理逻辑（刚体受力、碰撞检测）、需要固定步长的逻辑</td>
+<td>例：给刚体施加持续力（物理移动）<br><code>Rigidbody rb;</code><br><code>float force = 10f;</code><br><code>void FixedUpdate() {</code><br>  <code>rb.AddForce(Vector3.forward * force * Time.fixedDeltaTime);</code><br>}</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ 关键注意：</p>
+<ul>
+<li><code>Update()</code> 中必须用 <code>Time.deltaTime</code>，<code>FixedUpdate()</code> 中必须用 <code>Time.fixedDeltaTime</code>（或直接省略，因 FixedUpdate 间隔固定，但建议显式写以统一逻辑）；</li>
+<li>绝对不要在 <code>FixedUpdate()</code> 中用 <code>Time.deltaTime</code>（会导致逻辑速度异常，因 FixedUpdate 间隔与渲染帧无关）。</li>
+</ul>
+<h3 id="3-帧率相关属性监控性能适配帧率">3. 帧率相关属性（监控性能/适配帧率）</h3>
+<p>用于获取游戏当前帧率或限制帧率，主要用于性能监控、调试或适配低性能设备。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>官方定义</th>
+<th>通俗解释</th>
+<th>使用场景</th>
+<th>代码示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Time.frameCount</code></td>
+<td>游戏启动到当前的总帧数</td>
+<td>统计帧数、按帧数触发逻辑</td>
+<td>例：每 60 帧打印一次日志（调试用）<br><code>if (Time.frameCount % 60 == 0) {</code><br>  <code>Debug.Log(&quot;当前帧率：&quot; + Time.deltaTime);</code><br>}</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Time.fps</code></td>
+<td>当前帧率（每秒帧数），Unity 2020+ 新增（旧版本需自行计算）</td>
+<td>性能监控、显示帧率UI</td>
+<td>例：在屏幕上显示当前帧率<br><code>Text fpsText;</code><br><code>void Update() {</code><br>  <code>fpsText.text = &quot;FPS: &quot; + Mathf.RoundToInt(Time.fps);</code><br>}</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Time.maximumDeltaTime</code></td>
+<td>限制 <code>deltaTime</code> 的最大值（默认 0.333 秒 = 3fps）</td>
+<td>防止低性能设备帧间隔过大导致逻辑“跳变”（如快速移动穿过物体）</td>
+<td>例：适配低端机，限制最小帧率为 2fps<br><code>Time.maximumDeltaTime = 0.5f; // 帧间隔最大0.5秒</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Time.captureFramerate</code></td>
+<td>强制游戏以指定帧率运行（用于录制视频）</td>
+<td>游戏录屏、制作慢动作视频</td>
+<td>例：以 15fps 录制视频<br><code>void StartRecord() {</code><br>  <code>Time.captureFramerate = 15;</code><br>}</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ 旧版本（Unity 2020 前）无 <code>Time.fps</code>，需自行计算：</p>
+<pre><code class="language-csharp">float fps;
+float updateInterval = 1f; // 每1秒更新一次帧率
+float accum = 0f;
+int frameCount = 0;
+
+void Update() {
+    accum += Time.deltaTime;
+    frameCount++;
+    if (accum &gt;= updateInterval) {
+        fps = frameCount / accum;
+        accum = 0f;
+        frameCount = 0;
+        Debug.Log(&quot;FPS: &quot; + Mathf.RoundToInt(fps));
+    }
+}
+</code></pre>
+<h3 id="4-时间缩放相关属性控制时间流速">4. 时间缩放相关属性（控制时间流速）</h3>
+<p><code>Time.timeScale</code> 是“时间缩放因子”，用于控制游戏时间的流逝速度，是实现暂停、慢动作、快进的核心。</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>核心作用</th>
+<th>取值范围 &amp; 效果</th>
+<th>使用场景</th>
+<th>代码示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Time.timeScale</code></td>
+<td>控制游戏时间流速（影响 <code>time</code>、<code>deltaTime</code>、<code>fixedDeltaTime</code>）</td>
+<td>- 0：暂停（所有受时间影响的逻辑停止）<br>- 0~1：慢动作（如 0.5 = 半速）<br>- 1：正常速度<br>- &gt;1：快进（如 2 = 2倍速）</td>
+<td>暂停功能、慢动作特效（如击杀后慢放）、快进（如跳过剧情）</td>
+<td>例1：游戏暂停/恢复<br><code>public void PauseGame() { Time.timeScale = 0; }</code><br><code>public void ResumeGame() { Time.timeScale = 1; }</code><br><br>例2：击杀后慢动作 1 秒<br><code>IEnumerator SlowMotionAfterKill() {</code><br>  <code>Time.timeScale = 0.2f; // 20% 速度</code><br>  <code>yield return new WaitForSecondsRealtime(1f); // 用实时时间等待，避免受timeScale影响</code><br>  <code>Time.timeScale = 1f; // 恢复正常</code><br>}</td>
+</tr>
+<tr>
+<td><code>Time.timeScaleIndependentSleepTimeout</code></td>
+<td>控制设备是否在 <code>timeScale=0</code> 时休眠</td>
+<td>true：暂停时设备不休眠；false：暂停时设备正常休眠</td>
+<td>避免暂停后设备自动锁屏（如暂停菜单停留时）</td>
+<td><code>Time.timeScaleIndependentSleepTimeout = true;</code></td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ 关键注意：</p>
+<ul>
+<li><code>timeScale=0</code> 时，<code>Time.deltaTime</code> 会变成 0，但 <code>Time.realtimeSinceStartup</code>、<code>Time.unscaledDeltaTime</code> 仍正常工作；</li>
+<li>用 <code>WaitForSeconds()</code> 时，等待时间会受 <code>timeScale</code> 影响（如 <code>timeScale=0.5</code> 时，<code>WaitForSeconds(2)</code> 实际等待 4 秒）；若需不受影响的等待，用 <code>WaitForSecondsRealtime()</code>。</li>
+</ul>
+<h2 id="三-常用方法">三、常用方法</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Time.fixedUnscaledDeltaTime</code></td>
+<td>固定更新的“非缩放帧时间”（不受 <code>timeScale</code> 影响）</td>
+<td>暂停时仍需执行的固定步逻辑（如物理检测）</td>
+</tr>
+<tr>
+<td><code>Time.SetTimeout(int timeout)</code></td>
+<td>设置设备自动休眠时间（秒），0 表示永不休眠</td>
+<td>长时间游戏（如挂机类）避免设备休眠</td>
+</tr>
+<tr>
+<td><code>Time.realtimeSinceStartupAsDouble</code></td>
+<td>高精度版本的 <code>realtimeSinceStartup</code>（double 类型）</td>
+<td>需精确计时的场景（如服务器同步、防作弊）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="四-避坑指南关键注意事项">四、避坑指南（关键注意事项）</h2>
+<ol>
+<li>
+<p><strong>deltaTime 的使用场景绝对不能错</strong>：</p>
+<ul>
+<li><code>Update()</code> → <code>Time.deltaTime</code>（游戏逻辑）；</li>
+<li><code>FixedUpdate()</code> → <code>Time.fixedDeltaTime</code>（物理逻辑）；</li>
+<li>暂停时 → <code>Time.unscaledDeltaTime</code>（UI/实时逻辑）。</li>
+</ul>
+</li>
+<li>
+<p><strong>timeScale 与等待方法的配合</strong>：</p>
+<ul>
+<li>受 <code>timeScale</code> 影响：<code>WaitForSeconds()</code>、<code>Invoke()</code>；</li>
+<li>不受影响：<code>WaitForSecondsRealtime()</code>、<code>InvokeRepeating()</code>（需注意间隔是否受影响）。</li>
+</ul>
+</li>
+<li>
+<p><strong>避免用帧率直接计算时间</strong>：</p>
+<ul>
+<li>错误做法：<code>float speed = 5f; transform.Translate(Vector3.forward * speed / 60);</code>（假设 60fps，低帧率时会变慢）；</li>
+<li>正确做法：<code>transform.Translate(Vector3.forward * speed * Time.deltaTime);</code>（帧率无关）。</li>
+</ul>
+</li>
+<li>
+<p><strong>固定时间步长的调整</strong>：</p>
+<ul>
+<li><code>Time.fixedDeltaTime</code> 可在 Editor 中设置（Edit → Project Settings → Time → Fixed Timestep），或代码动态修改；</li>
+<li>物理逻辑异常（如刚体穿模）时，可减小 <code>fixedDeltaTime</code>（如 0.01 秒 = 100 帧/秒），但会增加性能消耗。</li>
+</ul>
+</li>
+</ol>
+<h2 id="五-总结">五、总结</h2>
+<p>Unity 的 <code>Time</code> 类是游戏时间管理的“中枢”，核心用法可归纳为 3 点：</p>
+<ol>
+<li>用 <code>deltaTime</code> 系列实现<strong>帧率无关逻辑</strong>（移动、数值增长）；</li>
+<li>用 <code>timeScale</code> 控制<strong>时间流速</strong>（暂停、慢动作）；</li>
+<li>用 <code>realtimeSinceStartup</code>/<code>unscaledTime</code> 处理<strong>不受时间缩放影响的实时逻辑</strong>（冷却、UI 动画）。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/you-xi-kai-fa-zhong-zhan-dou-sheng-li-he-zhan-dou-shi-bai-de-xiang-guan-ying-wen-biao-da/" class="post-title gt-a-link">
+                    游戏开发中,战斗胜利和战斗失败的相关英文表达
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

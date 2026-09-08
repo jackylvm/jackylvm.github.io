@@ -1,0 +1,346 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x06.Shader函数mod的几个示例 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x06.Shader函数mod的几个示例
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-05-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/60e52J_k-Hr/" class="post-tags">
+                            # 基础函数
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在着色器（Shader）编程里，<code>mod</code>是个很常用的函数，它的作用是取模运算，也就是求余数。该函数在图形渲染时能发挥重要作用，像实现图案重复、动画循环这类效果都可能会用到它。</p>
+<!-- more -->
+<h3 id="基本语法">基本语法</h3>
+<p>在不同的着色器语言中，<code>mod</code>函数的语法会有一些差异，下面是常见的几种形式：</p>
+<ul>
+<li>
+<p><strong>GLSL（OpenGL Shading Language）</strong></p>
+<pre><code class="language-glsl">float mod(float x, float y);
+vec2 mod(vec2 x, vec2 y);
+vec3 mod(vec3 x, vec3 y);
+// 其他向量类型以此类推
+</code></pre>
+</li>
+<li>
+<p><strong>HLSL（High-Level Shading Language）</strong></p>
+<pre><code class="language-hlsl">float mod(float x, float y);
+float2 mod(float2 x, float2 y);
+float3 mod(float3 x, float3 y);
+// 其他向量类型以此类推
+</code></pre>
+</li>
+<li>
+<p><strong>Metal Shading Language</strong></p>
+<pre><code class="language-metal">float mod(float x, float y);
+float2 mod(float2 x, float2 y);
+float3 mod(float3 x, float3 y);
+// 其他向量类型以此类推
+</code></pre>
+</li>
+</ul>
+<h3 id="功能说明">功能说明</h3>
+<p><code>mod(x, y)</code>的计算结果是<code>x</code>除以<code>y</code>得到的余数，其数学表达式为：</p>
+<pre><code>mod(x, y) = x - y * floor(x / y)
+</code></pre>
+<p>这里的<code>floor</code>函数是向下取整的意思。</p>
+<h3 id="常见应用场景">常见应用场景</h3>
+<p>下面列举一些<code>mod</code>函数在着色器编程中的常见应用场景：</p>
+<h4 id="1-实现纹理或图案的重复效果">1. 实现纹理或图案的重复效果</h4>
+<p>当你想要在一个较大的区域内重复使用某个小纹理或者图案时，可以借助<code>mod</code>函数对纹理坐标进行处理，从而实现这一效果。</p>
+<pre><code class="language-glsl">// 假设 uv 是纹理坐标（范围是 0 到 1）
+vec2 tiledUV = mod(uv * 4.0, 1.0); // 把纹理在两个方向上都重复 4 次
+vec4 color = texture2D(myTexture, tiledUV);
+</code></pre>
+<h4 id="2-实现动画循环效果">2. 实现动画循环效果</h4>
+<p>在制作动画时，为了让动画能够循环播放，可以使用<code>mod</code>函数将时间控制在一个固定的周期内。</p>
+<pre><code class="language-glsl">// 假设 time 是全局时间变量
+float loopTime = mod(time, 5.0); // 使动画每 5 秒循环一次
+float animationProgress = loopTime / 5.0; // 得到一个在 0 到 1 之间循环变化的值
+</code></pre>
+<h4 id="3-创建棋盘格等规律性图案">3. 创建棋盘格等规律性图案</h4>
+<p>通过对坐标进行取模运算，能够轻松创建出像棋盘格这样有规律的图案。</p>
+<pre><code class="language-glsl">// 判断当前位置是在棋盘格的白色区域还是黑色区域
+float checker = mod(floor(uv.x * 10.0) + floor(uv.y * 10.0), 2.0);
+vec3 color = checker &gt; 0.5 ? vec3(1.0) : vec3(0.0); // 生成黑白棋盘格图案
+</code></pre>
+<h4 id="4-实现周期性变化的效果">4. 实现周期性变化的效果</h4>
+<p>利用<code>mod</code>函数可以实现颜色、位置等属性按照一定周期进行变化的效果。</p>
+<pre><code class="language-glsl">// 让颜色在红色和绿色之间周期性变化
+vec3 pulsatingColor = mix(
+    vec3(1.0, 0.0, 0.0), // 红色
+    vec3(0.0, 1.0, 0.0), // 绿色
+    mod(time, 2.0) / 2.0 // 每 2 秒完成一次颜色过渡
+);
+</code></pre>
+<h3 id="使用注意事项">使用注意事项</h3>
+<p>在使用<code>mod</code>函数时，有几点需要你注意：</p>
+<ol>
+<li>
+<p><strong>避免除以零的情况</strong>：当<code>y</code>的值为 0 时，<code>mod(x, y)</code>会产生未定义的结果，所以在使用该函数时，一定要确保<code>y</code>不为 0。</p>
+</li>
+<li>
+<p><strong>处理负数输入</strong>：在处理负数输入时，不同编程语言中的<code>mod</code>函数可能会有不同的行为。不过在大多数着色器语言里，<code>mod</code>函数遵循的规则是：<code>mod(-x, y) = mod(x, y)</code>。</p>
+</li>
+<li>
+<p><strong>性能方面的考虑</strong>：虽然<code>mod</code>函数的计算成本相对较低，但在对性能要求很高的场景中，还是要谨慎使用，尤其是在处理复杂的向量操作时更需注意。</p>
+</li>
+<li>
+<p><strong>向量操作</strong>：在着色器语言中，<code>mod</code>函数可以直接对向量进行操作，也就是对向量的每个分量分别进行取模运算。</p>
+</li>
+</ol>
+<p>掌握<code>mod</code>函数的用法后，你就能在着色器编程中实现各种周期性、重复性的效果了。</p>
+<!-- more -->
+<p>在着色器编程中，除了 <code>mod</code> 函数外，还有其他几种方法和函数可以实现图案重复效果。以下是一些常见的替代方案及其代码示例：</p>
+<h3 id="1-fract-函数小数部分">1. <strong>fract 函数（小数部分）</strong></h3>
+<p><code>fract(x)</code> 函数返回 <code>x</code> 的小数部分，效果类似于 <code>mod(x, 1.0)</code>，但更简洁。</p>
+<pre><code class="language-glsl">vec2 tiledUV = fract(TexCoord * repeatCount);  // 等同于 mod(TexCoord * repeatCount, 1.0)
+</code></pre>
+<h3 id="2-floor-函数整数除法取余">2. <strong>floor 函数（整数除法取余）</strong></h3>
+<p>通过手动计算余数实现重复效果：</p>
+<pre><code class="language-glsl">vec2 tiledUV = TexCoord * repeatCount - floor(TexCoord * repeatCount);
+</code></pre>
+<h3 id="3-step-mod-组合棋盘格等复杂图案">3. <strong>step + mod 组合（棋盘格等复杂图案）</strong></h3>
+<p>结合 <code>step</code> 和 <code>mod</code> 可以创建更复杂的重复图案，例如棋盘格：</p>
+<pre><code class="language-glsl">float pattern = step(0.5, mod(floor(TexCoord * 10.0).x + floor(TexCoord * 10.0).y, 2.0));
+</code></pre>
+<h3 id="4-smoothstep-fract平滑过渡的重复">4. <strong>smoothstep + fract（平滑过渡的重复）</strong></h3>
+<p>使用 <code>fract</code> 和 <code>smoothstep</code> 实现平滑过渡的重复图案：</p>
+<pre><code class="language-glsl">float t = fract(time * 0.5);  // 0~1 周期变化
+float value = smoothstep(0.0, 1.0, t);  // 平滑过渡
+</code></pre>
+<h3 id="5-sincos-函数周期性变化">5. <strong>sin/cos 函数（周期性变化）</strong></h3>
+<p>通过三角函数实现颜色或位置的周期性变化：</p>
+<pre><code class="language-glsl">vec3 color = vec3(
+    sin(TexCoord.x * 10.0),  // 水平方向颜色波动
+    cos(TexCoord.y * 10.0),  // 垂直方向颜色波动
+    0.5
+);
+</code></pre>
+<h3 id="6-texture2d-的-wrapmode纹理采样方式">6. <strong>texture2D 的 wrapMode（纹理采样方式）</strong></h3>
+<p>在纹理采样时，通过设置纹理的 <code>wrapMode</code> 参数（如 <code>REPEAT</code>）让纹理自动重复，无需在着色器中手动计算：</p>
+<pre><code class="language-glsl">// 假设纹理已设置为 REPEAT 模式
+vec4 texColor = texture2D(texture1, TexCoord * repeatCount);
+</code></pre>
+<h3 id="7-sign-abs-组合镜像重复">7. <strong>sign + abs 组合（镜像重复）</strong></h3>
+<p>实现镜像对称的重复效果：</p>
+<pre><code class="language-glsl">vec2 mirroredUV = 1.0 - abs(2.0 * fract(TexCoord * 0.5) - 1.0);
+</code></pre>
+<h3 id="8-ceilfloor-控制重复区域">8. <strong>ceil/floor 控制重复区域</strong></h3>
+<p>通过 <code>ceil</code> 或 <code>floor</code> 函数限制重复范围：</p>
+<pre><code class="language-glsl">vec2 clampedUV = TexCoord * repeatCount;
+clampedUV = clamp(clampedUV - floor(clampedUV), 0.0, 1.0);  // 限制在 [0,1] 内
+</code></pre>
+<h3 id="9-mix-fract渐变重复">9. <strong>mix + fract（渐变重复）</strong></h3>
+<p>结合 <code>mix</code> 和 <code>fract</code> 实现颜色渐变的重复：</p>
+<pre><code class="language-glsl">float t = fract(time);
+vec3 color = mix(vec3(1,0,0), vec3(0,0,1), t);  // 红蓝色周期性渐变
+</code></pre>
+<h3 id="10-位运算整数重复">10. <strong>位运算（整数重复）</strong></h3>
+<p>在某些情况下，可以使用位运算（如 <code>&amp;</code>）实现整数级的重复控制：</p>
+<pre><code class="language-glsl">int tileIndex = int(TexCoord.x * 10.0) &amp; 3;  // 每 4 个单位重复一次
+</code></pre>
+<h3 id="总结">总结</h3>
+<p>不同函数适用于不同场景：</p>
+<ul>
+<li><strong>简单重复</strong>：优先使用 <code>fract</code> 或 <code>mod</code>。</li>
+<li><strong>镜像对称</strong>：使用 <code>abs</code> 和 <code>sign</code> 组合。</li>
+<li><strong>平滑过渡</strong>：结合 <code>smoothstep</code> 和 <code>fract</code>。</li>
+<li><strong>纹理采样</strong>：直接利用纹理的 <code>wrapMode</code>（如 <code>GL_REPEAT</code>）。</li>
+</ul>
+<p>根据具体需求选择合适的方法，可以更高效地实现各种复杂的图案重复效果。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-shader-yu-yi-jie-shi/" class="post-title gt-a-link">
+                    Unity Shader语义解释
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

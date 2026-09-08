@@ -1,0 +1,344 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>C#的Action是怎么实现的 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    C#的Action是怎么实现的
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-05 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/WgyNS3Ry33/" class="post-tags">
+                            # C#
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/xvMds3QNF3k/" class="post-tags">
+                            # DotNet
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/7XAvlZ2NdEm/" class="post-tags">
+                            # .net
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 C# 中，<code>Action</code> 是一组<strong>预定义的泛型委托类型</strong>，用于表示“无返回值”的方法引用。它的核心实现依赖于 .NET 委托体系，本质是编译器/框架预定义的委托模板，而非复杂的自定义类型。下面从<strong>定义本质、源码实现、使用原理</strong>三个维度详细拆解：</p>
+<h3 id="一-action-的核心定义预定义泛型委托">一、Action 的核心定义：预定义泛型委托</h3>
+<p><code>Action</code> 是 .NET Base Class Library (BCL) 中在 <code>System</code> 命名空间下预定义的委托，核心目的是简化“无返回值方法”的委托声明，避免开发者重复定义相同结构的委托。</p>
+<h4 id="1-官方源码简化版">1. 官方源码（简化版）</h4>
+<p>.NET 框架中 <code>Action</code> 的定义本质是一系列重载的泛型委托，源码（以 .NET 6+ 为例）位于 <code>System.dll</code> 的 <code>System</code> 命名空间下，核心结构如下：</p>
+<pre><code class="language-csharp">// 无参数的 Action
+namespace System
+{
+    // [Serializable]
+    public delegate void Action();
+}
+
+// 1个参数的 Action&lt;T&gt;
+namespace System
+{
+    // [Serializable]
+    public delegate void Action&lt;in T&gt;(T obj);
+}
+
+// 2个参数的 Action&lt;T1, T2&gt;
+namespace System
+{
+    // [Serializable]
+    public delegate void Action&lt;in T1, in T2&gt;(T1 arg1, T2 arg2);
+}
+
+// ... 以此类推，直到 Action&lt;T1, T2, ..., T16&gt;（最多16个参数）
+</code></pre>
+<h4 id="关键特性">关键特性：</h4>
+<ul>
+<li><strong>无返回值</strong>：所有 <code>Action</code> 委托的返回类型都是 <code>void</code>（区别于有返回值的 <code>Func</code>）。</li>
+<li><strong>协变/逆变</strong>：泛型参数标注 <code>in</code>（逆变），符合委托参数的类型安全规则（比如可以用 <code>Action&lt;object&gt;</code> 接收 <code>Action&lt;string&gt;</code>）。</li>
+<li><strong>参数数量</strong>：框架预定义了从 0 到 16 个参数的重载（<code>Action</code>、<code>Action&lt;T1&gt;</code>、<code>Action&lt;T1,T2&gt;</code>...<code>Action&lt;T1..T16&gt;</code>），覆盖绝大多数场景。</li>
+</ul>
+<h3 id="二-action-的底层实现原理">二、Action 的底层实现原理</h3>
+<p><code>Action</code> 本质是<strong>委托类型</strong>，而 C# 委托的底层依赖 CLR 的委托机制，核心分为两步：</p>
+<h4 id="1-委托的-clr-本质">1. 委托的 CLR 本质</h4>
+<p>所有委托（包括 <code>Action</code>）最终都会被编译为继承自 <code>System.Delegate</code>（基类）/ <code>System.MulticastDelegate</code>（多播委托）的密封类，自动生成以下核心成员：</p>
+<ul>
+<li><code>Invoke()</code> 方法：与委托签名匹配（比如 <code>Action&lt;int&gt;</code> 的 <code>Invoke(int obj)</code>），调用委托时实际执行此方法。</li>
+<li><code>BeginInvoke()</code>/<code>EndInvoke()</code>：异步调用的方法（.NET Framework 特有，.NET Core/.NET 5+ 已移除，改用 Task）。</li>
+<li><code>_target</code> 字段：存储委托绑定的实例（实例方法时）。</li>
+<li><code>_methodPtr</code> 字段：存储方法的指针（指向被绑定的方法）。</li>
+</ul>
+<h4 id="2-action-的编译过程">2. Action 的编译过程</h4>
+<p>当你使用 <code>Action</code> 时，编译器会：</p>
+<ul>
+<li>识别 <code>Action</code> 对应的泛型委托版本（比如 <code>Action&lt;int, string&gt;</code> 对应 2 参数的委托）。</li>
+<li>将方法/lambda 表达式绑定到该委托的 <code>Invoke</code> 方法。</li>
+<li>最终生成符合 CLR 委托规范的 IL 代码。</li>
+</ul>
+<p><strong>示例：IL 层面的简化对比</strong></p>
+<pre><code class="language-csharp">// 代码1：手动定义委托
+public delegate void MyAction(int a);
+MyAction myAction = x =&gt; Console.WriteLine(x);
+
+// 代码2：使用 Action
+Action&lt;int&gt; action = x =&gt; Console.WriteLine(x);
+</code></pre>
+<p>上述两段代码编译后的 IL 几乎完全一致——<code>Action&lt;int&gt;</code> 只是框架替你预定义了 <code>MyAction</code> 这个委托，无需手动声明。</p>
+<h3 id="三-action-的使用场景与底层执行">三、Action 的使用场景与底层执行</h3>
+<h4 id="1-基础使用绑定方法匿名方法lambda">1. 基础使用（绑定方法/匿名方法/lambda）</h4>
+<pre><code class="language-csharp">// 1. 绑定普通方法
+void Print(string msg) =&gt; Console.WriteLine(msg);
+Action&lt;string&gt; printAction = Print;
+printAction(&quot;Hello&quot;); // 执行：调用 Print 方法
+
+// 2. 绑定 lambda 表达式（编译器自动转换为委托）
+Action&lt;int, int&gt; sumAction = (a, b) =&gt; Console.WriteLine(a + b);
+sumAction(1, 2); // 执行：调用 lambda 生成的匿名方法
+
+// 3. 多播委托（Action 继承 MulticastDelegate，支持 +=）
+Action multiAction = () =&gt; Console.WriteLine(&quot;A&quot;);
+multiAction += () =&gt; Console.WriteLine(&quot;B&quot;);
+multiAction(); // 执行：依次调用两个方法
+</code></pre>
+<h4 id="2-执行原理">2. 执行原理</h4>
+<p>调用 <code>Action</code> 实例时，本质是调用其 <code>Invoke</code> 方法：</p>
+<ul>
+<li>若绑定的是<strong>实例方法</strong>：<code>_target</code> 指向实例对象，<code>_methodPtr</code> 指向实例方法的地址，执行时通过实例调用方法。</li>
+<li>若绑定的是<strong>静态方法</strong>：<code>_target</code> 为 <code>null</code>，直接通过 <code>_methodPtr</code> 调用静态方法。</li>
+<li>若绑定的是<strong>lambda/匿名方法</strong>：编译器会生成一个隐藏的静态/实例方法，再将 <code>Action</code> 绑定到该方法。</li>
+</ul>
+<h3 id="四-action-与-func-的区别补充">四、Action 与 Func 的区别（补充）</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Action</th>
+<th>Func<TResult></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>返回值</td>
+<td>无（void）</td>
+<td>有（TResult）</td>
+</tr>
+<tr>
+<td>核心用途</td>
+<td>执行操作（无返回）</td>
+<td>执行计算（有返回）</td>
+</tr>
+<tr>
+<td>泛型参数</td>
+<td>仅输入参数（T1, T2...）</td>
+<td>最后一个是返回值（T1,T2,TResult）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="五-自定义扩展-action理解实现本质">五、自定义扩展 Action（理解实现本质）</h3>
+<p>如果你想手动实现一个“类似 Action”的委托，本质就是定义无返回值的泛型委托：</p>
+<pre><code class="language-csharp">// 自定义 1 参数的 Action 替代版
+namespace MyNamespace
+{
+    public delegate void MyAction&lt;in T&gt;(T param);
+}
+
+// 使用自定义委托（效果与 Action&lt;T&gt; 完全一致）
+MyAction&lt;string&gt; myAction = msg =&gt; Console.WriteLine(msg);
+myAction(&quot;Custom Action&quot;);
+</code></pre>
+<h3 id="总结">总结</h3>
+<p><code>Action</code> 的实现核心是：</p>
+<ol>
+<li><strong>预定义委托</strong>：框架在 <code>System</code> 命名空间下预定义了一系列无返回值的泛型委托（0~16 参数）。</li>
+<li><strong>委托底层</strong>：所有 <code>Action</code> 最终继承 <code>MulticastDelegate</code>，依赖 CLR 的委托机制（<code>Invoke</code> 方法、<code>_target</code>/<code>_methodPtr</code> 字段）。</li>
+<li><strong>编译器适配</strong>：lambda/匿名方法会被编译器自动转换为符合 <code>Action</code> 签名的委托实例。</li>
+</ol>
+<p>简单来说，<code>Action</code> 不是“特殊类型”，只是 .NET 为了简化开发提供的<strong>无返回值委托模板</strong>，其底层完全遵循 C# 委托的通用实现规则。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/guan-yu-sun-wu-kong-de-zhuang-bei/" class="post-title gt-a-link">
+                    关于孙悟空的装备
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

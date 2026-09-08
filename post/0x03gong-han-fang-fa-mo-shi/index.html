@@ -1,0 +1,486 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x03. 工厂方法模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x03. 工厂方法模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-12-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="工厂方法模式">工厂方法模式</h2>
+<!-- more -->
+<p>在Unity中使用C#实现工厂方法模式，结合游戏开发的典型场景（比如<strong>创建不同类型的游戏角色</strong>：战士、法师、弓箭手），能更贴合实际开发需求。以下是完整的可运行示例，包含核心角色定义、工厂实现和Unity场景调用逻辑。</p>
+<h3 id="一-核心思路工厂方法模式">一、核心思路（工厂方法模式）</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>对应实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品接口/抽象类</td>
+<td><code>ICharacter</code>（接口）</td>
+<td>定义所有游戏角色的通用行为（移动、攻击）</td>
+</tr>
+<tr>
+<td>具体产品</td>
+<td><code>Warrior</code>/<code>Mage</code>/<code>Archer</code></td>
+<td>实现<code>ICharacter</code>，封装不同角色的具体行为</td>
+</tr>
+<tr>
+<td>工厂抽象类/接口</td>
+<td><code>CharacterFactory</code>（抽象类）</td>
+<td>定义创建角色的抽象方法<code>CreateCharacter()</code></td>
+</tr>
+<tr>
+<td>具体工厂</td>
+<td><code>WarriorFactory</code>/<code>MageFactory</code>/<code>ArcherFactory</code></td>
+<td>实现抽象工厂，负责创建对应具体角色，可附加Unity特有的初始化逻辑（如加载预制体）</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td><code>GameManager</code>（挂载到Unity物体）</td>
+<td>调用具体工厂创建角色，无需直接<code>new</code>对象</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-完整代码实现">二、完整代码实现</h3>
+<h4 id="1-产品接口icharacter定义角色通用行为">1. 产品接口：<code>ICharacter</code>（定义角色通用行为）</h4>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 游戏角色接口（产品接口）
+/// &lt;/summary&gt;
+public interface ICharacter
+{
+    // 角色名称
+    string Name { get; }
+    // 移动行为
+    void Move();
+    // 攻击行为
+    void Attack();
+}
+</code></pre>
+<h4 id="2-具体产品不同角色实现战士-法师-弓箭手">2. 具体产品：不同角色实现（战士、法师、弓箭手）</h4>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 战士（具体产品1）
+/// &lt;/summary&gt;
+public class Warrior : ICharacter
+{
+    public string Name =&gt; &quot;战士&quot;;
+
+    public void Move()
+    {
+        Debug.Log($&quot;{Name}：持盾冲锋！&quot;);
+    }
+
+    public void Attack()
+    {
+        Debug.Log($&quot;{Name}：挥剑斩击，造成物理伤害！&quot;);
+    }
+}
+
+/// &lt;summary&gt;
+/// 法师（具体产品2）
+/// &lt;/summary&gt;
+public class Mage : ICharacter
+{
+    public string Name =&gt; &quot;法师&quot;;
+
+    public void Move()
+    {
+        Debug.Log($&quot;{Name}：闪现移动！&quot;);
+    }
+
+    public void Attack()
+    {
+        Debug.Log($&quot;{Name}：释放火球术，造成魔法伤害！&quot;);
+    }
+}
+
+/// &lt;summary&gt;
+/// 弓箭手（具体产品3）
+/// &lt;/summary&gt;
+public class Archer : ICharacter
+{
+    public string Name =&gt; &quot;弓箭手&quot;;
+
+    public void Move()
+    {
+        Debug.Log($&quot;{Name}：翻滚走位！&quot;);
+    }
+
+    public void Attack()
+    {
+        Debug.Log($&quot;{Name}：射出穿云箭，造成远程伤害！&quot;);
+    }
+}
+</code></pre>
+<h4 id="3-工厂抽象类characterfactory定义创建角色的抽象方法">3. 工厂抽象类：<code>CharacterFactory</code>（定义创建角色的抽象方法）</h4>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 角色工厂抽象类（工厂接口）
+/// &lt;/summary&gt;
+public abstract class CharacterFactory
+{
+    /// &lt;summary&gt;
+    /// 创建角色的抽象方法（工厂方法）
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;具体角色实例&lt;/returns&gt;
+    public abstract ICharacter CreateCharacter();
+
+    // 可选：添加Unity特有的通用逻辑（比如加载角色预制体、初始化位置）
+    protected void InitCharacterGameObject(string characterName)
+    {
+        Debug.Log($&quot;[{characterName}] 预制体加载完成，初始化位置为(0,0,0)&quot;);
+        // 实际项目中可在这里加载Resources中的预制体、设置父物体等
+        // GameObject prefab = Resources.Load&lt;GameObject&gt;($&quot;Prefabs/{characterName}&quot;);
+        // GameObject characterObj = Object.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+    }
+}
+</code></pre>
+<h4 id="4-具体工厂对应角色的工厂实现">4. 具体工厂：对应角色的工厂实现</h4>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 战士工厂（具体工厂1）
+/// &lt;/summary&gt;
+public class WarriorFactory : CharacterFactory
+{
+    public override ICharacter CreateCharacter()
+    {
+        // 调用通用初始化逻辑（Unity预制体、位置等）
+        InitCharacterGameObject(&quot;Warrior&quot;);
+        // 创建并返回战士实例
+        return new Warrior();
+    }
+}
+
+/// &lt;summary&gt;
+/// 法师工厂（具体工厂2）
+/// &lt;/summary&gt;
+public class MageFactory : CharacterFactory
+{
+    public override ICharacter CreateCharacter()
+    {
+        InitCharacterGameObject(&quot;Mage&quot;);
+        return new Mage();
+    }
+}
+
+/// &lt;summary&gt;
+/// 弓箭手工厂（具体工厂3）
+/// &lt;/summary&gt;
+public class ArcherFactory : CharacterFactory
+{
+    public override ICharacter CreateCharacter()
+    {
+        InitCharacterGameObject(&quot;Archer&quot;);
+        return new Archer();
+    }
+}
+</code></pre>
+<h4 id="5-客户端调用gamemanager挂载到unity物体运行">5. 客户端调用：<code>GameManager</code>（挂载到Unity物体运行）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 游戏管理器（客户端）：调用工厂创建角色
+/// &lt;/summary&gt;
+public class GameManager : MonoBehaviour
+{
+    private void Start()
+    {
+        // 1. 创建战士（通过战士工厂）
+        CharacterFactory warriorFactory = new WarriorFactory();
+        ICharacter warrior = warriorFactory.CreateCharacter();
+        warrior.Move();
+        warrior.Attack();
+
+        Debug.Log(&quot;————————分割线————————&quot;);
+
+        // 2. 创建法师（通过法师工厂）
+        CharacterFactory mageFactory = new MageFactory();
+        ICharacter mage = mageFactory.CreateCharacter();
+        mage.Move();
+        mage.Attack();
+
+        Debug.Log(&quot;————————分割线————————&quot;);
+
+        // 3. 创建弓箭手（通过弓箭手工厂）
+        CharacterFactory archerFactory = new ArcherFactory();
+        ICharacter archer = archerFactory.CreateCharacter();
+        archer.Move();
+        archer.Attack();
+    }
+}
+</code></pre>
+<h3 id="三-unity中运行效果">三、Unity中运行效果</h3>
+<ol>
+<li>将<code>GameManager</code>脚本挂载到Unity场景中的任意空物体（比如MainCamera）；</li>
+<li>运行场景，控制台输出如下：</li>
+</ol>
+<pre><code>[Warrior] 预制体加载完成，初始化位置为(0,0,0)
+战士：持盾冲锋！
+战士：挥剑斩击，造成物理伤害！
+————————分割线————————
+[Mage] 预制体加载完成，初始化位置为(0,0,0)
+法师：闪现移动！
+法师：释放火球术，造成魔法伤害！
+————————分割线————————
+[Archer] 预制体加载完成，初始化位置为(0,0,0)
+弓箭手：翻滚走位！
+弓箭手：射出穿云箭，造成远程伤害！
+</code></pre>
+<h3 id="四-unity开发中的扩展技巧">四、Unity开发中的扩展技巧</h3>
+<ol>
+<li>
+<p><strong>结合预制体加载</strong>：<br>
+实际项目中，可在具体工厂的<code>CreateCharacter</code>方法中加载角色预制体，示例：</p>
+<pre><code class="language-csharp">public override ICharacter CreateCharacter()
+{
+    // 加载预制体
+    GameObject magePrefab = Resources.Load&lt;GameObject&gt;(&quot;Prefabs/Mage&quot;);
+    GameObject mageObj = Instantiate(magePrefab, Vector3.zero, Quaternion.identity);
+    // 给预制体挂载角色逻辑组件
+    Mage mage = mageObj.AddComponent&lt;Mage&gt;();
+    InitCharacterGameObject(&quot;Mage&quot;);
+    return mage;
+}
+</code></pre>
+<p>注意：需将<code>Mage</code>/<code>Warrior</code>等类改为继承<code>MonoBehaviour</code>，适配Unity组件化开发。</p>
+</li>
+<li>
+<p><strong>工厂池化优化</strong>：<br>
+若角色频繁创建/销毁，可在工厂中集成对象池（Object Pool），复用已有角色实例，减少GC：</p>
+<pre><code class="language-csharp">public class WarriorFactory : CharacterFactory
+{
+    private ObjectPool&lt;Warrior&gt; _warriorPool;
+
+    public WarriorFactory()
+    {
+        // 初始化对象池
+        _warriorPool = new ObjectPool&lt;Warrior&gt;(
+            createFunc: () =&gt; new Warrior(),
+            actionOnGet: (w) =&gt; Debug.Log($&quot;复用{w.Name}实例&quot;),
+            actionOnRelease: (w) =&gt; Debug.Log($&quot;回收{w.Name}实例&quot;)
+        );
+    }
+
+    public override ICharacter CreateCharacter()
+    {
+        return _warriorPool.Get();
+    }
+
+    // 回收角色到池
+    public void ReleaseWarrior(Warrior warrior)
+    {
+        _warriorPool.Release(warrior);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>动态切换工厂</strong>：<br>
+可通过配置表、UI按钮事件动态选择工厂，比如点击“创建法师”按钮时实例化<code>MageFactory</code>：</p>
+<pre><code class="language-csharp">public void OnCreateMageButtonClick()
+{
+    CharacterFactory factory = new MageFactory();
+    ICharacter mage = factory.CreateCharacter();
+    mage.Attack();
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="五-工厂方法模式的优势unity场景">五、工厂方法模式的优势（Unity场景）</h3>
+<ol>
+<li><strong>解耦</strong>：客户端（<code>GameManager</code>）无需知道角色的具体创建逻辑，只需调用工厂方法；</li>
+<li><strong>易扩展</strong>：新增角色（比如“刺客”）时，只需新增<code>Assassin</code>（具体产品）和<code>AssassinFactory</code>（具体工厂），无需修改原有代码，符合“开闭原则”；</li>
+<li><strong>统一管理</strong>：角色的初始化（预制体加载、位置设置、组件挂载）都集中在工厂中，便于维护。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/23-chong-she-ji-mo-shi/" class="post-title gt-a-link">
+                    0x02. 23 种设计模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

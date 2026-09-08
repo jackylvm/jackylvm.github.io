@@ -1,0 +1,365 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity架构设计：使用接口解耦 GameWorld 与 NPC/Player 的关系 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity架构设计：使用接口解耦 GameWorld 与 NPC/Player 的关系
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-06-16 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/GbsLkWbrXvQ/" class="post-tags">
+                            # 项目结构
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 项目的架构设计中，我们经常会遇到如下需求：</p>
+<hr>
+<ul>
+<li><code>GameWorld</code> 管理整个游戏运行环境。</li>
+<li><code>Player</code> 和多个 <code>NPC</code> 在世界中交互。</li>
+<li>子对象（如 <code>NPC</code>）需要访问 <code>GameWorld</code> 的某些方法或数据。</li>
+</ul>
+<p>如果直接将 <code>GameWorld</code> 引用传递给 <code>NPC</code>，虽然可以快速实现功能，但很容易导致模块之间强耦合，使得后期维护、测试和扩展变得困难。</p>
+<p>本文将分享一种更为清晰、可维护、易于扩展的解决方案 —— <strong>通过接口进行上下文解耦设计</strong>。</p>
+<hr>
+<h2 id="一-问题背景">一、问题背景</h2>
+<p>典型的设计初始结构如下：</p>
+<pre><code class="language-csharp">public class GameWorld
+{
+    public Player player;
+    public List&lt;NPC&gt; npcs;
+
+    public void Initialize()
+    {
+        player = new Player();
+        npcs = new List&lt;NPC&gt; { new NPC(), new NPC() };
+    }
+
+    public void SomeWorldMethod() { }
+}
+</code></pre>
+<p><code>NPC</code> 需要访问 <code>GameWorld.SomeWorldMethod()</code>，那么常见方式有：</p>
+<ul>
+<li>✅ 将 <code>GameWorld</code> 引用传入 <code>NPC</code></li>
+<li>❌ 使用单例 <code>GameWorld.Instance</code></li>
+</ul>
+<p>这些方法虽然可行，但<strong>没有很好地实现模块解耦</strong>。</p>
+<hr>
+<h2 id="二-解耦设计方案引入-igamecontext-接口">二、解耦设计方案：引入 <code>IGameContext</code> 接口</h2>
+<p>我们引入一个接口，来代表 <code>GameWorld</code> 提供给子对象的访问能力。</p>
+<h3 id="接口定义">接口定义</h3>
+<pre><code class="language-csharp">public interface IGameContext
+{
+    Player GetPlayer();
+    Vector3 GetSpawnPoint();
+    IEventDispatcher GetEventDispatcher();
+}
+</code></pre>
+<p>这样，<code>NPC</code> 只依赖这个接口，而不是整个 <code>GameWorld</code> 类。</p>
+<hr>
+<h2 id="三-gameworld-的接口实现">三、GameWorld 的接口实现</h2>
+<p>我们将实际的 <code>GameWorld</code> 封装成一个上下文对象 <code>GameWorldContext</code>，实现接口：</p>
+<pre><code class="language-csharp">public class GameWorldContext : IGameContext
+{
+    private GameWorld world;
+    private IEventDispatcher dispatcher;
+
+    public GameWorldContext(GameWorld world)
+    {
+        this.world = world;
+        this.dispatcher = new DefaultEventDispatcher();
+    }
+
+    public Player GetPlayer() =&gt; world.GetPlayer();
+    public Vector3 GetSpawnPoint() =&gt; world.GetSpawnPoint();
+    public IEventDispatcher GetEventDispatcher() =&gt; dispatcher;
+}
+</code></pre>
+<hr>
+<h2 id="四-子系统的使用方式以-npc-为例">四、子系统的使用方式（以 NPC 为例）</h2>
+<pre><code class="language-csharp">public class NPC
+{
+    private readonly IGameContext context;
+
+    public NPC(IGameContext context)
+    {
+        this.context = context;
+    }
+
+    public void Act()
+    {
+        var player = context.GetPlayer();
+        var spawn = context.GetSpawnPoint();
+        context.GetEventDispatcher().Dispatch(&quot;NPC_Acted&quot;, this);
+    }
+}
+</code></pre>
+<p>此时 <code>NPC</code> 与 <code>GameWorld</code> 已完全解耦，仅通过 <code>IGameContext</code> 接口交互。</p>
+<hr>
+<h2 id="五-事件系统可选扩展">五、事件系统（可选扩展）</h2>
+<p>为了进一步解耦系统间通信，我们引入 <code>IEventDispatcher</code>：</p>
+<pre><code class="language-csharp">public interface IEventDispatcher
+{
+    void Dispatch(string eventName, object data = null);
+    void Subscribe(string eventName, Action&lt;object&gt; callback);
+    void Unsubscribe(string eventName, Action&lt;object&gt; callback);
+}
+</code></pre>
+<p>用于 <code>NPC</code> 向外广播行为、<code>GameWorld</code> 接收并处理事件。</p>
+<hr>
+<h2 id="六-测试支持mockgamecontext">六、测试支持：MockGameContext</h2>
+<p>有了解耦接口后，单元测试也变得轻松简单：</p>
+<pre><code class="language-csharp">public class MockGameContext : IGameContext
+{
+    public Player GetPlayer() =&gt; new GameObject(&quot;MockPlayer&quot;).AddComponent&lt;Player&gt;();
+    public Vector3 GetSpawnPoint() =&gt; Vector3.zero;
+    public IEventDispatcher GetEventDispatcher() =&gt; new DefaultEventDispatcher();
+}
+</code></pre>
+<hr>
+<h2 id="七-目录结构建议">七、目录结构建议</h2>
+<p>为了更好地组织代码，可以采用如下项目结构：</p>
+<pre><code>Game/
+├── Interfaces/
+│   ├── IGameContext.cs
+│   └── IEventDispatcher.cs
+├── GameWorld/
+│   ├── GameWorld.cs
+│   └── GameWorldContext.cs
+├── Characters/
+│   ├── Player.cs
+│   ├── NPC.cs
+├── Events/
+│   └── DefaultEventDispatcher.cs
+└── Tests/
+    └── MockGameContext.cs
+</code></pre>
+<hr>
+<h2 id="八-优点总结">八、优点总结</h2>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ 高内聚低耦合</td>
+<td>子系统只依赖接口，不依赖具体实现</td>
+</tr>
+<tr>
+<td>✅ 易于扩展</td>
+<td>更换 GameWorld 实现或添加 PVPWorld 不影响子系统</td>
+</tr>
+<tr>
+<td>✅ 易于测试</td>
+<td>可以用 MockContext 进行单元测试</td>
+</tr>
+<tr>
+<td>✅ 更强可维护性</td>
+<td>系统职责边界明确，便于多人协作</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="九-结语">九、结语</h2>
+<p>这套通过接口实现解耦的设计思想，适用于多数 Unity 中的子系统开发，如：</p>
+<ul>
+<li>任务系统访问世界状态</li>
+<li>AI 系统感知环境</li>
+<li>技能系统调用全局事件</li>
+</ul>
+<p>随着项目复杂度提升，良好的架构设计会显著提升开发效率与维护性。如果你有类似的解耦需求，不妨试试这套接口架构设计。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/npoi-he-closedxml/" class="post-title gt-a-link">
+                    NPOI和ClosedXML
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

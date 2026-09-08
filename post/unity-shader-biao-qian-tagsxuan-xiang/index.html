@@ -1,0 +1,949 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity Shader标签(Tags)选项 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity Shader标签(Tags)选项
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-05-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>记录学习Unity Shader过程中学到的东西.</p>
+<!-- more -->
+<hr>
+<h2 id="1️⃣queue">1️⃣Queue</h2>
+<p>在Unity Shader中，渲染队列（Queue）控制对象的渲染顺序。以下是常见的渲染队列类型及其用途：</p>
+<h3 id="内置渲染队列类型">内置渲染队列类型</h3>
+<ol>
+<li>
+<p><strong>Background (1000)</strong><br>
+最早渲染的队列，常用于天空盒等背景元素。</p>
+</li>
+<li>
+<p><strong>Geometry (2000)</strong><br>
+默认队列，用于大多数不透明物体（如地形、建筑、角色模型）。Unity会对该队列的物体进行深度排序和优化。</p>
+</li>
+<li>
+<p><strong>AlphaTest (2450)</strong><br>
+用于使用Alpha测试的半透明物体（如栅栏、植被）。这类物体有明确的透明和不透明区域。</p>
+</li>
+<li>
+<p><strong>Transparent (3000)</strong><br>
+用于需要透明度混合的物体（如玻璃、粒子效果）。此队列按从后到前的顺序渲染，以确保正确的混合效果。</p>
+</li>
+<li>
+<p><strong>Overlay (4000)</strong><br>
+最后渲染的队列，常用于UI元素或全屏效果，确保它们显示在最上层。</p>
+</li>
+</ol>
+<h3 id="自定义队列">自定义队列</h3>
+<p>你可以通过指定具体数值来创建自定义队列，例如：</p>
+<pre><code class="language-hlsl">SubShader {
+    Tags { &quot;Queue&quot; = &quot;Geometry+100&quot; } // 在Geometry队列后100的位置渲染
+    // 其他Shader代码
+}
+</code></pre>
+<h3 id="注意事项">注意事项</h3>
+<ul>
+<li><strong>性能优化</strong>：合理使用队列可以避免不必要的Overdraw。</li>
+<li><strong>透明物体</strong>：使用<code>Transparent</code>队列时，需确保物体的几何结构简单且已按距离排序。</li>
+<li><strong>渲染顺序冲突</strong>：相邻队列的物体会按提交顺序渲染，可能导致意外的遮挡问题，需谨慎调整。</li>
+</ul>
+<p>这些队列类型覆盖了Unity中大多数渲染需求，合理配置可确保场景正确显示。</p>
+<!-- more -->
+<hr>
+<h2 id="2️⃣rendertype">2️⃣RenderType</h2>
+<p>在Unity Shader中，<strong>RenderType</strong>是一个重要的标签，用于将Shader分类到特定的渲染类型中。这有助于Unity在特定场景（如延迟渲染、光照贴图、着色器替换）中正确处理材质。以下是RenderType的主要作用和常见类型：</p>
+<h3 id="rendertype的作用"><strong>RenderType的作用</strong></h3>
+<ol>
+<li>
+<p><strong>着色器替换（Shader Replacement）</strong><br>
+通过指定RenderType，可在运行时替换特定类型的Shader（例如只渲染所有不透明物体或所有透明物体）。</p>
+</li>
+<li>
+<p><strong>光照模式适配</strong><br>
+帮助Unity识别Shader是否支持特定光照模式（如前向渲染、延迟渲染）。</p>
+</li>
+<li>
+<p><strong>特殊效果处理</strong><br>
+例如在使用雾效、全局光照（GI）或后处理时，Unity会根据RenderType做出不同处理。</p>
+</li>
+</ol>
+<h3 id="常见rendertype标签值"><strong>常见RenderType标签值</strong></h3>
+<p>以下是Unity内置的主要RenderType及其用途：</p>
+<h4 id="1-opaque"><strong>1. Opaque</strong></h4>
+<ul>
+<li><strong>用途</strong>：用于不透明物体（如地形、金属、石头）。</li>
+<li><strong>特点</strong>：默认使用前向渲染，支持光照贴图和延迟渲染。</li>
+<li><strong>示例</strong>：<pre><code class="language-hlsl">Tags { &quot;RenderType&quot; = &quot;Opaque&quot; }
+</code></pre>
+</li>
+</ul>
+<h4 id="2-transparent"><strong>2. Transparent</strong></h4>
+<ul>
+<li><strong>用途</strong>：用于需要透明度混合的物体（如玻璃、粒子效果）。</li>
+<li><strong>特点</strong>：不支持延迟渲染，依赖于渲染队列（通常为<code>Queue=Transparent</code>）。</li>
+<li><strong>示例</strong>：<pre><code class="language-hlsl">Tags { &quot;RenderType&quot; = &quot;Transparent&quot; &quot;Queue&quot; = &quot;Transparent&quot; }
+</code></pre>
+</li>
+</ul>
+<h4 id="3-transparentcutout"><strong>3. TransparentCutout</strong></h4>
+<ul>
+<li><strong>用途</strong>：用于使用Alpha测试的半透明物体（如栅栏、植被）。</li>
+<li><strong>特点</strong>：支持光照贴图和延迟渲染，但需使用<code>ZWrite On</code>。</li>
+<li><strong>示例</strong>：<pre><code class="language-hlsl">Tags { &quot;RenderType&quot; = &quot;TransparentCutout&quot; &quot;Queue&quot; = &quot;AlphaTest&quot; }
+</code></pre>
+</li>
+</ul>
+<h4 id="4-background"><strong>4. Background</strong></h4>
+<ul>
+<li><strong>用途</strong>：用于背景元素（如天空盒）。</li>
+<li><strong>特点</strong>：通常在渲染队列的早期（<code>Queue=Background</code>）渲染。</li>
+<li><strong>示例</strong>：<pre><code class="language-hlsl">Tags { &quot;RenderType&quot; = &quot;Background&quot; &quot;Queue&quot; = &quot;Background&quot; }
+</code></pre>
+</li>
+</ul>
+<h4 id="5-overlay"><strong>5. Overlay</strong></h4>
+<ul>
+<li><strong>用途</strong>：用于UI或覆盖效果（如屏幕特效）。</li>
+<li><strong>特点</strong>：通常在渲染队列的最后（<code>Queue=Overlay</code>）渲染。</li>
+<li><strong>示例</strong>：<pre><code class="language-hlsl">Tags { &quot;RenderType&quot; = &quot;Overlay&quot; &quot;Queue&quot; = &quot;Overlay&quot; }
+</code></pre>
+</li>
+</ul>
+<h4 id="6-treeopaque-treetransparentcutout-treebillboard"><strong>6. TreeOpaque / TreeTransparentCutout / TreeBillboard</strong></h4>
+<ul>
+<li><strong>用途</strong>：专用于地形树木系统的RenderType。</li>
+<li><strong>特点</strong>：与Unity的树烘焙和动画系统协同工作。</li>
+</ul>
+<h4 id="7-grass-grassbillboard"><strong>7. Grass / GrassBillboard</strong></h4>
+<ul>
+<li><strong>用途</strong>：专用于地形草皮系统的RenderType。</li>
+<li><strong>特点</strong>：优化了草的渲染和碰撞。</li>
+</ul>
+<h3 id="自定义rendertype"><strong>自定义RenderType</strong></h3>
+<p>你可以定义自己的RenderType，但通常需要与内置类型配合使用。例如：</p>
+<pre><code class="language-hlsl">Tags { &quot;RenderType&quot; = &quot;CustomType&quot; }
+</code></pre>
+<p>自定义类型在着色器替换时非常有用，但需确保在替换Shader中正确处理。</p>
+<h3 id="rendertype-vs-queue"><strong>RenderType vs Queue</strong></h3>
+<ul>
+<li><strong>RenderType</strong>：分类Shader的功能类型（如不透明、透明）。</li>
+<li><strong>Queue</strong>：控制具体的渲染顺序（如<code>Geometry</code>、<code>Transparent</code>队列）。</li>
+</ul>
+<p>两者通常结合使用，例如：</p>
+<pre><code class="language-hlsl">SubShader {
+    Tags { 
+        &quot;RenderType&quot; = &quot;TransparentCutout&quot; 
+        &quot;Queue&quot; = &quot;AlphaTest&quot; 
+    }
+    // 其他Shader代码
+}
+</code></pre>
+<h3 id="最佳实践"><strong>最佳实践</strong></h3>
+<ol>
+<li><strong>遵循Unity规范</strong>：优先使用内置RenderType，确保与引擎功能兼容。</li>
+<li><strong>避免重复定义</strong>：除非必要，不要创建新的RenderType。</li>
+<li><strong>性能考虑</strong>：透明物体（RenderType=Transparent）会禁用延迟渲染，可能影响性能。</li>
+</ol>
+<p>通过合理设置RenderType和Queue，可确保Shader在各种场景下正确渲染，并充分利用Unity的优化机制。</p>
+<!-- more -->
+<hr>
+<h3 id="3️⃣disablebatching">3️⃣DisableBatching</h3>
+<p>在Unity Shader中，<strong>DisableBatching</strong>是一个重要的标签，用于控制GPU实例化（GPU Instancing）和批处理（Batching）的行为。以下是其作用、常见用法和注意事项：</p>
+<h3 id="disablebatching的作用"><strong>DisableBatching的作用</strong></h3>
+<p>批处理是Unity优化渲染性能的重要手段，通过合并多个网格（Mesh）减少Draw Call。但某些情况下，批处理会破坏Shader的功能，此时需要禁用它。</p>
+<p><strong>DisableBatching标签有三种取值</strong>：</p>
+<ol>
+<li><strong>True</strong>：完全禁用批处理（包括静态批处理和动态批处理）。</li>
+<li><strong>False</strong>：不禁用批处理（默认值）。</li>
+<li><strong>LODFading</strong>：仅在使用LOD淡入淡出时禁用批处理（针对Unity的LOD系统）。</li>
+</ol>
+<h3 id="何时需要禁用批处理"><strong>何时需要禁用批处理？</strong></h3>
+<h4 id="1-使用模型空间坐标"><strong>1. 使用模型空间坐标</strong></h4>
+<p>若Shader依赖模型空间坐标（如<code>_World2Object</code>矩阵），批处理会导致多个物体共用同一组坐标，造成渲染错误。<br>
+<strong>示例场景</strong>：</p>
+<ul>
+<li>顶点动画（如布料、草随风摆动）。</li>
+<li>基于模型中心的特效（如武器发光）。</li>
+</ul>
+<pre><code class="language-hlsl">Tags { &quot;DisableBatching&quot; = &quot;True&quot; }
+// 依赖模型空间坐标的顶点着色器
+v2f vert(appdata v) {
+    v.vertex.xyz += sin(_Time.y) * 0.1; // 随时间摆动（依赖模型空间）
+    // ...
+}
+</code></pre>
+<h4 id="2-使用多pass-shader"><strong>2. 使用多Pass Shader</strong></h4>
+<p>多Pass Shader在批处理后可能导致渲染顺序异常。<br>
+<strong>示例场景</strong>：</p>
+<ul>
+<li>双面渲染（一个Pass渲染正面，另一个Pass渲染背面）。</li>
+<li>复杂的后处理效果。</li>
+</ul>
+<pre><code class="language-hlsl">Tags { &quot;DisableBatching&quot; = &quot;True&quot; }
+Pass {
+    // 第一个Pass渲染正面
+}
+Pass {
+    // 第二个Pass渲染背面
+}
+</code></pre>
+<h4 id="3-使用gpu-instancing但需要实例id"><strong>3. 使用GPU Instancing但需要实例ID</strong></h4>
+<p>若Shader需要通过<code>UNITY_VERTEX_INPUT_INSTANCE_ID</code>获取实例ID（如为每个实例分配不同颜色），则必须禁用普通批处理，改用GPU Instancing。</p>
+<pre><code class="language-hlsl">Tags { &quot;DisableBatching&quot; = &quot;True&quot; } // 禁用普通批处理
+#pragma multi_compile_instancing // 启用GPU Instancing
+struct appdata {
+    float4 vertex : POSITION;
+    UNITY_VERTEX_INPUT_INSTANCE_ID // 声明实例ID
+};
+</code></pre>
+<h3 id="disablebatching与性能"><strong>DisableBatching与性能</strong></h3>
+<ul>
+<li>
+<p><strong>禁用批处理的代价</strong>：<br>
+禁用批处理会增加Draw Call，可能降低性能。因此，应仅在必要时使用，并优先优化Shader逻辑。</p>
+</li>
+<li>
+<p><strong>替代方案</strong>：</p>
+<ul>
+<li><strong>GPU Instancing</strong>：若Shader支持，可通过<code>#pragma multi_compile_instancing</code>启用GPU Instancing，它允许在批处理的同时保留实例独立性。</li>
+<li><strong>静态批处理</strong>：对于不移动的物体，Unity的静态批处理（Static Batching）可能不受DisableBatching影响。</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见应用场景"><strong>常见应用场景</strong></h3>
+<h4 id="1-顶点动画shader"><strong>1. 顶点动画Shader</strong></h4>
+<pre><code class="language-hlsl">SubShader {
+    Tags { &quot;DisableBatching&quot; = &quot;True&quot; }
+    Pass {
+        // 顶点动画代码（如草摆动、旗帜飘动）
+    }
+}
+</code></pre>
+<h4 id="2-多pass透明度shader"><strong>2. 多Pass透明度Shader</strong></h4>
+<pre><code class="language-hlsl">SubShader {
+    Tags { 
+        &quot;DisableBatching&quot; = &quot;True&quot; 
+        &quot;Queue&quot; = &quot;Transparent&quot; 
+    }
+    Pass {
+        // 渲染正面
+    }
+    Pass {
+        // 渲染背面
+    }
+}
+</code></pre>
+<h4 id="3-基于实例id的着色"><strong>3. 基于实例ID的着色</strong></h4>
+<pre><code class="language-hlsl">SubShader {
+    Tags { &quot;DisableBatching&quot; = &quot;True&quot; }
+    CGPROGRAM
+    #pragma vertex vert
+    #pragma fragment frag
+    #pragma multi_compile_instancing
+    
+    struct appdata {
+        float4 vertex : POSITION;
+        UNITY_VERTEX_INPUT_INSTANCE_ID
+    };
+    
+    UNITY_INSTANCING_BUFFER_START(Props)
+        UNITY_DEFINE_INSTANCED_PROP(float4, _Color)
+    UNITY_INSTANCING_BUFFER_END(Props)
+    
+    v2f vert(appdata v) {
+        UNITY_SETUP_INSTANCE_ID(v);
+        float4 color = UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
+        // 使用实例ID获取不同颜色
+        // ...
+    }
+    ENDCG
+}
+</code></pre>
+<h3 id="最佳实践-2"><strong>最佳实践</strong></h3>
+<ol>
+<li><strong>仅在必要时禁用</strong>：优先调整Shader逻辑以支持批处理。</li>
+<li><strong>使用GPU Instancing</strong>：若需要实例独立性，优先启用GPU Instancing而非完全禁用批处理。</li>
+<li><strong>性能测试</strong>：禁用批处理后，使用Profiler检查Draw Call数量和渲染性能。</li>
+</ol>
+<p>通过合理使用DisableBatching标签，可确保Shader功能正确的同时，尽可能减少性能开销。</p>
+<!-- more -->
+<hr>
+<h3 id="4️⃣forcenoshadowcasting">4️⃣ForceNoShadowCasting</h3>
+<p>在Unity Shader中，<strong>ForceNoShadowCasting</strong>是一个用于控制阴影投射行为的标签。通过设置该标签，可以强制指定的物体不投射阴影，即使在光源设置中启用了阴影投射。以下是其作用、用法和注意事项：</p>
+<h3 id="forcenoshadowcasting的作用"><strong>ForceNoShadowCasting的作用</strong></h3>
+<p>该标签的主要用途是：</p>
+<ol>
+<li><strong>强制禁用阴影投射</strong>：无论材质或光源如何设置，带有此标签的物体都不会投射阴影。</li>
+<li><strong>优化性能</strong>：对于不需要投射阴影的物体（如UI元素、粒子效果），禁用阴影投射可以减少计算开销。</li>
+<li><strong>解决阴影异常</strong>：某些特殊Shader（如使用复杂顶点动画的Shader）可能导致阴影计算错误，此时可禁用阴影投射。</li>
+</ol>
+<h3 id="标签语法"><strong>标签语法</strong></h3>
+<p>在SubShader中添加标签：</p>
+<pre><code class="language-hlsl">SubShader {
+    Tags { &quot;ForceNoShadowCasting&quot; = &quot;True&quot; }
+    // 其他Shader代码
+}
+</code></pre>
+<ul>
+<li><strong>True</strong>：强制禁用阴影投射。</li>
+<li><strong>False</strong>（默认）：使用Unity的默认阴影投射规则。</li>
+</ul>
+<h3 id="应用场景"><strong>应用场景</strong></h3>
+<h4 id="1-不应该投射阴影的物体"><strong>1. 不应该投射阴影的物体</strong></h4>
+<pre><code class="language-hlsl">// 粒子效果Shader
+SubShader {
+    Tags { 
+        &quot;Queue&quot; = &quot;Transparent&quot; 
+        &quot;ForceNoShadowCasting&quot; = &quot;True&quot; 
+    }
+    // 粒子渲染代码
+}
+</code></pre>
+<h4 id="2-ui元素或覆盖层"><strong>2. UI元素或覆盖层</strong></h4>
+<pre><code class="language-hlsl">// UI Shader
+SubShader {
+    Tags { 
+        &quot;Queue&quot; = &quot;Overlay&quot; 
+        &quot;ForceNoShadowCasting&quot; = &quot;True&quot; 
+    }
+    // UI渲染代码
+}
+</code></pre>
+<h4 id="3-动态物体的性能优化"><strong>3. 动态物体的性能优化</strong></h4>
+<p>对于频繁移动或变化的物体（如角色、特效），禁用阴影投射可以显著提升性能：</p>
+<pre><code class="language-hlsl">// 角色Shader（禁用阴影以优化性能）
+SubShader {
+    Tags { &quot;ForceNoShadowCasting&quot; = &quot;True&quot; }
+    // 角色渲染代码
+}
+</code></pre>
+<h3 id="与其他阴影相关标签的区别"><strong>与其他阴影相关标签的区别</strong></h3>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ForceNoShadowCasting</strong></td>
+<td>强制禁用阴影投射，无论光源和材质设置如何。</td>
+</tr>
+<tr>
+<td><strong>ShadowCaster</strong> Pass</td>
+<td>自定义阴影投射的渲染逻辑（如使用不同的Shader）。</td>
+</tr>
+<tr>
+<td><strong>ReceiveShadows</strong></td>
+<td>控制物体是否接收阴影（而非投射阴影）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="注意事项-2"><strong>注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>性能权衡</strong>：</p>
+<ul>
+<li>禁用阴影投射可减少Draw Call和GPU计算，但可能影响场景真实感。</li>
+<li>对于静态物体，建议使用烘焙阴影而非动态阴影。</li>
+</ul>
+</li>
+<li>
+<p><strong>阴影接收</strong>：<br>
+ForceNoShadowCasting仅影响阴影投射，物体仍可接收其他物体的阴影。若需同时禁用阴影接收，可配合使用：</p>
+<pre><code class="language-hlsl">Tags { 
+    &quot;ForceNoShadowCasting&quot; = &quot;True&quot; 
+    &quot;ReceiveShadows&quot; = &quot;False&quot; 
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Shader替换</strong>：<br>
+在使用Shader替换（Shader Replacement）时，ForceNoShadowCasting标签可能被忽略，需在替换Shader中显式设置。</p>
+</li>
+</ol>
+<h3 id="最佳实践-3"><strong>最佳实践</strong></h3>
+<ol>
+<li><strong>仅对必要物体禁用</strong>：优先为不影响视觉效果的物体（如UI、粒子）禁用阴影投射。</li>
+<li><strong>结合烘焙阴影</strong>：对于静态场景元素，使用光照贴图（Lightmap）和烘焙阴影可获得更好的性能。</li>
+<li><strong>性能测试</strong>：使用Unity Profiler检查阴影计算对性能的影响，针对性地优化。</li>
+</ol>
+<p>通过合理使用ForceNoShadowCasting标签，可以在保证视觉效果的同时提升渲染性能，尤其在移动设备或性能敏感的场景中尤为重要。</p>
+<!-- more -->
+<hr>
+<h3 id="5️⃣ignoreprojector">5️⃣IgnoreProjector</h3>
+<p>在Unity Shader中，<strong>IgnoreProjector</strong>是一个用于控制Shader是否受Projector（投影器）影响的标签。通过设置该标签，可以让物体忽略场景中的投影器效果，保持自身原有渲染。以下是其作用、用法和注意事项：</p>
+<h3 id="ignoreprojector的作用"><strong>IgnoreProjector的作用</strong></h3>
+<p>Projector是Unity中用于投射纹理或效果的组件（如阴影、血迹、激光等）。但某些情况下，你可能希望特定物体不受投影器影响：</p>
+<ol>
+<li><strong>视觉一致性</strong>：确保物体渲染不受外部投影干扰（如UI元素、特效）。</li>
+<li><strong>性能优化</strong>：减少不必要的投影计算，提升性能。</li>
+<li><strong>技术限制</strong>：某些复杂Shader可能与投影器不兼容。</li>
+</ol>
+<h3 id="标签语法-2"><strong>标签语法</strong></h3>
+<p>在SubShader中添加标签：</p>
+<pre><code class="language-hlsl">SubShader {
+    Tags { &quot;IgnoreProjector&quot; = &quot;True&quot; }
+    // 其他Shader代码
+}
+</code></pre>
+<ul>
+<li><strong>True</strong>：物体将忽略所有投影器效果。</li>
+<li><strong>False</strong>（默认）：物体将正常受投影器影响。</li>
+</ul>
+<h3 id="应用场景-2"><strong>应用场景</strong></h3>
+<h4 id="1-ui元素或覆盖层"><strong>1. UI元素或覆盖层</strong></h4>
+<pre><code class="language-hlsl">// UI Shader
+SubShader {
+    Tags { 
+        &quot;Queue&quot; = &quot;Overlay&quot; 
+        &quot;IgnoreProjector&quot; = &quot;True&quot; 
+    }
+    // UI渲染代码
+}
+</code></pre>
+<h4 id="2-特效或粒子系统"><strong>2. 特效或粒子系统</strong></h4>
+<pre><code class="language-hlsl">// 粒子Shader
+SubShader {
+    Tags { 
+        &quot;Queue&quot; = &quot;Transparent&quot; 
+        &quot;IgnoreProjector&quot; = &quot;True&quot; 
+    }
+    // 粒子渲染代码
+}
+</code></pre>
+<h4 id="3-已包含复杂效果的shader"><strong>3. 已包含复杂效果的Shader</strong></h4>
+<p>对于使用自定义光照模型或复杂顶点动画的Shader，投影器可能导致渲染异常：</p>
+<pre><code class="language-hlsl">// 自定义光照Shader
+SubShader {
+    Tags { &quot;IgnoreProjector&quot; = &quot;True&quot; }
+    // 复杂光照计算代码
+}
+</code></pre>
+<h3 id="与其他标签的协同使用"><strong>与其他标签的协同使用</strong></h3>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IgnoreProjector</strong></td>
+<td>忽略投影器效果。</td>
+</tr>
+<tr>
+<td><strong>ForceNoShadowCasting</strong></td>
+<td>禁用阴影投射。</td>
+</tr>
+<tr>
+<td><strong>RenderType</strong></td>
+<td>控制Shader在特定场景（如延迟渲染）中的行为。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="注意事项-3"><strong>注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>投影器类型限制</strong>：<br>
+IgnoreProjector仅影响Unity的内置Projector组件，对基于脚本或后处理的自定义投影效果无效。</p>
+</li>
+<li>
+<p><strong>性能影响</strong>：<br>
+虽然忽略投影器可减少计算，但现代GPU处理投影器的开销通常较小，优化时需权衡。</p>
+</li>
+<li>
+<p><strong>Shader替换</strong>：<br>
+在使用Shader替换（Shader Replacement）时，需确保替换Shader也包含IgnoreProjector标签。</p>
+</li>
+</ol>
+<h3 id="最佳实践-4"><strong>最佳实践</strong></h3>
+<ol>
+<li><strong>仅对必要物体启用</strong>：优先为UI、特效等不需要投影效果的物体设置此标签。</li>
+<li><strong>测试视觉效果</strong>：禁用投影器可能影响场景真实感，需确保效果符合预期。</li>
+<li><strong>结合其他优化</strong>：与ForceNoShadowCasting、ReceiveShadows等标签配合使用，进一步减少渲染开销。</li>
+</ol>
+<p>通过合理使用IgnoreProjector标签，可以确保特定物体的渲染效果不受投影器干扰，同时优化性能。</p>
+<!-- more -->
+<hr>
+<h3 id="6️⃣canusespriteatlas">6️⃣CanUseSpriteAtlas</h3>
+<p>在Unity Shader中，<strong>CanUseSpriteAtlas</strong> 是一个与精灵图集（Sprite Atlas）相关的标签，主要用于控制Sprite是否可以从精灵图集中获取纹理数据。以下是其具体作用和用法：</p>
+<h3 id="canusespriteatlas的作用"><strong>CanUseSpriteAtlas的作用</strong></h3>
+<p>精灵图集是Unity中优化2D渲染性能的重要工具，它将多个Sprite打包到一个或多个纹理中，减少Draw Call。<strong>CanUseSpriteAtlas</strong> 标签的核心作用是：</p>
+<ol>
+<li>
+<p><strong>允许Sprite使用图集</strong><br>
+当标签设置为 <strong>&quot;True&quot;</strong> 时，Shader告诉Unity该Sprite可以从精灵图集中获取纹理数据。这是精灵图集正常工作的必要条件。</p>
+</li>
+<li>
+<p><strong>兼容Sprite Packer</strong><br>
+在旧版Unity（2017及之前）中，该标签用于与Sprite Packer系统配合，确保Sprite在打包后仍能正确渲染。</p>
+</li>
+<li>
+<p><strong>控制Shader替换行为</strong><br>
+在使用Shader替换（Shader Replacement）时，该标签可帮助Unity判断哪些Shader适用于精灵图集渲染。</p>
+</li>
+</ol>
+<h3 id="标签语法-3"><strong>标签语法</strong></h3>
+<p>在Shader的SubShader中添加标签：</p>
+<pre><code class="language-hlsl">SubShader {
+    Tags { &quot;CanUseSpriteAtlas&quot; = &quot;True&quot; }
+    // 其他Shader代码
+}
+</code></pre>
+<ul>
+<li><strong>&quot;True&quot;</strong>：允许Sprite使用精灵图集。</li>
+<li><strong>&quot;False&quot;</strong>：禁用精灵图集支持，Sprite将始终使用单独的纹理。</li>
+</ul>
+<h3 id="应用场景-3"><strong>应用场景</strong></h3>
+<h4 id="1-精灵图集渲染"><strong>1. 精灵图集渲染</strong></h4>
+<p>所有需要从精灵图集获取纹理的Sprite Shader都应添加此标签：</p>
+<pre><code class="language-hlsl">// 精灵Shader示例
+SubShader {
+    Tags { 
+        &quot;Queue&quot; = &quot;Transparent&quot; 
+        &quot;IgnoreProjector&quot; = &quot;True&quot; 
+        &quot;RenderType&quot; = &quot;Transparent&quot; 
+        &quot;CanUseSpriteAtlas&quot; = &quot;True&quot; 
+    }
+    // 渲染精灵的Pass
+}
+</code></pre>
+<h4 id="2-自定义sprite-shader"><strong>2. 自定义Sprite Shader</strong></h4>
+<p>当创建自定义Sprite Shader时，必须添加此标签以确保与精灵图集兼容：</p>
+<pre><code class="language-hlsl">// 自定义精灵着色器
+SubShader {
+    Tags { &quot;CanUseSpriteAtlas&quot; = &quot;True&quot; }
+    Pass {
+        // 自定义渲染逻辑（如顶点动画、特殊效果）
+    }
+}
+</code></pre>
+<h4 id="3-旧版unity兼容性"><strong>3. 旧版Unity兼容性</strong></h4>
+<p>在Unity 2017及更早版本中，该标签对Sprite Packer系统至关重要：</p>
+<pre><code class="language-hlsl">// 兼容旧版Sprite Packer的Shader
+SubShader {
+    Tags { &quot;CanUseSpriteAtlas&quot; = &quot;True&quot; }
+    // 旧版渲染逻辑
+}
+</code></pre>
+<h3 id="注意事项-4"><strong>注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>Unity版本差异</strong></p>
+<ul>
+<li>在Unity 2018及以后，精灵图集系统（Sprite Atlas）已取代旧版Sprite Packer，但该标签仍需保留以确保兼容性。</li>
+<li>若Shader不打算用于精灵图集（如仅渲染单个Sprite），可将标签设为 <strong>&quot;False&quot;</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>与其他标签的协同</strong><br>
+通常需与以下标签共同使用：</p>
+<pre><code class="language-hlsl">Tags {
+    &quot;RenderType&quot; = &quot;Transparent&quot;
+    &quot;Queue&quot; = &quot;Transparent&quot;
+    &quot;CanUseSpriteAtlas&quot; = &quot;True&quot;
+}
+</code></pre>
+</li>
+<li>
+<p><strong>性能影响</strong><br>
+使用精灵图集可显著减少Draw Call，提升2D渲染性能。若禁用该标签，Sprite将无法从图集中受益。</p>
+</li>
+</ol>
+<h3 id="最佳实践-5"><strong>最佳实践</strong></h3>
+<ol>
+<li>
+<p><strong>始终为精灵Shader添加此标签</strong><br>
+除非明确不需要使用精灵图集，否则所有Sprite Shader都应设置 <code>&quot;CanUseSpriteAtlas&quot; = &quot;True&quot;</code>。</p>
+</li>
+<li>
+<p><strong>结合SpriteAtlas API</strong><br>
+在脚本中可通过 <code>SpriteAtlas</code> API 动态管理精灵图集：</p>
+<pre><code class="language-csharp">// C#示例：加载精灵图集
+SpriteAtlas atlas = Resources.Load&lt;SpriteAtlas&gt;(&quot;MySpriteAtlas&quot;);
+Sprite sprite = atlas.GetSprite(&quot;MySprite&quot;);
+</code></pre>
+</li>
+<li>
+<p><strong>测试与优化</strong><br>
+使用Profiler检查精灵渲染的Draw Call数量，确保精灵图集正常工作。</p>
+</li>
+</ol>
+<p>通过合理使用 <strong>CanUseSpriteAtlas</strong> 标签，可确保Sprite在精灵图集中正确渲染，提升2D游戏的性能和兼容性。</p>
+<!-- more -->
+<hr>
+<h3 id="7️⃣previewtype">7️⃣PreviewType</h3>
+<p>在Unity Shader中，<strong>PreviewType</strong> 是一个用于控制材质在Inspector面板中预览方式的标签。通过设置该标签，你可以自定义Shader在Unity编辑器中的预览效果，使其更直观地展示材质特性。以下是其作用、用法和常见场景：</p>
+<h3 id="previewtype的作用"><strong>PreviewType的作用</strong></h3>
+<ol>
+<li>
+<p><strong>指定预览几何体</strong><br>
+控制Shader在Inspector面板中使用何种模型预览（如球体、立方体、平面等）。</p>
+</li>
+<li>
+<p><strong>自定义预览效果</strong><br>
+针对特殊Shader（如地形、UI、粒子），提供更符合其特性的预览方式。</p>
+</li>
+<li>
+<p><strong>优化预览性能</strong><br>
+对于复杂Shader，选择简单几何体可减少预览计算开销。</p>
+</li>
+</ol>
+<h3 id="标签语法-4"><strong>标签语法</strong></h3>
+<p>在Shader代码中添加：</p>
+<pre><code class="language-hlsl">Shader &quot;Custom/MyShader&quot; {
+    Properties {
+        // 属性定义
+    }
+    SubShader {
+        Tags { &quot;PreviewType&quot; = &quot;Sphere&quot; } // 指定预览类型
+        // 其他Shader代码
+    }
+}
+</code></pre>
+<h3 id="常见previewtype值"><strong>常见PreviewType值</strong></h3>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sphere</strong></td>
+<td>使用球体预览（默认值，适合大多数Shader，如标准材质）。</td>
+</tr>
+<tr>
+<td><strong>Plane</strong></td>
+<td>使用平面预览（适合2D材质、UI元素、广告牌效果）。</td>
+</tr>
+<tr>
+<td><strong>Cube</strong></td>
+<td>使用立方体预览（适合立方体贴图、反射材质）。</td>
+</tr>
+<tr>
+<td><strong>Skybox</strong></td>
+<td>使用天空盒预览（适合天空盒Shader）。</td>
+</tr>
+<tr>
+<td><strong>Mesh</strong></td>
+<td>使用自定义网格预览（需配合 <code>PreviewMesh</code> 标签指定网格路径）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="应用场景-4"><strong>应用场景</strong></h3>
+<h4 id="1-2d精灵或ui材质"><strong>1. 2D精灵或UI材质</strong></h4>
+<pre><code class="language-hlsl">Shader &quot;Custom/SpriteShader&quot; {
+    SubShader {
+        Tags { 
+            &quot;PreviewType&quot; = &quot;Plane&quot; // 使用平面预览，更符合2D材质特性
+            &quot;RenderType&quot; = &quot;Transparent&quot;
+        }
+        // 渲染代码
+    }
+}
+</code></pre>
+<h4 id="2-立方体贴图或反射材质"><strong>2. 立方体贴图或反射材质</strong></h4>
+<pre><code class="language-hlsl">Shader &quot;Custom/ReflectionShader&quot; {
+    SubShader {
+        Tags { 
+            &quot;PreviewType&quot; = &quot;Cube&quot; // 使用立方体展示六个面的反射效果
+        }
+        // 渲染代码
+    }
+}
+</code></pre>
+<h4 id="3-天空盒shader"><strong>3. 天空盒Shader</strong></h4>
+<pre><code class="language-hlsl">Shader &quot;Custom/SkyboxShader&quot; {
+    SubShader {
+        Tags { 
+            &quot;PreviewType&quot; = &quot;Skybox&quot; // 使用天空盒预览
+            &quot;RenderType&quot; = &quot;Background&quot;
+        }
+        // 渲染代码
+    }
+}
+</code></pre>
+<h4 id="4-自定义网格预览"><strong>4. 自定义网格预览</strong></h4>
+<pre><code class="language-hlsl">Shader &quot;Custom/TerrainShader&quot; {
+    SubShader {
+        Tags { 
+            &quot;PreviewType&quot; = &quot;Mesh&quot;
+            &quot;PreviewMesh&quot; = &quot;Assets/Models/TerrainPreview.fbx&quot; // 指定自定义网格
+        }
+        // 渲染代码
+    }
+}
+</code></pre>
+<h3 id="与其他预览相关标签的配合"><strong>与其他预览相关标签的配合</strong></h3>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PreviewType</strong></td>
+<td>指定预览几何体类型。</td>
+</tr>
+<tr>
+<td><strong>PreviewMesh</strong></td>
+<td>当PreviewType为&quot;Mesh&quot;时，指定自定义网格的路径。</td>
+</tr>
+<tr>
+<td><strong>DisablePreview</strong></td>
+<td>禁用预览（设为&quot;True&quot;时，材质在Inspector中不显示预览）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="注意事项-5"><strong>注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>性能考虑</strong></p>
+<ul>
+<li>复杂网格（如自定义PreviewMesh）可能增加预览渲染时间，建议使用简化模型。</li>
+</ul>
+</li>
+<li>
+<p><strong>路径问题</strong></p>
+<ul>
+<li>使用 <code>PreviewMesh</code> 时，需确保网格路径正确且可被Unity识别。</li>
+</ul>
+</li>
+<li>
+<p><strong>版本兼容性</strong></p>
+<ul>
+<li>部分Unity版本可能对某些PreviewType值支持有限，建议测试后使用。</li>
+</ul>
+</li>
+</ol>
+<h3 id="最佳实践-6"><strong>最佳实践</strong></h3>
+<ol>
+<li>
+<p><strong>为特殊Shader指定合适类型</strong></p>
+<ul>
+<li>2D材质 → Plane</li>
+<li>反射/立方体贴图 → Cube</li>
+<li>天空盒 → Skybox</li>
+<li>地形/复杂模型 → 自定义Mesh</li>
+</ul>
+</li>
+<li>
+<p><strong>简化自定义预览网格</strong><br>
+自定义PreviewMesh应尽量简单（如低面数模型），避免影响编辑器性能。</p>
+</li>
+<li>
+<p><strong>结合预览属性</strong><br>
+在Properties中添加预览相关属性（如预览颜色），提升可视化效果：</p>
+<pre><code class="language-hlsl">Properties {
+    _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+    [PreviewVisible] _Color (&quot;Preview Color&quot;, Color) = (1,1,1,1) // 预览可见的颜色
+}
+</code></pre>
+</li>
+</ol>
+<p>通过合理设置 <strong>PreviewType</strong>，可以让Shader在Unity编辑器中更直观地展示其效果，提高开发效率。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/recttransformutilityscreenpointtolocalpointinrectangle/" class="post-title gt-a-link">
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>GPU的工作原理 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    GPU的工作原理
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-08 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/5KMZRpVScM/" class="post-tags">
+                            # GPU
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>GPU的核心工作原理是<strong>大规模并行计算</strong>，通过SIMT（单指令多线程）架构与专用硬件流水线，将复杂任务拆解为海量可同步执行的子任务，由数千个计算单元并行完成，以高吞吐量处理图形渲染、AI训练等数据密集型工作。</p>
+<hr>
+<h3 id="一-核心架构并行计算的硬件基础">一、核心架构：并行计算的硬件基础</h3>
+<p>GPU与CPU的核心差异在于设计目标与硬件组织，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">组件</th>
+<th style="text-align:left">GPU特点</th>
+<th style="text-align:left">CPU特点</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>核心数量</strong></td>
+<td style="text-align:left">数千个小型核心（如CUDA Core），组成多个SM/CU</td>
+<td style="text-align:left">4–64个强核心，多级缓存与复杂控制单元</td>
+<td style="text-align:left">GPU适合高吞吐量并行；CPU适合低延迟串行</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>计算单元</strong></td>
+<td style="text-align:left">SM（流多处理器）/CU（计算单元），含通用计算、光追、AI专用核心</td>
+<td style="text-align:left">单核强算力，复杂分支预测与乱序执行</td>
+<td style="text-align:left">GPU统一调度线程束；CPU快速响应复杂指令</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>内存系统</strong></td>
+<td style="text-align:left">高带宽VRAM（GDDR6X/HBM3），大显存容量</td>
+<td style="text-align:left">多级缓存（L1/L2/L3），依赖系统内存</td>
+<td style="text-align:left">GPU减少数据交换延迟；CPU优化缓存命中率</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>调度模型</strong></td>
+<td style="text-align:left">线程束（Warp，通常32线程）锁步执行，隐藏延迟</td>
+<td style="text-align:left">单线程优先，分支预测与推测执行</td>
+<td style="text-align:left">GPU通过线程级并行掩盖内存延迟；CPU通过指令级并行提升效率</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="二-图形渲染流水线核心工作流程">二、图形渲染流水线（核心工作流程）</h3>
+<p>图形渲染是GPU的经典任务，分为以下阶段，各阶段由专用硬件并行处理：</p>
+<ol>
+<li><strong>顶点处理</strong>：顶点着色器（Vertex Shader）并行处理3D模型的顶点数据，完成模型变换、视图变换与投影变换，输出裁剪空间顶点。现代GPU还支持曲面细分（Tessellation）以提升模型细节。</li>
+<li><strong>几何处理</strong>：几何着色器（Geometry Shader）可选，对图元（如三角形）进行拓扑修改（如增删顶点），输出新的图元。</li>
+<li><strong>光栅化</strong>：将裁剪后的三角形转换为像素片段（Fragment），通过扫描线算法遍历像素，并使用Z - buffer进行深度测试，剔除被遮挡的片段。</li>
+<li><strong>像素处理</strong>：像素着色器（Pixel Shader）并行计算每个片段的颜色、纹理映射、光照、阴影等，结合纹理单元（TMU）进行采样与过滤，输出最终像素值。</li>
+<li><strong>后处理与输出</strong>：执行抗锯齿（MSAA/TAA）、HDR、景深等特效，将帧缓存数据输出到显示器。</li>
+</ol>
+<hr>
+<h3 id="三-通用计算gpgpu工作原理">三、通用计算（GPGPU）工作原理</h3>
+<p>GPU不仅用于图形，还通过GPGPU加速科学计算、AI训练等任务，其流程如下：</p>
+<ol>
+<li><strong>任务分解</strong>：通过CUDA/OpenCL等框架，将计算任务划分为大量独立线程，组织成线程块（Block）与线程网格（Grid）。</li>
+<li><strong>线程调度</strong>：Warp调度器将线程块分配到SM上，每个Warp以锁步方式执行同一指令，处理不同数据（SIMT模型）。</li>
+<li><strong>数据管理</strong>：通过共享内存（Shared Memory）实现线程间通信，利用全局内存（Global Memory）存储输入/输出数据，依赖高带宽VRAM提升数据吞吐量。</li>
+<li><strong>结果回写</strong>：计算完成后，将结果从GPU显存复制回系统内存，供CPU进一步处理或输出。</li>
+</ol>
+<hr>
+<h3 id="四-ai与光追加速现代gpu增强功能">四、AI与光追加速（现代GPU增强功能）</h3>
+<p>现代GPU集成专用硬件以加速新兴任务：</p>
+<ul>
+<li><strong>光线追踪核心（RT Core）</strong>：专用硬件加速光线与三角形求交计算，实现实时光线追踪，提升阴影、反射、折射的真实感。</li>
+<li><strong>张量核心（Tensor Core）</strong>：专为矩阵运算优化，加速AI训练中的卷积、矩阵乘法，支持混合精度计算（FP16/FP32/INT8），并赋能DLSS等超分辨率技术。</li>
+</ul>
+<hr>
+<h3 id="五-关键技术点">五、关键技术点</h3>
+<ol>
+<li><strong>SIMT执行模型</strong>：同一Warp的线程执行相同指令，处理不同数据，适合数据并行任务（如图像像素计算、矩阵运算）。</li>
+<li><strong>延迟隐藏</strong>：GPU通过海量线程并行执行，当部分线程等待内存访问时，调度其他线程执行，从而隐藏内存延迟。</li>
+<li><strong>内存层次优化</strong>：多级缓存（L1/Shared Memory/L2）与高带宽VRAM配合，减少数据访问延迟，提升整体吞吐量。</li>
+</ol>
+<hr>
+<h3 id="六-总结">六、总结</h3>
+<p>GPU的工作原理可概括为：<strong>以大规模并行架构为基础，通过专用硬件流水线与高效线程调度，将复杂任务拆解为海量子任务并行处理，兼顾图形渲染的实时性与通用计算的高吞吐量</strong>。无论是游戏中的光影渲染，还是AI训练中的矩阵运算，GPU都凭借其并行优势，成为现代计算的核心加速部件。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-computeshader/" class="post-title gt-a-link">
+                    Unity ComputeShader
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

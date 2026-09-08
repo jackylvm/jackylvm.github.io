@@ -1,0 +1,291 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity Tilemap瓦片地图类型介绍 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity Tilemap瓦片地图类型介绍
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-05-21 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/PqZCL03ToY/" class="post-tags">
+                            # Tilemap
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>记录瓦片地图类型,容易忘记的东西就记录下来</p>
+<!-- more -->
+<ol>
+<li>Hexagonal - Flat - Top（平顶六边形）</li>
+<li>Hexagonal - Pointer - Top（尖顶六边形）</li>
+<li>Isometric（等距）</li>
+<li>Isometric Z as Y（等距 Z 轴作为 Y 轴）</li>
+<li>Rectangular（矩形）</li>
+</ol>
+<!-- more -->
+<ul>
+<li>
+<p><strong>Hexagonal - Flat - Top Tilemap（平顶六边形瓦片地图）</strong>：</p>
+<ul>
+<li><strong>外观特点</strong>：其六边形的顶部是一条平行于屏幕顶部的边，看起来六边形是“躺着”的，以扁平的顶部呈现。这种布局方式使得在视觉上，瓦片的顶部形成一条连续的直线，适合用于一些需要营造平稳、整齐视觉效果的场景，比如棋盘类游戏场景等。</li>
+<li><strong>坐标系统</strong>：采用偏移坐标系统，每奇数列会向顶部偏移半个单元格的高度。这样的坐标系统有助于实现六边形之间的紧密排列，并且在进行瓦片绘制和逻辑处理时，能够方便地计算相邻瓦片的位置关系。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hexagonal - Pointer - Top Tilemap（尖顶六边形瓦片地图）</strong>：</p>
+<ul>
+<li><strong>外观特点</strong>：每个六边形的其中一个顶点指向屏幕上方，使六边形呈现出“站立”的姿态，有一个明显的尖顶朝上。这种设计在一些需要突出方向感或者营造动态感的场景中较为常用，比如角色扮演游戏中具有方向性指引的地图等。</li>
+</ul>
+</li>
+<li>
+<p><strong>Isometric（等距）瓦片地图</strong></p>
+<ul>
+<li><strong>外观特点</strong>：
+<ul>
+<li>采用45度俯视视角，水平和垂直方向的线条被压缩为对角线，形成菱形网格。瓦片通常呈现为钻石形状，且所有瓦片在视觉上保持相同的倾斜角度。</li>
+<li>这种投影方式创造出经典的“斜45度”游戏视角，常见于《帝国时代》《模拟城市》等游戏。</li>
+</ul>
+</li>
+<li><strong>坐标系统</strong>：
+<ul>
+<li>使用正交投影，X轴和Y轴分别对应游戏世界中的水平和垂直方向，但在屏幕上表现为对角线。</li>
+<li>瓦片的排列遵循特定的透视规则，近大远小的效果通过瓦片的堆叠顺序模拟。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Isometric Z as Y（等距Z轴作为Y轴）瓦片地图</strong></p>
+<ul>
+<li><strong>外观特点</strong>：
+<ul>
+<li>与标准Isometric类似，但使用Z轴（深度）来表示高度，而非传统的Y轴。这意味着瓦片的高度由Z坐标控制，而非Y坐标。</li>
+<li>适合创建具有明显高度差的3D场景，如地形起伏、多层建筑等，瓦片可以在Z轴上堆叠。</li>
+</ul>
+</li>
+<li><strong>坐标系统</strong>：
+<ul>
+<li>X轴表示水平方向，Y轴表示深度（进入屏幕），Z轴表示高度。这种方式更接近真实3D空间的表示方法。</li>
+<li>瓦片的渲染顺序由Z值决定，允许创建更自然的遮挡关系。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Rectangular（矩形）瓦片地图</strong></p>
+<ul>
+<li><strong>外观特点</strong>：
+<ul>
+<li>最基本的瓦片地图类型，使用标准的矩形网格。瓦片是正方形或长方形，排列成行列结构。</li>
+<li>常见于平台游戏、像素游戏（如《超级马里奥》）或需要简单网格系统的场景。</li>
+</ul>
+</li>
+<li><strong>坐标系统</strong>：
+<ul>
+<li>X轴和Y轴直接对应屏幕上的水平和垂直方向，坐标计算简单直观。</li>
+<li>瓦片的排列遵循标准的行列规则，相邻瓦片之间的距离固定。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Isometric</strong>：适合经典斜角视角的2D游戏，强调平面布局。</p>
+</li>
+<li>
+<p><strong>Isometric Z as Y</strong>：适合需要3D深度和高度变化的场景，利用Z轴简化垂直方向的控制。</p>
+</li>
+<li>
+<p><strong>Rectangular</strong>：适合简单直接的网格系统，是最常见的瓦片地图类型。</p>
+</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/shader-graph-lei-xing-xuan-ze/" class="post-title gt-a-link">
+                    Shader Graph类型选择
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

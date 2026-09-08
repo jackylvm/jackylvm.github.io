@@ -1,0 +1,575 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x04. 抽象工厂模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x04. 抽象工厂模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-12-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="抽象工厂模式">抽象工厂模式</h2>
+<!-- more -->
+<p>在Unity中使用C#实现<strong>抽象工厂模式</strong>，核心是解决「创建一组相关/依赖的产品族」问题（而非单一产品）。结合游戏开发典型场景——<strong>不同阵营（人类/兽人）的配套角色+武器</strong>（人类战士+剑、兽人战士+战斧；人类法师+法杖、兽人法师+狼牙棒），能直观体现抽象工厂“生产产品族”的核心特性。</p>
+<h3 id="一-核心思路抽象工厂模式">一、核心思路（抽象工厂模式）</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>对应实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抽象产品A</td>
+<td><code>ICharacter</code>（角色接口）</td>
+<td>定义所有角色的通用行为（移动、攻击）</td>
+</tr>
+<tr>
+<td>抽象产品B</td>
+<td><code>IWeapon</code>（武器接口）</td>
+<td>定义所有武器的通用行为（攻击、展示）</td>
+</tr>
+<tr>
+<td>具体产品A1/A2</td>
+<td><code>HumanWarrior</code>/<code>OrcWarrior</code></td>
+<td>人类/兽人战士（实现<code>ICharacter</code>）</td>
+</tr>
+<tr>
+<td>具体产品B1/B2</td>
+<td><code>Sword</code>/<code>BattleAxe</code></td>
+<td>剑/战斧（实现<code>IWeapon</code>）</td>
+</tr>
+<tr>
+<td>抽象工厂</td>
+<td><code>ICampFactory</code>（阵营工厂接口）</td>
+<td>定义创建“角色+武器”产品族的抽象方法（<code>CreateCharacter()</code>+<code>CreateWeapon()</code>）</td>
+</tr>
+<tr>
+<td>具体工厂</td>
+<td><code>HumanCampFactory</code>/<code>OrcCampFactory</code></td>
+<td>人类/兽人阵营工厂，实现抽象工厂，创建对应阵营的角色+武器</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td><code>GameManager</code>（挂载到Unity物体）</td>
+<td>调用具体工厂，一次性创建配套的角色+武器，无需关注具体产品实现</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-完整代码实现">二、完整代码实现</h3>
+<h4 id="1-抽象产品定义角色武器">1. 抽象产品定义（角色+武器）</h4>
+<h5 id="11-角色抽象产品icharacter">1.1 角色抽象产品：<code>ICharacter</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 角色抽象产品：定义所有角色的通用行为
+/// &lt;/summary&gt;
+public interface ICharacter
+{
+    string Camp { get; } // 阵营（人类/兽人）
+    string Name { get; } // 角色名称
+    void Move();         // 移动行为
+    void Attack(IWeapon weapon); // 攻击（依赖武器）
+}
+</code></pre>
+<h5 id="12-武器抽象产品iweapon">1.2 武器抽象产品：<code>IWeapon</code></h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 武器抽象产品：定义所有武器的通用行为
+/// &lt;/summary&gt;
+public interface IWeapon
+{
+    string Name { get; } // 武器名称
+    int AttackPower { get; } // 攻击力
+    void ShowWeapon(); // 展示武器
+}
+</code></pre>
+<h4 id="2-具体产品实现人类兽人配套角色武器">2. 具体产品实现（人类/兽人配套角色+武器）</h4>
+<h5 id="21-人类阵营具体产品">2.1 人类阵营具体产品</h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 人类战士（具体产品A1）
+/// &lt;/summary&gt;
+public class HumanWarrior : ICharacter
+{
+    public string Camp =&gt; &quot;人类阵营&quot;;
+    public string Name =&gt; &quot;人类战士&quot;;
+
+    public void Move()
+    {
+        Debug.Log($&quot;{Camp}-{Name}：持盾稳步推进！&quot;);
+    }
+
+    public void Attack(IWeapon weapon)
+    {
+        Debug.Log($&quot;{Camp}-{Name} 使用 {weapon.Name} 攻击，造成 {weapon.AttackPower} 点物理伤害！&quot;);
+    }
+}
+
+/// &lt;summary&gt;
+/// 剑（人类配套武器，具体产品B1）
+/// &lt;/summary&gt;
+public class Sword : IWeapon
+{
+    public string Name =&gt; &quot;圣光之剑&quot;;
+    public int AttackPower =&gt; 80;
+
+    public void ShowWeapon()
+    {
+        Debug.Log($&quot;装备 {Name}：剑身散发圣光，攻击力+{AttackPower}&quot;);
+    }
+}
+</code></pre>
+<h5 id="22-兽人阵营具体产品">2.2 兽人阵营具体产品</h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 兽人战士（具体产品A2）
+/// &lt;/summary&gt;
+public class OrcWarrior : ICharacter
+{
+    public string Camp =&gt; &quot;兽人阵营&quot;;
+    public string Name =&gt; &quot;兽人狂战士&quot;;
+
+    public void Move()
+    {
+        Debug.Log($&quot;{Camp}-{Name}：狂怒冲锋，势不可挡！&quot;);
+    }
+
+    public void Attack(IWeapon weapon)
+    {
+        Debug.Log($&quot;{Camp}-{Name} 使用 {weapon.Name} 攻击，造成 {weapon.AttackPower} 点物理伤害！&quot;);
+    }
+}
+
+/// &lt;summary&gt;
+/// 战斧（兽人配套武器，具体产品B2）
+/// &lt;/summary&gt;
+public class BattleAxe : IWeapon
+{
+    public string Name =&gt; &quot;嗜血战斧&quot;;
+    public int AttackPower =&gt; 100;
+
+    public void ShowWeapon()
+    {
+        Debug.Log($&quot;装备 {Name}：斧刃沾满鲜血，攻击力+{AttackPower}&quot;);
+    }
+}
+</code></pre>
+<h4 id="3-抽象工厂与具体工厂生产产品族">3. 抽象工厂与具体工厂（生产产品族）</h4>
+<h5 id="31-抽象工厂icampfactory定义产品族创建接口">3.1 抽象工厂：<code>ICampFactory</code>（定义产品族创建接口）</h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 阵营工厂抽象类（抽象工厂）：定义创建“角色+武器”产品族的方法
+/// &lt;/summary&gt;
+public interface ICampFactory
+{
+    // 创建阵营角色
+    ICharacter CreateCharacter();
+    // 创建配套武器
+    IWeapon CreateWeapon();
+}
+</code></pre>
+<h5 id="32-具体工厂人类兽人阵营工厂">3.2 具体工厂：人类/兽人阵营工厂</h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 人类阵营工厂（具体工厂1）：生产人类角色+配套武器
+/// &lt;/summary&gt;
+public class HumanCampFactory : ICampFactory
+{
+    public ICharacter CreateCharacter()
+    {
+        // Unity特有逻辑：可在此加载人类战士预制体、初始化位置等
+        Debug.Log(&quot;[人类阵营工厂] 加载人类战士预制体完成！&quot;);
+        return new HumanWarrior();
+    }
+
+    public IWeapon CreateWeapon()
+    {
+        Debug.Log(&quot;[人类阵营工厂] 加载圣光之剑预制体完成！&quot;);
+        return new Sword();
+    }
+}
+
+/// &lt;summary&gt;
+/// 兽人阵营工厂（具体工厂2）：生产兽人角色+配套武器
+/// &lt;/summary&gt;
+public class OrcCampFactory : ICampFactory
+{
+    public ICharacter CreateCharacter()
+    {
+        Debug.Log(&quot;[兽人阵营工厂] 加载兽人狂战士预制体完成！&quot;);
+        return new OrcWarrior();
+    }
+
+    public IWeapon CreateWeapon()
+    {
+        Debug.Log(&quot;[兽人阵营工厂] 加载嗜血战斧预制体完成！&quot;);
+        return new BattleAxe();
+    }
+}
+</code></pre>
+<h4 id="4-客户端调用gamemanagerunity场景挂载">4. 客户端调用：<code>GameManager</code>（Unity场景挂载）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 游戏管理器（客户端）：调用抽象工厂创建完整产品族
+/// &lt;/summary&gt;
+public class GameManager : MonoBehaviour
+{
+    private void Start()
+    {
+        // ========== 1. 创建人类阵营产品族（战士+剑） ==========
+        Debug.Log(&quot;—————— 初始化人类阵营部队 ——————&quot;);
+        ICampFactory humanFactory = new HumanCampFactory();
+        ICharacter humanWarrior = humanFactory.CreateCharacter();
+        IWeapon humanSword = humanFactory.CreateWeapon();
+        
+        humanWarrior.Move();
+        humanSword.ShowWeapon();
+        humanWarrior.Attack(humanSword);
+
+        // ========== 2. 创建兽人阵营产品族（狂战士+战斧） ==========
+        Debug.Log(&quot;\n—————— 初始化兽人阵营部队 ——————&quot;);
+        ICampFactory orcFactory = new OrcCampFactory();
+        ICharacter orcWarrior = orcFactory.CreateCharacter();
+        IWeapon orcAxe = orcFactory.CreateWeapon();
+        
+        orcWarrior.Move();
+        orcAxe.ShowWeapon();
+        orcWarrior.Attack(orcAxe);
+    }
+}
+</code></pre>
+<h3 id="三-unity运行效果">三、Unity运行效果</h3>
+<p>将<code>GameManager</code>挂载到场景任意物体（如MainCamera），运行后控制台输出：</p>
+<pre><code>—————— 初始化人类阵营部队 ——————
+[人类阵营工厂] 加载人类战士预制体完成！
+[人类阵营工厂] 加载圣光之剑预制体完成！
+人类阵营-人类战士：持盾稳步推进！
+装备 圣光之剑：剑身散发圣光，攻击力+80
+人类阵营-人类战士 使用 圣光之剑 攻击，造成 80 点物理伤害！
+
+—————— 初始化兽人阵营部队 ——————
+[兽人阵营工厂] 加载兽人狂战士预制体完成！
+[兽人阵营工厂] 加载嗜血战斧预制体完成！
+兽人阵营-兽人狂战士：狂怒冲锋，势不可挡！
+装备 嗜血战斧：斧刃沾满鲜血，攻击力+100
+兽人阵营-兽人狂战士 使用 嗜血战斧 攻击，造成 100 点物理伤害！
+</code></pre>
+<h3 id="四-unity场景扩展贴合实际开发">四、Unity场景扩展（贴合实际开发）</h3>
+<h4 id="1-新增产品族法师法杖狼牙棒">1. 新增产品族（法师+法杖/狼牙棒）</h4>
+<p>抽象工厂模式的核心优势是<strong>扩展产品族便捷</strong>，新增“法师+专属武器”产品族时，仅需：</p>
+<h5 id="11-新增具体产品法师法杖狼牙棒">1.1 新增具体产品（法师+法杖/狼牙棒）</h5>
+<pre><code class="language-csharp">// 人类法师（新增具体产品A1-2）
+public class HumanMage : ICharacter
+{
+    public string Camp =&gt; &quot;人类阵营&quot;;
+    public string Name =&gt; &quot;人类法师&quot;;
+
+    public void Move() =&gt; Debug.Log($&quot;{Camp}-{Name}：闪现移动！&quot;);
+    public void Attack(IWeapon weapon) =&gt; Debug.Log($&quot;{Camp}-{Name} 使用 {weapon.Name} 释放法术，造成 {weapon.AttackPower} 点魔法伤害！&quot;);
+}
+
+// 法杖（人类法师配套武器，新增具体产品B1-2）
+public class Staff : IWeapon
+{
+    public string Name =&gt; &quot;元素法杖&quot;;
+    public int AttackPower =&gt; 120;
+    public void ShowWeapon() =&gt; Debug.Log($&quot;装备 {Name}：法杖汇聚元素之力，攻击力+{AttackPower}&quot;);
+}
+
+// 兽人法师+狼牙棒（同理，略）
+</code></pre>
+<h5 id="12-扩展抽象工厂新增创建法师的方法">1.2 扩展抽象工厂（新增创建法师的方法）</h5>
+<pre><code class="language-csharp">public interface ICampFactory
+{
+    ICharacter CreateCharacter(); // 战士
+    ICharacter CreateMage();      // 新增：法师
+    IWeapon CreateWeapon();       // 战士武器
+    IWeapon CreateMageWeapon();   // 新增：法师武器
+}
+
+// 人类工厂实现新增方法
+public class HumanCampFactory : ICampFactory
+{
+    // 原有方法...
+    public ICharacter CreateMage() =&gt; new HumanMage();
+    public IWeapon CreateMageWeapon() =&gt; new Staff();
+}
+</code></pre>
+<h4 id="2-结合unity预制体与组件化">2. 结合Unity预制体与组件化</h4>
+<p>实际项目中，可将产品类改为<code>MonoBehaviour</code>，在工厂中加载预制体并挂载组件：</p>
+<pre><code class="language-csharp">public class HumanWarrior : MonoBehaviour, ICharacter
+{
+    public string Camp =&gt; &quot;人类阵营&quot;;
+    public string Name =&gt; &quot;人类战士&quot;;
+
+    public void Move() =&gt; Debug.Log($&quot;{Camp}-{Name} 移动！&quot;);
+    public void Attack(IWeapon weapon) =&gt; Debug.Log($&quot;{Camp}-{Name} 用 {weapon.Name} 攻击！&quot;);
+}
+
+// 人类工厂中加载预制体
+public class HumanCampFactory : ICampFactory
+{
+    public ICharacter CreateCharacter()
+    {
+        // 加载Resources下的人类战士预制体
+        GameObject prefab = Resources.Load&lt;GameObject&gt;(&quot;Prefabs/HumanWarrior&quot;);
+        GameObject warriorObj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        // 获取/添加角色组件
+        HumanWarrior warrior = warriorObj.GetComponent&lt;HumanWarrior&gt;() ?? warriorObj.AddComponent&lt;HumanWarrior&gt;();
+        return warrior;
+    }
+
+    // 武器同理...
+}
+</code></pre>
+<h4 id="3-配置化切换工厂避免硬编码">3. 配置化切换工厂（避免硬编码）</h4>
+<p>通过<code>ScriptableObject</code>配置表管理工厂类型，动态切换阵营：</p>
+<pre><code class="language-csharp">// 阵营配置表
+[CreateAssetMenu(fileName = &quot;CampConfig&quot;, menuName = &quot;Game/CampConfig&quot;)]
+public class CampConfig : ScriptableObject
+{
+    public enum CampType { Human, Orc }
+    public CampType currentCamp;
+
+    // 根据配置获取工厂
+    public ICampFactory GetCampFactory()
+    {
+        return currentCamp switch
+        {
+            CampType.Human =&gt; new HumanCampFactory(),
+            CampType.Orc =&gt; new OrcCampFactory(),
+            _ =&gt; throw new System.ArgumentOutOfRangeException()
+        };
+    }
+}
+
+// 客户端调用
+public class GameManager : MonoBehaviour
+{
+    public CampConfig campConfig; // 拖入配置文件
+
+    private void Start()
+    {
+        ICampFactory factory = campConfig.GetCampFactory();
+        ICharacter character = factory.CreateCharacter();
+        // ...
+    }
+}
+</code></pre>
+<h3 id="五-抽象工厂模式核心优势unity场景">五、抽象工厂模式核心优势（Unity场景）</h3>
+<ol>
+<li><strong>产品族一致性</strong>：确保同一阵营的角色和武器必然匹配（人类战士不会拿到兽人战斧），避免“产品不兼容”问题；</li>
+<li><strong>开闭原则</strong>：新增阵营（如精灵阵营）时，仅需新增<code>ElfCampFactory</code>+精灵角色+精灵武器，无需修改原有代码；</li>
+<li><strong>解耦高层模块</strong>：客户端（<code>GameManager</code>）仅依赖抽象工厂/产品接口，不关心具体实现，符合“依赖倒置原则”；</li>
+<li><strong>统一管理创建逻辑</strong>：所有阵营的预制体加载、初始化、组件挂载都集中在工厂中，便于维护。</li>
+</ol>
+<h3 id="六-抽象工厂-vs-工厂方法unity场景对比">六、抽象工厂 vs 工厂方法（Unity场景对比）</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>核心差异</th>
+<th>Unity适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工厂方法</td>
+<td>生产<strong>单一产品</strong></td>
+<td>创建单个角色/单个武器、简单道具生成</td>
+</tr>
+<tr>
+<td>抽象工厂</td>
+<td>生产<strong>一组配套产品族</strong></td>
+<td>阵营部队创建（角色+武器+坐骑）、UI皮肤套装（按钮+背景+字体）</td>
+</tr>
+</tbody>
+</table>
+<p>抽象工厂是工厂方法的“升级版”，适合需要<strong>批量创建关联产品</strong>的场景，也是Unity中开发“套装化、阵营化”功能的首选模式。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x03gong-han-fang-fa-mo-shi/" class="post-title gt-a-link">
+                    0x03. 工厂方法模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

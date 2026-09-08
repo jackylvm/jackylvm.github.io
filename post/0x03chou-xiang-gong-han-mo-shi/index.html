@@ -1,0 +1,358 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x03.抽象工厂模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x03.抽象工厂模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>抽象工厂就是为了解决“如何成套地生产相互关联的产品”。</p>
+<h3 id="为什么要用抽象工厂模式">💡 为什么要用抽象工厂模式？</h3>
+<p>假设你正在开发一款像《星际争霸》或《魔兽争霸》那样的 RTS（即时战略）游戏。游戏里有不同的<strong>阵营（Faction）</strong>，比如“人类（Human）”和“外星人（Alien）”。</p>
+<p>每个阵营都有对应的<strong>近战兵（Melee Unit）<strong>和</strong>远程兵（Ranged Unit）</strong>：</p>
+<ul>
+<li><strong>人类阵营：</strong> 剑士（近战）、火枪手（远程）。</li>
+<li><strong>外星阵营：</strong> 异形虫（近战）、激光射手（远程）。</li>
+</ul>
+<p><strong>如果用普通的工厂模式会有什么问题？</strong><br>
+你可能会写一个“近战兵工厂”和一个“远程兵工厂”。但在游戏生成兵种时，如果不小心把“人类阵营的剑士”和“外星阵营的激光射手”混在了一起，就会导致严重的逻辑 Bug 或画风割裂。</p>
+<p><strong>抽象工厂模式的优雅解法：</strong><br>
+不再按“兵种类型”来建工厂，而是按“产品家族（阵营/主题）”<strong>来建工厂。一个“人类兵工厂”会负责生产</strong>所有人类相关的兵种。这样就能保证生产出来的产品是“一套”的，绝对不会混搭出错！</p>
+<hr>
+<h3 id="一-纯-c-代码实现生产一套阵营">一、 纯 C# 代码实现：生产一套“阵营”</h3>
+<p>我们要保证客户端（GameManager）不管当前是哪个阵营，都能用同一套代码逻辑去生成对应的兵种。</p>
+<h4 id="1-定义产品家族的接口">1. 定义产品家族的接口</h4>
+<p>无论是什么阵营，近战兵和远程兵的本质行为是一样的。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 抽象产品 A：近战兵
+public interface IMeleeUnit
+{
+    void Attack();
+}
+
+// 抽象产品 B：远程兵
+public interface IRangedUnit
+{
+    void Shoot();
+}
+
+</code></pre>
+<h4 id="2-实现具体的兵种产品">2. 实现具体的兵种（产品）</h4>
+<pre><code class="language-csharp">// 人类家族的产品
+public class HumanSwordsman : IMeleeUnit
+{
+    public void Attack() { Debug.Log(&quot;人类剑士：挥舞铁剑劈砍！&quot;); }
+}
+public class HumanMusketeer : IRangedUnit
+{
+    public void Shoot() { Debug.Log(&quot;人类火枪手：发射铅弹！&quot;); }
+}
+
+// 外星家族的产品
+public class AlienBug : IMeleeUnit
+{
+    public void Attack() { Debug.Log(&quot;异形虫：用利爪撕咬！&quot;); }
+}
+public class AlienLaserShooter : IRangedUnit
+{
+    public void Shoot() { Debug.Log(&quot;外星射手：发射等离子激光！&quot;); }
+}
+
+</code></pre>
+<h4 id="3-核心灵魂抽象工厂接口">3. 核心灵魂：抽象工厂接口</h4>
+<p>这个接口规定了<strong>一个家族必须能生产哪些东西</strong>。</p>
+<pre><code class="language-csharp">// 抽象工厂：规定了必须能成套生产近战和远程单位
+public interface IFactionFactory
+{
+    IMeleeUnit CreateMeleeUnit();
+    IRangedUnit CreateRangedUnit();
+}
+
+</code></pre>
+<h4 id="4-实现具体的阵营工厂">4. 实现具体的阵营工厂</h4>
+<pre><code class="language-csharp">// 具体工厂 1：人类阵营兵工厂
+public class HumanFactory : IFactionFactory
+{
+    public IMeleeUnit CreateMeleeUnit() { return new HumanSwordsman(); }
+    public IRangedUnit CreateRangedUnit() { return new HumanMusketeer(); }
+}
+
+// 具体工厂 2：外星阵营兵工厂
+public class AlienFactory : IFactionFactory
+{
+    public IMeleeUnit CreateMeleeUnit() { return new AlienBug(); }
+    public IRangedUnit CreateRangedUnit() { return new AlienLaserShooter(); }
+}
+
+</code></pre>
+<h4 id="5-见证奇迹的时刻客户端代码">5. 见证奇迹的时刻（客户端代码）</h4>
+<p>现在，我们的游戏管理器根本不需要知道具体有哪些兵种，它只要拿着对应的工厂，就能“一键换皮/换阵营”。</p>
+<pre><code class="language-csharp">public class GameLevelManager : MonoBehaviour
+{
+    // 当前正在使用的工厂
+    private IFactionFactory _currentFactory;
+
+    void Start()
+    {
+        // 假设玩家选择了外星阵营
+        SetFaction(new AlienFactory());
+        SpawnArmy();
+
+        // 随时可以无缝切换到人类阵营！
+        Debug.Log(&quot;--- 切换阵营 ---&quot;);
+        SetFaction(new HumanFactory());
+        SpawnArmy();
+    }
+
+    public void SetFaction(IFactionFactory factory)
+    {
+        _currentFactory = factory;
+    }
+
+    // 生成军队的逻辑完全不需要修改！
+    private void SpawnArmy()
+    {
+        // 无论当前是什么工厂，都会成套地生成对应阵营的兵
+        IMeleeUnit melee = _currentFactory.CreateMeleeUnit();
+        IRangedUnit ranged = _currentFactory.CreateRangedUnit();
+
+        melee.Attack();
+        ranged.Shoot();
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="二-unity-开发者特供版多主题-ui-切换器">二、 🌟 Unity 开发者特供版：多主题 UI 切换器</h3>
+<p>在 Unity 的实际开发中，除了做阵营，抽象工厂最常被用来做“UI 主题系统”<strong>或者</strong>“皮肤系统”。我们可以再次请出我们的老朋友 <strong>ScriptableObject</strong>，让策划可以一键切换整个游戏的画风！</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 1. 定义 UI 抽象工厂（把一整套 UI 的预制体打包）
+[CreateAssetMenu(fileName = &quot;New UI Theme&quot;, menuName = &quot;UI/Theme Factory&quot;)]
+public class UIThemeFactorySO : ScriptableObject
+{
+    // 这就是一个“主题家族”
+    public GameObject buttonPrefab;
+    public GameObject windowPrefab;
+    public GameObject sliderPrefab;
+
+    // 工厂方法
+    public GameObject CreateButton(Transform parent) { return Instantiate(buttonPrefab, parent); }
+    public GameObject CreateWindow(Transform parent) { return Instantiate(windowPrefab, parent); }
+}
+
+</code></pre>
+<p><strong>怎么用？</strong></p>
+<ol>
+<li>策划在项目里右键创建两个资产：<code>SciFiTheme</code> 和 <code>FantasyTheme</code>。</li>
+<li>在 <code>SciFiTheme</code> 里拖入充满科技感、蓝色发光的按钮和窗口预制体。</li>
+<li>在 <code>FantasyTheme</code> 里拖入木质纹理的按钮和窗口预制体。</li>
+<li>游戏里的 <code>UIManager</code> 只要开放一个 <code>public UIThemeFactorySO currentTheme;</code> 变量。拖入哪个主题，整个游戏生成的 UI 就全套变成那个风格！</li>
+</ol>
+<hr>
+<h3 id="经典对比工厂方法-vs-抽象工厂">🆚 经典对比：工厂方法 vs 抽象工厂</h3>
+<p>这是面试中最爱问的问题，也是初学者最容易搞混的地方，记住下面这两句话就够了：</p>
+<ul>
+<li><strong>工厂方法 (Factory Method)：</strong> 生产<strong>一种</strong>产品。主要解决的是“到底是造史莱姆，还是造哥布林？”的问题。（一个接口，一个方法）。</li>
+<li><strong>抽象工厂 (Abstract Factory)：</strong> 生产<strong>一套</strong>产品家族。主要解决的是“到底是造【全套人类装备】，还是造【全套精灵装备】？”的问题。（一个接口，多个方法）。</li>
+</ul>
+<h3 id="避坑指南抽象工厂的致命弱点">🚨 避坑指南（抽象工厂的致命弱点）</h3>
+<p>抽象工厂虽然完美解决了“成套匹配”的问题，但它极其违反<strong>开闭原则</strong>中“对修改封闭”的部分。</p>
+<p>假设现在我们要给所有阵营增加一种新兵种：<strong>“魔法飞行兵”</strong>。<br>
+为了实现这个需求，你必须：</p>
+<ol>
+<li>修改 <code>IFactionFactory</code> 接口，增加 <code>CreateFlyingUnit()</code> 方法。</li>
+<li>导致<strong>所有实现过这个接口的类（人类工厂、外星工厂、兽人工厂...）全部报错</strong>，你必须打开每一个具体工厂，去把这套逻辑补全。</li>
+</ol>
+<p><strong>结论：</strong> 抽象工厂非常适合产品家族稳定（近战和远程基本不会变），但产品系列经常增加（后续可能会出新阵营）的场景。如果你的“兵种分类”经常要增加，千万不要用抽象工厂，会让你改代码改到怀疑人生！</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x02dan-li-mo-shi/" class="post-title gt-a-link">
+                    0x02.单例模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

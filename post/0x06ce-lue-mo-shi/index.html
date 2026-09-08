@@ -1,0 +1,396 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x06.策略模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x06.策略模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong>策略模式（Strategy Pattern）</strong>，解决的是“行为和算法的多样性”问题。</p>
+<p>在 Unity 开发中，策略模式是用来<strong>消灭长篇大论的 <code>if-else</code> 或 <code>switch</code> 语句</strong>的神兵利器。</p>
+<h3 id="为什么要用策略模式">💡 为什么要用策略模式？</h3>
+<p>假设你正在做一款射击游戏，玩家可以切换不同的武器（手枪、散弹枪、激光枪）。</p>
+<p><strong>新手的灾难写法：</strong></p>
+<pre><code class="language-csharp">public class PlayerWeapon : MonoBehaviour
+{
+    public enum WeaponType { Pistol, Shotgun, Laser }
+    public WeaponType currentWeapon;
+
+    public void Fire()
+    {
+        switch (currentWeapon)
+        {
+            case WeaponType.Pistol:
+                Debug.Log(&quot;发射单发子弹！&quot;);
+                break;
+            case WeaponType.Shotgun:
+                Debug.Log(&quot;发射扇形散弹！&quot;);
+                break;
+            case WeaponType.Laser:
+                Debug.Log(&quot;发射持续激光！&quot;);
+                break;
+        }
+    }
+}
+
+</code></pre>
+<p>这种写法的缺点很明显：如果你要加 10 种新武器，这个 <code>Fire</code> 方法会变得极其臃肿。更糟糕的是，如果你想给散弹枪增加“击退效果”，你得在这个庞大的类里面修改，很容易把其他武器的代码弄坏（违背了开闭原则）。</p>
+<p><strong>策略模式的优雅解法：</strong><br>
+把每一种“开火行为（策略）”单独封装成一个类。玩家（PlayerWeapon）不需要知道具体是怎么开火的，它手里只要拿着一个“开火策略”，调用开火就行了。随时可以把手里的策略替换掉！</p>
+<hr>
+<h3 id="一-经典的纯-c-接口写法">一、 经典的纯 C# 接口写法</h3>
+<p>这是最标准的面向对象策略模式写法，通过 C# 的 <code>interface</code> 来实现。</p>
+<p><strong>1. 定义策略接口 (定义规则)</strong></p>
+<pre><code class="language-csharp">// 所有的开火行为，都必须实现这个接口
+public interface IShootStrategy
+{
+    void Shoot(Transform firePoint);
+}
+
+</code></pre>
+<p><strong>2. 实现具体的策略 (把具体算法封装起来)</strong></p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 策略 A：手枪单发
+public class PistolStrategy : IShootStrategy
+{
+    public void Shoot(Transform firePoint)
+    {
+        Debug.Log(&quot;手枪开火：在 &quot; + firePoint.position + &quot; 生成了一发子弹&quot;);
+        // 这里写具体的 Instantiate 逻辑
+    }
+}
+
+// 策略 B：散弹枪
+public class ShotgunStrategy : IShootStrategy
+{
+    public void Shoot(Transform firePoint)
+    {
+        Debug.Log(&quot;散弹开火：在 &quot; + firePoint.position + &quot; 生成了 5 发扇形子弹&quot;);
+    }
+}
+
+</code></pre>
+<p><strong>3. 使用策略的上下文 (玩家武器控制器)</strong></p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public Transform firePoint;
+    
+    // 玩家当前持有的策略
+    private IShootStrategy _currentShootStrategy;
+
+    void Start()
+    {
+        // 默认装备手枪
+        EquipWeapon(new PistolStrategy());
+    }
+
+    void Update()
+    {
+        // 随时可以在运行时切换策略！
+        if (Input.GetKeyDown(KeyCode.Alpha1)) EquipWeapon(new PistolStrategy());
+        if (Input.GetKeyDown(KeyCode.Alpha2)) EquipWeapon(new ShotgunStrategy());
+
+        // 执行策略
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // 玩家不需要管具体是怎么开火的，让策略自己去执行
+            _currentShootStrategy?.Shoot(firePoint);
+        }
+    }
+
+    // 切换策略的方法
+    public void EquipWeapon(IShootStrategy newStrategy)
+    {
+        _currentShootStrategy = newStrategy;
+        Debug.Log(&quot;切换了新武器！&quot;);
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="二-unity-开发者特供版scriptableobject-策略-强烈推荐">二、 🌟 Unity 开发者特供版：ScriptableObject 策略 (强烈推荐)</h3>
+<p>上面的纯接口写法有一个问题：<strong>C# 的 <code>interface</code> 在 Unity 的 Inspector 面板里是无法直接拖拽赋值的！</strong> 这让策划和美术很难受。</p>
+<p>在 Unity 中，实现策略模式最强大、最原生的方式是使用 <strong><code>ScriptableObject</code></strong>。它不仅能完美实现策略模式，还能让策划直接在面板上像搭积木一样配置技能和武器！</p>
+<p><strong>1. 定义策略基类 (继承 ScriptableObject)</strong></p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 注意这里不再是 interface，而是继承自 ScriptableObject 的抽象类
+public abstract class ShootStrategySO : ScriptableObject
+{
+    // 可以配置一些通用参数，比如攻击力、冷却时间
+    public int damage;
+    public float fireRate;
+
+    // 抽象的开火方法，子类必须实现
+    public abstract void Shoot(Transform firePoint);
+}
+
+</code></pre>
+<p><strong>2. 实现具体的策略资产</strong></p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 添加这个标签，你就可以在 Project 右键菜单里创建这个策略的资产文件了！
+[CreateAssetMenu(fileName = &quot;New Pistol Strategy&quot;, menuName = &quot;Weapons/Pistol Strategy&quot;)]
+public class PistolStrategySO : ShootStrategySO
+{
+    public GameObject bulletPrefab; // 直接把预制体拖给这个策略
+
+    public override void Shoot(Transform firePoint)
+    {
+        Debug.Log($&quot;手枪开火，造成 {damage} 点伤害&quot;);
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+}
+
+[CreateAssetMenu(fileName = &quot;New Shotgun Strategy&quot;, menuName = &quot;Weapons/Shotgun Strategy&quot;)]
+public class ShotgunStrategySO : ShootStrategySO
+{
+    public GameObject pelletPrefab;
+    public int pelletCount = 5; // 散弹枪特有的参数
+
+    public override void Shoot(Transform firePoint)
+    {
+        Debug.Log($&quot;散弹枪开火，发射 {pelletCount} 发弹丸&quot;);
+        // 具体的扇形发射逻辑...
+    }
+}
+
+</code></pre>
+<p><strong>3. 在玩家代码中使用 (策划狂喜)</strong></p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class PlayerShooter : MonoBehaviour
+{
+    public Transform firePoint;
+    
+    // 现在这个策略可以在 Inspector 面板里直接拖拽了！
+    public ShootStrategySO currentWeaponStrategy;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) &amp;&amp; currentWeaponStrategy != null)
+        {
+            // 直接调用当前 SO 资产里写好的逻辑
+            currentWeaponStrategy.Shoot(firePoint);
+        }
+    }
+}
+
+</code></pre>
+<p><strong>这种 Unity 特供版写法的爽点在哪？</strong></p>
+<ol>
+<li>策划可以在项目里右键创建出各种各样的武器策略文件（资产）。</li>
+<li>想让哪个怪物或者玩家用哪把武器？直接把对应的策略资产<strong>拖拽</strong>到它身上的 <code>currentWeaponStrategy</code> 槽位里就行了，一行代码都不用改！</li>
+<li>完美实现了代码和数据的分离。</li>
+</ol>
+<h3 id="总结">💡 总结</h3>
+<ul>
+<li>
+<p><strong>核心思想：</strong> 将变化的行为（怎么移动、怎么开火、怎么算分数）提取出来，封装成独立的类，互相替换。</p>
+</li>
+<li>
+<p><strong>适用场景：</strong> * 敌人的 AI 状态（巡逻策略、追击策略、逃跑策略）。</p>
+</li>
+<li>
+<p>技能释放逻辑（火球术、冰冻术）。</p>
+</li>
+<li>
+<p>伤害计算公式（普通攻击计算、暴击计算、护甲穿透计算）。</p>
+</li>
+<li>
+<p><strong>避坑指南：</strong> 如果你的行为只有两种（比如简单的开门和关门），直接用 <code>if-else</code> 就行了，不要强行写一堆策略类，避免过度设计导致文件数量爆炸。只有当<strong>行为种类繁多，且未来极大概率会继续增加</strong>时，策略模式才是你的救星。</p>
+</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x05guan-cha-zhe-mo-shi/" class="post-title gt-a-link">
+                    0x05.观察者模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

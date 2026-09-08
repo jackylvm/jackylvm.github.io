@@ -1,0 +1,831 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x08. 状态模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x08. 状态模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-12-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="状态模式">状态模式</h2>
+<!-- more -->
+<p>在Unity中使用C#实现<strong>状态模式（State Pattern）</strong>，核心是将对象的不同状态封装为独立的状态类，让对象的行为随状态动态切换（替代大量<code>if-else/switch</code>判断）。结合游戏开发典型场景——<strong>游戏角色的状态机（Idle/Run/Attack/Hurt/Death）</strong>，能直观体现状态模式“状态与行为解耦、扩展灵活”的核心特性。</p>
+<h3 id="一-核心思路状态模式">一、核心思路（状态模式）</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>对应实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>环境类（Context）</td>
+<td><code>PlayerStateMachine</code>（玩家状态机）</td>
+<td>维护当前状态，提供状态切换接口，转发行为请求到当前状态</td>
+</tr>
+<tr>
+<td>抽象状态类</td>
+<td><code>BasePlayerState</code>（玩家基础状态）</td>
+<td>定义所有状态的通用行为接口（Enter/Update/Exit），持有环境类引用</td>
+</tr>
+<tr>
+<td>具体状态类</td>
+<td><code>IdleState</code>/<code>RunState</code>/<code>AttackState</code>/<code>HurtState</code>/<code>DeathState</code></td>
+<td>实现抽象状态接口，封装对应状态的具体行为</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td><code>GameManager</code>（挂载到Unity物体）</td>
+<td>触发状态切换（如按键输入、受击事件）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-完整代码实现">二、完整代码实现</h3>
+<h4 id="1-枚举与抽象状态定义">1. 枚举与抽象状态定义</h4>
+<h5 id="11-玩家状态枚举">1.1 玩家状态枚举</h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 玩家状态枚举（标识不同状态）
+/// &lt;/summary&gt;
+public enum PlayerStateType
+{
+    Idle,    // 闲置
+    Run,     // 奔跑
+    Attack,  // 攻击
+    Hurt,    // 受击
+    Death    // 死亡
+}
+</code></pre>
+<h5 id="12-抽象状态类baseplayerstate">1.2 抽象状态类：<code>BasePlayerState</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 玩家基础状态（抽象状态类）
+/// &lt;/summary&gt;
+public abstract class BasePlayerState
+{
+    // 持有状态机引用（环境类）
+    protected PlayerStateMachine stateMachine;
+    // 状态类型
+    public PlayerStateType StateType { get; protected set; }
+
+    public BasePlayerState(PlayerStateMachine stateMachine, PlayerStateType stateType)
+    {
+        this.stateMachine = stateMachine;
+        StateType = stateType;
+    }
+
+    /// &lt;summary&gt;
+    /// 进入状态时执行（初始化逻辑）
+    /// &lt;/summary&gt;
+    public abstract void EnterState();
+
+    /// &lt;summary&gt;
+    /// 状态帧更新（核心行为逻辑）
+    /// &lt;/summary&gt;
+    public abstract void UpdateState();
+
+    /// &lt;summary&gt;
+    /// 退出状态时执行（清理逻辑）
+    /// &lt;/summary&gt;
+    public abstract void ExitState();
+
+    /// &lt;summary&gt;
+    /// 处理状态切换请求（可重写实现状态校验）
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;targetStateType&quot;&gt;目标状态&lt;/param&gt;
+    /// &lt;returns&gt;是否允许切换&lt;/returns&gt;
+    public virtual bool CanSwitchState(PlayerStateType targetStateType)
+    {
+        // 死亡状态不可切换到其他状态
+        if (stateMachine.CurrentState.StateType == PlayerStateType.Death)
+            return false;
+        // 受击状态可被攻击/死亡打断，其他状态可自由切换（可根据需求扩展）
+        return targetStateType != PlayerStateType.Hurt || stateMachine.CurrentState.StateType != PlayerStateType.Attack;
+    }
+}
+</code></pre>
+<h4 id="2-环境类playerstatemachine玩家状态机">2. 环境类：<code>PlayerStateMachine</code>（玩家状态机）</h4>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using UnityEngine;
+
+/// &lt;summary&gt;
+/// 玩家状态机（环境类）：管理所有状态，处理状态切换
+/// &lt;/summary&gt;
+public class PlayerStateMachine : MonoBehaviour
+{
+    // 当前状态
+    public BasePlayerState CurrentState { get; private set; }
+
+    // 状态字典（缓存所有状态实例，避免重复创建）
+    private Dictionary&lt;PlayerStateType, BasePlayerState&gt; _stateDict = new Dictionary&lt;PlayerStateType, BasePlayerState&gt;();
+
+    // 玩家基础属性
+    public int Hp = 100;
+    public float MoveSpeed = 5f;
+
+    private void Awake()
+    {
+        // 初始化所有状态并缓存
+        _stateDict.Add(PlayerStateType.Idle, new IdleState(this, PlayerStateType.Idle));
+        _stateDict.Add(PlayerStateType.Run, new RunState(this, PlayerStateType.Run));
+        _stateDict.Add(PlayerStateType.Attack, new AttackState(this, PlayerStateType.Attack));
+        _stateDict.Add(PlayerStateType.Hurt, new HurtState(this, PlayerStateType.Hurt));
+        _stateDict.Add(PlayerStateType.Death, new DeathState(this, PlayerStateType.Death));
+    }
+
+    private void Start()
+    {
+        // 初始状态为闲置
+        SwitchState(PlayerStateType.Idle);
+    }
+
+    private void Update()
+    {
+        // 帧更新当前状态
+        CurrentState?.UpdateState();
+    }
+
+    /// &lt;summary&gt;
+    /// 切换状态（核心方法）
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;targetStateType&quot;&gt;目标状态类型&lt;/param&gt;
+    public void SwitchState(PlayerStateType targetStateType)
+    {
+        // 校验状态是否可切换
+        if (CurrentState != null &amp;&amp; !CurrentState.CanSwitchState(targetStateType))
+        {
+            Debug.Log($&quot;[状态机] 拒绝切换状态：{CurrentState.StateType} → {targetStateType}&quot;);
+            return;
+        }
+
+        // 退出当前状态
+        CurrentState?.ExitState();
+
+        // 切换到新状态
+        CurrentState = _stateDict[targetStateType];
+        Debug.Log($&quot;[状态机] 切换状态：{targetStateType}&quot;);
+
+        // 进入新状态
+        CurrentState.EnterState();
+    }
+
+    /// &lt;summary&gt;
+    /// 模拟玩家受击
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;damage&quot;&gt;伤害值&lt;/param&gt;
+    public void TakeDamage(int damage)
+    {
+        if (CurrentState.StateType == PlayerStateType.Death) return;
+
+        Hp -= damage;
+        Debug.Log($&quot;[玩家] 受到{damage}点伤害，剩余血量：{Hp}&quot;);
+
+        if (Hp &lt;= 0)
+        {
+            SwitchState(PlayerStateType.Death);
+        }
+        else
+        {
+            SwitchState(PlayerStateType.Hurt);
+        }
+    }
+}
+</code></pre>
+<h4 id="3-具体状态实现idlerunattackhurtdeath">3. 具体状态实现（Idle/Run/Attack/Hurt/Death）</h4>
+<h5 id="31-闲置状态idlestate">3.1 闲置状态：<code>IdleState</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 闲置状态（具体状态1）
+/// &lt;/summary&gt;
+public class IdleState : BasePlayerState
+{
+    public IdleState(PlayerStateMachine stateMachine, PlayerStateType stateType) 
+        : base(stateMachine, stateType) { }
+
+    public override void EnterState()
+    {
+        Debug.Log(&quot;[闲置状态] 进入：播放闲置动画、停止移动&quot;);
+        // Unity实际开发：播放闲置动画、重置移动速度
+        // stateMachine.GetComponent&lt;Animator&gt;().Play(&quot;Idle&quot;);
+    }
+
+    public override void UpdateState()
+    {
+        // 监听输入：按下WASD切换到奔跑状态
+        if (Input.GetAxisRaw(&quot;Horizontal&quot;) != 0 || Input.GetAxisRaw(&quot;Vertical&quot;) != 0)
+        {
+            stateMachine.SwitchState(PlayerStateType.Run);
+        }
+        // 监听输入：按下鼠标左键切换到攻击状态
+        else if (Input.GetMouseButtonDown(0))
+        {
+            stateMachine.SwitchState(PlayerStateType.Attack);
+        }
+    }
+
+    public override void ExitState()
+    {
+        Debug.Log(&quot;[闲置状态] 退出：停止闲置动画&quot;);
+    }
+}
+</code></pre>
+<h5 id="32-奔跑状态runstate">3.2 奔跑状态：<code>RunState</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 奔跑状态（具体状态2）
+/// &lt;/summary&gt;
+public class RunState : BasePlayerState
+{
+    public RunState(PlayerStateMachine stateMachine, PlayerStateType stateType) 
+        : base(stateMachine, stateType) { }
+
+    public override void EnterState()
+    {
+        Debug.Log(&quot;[奔跑状态] 进入：播放奔跑动画、开启移动&quot;);
+        // stateMachine.GetComponent&lt;Animator&gt;().Play(&quot;Run&quot;);
+    }
+
+    public override void UpdateState()
+    {
+        // 移动逻辑
+        float horizontal = Input.GetAxisRaw(&quot;Horizontal&quot;);
+        float vertical = Input.GetAxisRaw(&quot;Vertical&quot;);
+        Vector3 moveDir = new Vector3(horizontal, 0, vertical).normalized;
+        stateMachine.transform.Translate(moveDir * stateMachine.MoveSpeed * Time.deltaTime);
+
+        // 监听输入：松开方向键切换到闲置状态
+        if (horizontal == 0 &amp;&amp; vertical == 0)
+        {
+            stateMachine.SwitchState(PlayerStateType.Idle);
+        }
+        // 监听输入：按下鼠标左键切换到攻击状态
+        else if (Input.GetMouseButtonDown(0))
+        {
+            stateMachine.SwitchState(PlayerStateType.Attack);
+        }
+    }
+
+    public override void ExitState()
+    {
+        Debug.Log(&quot;[奔跑状态] 退出：停止奔跑动画&quot;);
+    }
+}
+</code></pre>
+<h5 id="33-攻击状态attackstate">3.3 攻击状态：<code>AttackState</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 攻击状态（具体状态3）
+/// &lt;/summary&gt;
+public class AttackState : BasePlayerState
+{
+    private float _attackDuration = 0.5f; // 攻击持续时间
+    private float _timer;                 // 计时
+
+    public AttackState(PlayerStateMachine stateMachine, PlayerStateType stateType) 
+        : base(stateMachine, stateType) { }
+
+    public override void EnterState()
+    {
+        Debug.Log(&quot;[攻击状态] 进入：播放攻击动画、触发攻击判定&quot;);
+        // stateMachine.GetComponent&lt;Animator&gt;().Play(&quot;Attack&quot;);
+        _timer = _attackDuration;
+    }
+
+    public override void UpdateState()
+    {
+        // 攻击持续计时
+        _timer -= Time.deltaTime;
+        if (_timer &lt;= 0)
+        {
+            // 攻击结束后切回闲置状态
+            stateMachine.SwitchState(PlayerStateType.Idle);
+        }
+
+        // 攻击状态不可被移动打断（CanSwitchState已限制）
+    }
+
+    public override void ExitState()
+    {
+        Debug.Log(&quot;[攻击状态] 退出：攻击动画结束、重置攻击CD&quot;);
+    }
+
+    // 重写：攻击状态仅允许被受击/死亡打断
+    public override bool CanSwitchState(PlayerStateType targetStateType)
+    {
+        return targetStateType == PlayerStateType.Hurt || targetStateType == PlayerStateType.Death;
+    }
+}
+</code></pre>
+<h5 id="34-受击状态hurtstate">3.4 受击状态：<code>HurtState</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 受击状态（具体状态4）
+/// &lt;/summary&gt;
+public class HurtState : BasePlayerState
+{
+    private float _hurtDuration = 0.3f;
+    private float _timer;
+
+    public HurtState(PlayerStateMachine stateMachine, PlayerStateType stateType) 
+        : base(stateMachine, stateType) { }
+
+    public override void EnterState()
+    {
+        Debug.Log(&quot;[受击状态] 进入：播放受击动画、播放受击音效、触发无敌帧&quot;);
+        // stateMachine.GetComponent&lt;Animator&gt;().Play(&quot;Hurt&quot;);
+        _timer = _hurtDuration;
+    }
+
+    public override void UpdateState()
+    {
+        _timer -= Time.deltaTime;
+        if (_timer &lt;= 0)
+        {
+            // 受击结束切回闲置状态
+            stateMachine.SwitchState(PlayerStateType.Idle);
+        }
+    }
+
+    public override void ExitState()
+    {
+        Debug.Log(&quot;[受击状态] 退出：关闭无敌帧&quot;);
+    }
+}
+</code></pre>
+<h5 id="35-死亡状态deathstate">3.5 死亡状态：<code>DeathState</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 死亡状态（具体状态5）
+/// &lt;/summary&gt;
+public class DeathState : BasePlayerState
+{
+    public DeathState(PlayerStateMachine stateMachine, PlayerStateType stateType) 
+        : base(stateMachine, stateType) { }
+
+    public override void EnterState()
+    {
+        Debug.Log(&quot;[死亡状态] 进入：播放死亡动画、禁用移动、显示死亡UI&quot;);
+        // stateMachine.GetComponent&lt;Animator&gt;().Play(&quot;Death&quot;);
+        stateMachine.enabled = false; // 禁用状态机更新
+    }
+
+    public override void UpdateState()
+    {
+        // 死亡状态无帧更新逻辑
+    }
+
+    public override void ExitState()
+    {
+        // 死亡状态永不退出
+        Debug.LogError(&quot;[死亡状态] 尝试退出死亡状态，操作无效！&quot;);
+    }
+
+    // 重写：死亡状态不允许切换到任何状态
+    public override bool CanSwitchState(PlayerStateType targetStateType)
+    {
+        return false;
+    }
+}
+</code></pre>
+<h4 id="4-客户端调用gamemanagerunity场景挂载">4. 客户端调用：<code>GameManager</code>（Unity场景挂载）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 游戏管理器（客户端）：模拟游戏事件触发状态切换
+/// &lt;/summary&gt;
+public class GameManager : MonoBehaviour
+{
+    public PlayerStateMachine player; // 拖入玩家状态机物体
+
+    private void Start()
+    {
+        // 模拟游戏流程：2秒后让玩家受击，5秒后再次受击致死
+        Invoke(nameof(SimulateHurt), 2f);
+        Invoke(nameof(SimulateDeath), 5f);
+    }
+
+    /// &lt;summary&gt;
+    /// 模拟玩家受击
+    /// &lt;/summary&gt;
+    private void SimulateHurt()
+    {
+        player.TakeDamage(30);
+    }
+
+    /// &lt;summary&gt;
+    /// 模拟玩家死亡
+    /// &lt;/summary&gt;
+    private void SimulateDeath()
+    {
+        player.TakeDamage(80);
+    }
+
+    // 测试：按下空格键手动触发攻击
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player.SwitchState(PlayerStateType.Attack);
+        }
+    }
+}
+</code></pre>
+<h3 id="三-unity场景配置与运行效果">三、Unity场景配置与运行效果</h3>
+<h4 id="1-场景配置步骤">1. 场景配置步骤</h4>
+<ol>
+<li>创建空物体命名为<code>Player</code>，挂载<code>PlayerStateMachine</code>脚本；</li>
+<li>创建空物体命名为<code>GameManager</code>，挂载<code>GameManager</code>脚本，将<code>Player</code>拖入<code>player</code>字段；</li>
+<li>运行场景，控制台输出如下（结合按键操作）：</li>
+</ol>
+<pre><code>[状态机] 切换状态：Idle
+[闲置状态] 进入：播放闲置动画、停止移动
+
+// 按下WASD键
+[闲置状态] 退出：停止闲置动画
+[状态机] 切换状态：Run
+[奔跑状态] 进入：播放奔跑动画、开启移动
+
+// 松开WASD键
+[奔跑状态] 退出：停止奔跑动画
+[状态机] 切换状态：Idle
+[闲置状态] 进入：播放闲置动画、停止移动
+
+// 2秒后模拟受击
+[玩家] 受到30点伤害，剩余血量：70
+[闲置状态] 退出：停止闲置动画
+[状态机] 切换状态：Hurt
+[受击状态] 进入：播放受击动画、播放受击音效、触发无敌帧
+[受击状态] 退出：关闭无敌帧
+[状态机] 切换状态：Idle
+[闲置状态] 进入：播放闲置动画、停止移动
+
+// 按下空格键攻击
+[闲置状态] 退出：停止闲置动画
+[状态机] 切换状态：Attack
+[攻击状态] 进入：播放攻击动画、触发攻击判定
+[攻击状态] 退出：攻击动画结束、重置攻击CD
+[状态机] 切换状态：Idle
+[闲置状态] 进入：播放闲置动画、停止移动
+
+// 5秒后模拟死亡
+[玩家] 受到80点伤害，剩余血量：-10
+[闲置状态] 退出：停止闲置动画
+[状态机] 切换状态：Death
+[死亡状态] 进入：播放死亡动画、禁用移动、显示死亡UI
+</code></pre>
+<h3 id="四-unity场景扩展贴合实际开发">四、Unity场景扩展（贴合实际开发）</h3>
+<h4 id="1-状态池优化复用状态实例">1. 状态池优化（复用状态实例）</h4>
+<p>避免频繁创建状态对象，通过对象池复用：</p>
+<pre><code class="language-csharp">public class PlayerStateMachine : MonoBehaviour
+{
+    // 状态池（复用状态实例）
+    private ObjectPool&lt;BasePlayerState&gt; _statePool;
+
+    private void Awake()
+    {
+        _statePool = new ObjectPool&lt;BasePlayerState&gt;(
+            createFunc: (type) =&gt; 
+            {
+                switch (type)
+                {
+                    case PlayerStateType.Idle: return new IdleState(this, type);
+                    case PlayerStateType.Run: return new RunState(this, type);
+                    // 其他状态...
+                    default: return null;
+                }
+            },
+            actionOnGet: (state) =&gt; state.EnterState(),
+            actionOnRelease: (state) =&gt; state.ExitState()
+        );
+    }
+
+    // 切换状态时从池获取
+    public void SwitchState(PlayerStateType targetType)
+    {
+        if (CurrentState != null)
+        {
+            _statePool.Release(CurrentState);
+        }
+        CurrentState = _statePool.Get(targetType);
+    }
+}
+</code></pre>
+<h4 id="2-状态参数配置scriptableobject">2. 状态参数配置（ScriptableObject）</h4>
+<p>将状态参数（如攻击时长、移动速度）封装为<code>ScriptableObject</code>，可视化配置：</p>
+<pre><code class="language-csharp">[CreateAssetMenu(fileName = &quot;PlayerStateConfig&quot;, menuName = &quot;Game/PlayerStateConfig&quot;)]
+public class PlayerStateConfig : ScriptableObject
+{
+    public float idleAnimSpeed = 1f;
+    public float runSpeed = 5f;
+    public float attackDuration = 0.5f;
+    public float hurtDuration = 0.3f;
+}
+
+// 在状态机中引用配置
+public class PlayerStateMachine : MonoBehaviour
+{
+    public PlayerStateConfig stateConfig; // 拖入配置文件
+
+    private void Awake()
+    {
+        _stateDict.Add(PlayerStateType.Attack, new AttackState(this, PlayerStateType.Attack, stateConfig.attackDuration));
+    }
+}
+
+// 攻击状态接收配置参数
+public class AttackState : BasePlayerState
+{
+    private float _attackDuration;
+    public AttackState(PlayerStateMachine stateMachine, PlayerStateType stateType, float attackDuration) 
+        : base(stateMachine, stateType)
+    {
+        _attackDuration = attackDuration;
+    }
+}
+</code></pre>
+<h4 id="3-状态过渡动画animator融合树">3. 状态过渡动画（Animator融合树）</h4>
+<p>结合Unity Animator实现状态平滑过渡：</p>
+<pre><code class="language-csharp">public class IdleState : BasePlayerState
+{
+    private Animator _animator;
+    private int _idleHash = Animator.StringToHash(&quot;Idle&quot;);
+
+    public IdleState(PlayerStateMachine stateMachine, PlayerStateType stateType) 
+        : base(stateMachine, stateType)
+    {
+        _animator = stateMachine.GetComponent&lt;Animator&gt;();
+    }
+
+    public override void EnterState()
+    {
+        _animator.CrossFade(_idleHash, 0.1f); // 平滑切换动画
+    }
+}
+</code></pre>
+<h4 id="4-状态事件回调解耦逻辑">4. 状态事件回调（解耦逻辑）</h4>
+<p>为状态添加事件回调，让外部系统监听状态变化：</p>
+<pre><code class="language-csharp">public class BasePlayerState
+{
+    // 状态进入/退出回调
+    public event Action OnStateEnter;
+    public event Action OnStateExit;
+
+    public override void EnterState()
+    {
+        OnStateEnter?.Invoke();
+        // 原有逻辑...
+    }
+
+    public override void ExitState()
+    {
+        OnStateExit?.Invoke();
+        // 原有逻辑...
+    }
+}
+
+// 外部监听（如音效系统）
+public class AudioSystem : MonoBehaviour
+{
+    private void Awake()
+    {
+        var player = FindObjectOfType&lt;PlayerStateMachine&gt;();
+        player._stateDict[PlayerStateType.Attack].OnStateEnter += PlayAttackSound;
+    }
+
+    private void PlayAttackSound()
+    {
+        GetComponent&lt;AudioSource&gt;().PlayOneShot(attackClip);
+    }
+}
+</code></pre>
+<h3 id="五-状态模式核心优势unity场景">五、状态模式核心优势（Unity场景）</h3>
+<ol>
+<li><strong>消除冗余判断</strong>：替代<code>if (state == Idle) { ... } else if (state == Run) { ... }</code>的嵌套逻辑，代码更清晰；</li>
+<li><strong>状态行为封装</strong>：每个状态的逻辑独立封装在对应类中，便于调试和维护（如修改攻击逻辑只需改<code>AttackState</code>）；</li>
+<li><strong>灵活扩展</strong>：新增状态（如“跳跃”“闪避”）时，只需新增<code>JumpState</code>/<code>DodgeState</code>，无需修改原有状态和状态机代码，符合“开闭原则”；</li>
+<li><strong>状态切换可控</strong>：通过<code>CanSwitchState</code>统一控制状态切换规则，避免非法状态切换（如死亡后无法攻击）。</li>
+</ol>
+<h3 id="六-状态模式-vs-其他模式unity场景对比">六、状态模式 vs 其他模式（Unity场景对比）</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>核心差异</th>
+<th>Unity适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态模式</td>
+<td>状态封装为类，动态切换</td>
+<td>角色状态机、AI行为树、UI状态管理</td>
+</tr>
+<tr>
+<td>策略模式</td>
+<td>算法封装为类，手动替换</td>
+<td>攻击算法切换、移动方式切换</td>
+</tr>
+<tr>
+<td>责任链模式</td>
+<td>请求沿链传递，单一处理</td>
+<td>伤害计算、输入事件处理</td>
+</tr>
+</tbody>
+</table>
+<p>状态模式是Unity开发中<strong>角色/AI状态管理的首选模式</strong>，几乎所有动作游戏、RPG的角色状态机都会基于此模式实现，是解决“多状态行为切换”最优雅的方案。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x07guan-cha-zhe-mo-shi/" class="post-title gt-a-link">
+                    0x07. 观察者模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

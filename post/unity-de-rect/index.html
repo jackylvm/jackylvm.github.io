@@ -1,0 +1,366 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的Rect | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的Rect
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-16 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <!-- more -->
+<h2 id="一-rect-是什么-核心定位">一、Rect 是什么 &amp; 核心定位</h2>
+<p><code>UnityEngine.Rect</code> 是<strong>结构体（struct）</strong>，不是 MonoBehaviour 脚本，是Unity引擎中专门用于<strong>描述「矩形区域」</strong> 的核心数据结构。<br>
+✅ 核心作用：定义一个矩形的<strong>位置、宽高、尺寸范围</strong>，是UGUI布局、GUI绘制、屏幕坐标计算、区域判定的<strong>基石类</strong>，开发中高频使用。</p>
+<hr>
+<h2 id="二-rect-核心基础-5个核心公共字段必记">二、Rect 核心基础 - 5个核心公共字段（必记）</h2>
+<p>Rect 所有功能都基于这5个核心公共变量，<strong>全部是直接访问的公共字段，不是属性（无get/set，直接赋值读取）</strong>，所有字段均为 <code>float</code> 类型：</p>
+<ol>
+<li><strong><code>x</code></strong> ：矩形的「左上角」原点 X 轴坐标</li>
+<li><strong><code>y</code></strong> ：矩形的「左上角」原点 Y 轴坐标</li>
+<li><strong><code>width</code></strong> ：矩形的宽度（正数有效，0为无宽度）</li>
+<li><strong><code>height</code></strong> ：矩形的高度（正数有效，0为无高度）</li>
+<li><strong><code>position</code></strong> ：Vector2 类型，等价于 <code>(x, y)</code>，快速读写左上角坐标</li>
+<li><strong><code>size</code></strong> ：Vector2 类型，等价于 <code>(width, height)</code>，快速读写宽高</li>
+</ol>
+<h3 id="重要坐标规则重中之重避坑关键">✅ 重要坐标规则（重中之重，避坑关键）</h3>
+<p>Unity 的 <code>Rect</code> 坐标体系，<strong>默认以「左上角为原点 (0,0)」</strong> ，和我们数学里的「左下角为原点」完全相反！<br>
+→ Y轴特性：<strong>Y值越大，矩形的位置越靠下</strong>；Y值越小，位置越靠上。<br>
+比如：Rect(0,0,100,100) 是屏幕左上角的100x100矩形；Rect(0,200,100,100) 是在它正下方200单位的同尺寸矩形。</p>
+<hr>
+<h2 id="三-rect-只读快捷属性超高频使用核心必用">三、Rect 只读快捷属性（超高频使用，核心必用）</h2>
+<p>Rect 提供了大量<strong>只读的计算属性</strong>（只能读取，不能直接赋值），内部是基于 <code>x/y/width/height</code> 计算而来，无需自己写公式，极大提升开发效率，<strong>以下是开发中99%会用到的核心属性</strong>：</p>
+<h3 id="1-矩形的4个顶点坐标">1. 矩形的4个顶点坐标</h3>
+<ul>
+<li><code>min</code> → Vector2：矩形<strong>左上角</strong>坐标 → 等价 <code>(x, y)</code></li>
+<li><code>max</code> → Vector2：矩形<strong>右下角</strong>坐标 → 等价 <code>(x+width, y+height)</code></li>
+</ul>
+<h3 id="2-矩形的中心点坐标">2. 矩形的中心点坐标</h3>
+<ul>
+<li><code>center</code> → Vector2：矩形的<strong>几何中心点</strong> → 等价 <code>(x + width/2, y + height/2)</code></li>
+</ul>
+<blockquote>
+<p>常用场景：UGUI锚点居中、矩形居中对齐、以中心为基准偏移位置</p>
+</blockquote>
+<h3 id="3-矩形的边界极值">3. 矩形的边界极值</h3>
+<ul>
+<li><code>xMin</code> → float：矩形左边界的X坐标 → 等价 <code>x</code></li>
+<li><code>xMax</code> → float：矩形右边界的X坐标 → 等价 <code>x + width</code></li>
+<li><code>yMin</code> → float：矩形上边界的Y坐标 → 等价 <code>y</code></li>
+<li><code>yMax</code> → float：矩形下边界的Y坐标 → 等价 <code>y + height</code></li>
+</ul>
+<h3 id="4-其他常用快捷属性">4. 其他常用快捷属性</h3>
+<ul>
+<li><code>centerX</code>/<code>centerY</code> → float：单独获取中心点的X/Y值</li>
+<li><code>left</code>/<code>right</code> → float：等价xMin/xMax</li>
+<li><code>top</code>/<code>bottom</code> → float：等价yMin/yMax</li>
+</ul>
+<hr>
+<h2 id="四-rect-核心常用方法开发高频必掌握">四、Rect 核心常用方法（开发高频，必掌握）</h2>
+<p>Rect 内置了一系列实用的成员方法，都是矩形相关的高频业务逻辑，无需自己封装，<strong>核心常用方法如下，按使用频率排序</strong>：</p>
+<h3 id="1-包含判定containsvector2-point-返回-bool">✅ 1. 包含判定：<code>Contains(Vector2 point)</code> → 返回 <code>bool</code></h3>
+<blockquote>
+<p>作用：判断「一个2D坐标点」是否<strong>在当前矩形区域内部</strong>（含矩形边界）<br>
+开发场景：点击判定、拖拽判定、鼠标悬浮判定、UGUI点击区域校验</p>
+</blockquote>
+<pre><code class="language-csharp">Rect rect = new Rect(100,100,200,200);
+Vector2 mousePos = Input.mousePosition;
+if(rect.Contains(mousePos)){
+    Debug.Log(&quot;鼠标在矩形区域内&quot;);
+}
+</code></pre>
+<h3 id="2-相交判定overlapsrect-other-返回-bool">✅ 2. 相交判定：<code>Overlaps(Rect other)</code> → 返回 <code>bool</code></h3>
+<blockquote>
+<p>作用：判断「当前矩形」和「另一个矩形」是否<strong>存在重叠区域</strong>（相交/包含都算）<br>
+开发场景：碰撞检测（2D矩形）、UI元素遮挡判定、布局重叠校验</p>
+</blockquote>
+<pre><code class="language-csharp">Rect rectA = new Rect(0,0,100,100);
+Rect rectB = new Rect(50,50,100,100);
+if(rectA.Overlaps(rectB)){
+    Debug.Log(&quot;两个矩形相交了&quot;);
+}
+</code></pre>
+<h3 id="3-矩形偏移offsetfloat-dx-float-dy-offsetvector2-delta">✅ 3. 矩形偏移：<code>Offset(float dx, float dy)</code> / <code>Offset(Vector2 delta)</code></h3>
+<blockquote>
+<p>作用：让当前矩形<strong>整体偏移指定距离</strong>，宽高不变，只改变位置（x/y同步修改）<br>
+开发场景：拖拽UI、移动矩形区域、布局微调</p>
+</blockquote>
+<pre><code class="language-csharp">Rect rect = new Rect(0,0,100,100);
+rect.Offset(50, 50); // 向右偏移50，向下偏移50 → 新坐标(50,50)
+</code></pre>
+<h3 id="4-矩形缩放expandfloat-amount">✅ 4. 矩形缩放：<code>Expand(float amount)</code></h3>
+<blockquote>
+<p>作用：以矩形的「中心点」为基准，<strong>向四周均匀缩放</strong>，宽高同时增减 <code>amount*2</code>，位置不变<br>
+开发场景：矩形区域放大/缩小、选中高亮时的区域扩展</p>
+</blockquote>
+<pre><code class="language-csharp">Rect rect = new Rect(100,100,200,200);
+rect.Expand(20); // 宽高变为 240x240，中心点不变
+</code></pre>
+<h3 id="5-获取相交区域intersectionrect-other-返回-rect">✅ 5. 获取相交区域：<code>Intersection(Rect other)</code> → 返回 <code>Rect</code></h3>
+<blockquote>
+<p>作用：计算「当前矩形」和「另一个矩形」的<strong>重叠部分</strong>，返回这个重叠区域的新Rect；无重叠则返回空Rect<br>
+开发场景：获取两个矩形的交集区域、裁剪重叠内容</p>
+</blockquote>
+<pre><code class="language-csharp">Rect rectA = new Rect(0,0,100,100);
+Rect rectB = new Rect(50,50,100,100);
+Rect interRect = rectA.Intersection(rectB); // 返回 (50,50,50,50) 的矩形
+</code></pre>
+<hr>
+<h2 id="五-rect-常见构造方式2种常用写法">五、Rect 常见构造方式（2种常用写法）</h2>
+<p>Rect 是结构体，实例化必须传参，开发中只有2种高频构造方式，按需选择即可：</p>
+<h3 id="方式1标准构造最常用">方式1：标准构造（最常用）</h3>
+<pre><code class="language-csharp">// 语法：new Rect(x, y, width, height)
+Rect rect = new Rect(100, 200, 300, 400);
+</code></pre>
+<h3 id="方式2通过-原点尺寸-构造">方式2：通过 原点+尺寸 构造</h3>
+<pre><code class="language-csharp">// 语法：new Rect(position, size) ，两个参数都是Vector2
+Vector2 pos = new Vector2(100,200);
+Vector2 size = new Vector2(300,400);
+Rect rect = new Rect(pos, size); // 和方式1等价
+</code></pre>
+<hr>
+<h2 id="六-️-重中之重rect-vs-recttransform-核心区别避坑必看">六、⚠️ 重中之重：Rect vs RectTransform 核心区别（避坑必看）</h2>
+<blockquote>
+<p>这是Unity新手<strong>最容易混淆的两个概念</strong>，也是面试高频考点，两者名字相似，但<strong>完全是不同的东西，作用场景毫无重叠</strong>，千万不能混用！</p>
+</blockquote>
+<h3 id="核心区别总表一目了然">✅ 核心区别总表（一目了然）</h3>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>Rect (UnityEngine.Rect)</th>
+<th>RectTransform (UnityEngine.UI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类型</td>
+<td>结构体（struct）</td>
+<td>组件类（Component，继承Transform）</td>
+</tr>
+<tr>
+<td>挂载对象</td>
+<td>不能挂载，纯数据结构，代码中实例化</td>
+<td>必须挂载在<strong>UGUI元素</strong>上（Image/Text/Button等）</td>
+</tr>
+<tr>
+<td>核心作用</td>
+<td>描述「一个2D矩形的位置和尺寸」的<strong>纯数据</strong></td>
+<td>控制「UGUI元素」的<strong>布局、锚点、大小、位置、旋转、缩放</strong>的<strong>组件</strong></td>
+</tr>
+<tr>
+<td>坐标体系</td>
+<td>绝对坐标（如屏幕坐标、世界坐标），左上角为原点</td>
+<td>相对坐标（基于Canvas的锚点、父物体），UGUI专属布局坐标</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>GUI绘制、坐标计算、区域判定、2D矩形描述</td>
+<td>UGUI界面布局、UI元素的位置/大小调整、锚点适配</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一句话总结区别">✅ 一句话总结区别</h3>
+<p><code>Rect</code> 是**「数据」<strong>，只用来存矩形的位置和尺寸信息；<br>
+<code>RectTransform</code> 是</strong>「组件」**，是UGUI的核心布局组件，用来控制UI元素的显示和布局。</p>
+<blockquote>
+<p>补充：RectTransform组件内部也封装了Rect类型的属性（rect），可以通过 <code>GetComponent&lt;RectTransform&gt;().rect</code> 获取该UI元素的矩形数据。</p>
+</blockquote>
+<hr>
+<h2 id="总结核心知识点速记建议收藏">✨ 总结（核心知识点速记，建议收藏）</h2>
+<ol>
+<li>Rect 是<strong>结构体</strong>，核心作用是「描述2D矩形区域」，是UGUI和GUI的基础；</li>
+<li>Rect 核心字段：<code>x/y/width/height</code>（公共字段，可直接读写），<strong>左上角为原点，Y值越大越靠下</strong>；</li>
+<li>Rect 核心属性：<code>center/min/max/xMax/yMax</code>（只读计算属性，高频使用）；</li>
+<li>Rect 核心方法：<code>Contains()</code>（点在矩形内）、<code>Overlaps()</code>（矩形相交）、<code>Offset()</code>（偏移）、<code>Expand()</code>（缩放）；</li>
+<li>最关键区别：<strong>Rect是数据，RectTransform是UGUI组件</strong>，两者无继承、无关联，切勿混用。</li>
+</ol>
+<p>以上就是Unity Rect的全部核心知识点，覆盖99%的开发使用场景，吃透这些就完全够用了！</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/map-de-cun-chu-she-ji/" class="post-title gt-a-link">
+                    Map的存储设计
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

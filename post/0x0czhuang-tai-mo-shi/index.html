@@ -1,0 +1,385 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x0c.状态模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x0c.状态模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong>状态模式（State Pattern）</strong></p>
+<h3 id="为什么要用状态模式">💡 为什么要用状态模式？</h3>
+<p>假设你正在写玩家的控制脚本（PlayerController），玩家有四种状态：<strong>待机（Idle）、奔跑（Run）、跳跃（Jump）、攻击（Attack）</strong>。</p>
+<p>面向过程的<strong>新手的灾难写法</strong>就是在 <code>Update</code> 里写一个巨大的 <code>switch-case</code>：</p>
+<pre><code class="language-csharp">void Update()
+{
+    switch (currentState)
+    {
+        case State.Idle:
+            // 监测按键切换到 Run 或 Jump...
+            break;
+        case State.Run:
+            // 处理移动，监测按键...
+            break;
+        case State.Jump:
+            // 处理重力，检测落地...
+            break;
+    }
+}
+
+</code></pre>
+<p>当状态只有 3 个时还好。但如果你的游戏越来越复杂，增加了：受伤、死亡、攀爬、滑行、格挡、硬直……这个 <code>Update</code> 会膨胀到几千行，里面的 <code>if-else</code> 互相嵌套，改一个地方，整个角色直接动不了了。</p>
+<p><strong>状态模式的优雅解法：</strong><br>
+把<strong>每一种状态</strong>都独立写成一个类（比如 <code>IdleState</code> 类、<code>JumpState</code> 类）。每个类只负责自己在该状态下要做的事，以及满足什么条件时切换到下一个状态。</p>
+<hr>
+<h3 id="一-unity-状态机标准核心代码">一、 Unity 状态机标准核心代码</h3>
+<p>在 Unity 中，一个标准的状态机由三部分组成：<strong>状态接口</strong>、<strong>状态机状态切换器</strong>、<strong>具体的状态类</strong>。</p>
+<h4 id="1-定义状态接口-istate">1. 定义状态接口 (IState)</h4>
+<p>每个状态都应该有生命周期：进入时做什么、每帧刷新做什么、离开时做什么。</p>
+<pre><code class="language-csharp">public interface IState
+{
+    void Enter();  // 进入状态时执行一次（初始化动画、音效等）
+    void Update(); // 在 Unity 的 Update 中每帧调用（处理输入、物理等）
+    void Exit();   // 离开状态时执行一次（清理工作）
+}
+
+</code></pre>
+<h4 id="2-状态机控制器-playerstatemachine">2. 状态机控制器 (PlayerStateMachine)</h4>
+<p>负责管理当前是谁在运行，并提供“切换状态”的方法。</p>
+<pre><code class="language-csharp">public class PlayerStateMachine
+{
+    // 当前正在生效的状态
+    public IState CurrentState { get; private set; }
+
+    // 初始化状态机
+    public void Initialize(IState initialState)
+    {
+        CurrentState = initialState;
+        CurrentState.Enter();
+    }
+
+    // 核心：切换状态
+    public void ChangeState(IState newState)
+    {
+        CurrentState?.Exit();  // 1. 让老状态发表退场感言
+        CurrentState = newState; // 2. 换上新状态
+        CurrentState.Enter(); // 3. 让新状态发表开场白
+    }
+
+    // 供外部的 MonoBehaviour 每帧调用
+    public void Update()
+    {
+        CurrentState?.Update();
+    }
+}
+
+</code></pre>
+<h4 id="3-编写具体的状态类以-idle-和-run-为例">3. 编写具体的状态类（以 Idle 和 Run 为例）</h4>
+<p>为了让状态类能控制玩家，我们在构造函数中把 <code>PlayerController</code> 的引用传给它。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 状态 A：待机状态
+public class PlayerIdleState : IState
+{
+    private PlayerController _player;
+
+    public PlayerIdleState(PlayerController player)
+    {
+        _player = player;
+    }
+
+    public void Enter()
+    {
+        Debug.Log(&quot;进入【待机】状态：播放 Idle 动画&quot;);
+    }
+
+    public void Update()
+    {
+        // 在待机状态下，每帧检测有没有移动输入
+        float moveInput = Input.GetAxisRaw(&quot;Horizontal&quot;);
+        if (moveInput != 0)
+        {
+            // 满足条件，直接通过状态机切换到奔跑状态！
+            _player.StateMachine.ChangeState(_player.RunState);
+        }
+    }
+
+    public void Exit()
+    {
+        Debug.Log(&quot;离开【待机】状态&quot;);
+    }
+}
+
+// 状态 B：奔跑状态
+public class PlayerRunState : IState
+{
+    private PlayerController _player;
+
+    public PlayerRunState(PlayerController player)
+    {
+        _player = player;
+    }
+
+    public void Enter()
+    {
+        Debug.Log(&quot;进入【奔跑】状态：播放 Run 动画&quot;);
+    }
+
+    public void Update()
+    {
+        float moveInput = Input.GetAxisRaw(&quot;Horizontal&quot;);
+        
+        // 执行移动逻辑
+        _player.transform.Translate(Vector3.right * moveInput * _player.moveSpeed * Time.deltaTime);
+
+        // 如果没有输入了，切回待机状态
+        if (moveInput == 0)
+        {
+            _player.StateMachine.ChangeState(_player.IdleState);
+        }
+    }
+
+    public void Exit()
+    {
+        Debug.Log(&quot;离开【奔跑】状态&quot;);
+    }
+}
+
+</code></pre>
+<h4 id="4-在-unity-宿主中使用它-playercontroller">4. 在 Unity 宿主中使用它 (PlayerController)</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    [Header(&quot;Movement&quot;)]
+    public float moveSpeed = 5f;
+
+    // 1. 声明状态机
+    public PlayerStateMachine StateMachine { get; private set; }
+
+    // 2. 预先实例化好所有状态，防止在运行时频繁 new 产生垃圾
+    public PlayerIdleState IdleState { get; private set; }
+    public PlayerRunState RunState { get; private set; }
+
+    private void Start()
+    {
+        StateMachine = new PlayerStateMachine();
+
+        // 分配状态，并把自己（this）传进去
+        IdleState = new PlayerIdleState(this);
+        RunState = new PlayerRunState(this);
+
+        // 让玩家默认进入待机状态
+        StateMachine.Initialize(IdleState);
+    }
+
+    private void Update()
+    {
+        // 把 Unity 的生命周期泵入状态机中
+        StateMachine.Update();
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="终极解惑策略模式-vs-状态模式">🆚 终极解惑：策略模式 vs 状态模式</h3>
+<p><strong>状态模式和策略模式的 UML 类图一模一样</strong>，它们都是肚子里装着一个接口，然后动态去替换实现类。</p>
+<p>它们唯一的区别在于“意图”<strong>和</strong>“谁来控制切换”：</p>
+<ul>
+<li><strong>策略模式（Strategy）：</strong> 外部客户端来决定用哪个策略。比如玩家在面板上<strong>主动</strong>选择装备手枪还是散弹枪，武器本身不会自己从手枪变成散弹枪。</li>
+<li><strong>状态模式（State）：</strong> 状态类内部<strong>自己</strong>决定什么时候切到下一个状态。比如 <code>IdleState</code> 发现有按键输入，就<strong>主动自我触发</strong>切到 <code>RunState</code>，客户端（PlayerController）全程不需要操心状态切换的条件。</li>
+</ul>
+<h3 id="避坑指南">💡 避坑指南</h3>
+<ul>
+<li><strong>不要在状态的 <code>Update</code> 里乱 new 对象：</strong> 状态类每帧都在跑，千万别在里面写 <code>new Vector3()</code> 或者 <code>GetComponent</code>，否则你的游戏很快就会因为 GC 导致卡顿。像我上面展示的那样，在 <code>Start</code> 里把状态全部 new 好缓存起来才是正道。</li>
+<li><strong>配合 Animator 的哈希值：</strong> 在状态的 <code>Enter</code> 里播放动画时，用 <code>Animator.StringToHash(&quot;Base Layer.Idle&quot;)</code> 代替直接写字符串 <code>&quot;Idle&quot;</code>，能帮你抠出更多的 CPU 性能。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x0bwai-guan-mo-shi/" class="post-title gt-a-link">
+                    0x0b.外观模式 
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

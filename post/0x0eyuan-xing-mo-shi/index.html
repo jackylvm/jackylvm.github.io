@@ -1,0 +1,324 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x0e.原型模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x0e.原型模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>如果说前面的工厂和建造者模式是“根据图纸从零组装一台新机器”，那么原型模式就简单粗暴多了：它是一台“克隆机”。直接拿一个现有的对象（原型），复制出一模一样的新对象。</p>
+<p>在 Unity 开发中，原型模式的地位非常特殊，因为<strong>你其实每天都在用它，只是你可能不知道它的名字</strong>。</p>
+<h3 id="为什么要用原型模式">💡 为什么要用原型模式？</h3>
+<p>假设你在写一个关卡编辑器，玩家可以在地图上疯狂摆放一种叫“魔暴龙”的怪物。这只魔暴龙非常复杂，它身上挂着 AI 组件、3D 模型、动画控制器、音效源，还有一堆初始属性。</p>
+<p><strong>如果是纯代码实例化：</strong><br>
+你得先 <code>new</code> 一个怪物，然后加载模型、绑定动画、加载音效、配置属性……如果玩家要放 100 只，你的游戏可能会直接卡死在频繁的“从零初始化”中。</p>
+<p><strong>原型模式的优雅解法：</strong><br>
+在内存里先放好一只已经完全初始化好的魔暴龙（原型）。每当需要新怪物时，直接对它进行<strong>克隆（Clone）</strong>。克隆出来的新怪物立刻就拥有了和原型一模一样的状态，连配置都省了！</p>
+<hr>
+<h3 id="一-震撼-unity-玩家的真相prefabs-与-instantiate">一、 🤯 震撼 Unity 玩家的真相：Prefabs 与 Instantiate</h3>
+<p>在传统的 C# 或 Java 书籍里，原型模式需要你实现 <code>ICloneable</code> 接口或写一个 <code>Clone()</code> 方法。</p>
+<p>但在 Unity 中，官方把原型模式直接做成了整个引擎的核心基石，那就是：<strong>Prefab（预制体）</strong> 与 <strong><code>Object.Instantiate()</code></strong>。</p>
+<ul>
+<li><strong>原型（Prototype）：</strong> 你在 Project 窗口里做好的那个 Prefab 资产，或者场景里隐藏的某个魔暴龙样本。</li>
+<li><strong>克隆（Clone）：</strong> <code>Instantiate(monsterPrefab);</code></li>
+</ul>
+<p>Unity 的底层是用 C++ 写的，当你调用 <code>Instantiate</code> 时，它会在内存中进行极其高效的<strong>二进制数据块复制</strong>。它比你用纯 C# 代码去 <code>new</code> 一个复杂对象并挨个赋值要快得多。这就是为什么在 Unity 中，我们极少需要自己去手写 GameObject 的克隆逻辑。</p>
+<hr>
+<h3 id="二-纯-c-数据层的原型模式真正需要手写的情况">二、 纯 C# 数据层的原型模式（真正需要手写的情况）</h3>
+<p>虽然 Unity 帮我们搞定了 GameObject 的克隆，但在处理纯 C# 数据类（比如怪物的数值属性、技能数据）时，我们还是需要亲自上阵实现原型模式。</p>
+<p>假设怪物在游戏运行中吃到了 Buff，属性改变了，我们想复制当前的怪物数据，就需要用到它。</p>
+<h4 id="1-定义可克隆的怪物数据类">1. 定义可克隆的怪物数据类</h4>
+<p>在 C# 中，我们可以利用 <code>object</code> 自带的 <code>MemberwiseClone()</code> 方法来实现快速复制。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 怪物数值类
+public class MonsterData
+{
+    public string monsterName;
+    public int hp;
+    public int attack;
+    
+    // 引用类型属性（注意：这里埋了个巨大的坑，稍后讲解）
+    public WeaponInfo weapon; 
+
+    public MonsterData(string name, int hp, int attack, WeaponInfo weapon)
+    {
+        this.monsterName = name;
+        this.hp = hp;
+        this.attack = attack;
+        this.weapon = weapon;
+    }
+
+    // 核心：克隆方法（原型模式的灵魂）
+    public MonsterData Clone()
+    {
+        // MemberwiseClone 是 C# 内置的“浅拷贝”方法，非常高效
+        return (MonsterData)this.MemberwiseClone();
+    }
+
+    public void PrintInfo()
+    {
+        Debug.Log($&quot;[怪物]: {monsterName} | 血量: {hp} | 攻击: {attack} | 武器: {weapon.weaponName}&quot;);
+    }
+}
+
+// 武器信息类（引用类型）
+public class WeaponInfo
+{
+    public string weaponName;
+    public WeaponInfo(string name) { weaponName = name; }
+}
+
+</code></pre>
+<h4 id="2-在-unity-中使用克隆">2. 在 Unity 中使用克隆</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class PrototypeTest : MonoBehaviour
+{
+    void Start()
+    {
+        // 1. 创建一个原型对象（精英哥布林）
+        WeaponInfo ironSword = new WeaponInfo(&quot;铁剑&quot;);
+        MonsterData prototypeGoblin = new MonsterData(&quot;精英哥布林&quot;, 500, 50, ironSword);
+        
+        // 2. 使用原型模式，直接克隆出一只一模一样的哥布林
+        MonsterData clonedGoblin = prototypeGoblin.Clone();
+        
+        // 3. 修改克隆体的名字和血量，不会影响原型！
+        clonedGoblin.monsterName = &quot;克隆哥布林 A&quot;;
+        clonedGoblin.hp = 200;
+
+        // 4. 打印验证
+        prototypeGoblin.PrintInfo(); // 输出: 精英哥布林 | 血量: 500 ...
+        clonedGoblin.PrintInfo();    // 输出: 克隆哥布林 A | 血量: 200 ...
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="避坑指南致命的浅拷贝与深拷贝">🚨 避坑指南：致命的“浅拷贝”与“深拷贝”</h3>
+<p>这是使用原型模式（尤其是在 C# 中用 <code>MemberwiseClone</code>）时<strong>最容易让人抓狂的 Bug 来源</strong>，也是面试高频考点。</p>
+<p>在上面的例子中，如果我执行了这行代码：</p>
+<pre><code class="language-csharp">clonedGoblin.weapon.weaponName = &quot;激光神剑&quot;;
+
+</code></pre>
+<p>你猜猜会发生什么？<br>
+<strong>结果是：连带着原型 <code>prototypeGoblin</code> 的武器也变成了“激光神剑”！</strong></p>
+<blockquote>
+<p><strong>为什么会这样？</strong></p>
+<ul>
+<li><strong>浅拷贝（Shallow Copy）：</strong> <code>MemberwiseClone</code> 只会复制值类型（如 <code>int</code>, <code>float</code>, <code>string</code>）。对于引用类型（如自定义的类 <code>WeaponInfo</code>），它<strong>只复制了内存地址的指针</strong>。也就是说，原型和克隆体现在正<strong>共享同一个武器对象</strong>！</li>
+<li><strong>深拷贝（Deep Copy）：</strong> 想要真正独立，你必须在克隆方法里，把肚子里的引用类型也一起 <code>new</code> 一个新的出来。</li>
+</ul>
+</blockquote>
+<p><strong>如何写一个完美的“深拷贝” Clone：</strong></p>
+<pre><code class="language-csharp">public MonsterData DeepClone()
+{
+    // 1. 先进行浅拷贝，复制基础的值类型
+    MonsterData newMonster = (MonsterData)this.MemberwiseClone();
+    
+    // 2. 为引用类型单独创建一个新实例，实现真正的剥离
+    newMonster.weapon = new WeaponInfo(this.weapon.weaponName);
+    
+    return newMonster;
+}
+
+</code></pre>
+<h3 id="总结">💡 总结</h3>
+<ul>
+<li><strong>核心思想：</strong> 别从头建造了，直接复制我！</li>
+<li><strong>适用场景：</strong></li>
+<li>对象的初始化成本极高（比如需要读取大量配置文件、加载大量资源）。</li>
+<li>需要动态保存/恢复对象的状态（比如肉鸽游戏里的“回溯到前一秒的状态”，直接在每秒开始前 Clone 一个备份即可）。</li>
+<li>配合 Unity 的 <code>Instantiate</code> 进行海量物体的生成（如弹幕、小兵）。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x0dunity-li-mian-de-zhuang-tai-mo-shi/" class="post-title gt-a-link">
+                    0x0d.Unity里面的状态模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x08.Shader函数tex2D | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x08.Shader函数tex2D
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-06-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/60e52J_k-Hr/" class="post-tags">
+                            # 基础函数
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity Shader 中，<strong><code>tex2D</code></strong> 是最常用的纹理采样函数，用于从 2D 纹理中读取颜色值。它是实现纹理映射、法线贴图、遮罩效果等的核心工具。</p>
+<hr>
+<h3 id="1-基本语法"><strong>1. 基本语法</strong></h3>
+<pre><code class="language-hlsl">fixed4 tex2D(sampler2D sampler, float2 uv);
+</code></pre>
+<ul>
+<li><strong><code>sampler</code></strong>：纹理采样器（如 <code>_MainTex</code>），需与 <code>Properties</code> 块中声明的纹理关联。</li>
+<li><strong><code>uv</code></strong>：纹理坐标，通常是范围为 <code>[0, 1]</code> 的二维向量。</li>
+<li><strong>返回值</strong>：采样到的颜色值（<code>fixed4</code> 或 <code>float4</code>，包含 RGBA 四个通道）。</li>
+</ul>
+<h3 id="2-工作原理"><strong>2. 工作原理</strong></h3>
+<ul>
+<li><strong>纹理坐标</strong>：<code>uv</code> 的 <code>(0,0)</code> 对应纹理左下角，<code>(1,1)</code> 对应右上角。</li>
+<li><strong>采样方式</strong>：根据纹理的 <strong>Filter Mode</strong>（过滤模式）和 <strong>Wrap Mode</strong>（环绕模式）自动处理插值和边界行为。</li>
+</ul>
+<h3 id="3-核心参数详解"><strong>3. 核心参数详解</strong></h3>
+<h4 id="31-纹理采样器-sampler2d">3.1 <strong>纹理采样器 (<code>sampler2D</code>)</strong></h4>
+<pre><code class="language-hlsl">sampler2D _MainTex;  // 声明采样器
+</code></pre>
+<p>需在 <code>Properties</code> 块中关联纹理：</p>
+<pre><code class="language-hlsl">Properties {
+    _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}  // 默认白色纹理
+}
+</code></pre>
+<h4 id="32-纹理坐标-uv">3.2 <strong>纹理坐标 (<code>uv</code>)</strong></h4>
+<ul>
+<li><strong>范围</strong>：默认 <code>[0, 1]</code>，超出范围的行为由纹理的 <strong>Wrap Mode</strong> 决定。</li>
+<li><strong>常见处理</strong>：<pre><code class="language-hlsl">// 应用材质面板中的缩放和偏移
+o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+
+// 手动缩放纹理（例如重复4次）
+o.uv = v.uv * 4.0;
+
+// 镜像效果
+o.uv = 1.0 - abs(o.uv * 2.0 - 1.0);
+</code></pre>
+</li>
+</ul>
+<h3 id="4-纹理参数对采样的影响"><strong>4. 纹理参数对采样的影响</strong></h3>
+<h4 id="41-filter-mode过滤模式">4.1 <strong>Filter Mode（过滤模式）</strong></h4>
+<p>控制纹理在缩放时的表现：</p>
+<ul>
+<li><strong>Point</strong>：最近邻采样（像素风，硬边缘）。</li>
+<li><strong>Bilinear</strong>：双线性插值（平滑过渡，默认）。</li>
+<li><strong>Trilinear</strong>：三线性插值（考虑 mipmap，更平滑）。</li>
+</ul>
+<h4 id="42-wrap-mode环绕模式">4.2 <strong>Wrap Mode（环绕模式）</strong></h4>
+<p>控制纹理坐标超出 <code>[0, 1]</code> 时的行为：</p>
+<ul>
+<li><strong>Repeat</strong>：重复纹理（需配合 <code>fract</code> 或 <code>mod</code> 使用）。</li>
+<li><strong>Clamp</strong>：边缘像素延伸。</li>
+<li><strong>Mirror</strong>：镜像重复。</li>
+</ul>
+<h3 id="5-代码示例"><strong>5. 代码示例</strong></h3>
+<h4 id="51-基础纹理采样">5.1 <strong>基础纹理采样</strong></h4>
+<pre><code class="language-hlsl">fixed4 frag (v2f i) : SV_Target {
+    fixed4 col = tex2D(_MainTex, i.uv);  // 采样纹理
+    return col;
+}
+</code></pre>
+<h4 id="52-纹理重复4x4-平铺">5.2 <strong>纹理重复（4x4 平铺）</strong></h4>
+<pre><code class="language-hlsl">fixed4 frag (v2f i) : SV_Target {
+    float2 tiledUV = fract(i.uv * 4.0);  // 使用fract确保坐标在[0,1]内
+    fixed4 col = tex2D(_MainTex, tiledUV);
+    return col;
+}
+</code></pre>
+<h4 id="53-带遮罩的纹理混合">5.3 <strong>带遮罩的纹理混合</strong></h4>
+<pre><code class="language-hlsl">sampler2D _MaskTex;  // 遮罩纹理
+
+fixed4 frag (v2f i) : SV_Target {
+    fixed4 baseCol = tex2D(_MainTex, i.uv);      // 基础纹理
+    fixed4 maskCol = tex2D(_MaskTex, i.uv);       // 遮罩纹理
+    fixed4 finalCol = lerp(baseCol, _Highlight, maskCol.r);  // 根据遮罩值混合
+    return finalCol;
+}
+</code></pre>
+<h4 id="54-法线贴图采样">5.4 <strong>法线贴图采样</strong></h4>
+<pre><code class="language-hlsl">sampler2D _NormalMap;  // 法线贴图
+
+fixed4 frag (v2f i) : SV_Target {
+    fixed4 normalCol = tex2D(_NormalMap, i.uv);    // 采样法线贴图
+    float3 normal = UnpackNormal(normalCol);       // 解压法线向量
+    // 后续光照计算...
+}
+</code></pre>
+<h3 id="6-高级变体函数"><strong>6. 高级变体函数</strong></h3>
+<h4 id="61-带-mipmap-级别控制的采样">6.1 <strong>带 Mipmap 级别控制的采样</strong></h4>
+<pre><code class="language-hlsl">fixed4 tex2Dlod(sampler2D sampler, float4 uv_and_lod);
+</code></pre>
+<ul>
+<li><code>uv_and_lod.xy</code>：纹理坐标。</li>
+<li><code>uv_and_lod.w</code>：Mipmap 级别（0 表示最高精度）。</li>
+</ul>
+<h4 id="62-带导数计算的采样用于抗锯齿">6.2 <strong>带导数计算的采样（用于抗锯齿）</strong></h4>
+<pre><code class="language-hlsl">fixed4 tex2Dgrad(sampler2D sampler, float2 uv, float2 ddx, float2 ddy);
+</code></pre>
+<ul>
+<li><code>ddx/ddy</code>：纹理坐标在屏幕空间的导数。</li>
+</ul>
+<h3 id="7-性能与优化"><strong>7. 性能与优化</strong></h3>
+<ul>
+<li><strong>减少采样次数</strong>：多次 <code>tex2D</code> 会显著降低性能。</li>
+<li><strong>使用压缩纹理</strong>：如 DXT、ETC 格式可减少内存占用。</li>
+<li><strong>合理设置 Mipmap</strong>：远距离物体启用 Mipmap 可提升性能。</li>
+</ul>
+<h3 id="总结"><strong>总结</strong></h3>
+<p><code>tex2D</code> 是 Unity Shader 中纹理采样的核心函数，通过组合不同的纹理坐标处理和参数设置，你可以实现：</p>
+<ul>
+<li>基础纹理映射</li>
+<li>纹理重复与镜像</li>
+<li>遮罩与混合效果</li>
+<li>法线贴图与光照</li>
+<li>高级渲染技术（如环境映射、后处理）</li>
+</ul>
+<hr>
+<p>在 Unity Shader 中，除了基础的 <code>tex2D</code> 函数外，还有许多其他纹理采样函数，用于处理不同类型的纹理、实现特殊效果或优化性能。</p>
+<h3 id="1-带-mipmap-控制的采样"><strong>1. 带 Mipmap 控制的采样</strong></h3>
+<h4 id="tex2dlod"><code>tex2Dlod</code></h4>
+<p>直接指定 Mipmap 级别，用于精细控制细节程度：</p>
+<pre><code class="language-hlsl">fixed4 tex2Dlod(sampler2D sampler, float4 uv_and_lod);
+</code></pre>
+<ul>
+<li><code>uv_and_lod.xy</code>：纹理坐标。</li>
+<li><code>uv_and_lod.w</code>：Mipmap 级别（0 表示最高精度，值越大越模糊）。</li>
+</ul>
+<p><strong>应用场景</strong>：程序化纹理、地形 LOD 过渡。</p>
+<h3 id="2-带导数计算的采样"><strong>2. 带导数计算的采样</strong></h3>
+<h4 id="tex2dgrad"><code>tex2Dgrad</code></h4>
+<p>手动提供纹理坐标的导数（用于屏幕空间变化率），优化抗锯齿：</p>
+<pre><code class="language-hlsl">fixed4 tex2Dgrad(sampler2D sampler, float2 uv, float2 ddx, float2 ddy);
+</code></pre>
+<ul>
+<li><code>ddx/ddy</code>：纹理坐标在屏幕空间 X/Y 方向的导数。</li>
+</ul>
+<p><strong>应用场景</strong>：快速移动对象的纹理采样、自定义过滤算法。</p>
+<h3 id="3-3d-纹理采样"><strong>3. 3D 纹理采样</strong></h3>
+<h4 id="tex3d"><code>tex3D</code></h4>
+<p>用于采样体积纹理（如雾效、体积云）：</p>
+<pre><code class="language-hlsl">fixed4 tex3D(sampler3D sampler, float3 uv);
+</code></pre>
+<ul>
+<li><code>uv</code>：三维纹理坐标。</li>
+</ul>
+<p><strong>应用场景</strong>：体积渲染、流体模拟、环境雾。</p>
+<h3 id="4-立方体纹理采样"><strong>4. 立方体纹理采样</strong></h3>
+<h4 id="texcube"><code>texCUBE</code></h4>
+<p>用于采样立方体贴图（如反射探针、天空盒）：</p>
+<pre><code class="language-hlsl">fixed4 texCUBE(samplerCUBE sampler, float3 direction);
+</code></pre>
+<ul>
+<li><code>direction</code>：采样方向向量（从原点指向立方体表面）。</li>
+</ul>
+<p><strong>应用场景</strong>：反射、折射、环境光照。</p>
+<h3 id="5-投影纹理采样"><strong>5. 投影纹理采样</strong></h3>
+<h4 id="tex2dproj"><code>tex2Dproj</code></h4>
+<p>用于实现阴影映射或透视投影纹理：</p>
+<pre><code class="language-hlsl">fixed4 tex2Dproj(sampler2D sampler, float4 uv_proj);
+</code></pre>
+<ul>
+<li><code>uv_proj</code>：投影纹理坐标（通常是齐次坐标 <code>(u,v,w,q)</code>，采样时会自动执行 <code>(u/q, v/q)</code>）。</li>
+</ul>
+<p><strong>应用场景</strong>：阴影贴图、投影广告牌。</p>
+<h3 id="6-双线性过滤的点采样"><strong>6. 双线性过滤的点采样</strong></h3>
+<h4 id="tex2dbias"><code>tex2Dbias</code></h4>
+<p>在采样时应用 Mipmap 偏移，实现更精细的控制：</p>
+<pre><code class="language-hlsl">fixed4 tex2Dbias(sampler2D sampler, float4 uv_bias);
+</code></pre>
+<ul>
+<li><code>uv_bias.xy</code>：纹理坐标。</li>
+<li><code>uv_bias.w</code>：Mipmap 偏移值（负值使纹理更清晰，正值使纹理更模糊）。</li>
+</ul>
+<p><strong>应用场景</strong>：选择性锐化或模糊特定区域。</p>
+<h3 id="7-纹理数组采样"><strong>7. 纹理数组采样</strong></h3>
+<h4 id="tex2darray"><code>tex2Darray</code></h4>
+<p>用于采样纹理数组（一组相同尺寸的纹理）：</p>
+<pre><code class="language-hlsl">fixed4 tex2Darray(sampler2DArray sampler, float3 uv);
+</code></pre>
+<ul>
+<li><code>uv.xy</code>：纹理坐标。</li>
+<li><code>uv.z</code>：纹理数组索引。</li>
+</ul>
+<p><strong>应用场景</strong>：多材质渲染、纹理动画序列。</p>
+<h3 id="8-采样并比较用于阴影"><strong>8. 采样并比较（用于阴影）</strong></h3>
+<h4 id="tex2dcmp"><code>tex2Dcmp</code></h4>
+<p>用于阴影采样，将采样值与比较值进行深度比较：</p>
+<pre><code class="language-hlsl">fixed tex2Dcmp(sampler2D sampler, float4 uv_compare);
+</code></pre>
+<ul>
+<li><code>uv_compare.xy</code>：纹理坐标。</li>
+<li><code>uv_compare.z</code>：用于比较的深度值。</li>
+</ul>
+<p><strong>应用场景</strong>：阴影贴图（与 <code>UNITY_SAMPLE_TEXCUBE_COMPARE</code> 配合使用）。</p>
+<h3 id="9-特殊采样函数"><strong>9. 特殊采样函数</strong></h3>
+<h4 id="unity_sample_texcube_lod"><code>UNITY_SAMPLE_TEXCUBE_LOD</code></h4>
+<p>Unity 专用的立方体贴图采样，带 LOD 控制：</p>
+<pre><code class="language-hlsl">fixed4 UNITY_SAMPLE_TEXCUBE_LOD(samplerCUBE sampler, float3 dir, float lod);
+</code></pre>
+<p><strong>应用场景</strong>：带反射细节控制的 PBR 材质。</p>
+<h3 id="10-内置宏与辅助函数"><strong>10. 内置宏与辅助函数</strong></h3>
+<h4 id="unity_sample_gi"><code>UNITY_SAMPLE_GI</code></h4>
+<p>采样全局光照（GI）：</p>
+<pre><code class="language-hlsl">UNITY_SAMPLE_GI(lightColor, worldPos, worldNormal);
+</code></pre>
+<p><strong>应用场景</strong>：间接光照计算。</p>
+<h3 id="总结-2"><strong>总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tex2Dlod</code></td>
+<td>指定 Mipmap 级别采样</td>
+<td>程序化纹理、地形 LOD</td>
+</tr>
+<tr>
+<td><code>tex2Dgrad</code></td>
+<td>手动提供导数</td>
+<td>自定义过滤、抗锯齿</td>
+</tr>
+<tr>
+<td><code>tex3D</code></td>
+<td>采样 3D 体积纹理</td>
+<td>体积雾、流体模拟</td>
+</tr>
+<tr>
+<td><code>texCUBE</code></td>
+<td>采样立方体贴图</td>
+<td>反射、天空盒</td>
+</tr>
+<tr>
+<td><code>tex2Dproj</code></td>
+<td>投影纹理采样</td>
+<td>阴影映射、投影广告牌</td>
+</tr>
+<tr>
+<td><code>tex2Darray</code></td>
+<td>采样纹理数组</td>
+<td>多材质切换、纹理动画</td>
+</tr>
+<tr>
+<td><code>tex2Dcmp</code></td>
+<td>采样并比较（阴影专用）</td>
+<td>阴影贴图</td>
+</tr>
+<tr>
+<td><code>UNITY_SAMPLE_GI</code></td>
+<td>采样全局光照</td>
+<td>间接光照计算</td>
+</tr>
+</tbody>
+</table>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x07shader-han-shu-clamp/" class="post-title gt-a-link">
+                    0x07.Shader函数clamp
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

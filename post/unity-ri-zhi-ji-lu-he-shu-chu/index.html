@@ -1,0 +1,461 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity日志记录和输出 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity日志记录和输出
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/WgyNS3Ry33/" class="post-tags">
+                            # C#
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>代码如下:</p>
+<pre><code class="language-C#">// ***********************************************************************************
+// FileName: LogHandlerRotateComposite.cs
+// Description:
+// 
+// Version: v1.0.0
+// Creator: Jacky(jackylvm@foxmail.com)
+// CreationTime: 2025-09-14 14:41:47
+// ==============================================
+// History update record:
+// 
+// ==============================================
+// *************************************************************************************
+
+using System;
+using System.IO;
+using System.Linq;
+using UnityEngine;
+
+namespace JackyExtendedToolSet.Runtime.Logger
+{
+    // 日志文件轮转
+    // 结合文件大小和文件时间进行轮转
+    public class LogHandlerRotateComposite : MonoBehaviour
+    {
+        // 每个日志文件的最大大小（64MB）
+        [SerializeField] private long maxLogFileSize = 64 * 1024 * 1024;
+
+        // 最大日志文件数量
+        [SerializeField] private int maxLogFileCount = 5;
+
+        // 日志文件保存路径
+        [SerializeField] private string logDirectory = &quot;Logs&quot;;
+
+        // 日志文件前缀
+        [SerializeField] private string logFilePrefix = &quot;GameLog_&quot;;
+
+        private string _logFilePath;
+        private StreamWriter _currentLogWriter;
+        private string _currentLogFilePath;
+
+        /// &lt;summary&gt;
+        /// Awake 函数会在游戏对象被实例化之后立即调用，而且在所有对象的 Start 函数调用之前执行。一般在 Awake 函数里进行以下操作：
+        /// &lt;para&gt;1. 初始化引用：查找并存储对其他组件或者游戏对象的引用，确保后续代码能够方便地访问这些对象。&lt;/para&gt;
+        /// &lt;para&gt;2. 初始化设置：对脚本中的变量进行初始赋值。&lt;/para&gt;
+        /// &lt;para&gt;3. 建立连接：比如和数据库或者网络服务建立连接。&lt;/para&gt;
+        /// &lt;/summary&gt;
+        private void Awake()
+        {
+            _logFilePath = Path.Combine(Application.persistentDataPath, logDirectory);
+
+            // 确保日志目录存在
+            EnsureLogDirectoryExists();
+
+            // 清理超出数量限制的旧日志
+            CleanupOldLogs();
+
+            // 初始化日志文件（使用现有最新的或创建新的）
+            InitializeLogFile();
+
+            DontDestroyOnLoad(gameObject);
+        }
+
+        /// &lt;summary&gt;
+        /// Start 函数会在脚本实例被启用时调用，并且只在第一帧更新之前执行一次。它一般用于：
+        /// &lt;para&gt;1. 依赖初始化：当某些初始化操作依赖于其他对象的 Awake 函数完成时，可以在 Start 函数里进行。&lt;/para&gt;
+        /// &lt;para&gt;2. 数据加载：从文件或者服务器加载数据。&lt;/para&gt;
+        /// &lt;/summary&gt;
+        private void Start()
+        {
+            // 注册日志回调
+            Application.logMessageReceived += OnLogMessageReceived;
+        }
+
+        /// &lt;summary&gt;
+        /// OnDestroy 函数会在以下几种情况下被调用：
+        /// &lt;para&gt;1. 当你使用 GameObject.Destroy 方法明确销毁一个游戏对象时，OnDestroy 会在销毁操作执行前被调用。&lt;/para&gt;
+        /// &lt;para&gt;2. 当场景切换时，如果某个游戏对象没有设置为 DontDestroyOnLoad，那么在场景切换过程中该对象被销毁时，OnDestroy 也会被触发。&lt;/para&gt;
+        /// &lt;para&gt;3. 当游戏结束或应用程序关闭时，所有存在的游戏对象都会被销毁，此时也会调用它们各自的 OnDestroy 函数。&lt;/para&gt;
+        /// OnDestroy 函数适用的场景：
+        /// &lt;para&gt;1. 资源释放：当游戏对象持有一些外部资源，如网络连接、文件句柄、数据库连接等，在对象销毁时需要确保这些资源被正确释放，避免资源泄漏。&lt;/para&gt;
+        /// &lt;para&gt;2. 事件注销：如果在 OnEnable 或者其他地方注册了事件监听器，为了防止出现内存泄漏，需要在 OnDestroy 中注销这些事件监听器。&lt;/para&gt;
+        /// &lt;para&gt;3. 数据保存：在对象销毁前，可能需要将对象的一些状态数据保存到文件或者服务器，以便后续恢复或分析。&lt;/para&gt;
+        /// &lt;/summary&gt;
+        private void OnDestroy()
+        {
+            // 注销回调（避免内存泄漏）
+            Application.logMessageReceived -= OnLogMessageReceived;
+
+            // 关闭当前的日志文件
+            CloseCurrentLogFile();
+        }
+
+        // 日志回调函数
+        void OnLogMessageReceived(string logString, string stackTrace, LogType type)
+        {
+            // 检查当前日志文件是否达到最大大小
+            if (IsCurrentLogFileTooLarge())
+            {
+                CreateNewLogFile();
+            }
+
+            // 确保日志写入器有效
+            if (_currentLogWriter == null)
+            {
+                CreateNewLogFile();
+            }
+
+            if (_currentLogWriter == null) return;
+
+            // 写入日志信息
+            try
+            {
+                var logEntry = $&quot;[{DateTime.Now:HH:mm:ss}] [{type}] {logString}&quot;;
+                _currentLogWriter.WriteLine(logEntry);
+
+                // 如果是错误日志，同时写入堆栈跟踪
+                if (type is LogType.Error or LogType.Exception or LogType.Assert)
+                {
+                    _currentLogWriter.WriteLine($&quot;StackTrace: {stackTrace}&quot;);
+                }
+
+                _currentLogWriter.Flush();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($&quot;Failed to write to log file: {ex.Message}&quot;);
+            }
+        }
+
+        private bool IsCurrentLogFileTooLarge()
+        {
+            if (_currentLogWriter == null || string.IsNullOrEmpty(_currentLogFilePath) || !File.Exists(_currentLogFilePath))
+            {
+                return false;
+            }
+
+            try
+            {
+                var fileInfo = new FileInfo(_currentLogFilePath);
+                return fileInfo.Length &gt;= maxLogFileSize || fileInfo.CreationTime.Date != DateTime.Now.Date;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($&quot;Failed to check log file size: {ex.Message}&quot;);
+                return false;
+            }
+        }
+
+        /// &lt;summary&gt;
+        /// 清理超出最大数量限制的旧日志文件
+        /// &lt;/summary&gt;
+        private void CleanupOldLogs()
+        {
+            try
+            {
+                // 获取所有符合命名规则的日志文件
+                var logFiles = Directory.GetFiles(_logFilePath, $&quot;{logFilePrefix}*.log&quot;)
+                    .Select(path =&gt; new FileInfo(path))
+                    .OrderBy(fi =&gt; fi.CreationTime) // 按创建时间排序（ oldest first ）
+                    .ToList();
+
+                // 如果文件数量超过限制，删除最旧的
+                while (logFiles.Count &gt; maxLogFileCount)
+                {
+                    var oldestFile = logFiles.First();
+                    try
+                    {
+                        File.Delete(oldestFile.FullName);
+                        logFiles.RemoveAt(0);
+                        Debug.Log($&quot;Deleted old log file: {oldestFile.Name}&quot;);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError($&quot;Failed to delete old log file {oldestFile.Name}: {ex.Message}&quot;);
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($&quot;Error during log cleanup: {ex.Message}&quot;);
+            }
+        }
+
+        private void EnsureLogDirectoryExists()
+        {
+            if (!Directory.Exists(_logFilePath))
+            {
+                Directory.CreateDirectory(_logFilePath);
+            }
+        }
+
+        /// &lt;summary&gt;
+        /// 初始化日志文件，如果存在最新的且未满，则继续使用，否则创建新文件
+        /// &lt;/summary&gt;
+        private void InitializeLogFile()
+        {
+            // 查找最新的日志文件
+            var latestLogFile = Directory.GetFiles(_logFilePath, $&quot;{logFilePrefix}*.log&quot;)
+                .Select(path =&gt; new FileInfo(path))
+                .OrderByDescending(fi =&gt; fi.CreationTime)
+                .FirstOrDefault();
+
+            // 检查最新的日志文件是否可以继续使用（未满）
+            if (latestLogFile != null)
+            {
+                var createdTime = latestLogFile.CreationTime;
+                var currentTime = DateTime.Now;
+                if (latestLogFile.Length &lt; maxLogFileSize &amp;&amp; createdTime.Date == currentTime.Date)
+                {
+                    _currentLogFilePath = latestLogFile.FullName;
+                    _currentLogWriter = new StreamWriter(_currentLogFilePath, true);
+                    _currentLogWriter.WriteLine($&quot;===== Log resumed at {DateTime.Now:yyyy-MM-dd HH:mm:ss} =====&quot;);
+                }
+                else
+                {
+                    // 创建新的日志文件
+                    CreateNewLogFile();
+                }
+            }
+            else
+            {
+                // 创建新的日志文件
+                CreateNewLogFile();
+            }
+        }
+
+        private void CreateNewLogFile()
+        {
+            // 关闭当前的日志文件（如果存在）
+            CloseCurrentLogFile();
+
+            // 生成新的日志文件名（包含时间戳）
+            var timestamp = DateTime.Now.ToString(&quot;yyyyMMdd_HHmmss&quot;);
+            _currentLogFilePath = Path.Combine(_logFilePath, $&quot;{logFilePrefix}{timestamp}.log&quot;);
+
+            // 创建新的日志文件
+            _currentLogWriter = new StreamWriter(_currentLogFilePath, true);
+            _currentLogWriter.WriteLine($&quot;===== Log started at {DateTime.Now:yyyy-MM-dd HH:mm:ss} =====&quot;);
+
+            // 检查是否需要清理旧日志
+            CleanupOldLogs();
+        }
+
+        private void CloseCurrentLogFile()
+        {
+            if (_currentLogWriter != null)
+            {
+                _currentLogWriter.WriteLine($&quot;===== Log ended at {DateTime.Now:yyyy-MM-dd HH:mm:ss} =====&quot;);
+                _currentLogWriter.Flush();
+                _currentLogWriter.Close();
+                _currentLogWriter.Dispose();
+                _currentLogWriter = null;
+            }
+        }
+    }
+}
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/cde-tostring-han-shu/" class="post-title gt-a-link">
+                    C#的ToString函数
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

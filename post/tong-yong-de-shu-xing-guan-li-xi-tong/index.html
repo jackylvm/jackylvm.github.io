@@ -1,0 +1,641 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>通用的属性管理系统 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    通用的属性管理系统
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-10-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>设计一个<strong>通用的属性管理系统</strong>，需要打破具体游戏类型的限制（如RPG、FPS、策略游戏），支持任意属性类型、灵活的计算规则、动态效果叠加，并能适配不同业务场景（角色、物品、技能、环境等）。核心目标是：<strong>可扩展、低耦合、规则可配置、支持多实体复用</strong>。</p>
+<h3 id="一-通用属性系统的核心需求">一、通用属性系统的核心需求</h3>
+<ol>
+<li><strong>属性类型无关</strong>：不预设属性（如攻击、防御），支持用户自定义任意属性（数值、文本、布尔等）。</li>
+<li><strong>计算规则可配置</strong>：属性的最终值计算逻辑（如基础值+加成、乘区叠加、优先级规则）可动态定义，而非硬编码。</li>
+<li><strong>多维度加成支持</strong>：支持临时加成（buff）、永久加成（装备）、条件加成（如“生命值低于50%时攻击+20%”）等。</li>
+<li><strong>跨实体复用</strong>：同一套系统可管理角色、怪物、物品、场景等不同实体的属性。</li>
+<li><strong>事件驱动</strong>：属性变化时能触发回调，方便UI、战斗等外部系统响应。</li>
+<li><strong>可持久化</strong>：支持属性数据的保存与加载（如存档、网络同步）。</li>
+</ol>
+<h3 id="二-通用属性系统设计方案">二、通用属性系统设计方案</h3>
+<h4 id="1-核心数据结构定义">1. 核心数据结构定义</h4>
+<h5 id="1属性标识attributekey">（1）属性标识（AttributeKey）</h5>
+<p>用“键”标识属性，避免硬编码枚举，支持动态扩展：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 属性唯一标识（可自定义任意属性）
+/// &lt;/summary&gt;
+public struct AttributeKey : IEquatable&lt;AttributeKey&gt;
+{
+    public string Name; // 属性名称（如&quot;HP&quot;、&quot;Attack&quot;、&quot;MoveSpeed&quot;）
+    public Type ValueType; // 属性值类型（int、float、bool、string等）
+
+    public AttributeKey(string name, Type valueType)
+    {
+        Name = name;
+        ValueType = valueType;
+    }
+
+    // 实现相等性比较（用于字典键）
+    public bool Equals(AttributeKey other) =&gt; Name == other.Name &amp;&amp; ValueType == other.ValueType;
+    public override int GetHashCode() =&gt; HashCode.Combine(Name, ValueType);
+}
+</code></pre>
+<p>示例：定义“生命值”“暴击率”属性：</p>
+<pre><code class="language-csharp">var hpKey = new AttributeKey(&quot;HP&quot;, typeof(float));
+var critChanceKey = new AttributeKey(&quot;CriticalChance&quot;, typeof(float));
+</code></pre>
+<h5 id="2属性值容器attributevalue">（2）属性值容器（AttributeValue）</h5>
+<p>统一封装不同类型的属性值，支持类型安全访问：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 属性值容器（支持多类型）
+/// &lt;/summary&gt;
+public class AttributeValue
+{
+    public AttributeKey Key { get; }
+    private object _value; // 内部存储原始值
+
+    public AttributeValue(AttributeKey key, object initialValue)
+    {
+        Key = key;
+        SetValue(initialValue);
+    }
+
+    // 类型安全设置值
+    public void SetValue(object value)
+    {
+        if (value.GetType() != Key.ValueType)
+            throw new ArgumentException($&quot;属性{Key.Name}类型不匹配，预期{Key.ValueType}&quot;);
+        _value = value;
+    }
+
+    // 类型安全获取值
+    public T GetValue&lt;T&gt;()
+    {
+        if (typeof(T) != Key.ValueType)
+            throw new InvalidCastException($&quot;属性{Key.Name}无法转换为{typeof(T)}&quot;);
+        return (T)_value;
+    }
+
+    // 克隆（用于快照或备份）
+    public AttributeValue Clone() =&gt; new AttributeValue(Key, _value);
+}
+</code></pre>
+<h5 id="3属性修饰器attributemodifier">（3）属性修饰器（AttributeModifier）</h5>
+<p>定义对属性的“修改规则”，支持多种加成类型和生命周期：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 属性修饰器（描述如何修改属性）
+/// &lt;/summary&gt;
+public class AttributeModifier
+{
+    public string Id { get; } // 唯一标识（用于移除特定修饰器）
+    public AttributeKey TargetKey { get; } // 目标属性
+    public ModifyType ModifyType { get; } // 修饰类型（加法、乘法、覆盖等）
+    public object Value { get; } // 修饰值（与属性同类型）
+    public int Priority { get; } // 优先级（高优先级先计算）
+    public bool IsPermanent { get; } // 是否永久生效（如装备）
+    public float Duration { get; } // 持续时间（非永久时生效，-1为无限）
+    public Func&lt;bool&gt; Condition { get; } // 生效条件（如&quot;HP&lt;50%&quot;才生效）
+
+    // 构造函数（简化版）
+    public AttributeModifier(
+        string id,
+        AttributeKey targetKey,
+        ModifyType modifyType,
+        object value,
+        int priority = 0,
+        bool isPermanent = false,
+        float duration = -1,
+        Func&lt;bool&gt; condition = null)
+    {
+        Id = id;
+        TargetKey = targetKey;
+        ModifyType = modifyType;
+        Value = value;
+        Priority = priority;
+        IsPermanent = isPermanent;
+        Duration = duration;
+        Condition = condition ?? (() =&gt; true); // 默认无条件生效
+    }
+}
+
+/// &lt;summary&gt;
+/// 修饰类型（支持多种计算规则）
+/// &lt;/summary&gt;
+public enum ModifyType
+{
+    Add, // 加法：base + value（如HP+100）
+    Multiply, // 乘法：base * (1 + value)（如攻击+20% → value=0.2）
+    Override, // 覆盖：直接设置为value（如临时锁血为1）
+    Min, // 最小值限制：最终值不低于value（如HP最低1）
+    Max, // 最大值限制：最终值不高于value（如暴击率最高100%）
+    PercentAdd // 百分比加法：base + (base * value)（与Multiply的区别是顺序影响结果）
+}
+</code></pre>
+<h4 id="2-属性计算器attributecalculator">2. 属性计算器（AttributeCalculator）</h4>
+<p>核心模块，负责根据“基础值”和“修饰器”计算属性的最终值，支持自定义计算逻辑：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 属性计算器（处理属性计算逻辑）
+/// &lt;/summary&gt;
+public class AttributeCalculator
+{
+    // 默认计算逻辑（可被覆盖）
+    public virtual object CalculateFinalValue(AttributeValue baseValue, List&lt;AttributeModifier&gt; modifiers)
+    {
+        // 1. 筛选生效的修饰器（满足条件且未过期）
+        var validModifiers = modifiers
+            .Where(m =&gt; m.Condition.Invoke())
+            .OrderByDescending(m =&gt; m.Priority) // 按优先级排序
+            .ToList();
+
+        // 2. 从基础值开始计算
+        object currentValue = baseValue.Clone().GetValue&lt;object&gt;();
+
+        // 3. 应用修饰器（根据类型处理）
+        foreach (var modifier in validModifiers)
+        {
+            currentValue = ApplyModifier(currentValue, modifier);
+        }
+
+        return currentValue;
+    }
+
+    // 应用单个修饰器
+    private object ApplyModifier(object currentValue, AttributeModifier modifier)
+    {
+        // 根据属性类型和修饰类型处理（以float为例）
+        if (currentValue is float floatValue &amp;&amp; modifier.Value is float modValue)
+        {
+            return modifier.ModifyType switch
+            {
+                ModifyType.Add =&gt; floatValue + modValue,
+                ModifyType.Multiply =&gt; floatValue * (1 + modValue),
+                ModifyType.Override =&gt; modValue,
+                ModifyType.Min =&gt; Mathf.Max(floatValue, modValue),
+                ModifyType.Max =&gt; Mathf.Min(floatValue, modValue),
+                ModifyType.PercentAdd =&gt; floatValue + (floatValue * modValue),
+                _ =&gt; floatValue
+            };
+        }
+
+        // 支持其他类型（如int、bool等）
+        // ...（省略int、bool等类型的处理逻辑）
+
+        throw new NotSupportedException($&quot;不支持{currentValue.GetType()}类型的{modifier.ModifyType}修饰&quot;);
+    }
+}
+</code></pre>
+<h4 id="3-属性管理器genericattributesystem">3. 属性管理器（GenericAttributeSystem）</h4>
+<p>管理一个实体（如角色、物品）的所有属性，提供属性注册、修饰器添加/移除、最终值查询等接口：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 通用属性管理器（实体的属性入口）
+/// &lt;/summary&gt;
+public class GenericAttributeSystem
+{
+    private readonly Dictionary&lt;AttributeKey, AttributeValue&gt; _baseAttributes = new(); // 基础属性
+    private readonly List&lt;AttributeModifier&gt; _modifiers = new(); // 所有修饰器
+    private readonly AttributeCalculator _calculator; // 计算器（可自定义）
+    private readonly Dictionary&lt;AttributeKey, object&gt; _finalValuesCache = new(); // 最终值缓存
+
+    // 属性变化事件（参数：属性键、旧值、新值）
+    public event Action&lt;AttributeKey, object, object&gt; OnAttributeChanged;
+
+    public GenericAttributeSystem(AttributeCalculator calculator = null)
+    {
+        _calculator = calculator ?? new AttributeCalculator(); // 默认计算器
+    }
+
+    // 注册基础属性
+    public void RegisterBaseAttribute(AttributeKey key, object initialValue)
+    {
+        if (!_baseAttributes.ContainsKey(key))
+        {
+            _baseAttributes[key] = new AttributeValue(key, initialValue);
+            RecalculateFinalValue(key); // 初始计算
+        }
+    }
+
+    // 添加修饰器（如buff、装备）
+    public void AddModifier(AttributeModifier modifier)
+    {
+        if (_modifiers.Any(m =&gt; m.Id == modifier.Id)) return; // 避免重复添加
+        _modifiers.Add(modifier);
+        // 若修饰器有持续时间，启动计时器自动移除
+        if (!modifier.IsPermanent &amp;&amp; modifier.Duration &gt; 0)
+        {
+            TimerManager.Instance.StartTimer(modifier.Duration, () =&gt; RemoveModifier(modifier.Id));
+        }
+        RecalculateFinalValue(modifier.TargetKey); // 重新计算目标属性
+    }
+
+    // 移除修饰器（如buff过期、卸装备）
+    public void RemoveModifier(string modifierId)
+    {
+        var modifier = _modifiers.FirstOrDefault(m =&gt; m.Id == modifierId);
+        if (modifier == null) return;
+        _modifiers.Remove(modifier);
+        RecalculateFinalValue(modifier.TargetKey); // 重新计算目标属性
+    }
+
+    // 获取属性最终值（从缓存或计算）
+    public T GetFinalValue&lt;T&gt;(AttributeKey key)
+    {
+        if (!_finalValuesCache.TryGetValue(key, out var value))
+        {
+            // 缓存未命中，重新计算
+            RecalculateFinalValue(key);
+            value = _finalValuesCache[key];
+        }
+        return (T)value;
+    }
+
+    // 重新计算属性最终值并触发事件
+    private void RecalculateFinalValue(AttributeKey key)
+    {
+        if (!_baseAttributes.TryGetValue(key, out var baseValue)) return;
+
+        // 筛选影响该属性的修饰器
+        var relevantModifiers = _modifiers.Where(m =&gt; m.TargetKey.Equals(key)).ToList();
+
+        // 计算新值
+        var oldValue = _finalValuesCache.TryGetValue(key, out var ov) ? ov : baseValue.GetValue&lt;object&gt;();
+        var newValue = _calculator.CalculateFinalValue(baseValue, relevantModifiers);
+
+        // 更新缓存
+        _finalValuesCache[key] = newValue;
+
+        // 触发变化事件
+        OnAttributeChanged?.Invoke(key, oldValue, newValue);
+    }
+
+    // 清空所有临时修饰器（如角色死亡重置）
+    public void ClearTemporaryModifiers()
+    {
+        var tempModifiers = _modifiers.Where(m =&gt; !m.IsPermanent).ToList();
+        foreach (var mod in tempModifiers)
+        {
+            _modifiers.Remove(mod);
+            RecalculateFinalValue(mod.TargetKey);
+        }
+    }
+}
+</code></pre>
+<h4 id="4-扩展与适配">4. 扩展与适配</h4>
+<h5 id="1自定义计算器复杂规则场景">（1）自定义计算器（复杂规则场景）</h5>
+<p>如果游戏需要特殊计算逻辑（如“先乘后加”“多乘区分离”），可继承<code>AttributeCalculator</code>重写计算逻辑：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 多乘区计算器（如攻击加成区分&quot;装备乘区&quot;和&quot;技能乘区&quot;）
+/// &lt;/summary&gt;
+public class MultiMultiplierCalculator : AttributeCalculator
+{
+    public override object CalculateFinalValue(AttributeValue baseValue, List&lt;AttributeModifier&gt; modifiers)
+    {
+        float baseVal = baseValue.GetValue&lt;float&gt;();
+        float additive = 0;
+        float equipMulti = 1; // 装备乘区
+        float skillMulti = 1; // 技能乘区
+
+        // 分离不同类型的修饰器
+        foreach (var mod in modifiers)
+        {
+            if (mod.Value is not float val) continue;
+            if (mod.ModifyType == ModifyType.Add) additive += val;
+            else if (mod.Id.StartsWith(&quot;Equip_&quot;)) equipMulti *= (1 + val); // 装备前缀的乘区
+            else if (mod.Id.StartsWith(&quot;Skill_&quot;)) skillMulti *= (1 + val); // 技能前缀的乘区
+        }
+
+        // 最终值 = (基础值 + 加法) * 装备乘区 * 技能乘区
+        return (baseVal + additive) * equipMulti * skillMulti;
+    }
+}
+</code></pre>
+<h5 id="2跨实体属性同步如组队加成">（2）跨实体属性同步（如组队加成）</h5>
+<p>通过“属性代理”实现一个实体的属性影响其他实体：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 组队加成代理（A的属性影响B）
+/// &lt;/summary&gt;
+public class PartyBuffProxy
+{
+    private readonly GenericAttributeSystem _sourceSystem; // 源实体（如队长）
+    private readonly GenericAttributeSystem _targetSystem; // 目标实体（如队员）
+    private AttributeKey _sourceKey; // 源属性（如队长的&quot;领导力&quot;）
+    private AttributeKey _targetKey; // 目标属性（如队员的&quot;攻击&quot;）
+
+    public PartyBuffProxy(GenericAttributeSystem source, GenericAttributeSystem target, 
+                          AttributeKey sourceKey, AttributeKey targetKey)
+    {
+        _sourceSystem = source;
+        _targetSystem = target;
+        _sourceKey = sourceKey;
+        _targetKey = targetKey;
+
+        // 源属性变化时，更新目标的修饰器
+        _sourceSystem.OnAttributeChanged += OnSourceAttributeChanged;
+        // 初始同步
+        OnSourceAttributeChanged(sourceKey, null, _sourceSystem.GetFinalValue&lt;float&gt;(sourceKey));
+    }
+
+    private void OnSourceAttributeChanged(AttributeKey key, object oldVal, object newVal)
+    {
+        if (key != _sourceKey) return;
+        float sourceValue = (float)newVal;
+        // 移除旧修饰器
+        _targetSystem.RemoveModifier(&quot;PartyBuff_Attack&quot;);
+        // 添加新修饰器（如领导力每1点，队员攻击+1%）
+        _targetSystem.AddModifier(new AttributeModifier(
+            id: &quot;PartyBuff_Attack&quot;,
+            targetKey: _targetKey,
+            modifyType: ModifyType.Multiply,
+            value: sourceValue * 0.01f,
+            isPermanent: true
+        ));
+    }
+}
+</code></pre>
+<h5 id="3数据持久化">（3）数据持久化</h5>
+<p>通过序列化基础属性和永久修饰器实现存档：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 属性存档数据
+/// &lt;/summary&gt;
+[Serializable]
+public class AttributeSaveData
+{
+    public List&lt;AttributeKeyData&gt; BaseAttributes; // 基础属性
+    public List&lt;AttributeModifierData&gt; PermanentModifiers; // 永久修饰器
+}
+
+// 序列化时将AttributeKey转换为可序列化的结构（略）
+// ...
+
+// 保存与加载
+public class AttributePersistence
+{
+    public AttributeSaveData Save(GenericAttributeSystem system)
+    {
+        return new AttributeSaveData
+        {
+            BaseAttributes = system._baseAttributes.Keys.Select(k =&gt; new AttributeKeyData(k)).ToList(),
+            PermanentModifiers = system._modifiers
+                .Where(m =&gt; m.IsPermanent)
+                .Select(m =&gt; new AttributeModifierData(m))
+                .ToList()
+        };
+    }
+
+    public void Load(GenericAttributeSystem system, AttributeSaveData data)
+    {
+        // 加载基础属性（略）
+        // 加载永久修饰器（略）
+    }
+}
+</code></pre>
+<h3 id="三-通用系统的优势与适用场景">三、通用系统的优势与适用场景</h3>
+<h4 id="优势">优势：</h4>
+<ol>
+<li><strong>零预设属性</strong>：无需修改代码即可新增属性（如从“攻击”扩展到“火焰伤害”“击退概率”）。</li>
+<li><strong>规则灵活</strong>：通过自定义计算器和修饰器类型，支持任意计算逻辑（如MMO的复杂乘区、roguelike的随机加成）。</li>
+<li><strong>多实体复用</strong>：同一套系统可管理角色、NPC、武器、场景Buff（如“领域内所有单位防御+10”）。</li>
+<li><strong>低耦合</strong>：外部系统（UI、战斗）仅通过事件和查询接口交互，无需依赖内部实现。</li>
+</ol>
+<h4 id="适用场景">适用场景：</h4>
+<ul>
+<li>多类型游戏（RPG、MOBA、策略、生存等）；</li>
+<li>需要频繁新增属性或调整平衡的游戏（如运营期的活动Buff）；</li>
+<li>支持用户自定义内容的游戏（如Mod、编辑器）。</li>
+</ul>
+<h3 id="四-使用示例角色属性管理">四、使用示例（角色属性管理）</h3>
+<pre><code class="language-csharp">// 1. 创建属性系统（使用默认计算器）
+var playerAttrSystem = new GenericAttributeSystem();
+
+// 2. 注册基础属性
+var hpKey = new AttributeKey(&quot;HP&quot;, typeof(float));
+var attackKey = new AttributeKey(&quot;Attack&quot;, typeof(float));
+playerAttrSystem.RegisterBaseAttribute(hpKey, 100f); // 基础HP=100
+playerAttrSystem.RegisterBaseAttribute(attackKey, 20f); // 基础攻击=20
+
+// 3. 订阅属性变化事件（UI更新）
+playerAttrSystem.OnAttributeChanged += (key, oldVal, newVal) =&gt;
+{
+    if (key.Name == &quot;HP&quot;)
+        Debug.Log($&quot;HP变化：{oldVal} → {newVal}&quot;);
+};
+
+// 4. 添加装备修饰器（永久攻击+5）
+playerAttrSystem.AddModifier(new AttributeModifier(
+    id: &quot;Sword_001&quot;,
+    targetKey: attackKey,
+    modifyType: ModifyType.Add,
+    value: 5f,
+    isPermanent: true
+));
+
+// 5. 添加技能Buff（10秒内攻击+20%）
+playerAttrSystem.AddModifier(new AttributeModifier(
+    id: &quot;Skill_Berserk&quot;,
+    targetKey: attackKey,
+    modifyType: ModifyType.Multiply,
+    value: 0.2f, // +20%
+    duration: 10f
+));
+
+// 6. 查询最终攻击（20 + 5）* (1 + 0.2) = 30
+float finalAttack = playerAttrSystem.GetFinalValue&lt;float&gt;(attackKey);
+</code></pre>
+<h3 id="总结">总结</h3>
+<p>通用属性管理系统的核心是**“将属性定义、计算规则、修饰逻辑分离”**，通过抽象层（属性键、修饰器、计算器）实现灵活性。设计时需避免过度工程化——可先基于基础框架实现核心功能，再根据游戏需求扩展（如添加乘区分离、条件判定、网络同步等）。这套架构能支撑从简单到复杂的各种属性场景，大幅降低后期维护和扩展成本。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/she-ji-yi-ge-shu-xing-guan-li-xi-tong/" class="post-title gt-a-link">
+                    设计一个属性管理系统
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

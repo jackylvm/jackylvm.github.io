@@ -1,0 +1,552 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity Shader渲染状态设置选项 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity Shader渲染状态设置选项
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-05-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/jtKvUw8wAm/" class="post-tags">
+                            # 渲染选项
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>介绍在Unity Shader里面常见的渲染状态选项</p>
+<!-- more -->
+<ol>
+<li>Cull</li>
+<li>ZTest</li>
+<li>ZWrite</li>
+<li>Blend</li>
+</ol>
+<hr>
+<h2 id="cull">Cull</h2>
+<p>在Unity Shader里，<code>Cull</code> 指令的作用是控制哪些面的三角形会被渲染，哪些会被剔除（不渲染），从而提高渲染效率并影响物体的显示效果。具体来说：</p>
+<ol>
+<li>
+<p><strong>背面剔除（Backface Culling）</strong><br>
+当物体是一个封闭的3D模型时，其背面（从摄像机视角看不到的面）通常不需要渲染。通过剔除背面，可以减少约50%的渲染工作量，提高性能。<br>
+<strong>示例</strong>：</p>
+<pre><code class="language-hlsl">Cull Back  // 剔除背面（默认值）
+</code></pre>
+</li>
+<li>
+<p><strong>正面剔除（Frontface Culling）</strong><br>
+某些特殊效果（如内部结构展示、玻璃效果）可能需要渲染物体的内部，此时可以剔除正面，只渲染背面。<br>
+<strong>示例</strong>：</p>
+<pre><code class="language-hlsl">Cull Front  // 剔除正面
+</code></pre>
+</li>
+<li>
+<p><strong>双面渲染（No Culling）</strong><br>
+如果需要同时渲染物体的正面和背面（如树叶、飘动的旗帜），可以禁用剔除。但注意，这会增加渲染开销，且可能需要额外处理深度写入。<br>
+<strong>示例</strong>：</p>
+<pre><code class="language-hlsl">Cull Off  // 双面渲染（不剔除）
+</code></pre>
+</li>
+</ol>
+<h3 id="应用场景">应用场景</h3>
+<ul>
+<li><strong>性能优化</strong>：默认使用 <code>Cull Back</code> 剔除不可见的背面。</li>
+<li><strong>特殊效果</strong>：
+<ul>
+<li>使用 <code>Cull Front</code> 实现内部结构的可见性。</li>
+<li>使用 <code>Cull Off</code> 配合 <code>ZWrite Off</code> 实现半透明物体的双面渲染。</li>
+</ul>
+</li>
+</ul>
+<h3 id="注意事项">注意事项</h3>
+<ul>
+<li><strong>深度冲突（Z-Fighting）</strong>：双面渲染时，正反两面可能因深度值相近而产生闪烁，需通过调整深度偏移（<code>Offset</code>）解决。</li>
+<li><strong>性能开销</strong>：双面渲染会增加片元处理量，慎用。</li>
+</ul>
+<p>通过合理使用 <code>Cull</code> 指令，可以在保证视觉效果的同时优化渲染性能。</p>
+<!-- more -->
+<hr>
+<h2 id="ztest">ZTest</h2>
+<p>在Unity Shader中，<code>ZTest</code> 指令用于控制深度测试的行为，决定哪些片段（pixels）会被最终渲染到屏幕上。深度测试是图形渲染中的一个关键步骤，它通过比较新片段与已存储在深度缓冲区（Z-buffer）中的深度值来确定是否绘制该片段。</p>
+<h3 id="ztest-的语法"><strong><code>ZTest</code> 的语法</strong></h3>
+<pre><code class="language-hlsl">ZTest [ComparisonFunction]
+</code></pre>
+<p>其中 <code>[ComparisonFunction]</code> 是一个比较函数，定义了新片段的深度值与深度缓冲区中值的比较规则。常用的比较函数包括：</p>
+<ul>
+<li><strong><code>Less</code></strong>：仅当新片段的深度值 <strong>小于</strong> 缓冲区中的值时通过测试（默认值）。</li>
+<li><strong><code>Greater</code></strong>：仅当新片段的深度值 <strong>大于</strong> 缓冲区中的值时通过测试。</li>
+<li><strong><code>LEqual</code></strong>：仅当新片段的深度值 <strong>小于或等于</strong> 缓冲区中的值时通过测试。</li>
+<li><strong><code>GEqual</code></strong>：仅当新片段的深度值 <strong>大于或等于</strong> 缓冲区中的值时通过测试。</li>
+<li><strong><code>Equal</code></strong>：仅当新片段的深度值 <strong>等于</strong> 缓冲区中的值时通过测试。</li>
+<li><strong><code>NotEqual</code></strong>：仅当新片段的深度值 <strong>不等于</strong> 缓冲区中的值时通过测试。</li>
+<li><strong><code>Always</code></strong>：始终通过测试（所有片段都会被渲染）。</li>
+<li><strong><code>Never</code></strong>：始终不通过测试（所有片段都会被丢弃）。</li>
+</ul>
+<h3 id="应用场景-2"><strong>应用场景</strong></h3>
+<h4 id="1-默认行为ztest-less">1. <strong>默认行为（<code>ZTest Less</code>）</strong></h4>
+<ul>
+<li>最常见的模式，确保离摄像机近的物体遮挡远的物体，实现正确的遮挡关系。</li>
+</ul>
+<pre><code class="language-hlsl">ZTest Less  // 默认值，近的物体覆盖远的物体
+</code></pre>
+<h4 id="2-透明物体ztest-lequal">2. <strong>透明物体（<code>ZTest LEqual</code>）</strong></h4>
+<ul>
+<li>透明物体需要渲染所有片段（即使深度值相同），否则可能出现部分缺失。</li>
+</ul>
+<pre><code class="language-hlsl">ZTest LEqual  // 允许深度值相同的片段被渲染
+</code></pre>
+<h4 id="3-特殊效果如轮廓-阴影">3. <strong>特殊效果（如轮廓、阴影）</strong></h4>
+<ul>
+<li><strong><code>ZTest Greater</code></strong>：可用于在已有的物体表面后方绘制轮廓或特效。</li>
+<li><strong><code>ZTest Always</code></strong>：强制渲染所有片段，常用于全屏后处理或UI元素。</li>
+</ul>
+<h3 id="与其他深度指令的配合"><strong>与其他深度指令的配合</strong></h3>
+<ul>
+<li><strong><code>ZWrite</code></strong>：控制是否将片段的深度值写入深度缓冲区。
+<ul>
+<li><code>ZWrite On</code>（默认）：写入深度值，影响后续片段的深度测试。</li>
+<li><code>ZWrite Off</code>：不写入深度值，常用于半透明物体（避免遮挡后面的物体）。</li>
+</ul>
+</li>
+<li><strong><code>Offset</code></strong>：调整深度值，用于解决深度冲突（Z-fighting）。</li>
+</ul>
+<h3 id="示例透明物体的深度测试"><strong>示例：透明物体的深度测试</strong></h3>
+<p>以下是一个半透明材质的常见配置：</p>
+<pre><code class="language-hlsl">Tags { &quot;RenderType&quot;=&quot;Transparent&quot; &quot;Queue&quot;=&quot;Transparent&quot; }
+ZWrite Off      // 不写入深度，避免遮挡其他物体
+ZTest LEqual    // 允许深度相同的片段渲染（处理重叠部分）
+Blend SrcAlpha OneMinusSrcAlpha  // 标准透明混合
+</code></pre>
+<h3 id="注意事项-2"><strong>注意事项</strong></h3>
+<ol>
+<li><strong>性能影响</strong>：复杂的深度测试（如 <code>ZTest Always</code>）可能增加GPU负担，尤其是在片段着色器计算量较大时。</li>
+<li><strong>渲染顺序</strong>：对于透明物体，通常需要调整渲染队列（<code>Queue</code> 标签）以确保从远到近渲染。</li>
+<li><strong>深度冲突</strong>：当两个物体深度值非常接近时，可能出现Z-fighting，可通过 <code>Offset</code> 或调整几何体解决。</li>
+</ol>
+<p>通过合理配置 <code>ZTest</code> 和相关指令，可以精确控制3D场景中的遮挡关系和视觉效果。</p>
+<!-- more -->
+<hr>
+<h2 id="zwrite">ZWrite</h2>
+<p>在Unity Shader中，<code>ZWrite</code> 指令用于控制是否将片段的深度值写入深度缓冲区（Z-buffer）。深度缓冲区存储了每个像素位置上最近物体的深度信息，用于后续的深度测试（<code>ZTest</code>）。通过控制 <code>ZWrite</code>，可以影响物体之间的遮挡关系和渲染效果。</p>
+<h3 id="zwrite-的语法"><strong><code>ZWrite</code> 的语法</strong></h3>
+<pre><code class="language-hlsl">ZWrite [On|Off]
+</code></pre>
+<ul>
+<li><strong><code>ZWrite On</code></strong>（默认值）：将当前片段的深度值写入深度缓冲区。</li>
+<li><strong><code>ZWrite Off</code></strong>：不写入深度值，保留缓冲区中的原有值。</li>
+</ul>
+<h3 id="核心作用"><strong>核心作用</strong></h3>
+<h4 id="1-控制遮挡关系">1. <strong>控制遮挡关系</strong></h4>
+<ul>
+<li>默认情况下，物体的每个片段都会写入深度值（<code>ZWrite On</code>），确保后续的片段正确被遮挡。</li>
+<li><strong>示例</strong>：<pre><code class="language-hlsl">ZWrite On  // 正常写入深度，近的物体遮挡远的物体
+</code></pre>
+</li>
+</ul>
+<h4 id="2-实现特殊效果">2. <strong>实现特殊效果</strong></h4>
+<ul>
+<li><strong>透明物体</strong>：通常需要 <code>ZWrite Off</code>，避免遮挡后面的物体。<pre><code class="language-hlsl">ZWrite Off  // 不写入深度，允许后面的物体透过透明物体显示
+</code></pre>
+</li>
+<li><strong>重叠渲染</strong>：如光晕、粒子效果，需要多个物体同时可见。</li>
+</ul>
+<h3 id="与-ztest-的配合"><strong>与 <code>ZTest</code> 的配合</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>ZWrite</strong></th>
+<th><strong>ZTest</strong></th>
+<th><strong>效果</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>On</code></td>
+<td><code>Less</code>（默认）</td>
+<td>正常遮挡，近的物体覆盖远的物体。</td>
+</tr>
+<tr>
+<td><code>Off</code></td>
+<td><code>Less</code></td>
+<td>不影响深度缓冲区，但自身会被其他物体正确遮挡（如半透明效果的基础配置）。</td>
+</tr>
+<tr>
+<td><code>Off</code></td>
+<td><code>Always</code></td>
+<td>强制渲染所有片段，不写入深度（常用于全屏特效或UI覆盖）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="典型应用场景"><strong>典型应用场景</strong></h3>
+<h4 id="1-半透明材质">1. <strong>半透明材质</strong></h4>
+<p>半透明物体需要渲染所有层（如玻璃、水），但不应该遮挡后面的物体：</p>
+<pre><code class="language-hlsl">ZWrite Off      // 不写入深度，避免阻挡其他物体
+ZTest LEqual    // 允许深度相同的片段渲染（处理重叠部分）
+Blend SrcAlpha OneMinusSrcAlpha  // 透明混合模式
+</code></pre>
+<h4 id="2-叠加效果">2. <strong>叠加效果</strong></h4>
+<p>如发光轮廓、UI元素，需要在已有物体上叠加渲染：</p>
+<pre><code class="language-hlsl">ZWrite Off      // 不写入深度，避免覆盖原有深度信息
+ZTest Always    // 强制通过深度测试，确保片段被渲染
+</code></pre>
+<h4 id="3-双面渲染的透明物体">3. <strong>双面渲染的透明物体</strong></h4>
+<p>双面渲染时，若正反两面都写入深度，可能导致错误的遮挡：</p>
+<pre><code class="language-hlsl">Cull Off        // 双面渲染
+ZWrite Off      // 禁用深度写入，防止自遮挡
+</code></pre>
+<h3 id="注意事项-3"><strong>注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>渲染顺序影响</strong>：</p>
+<ul>
+<li><code>ZWrite Off</code> 的物体依赖渲染顺序，需通过 <code>Queue</code> 标签控制（如 <code>Queue=Transparent</code>）。</li>
+<li>通常需要从远到近渲染透明物体，确保正确的混合效果。</li>
+</ul>
+</li>
+<li>
+<p><strong>性能考虑</strong>：</p>
+<ul>
+<li><code>ZWrite Off</code> 可能增加Overdraw（重复渲染），因为深度缓冲区未更新。</li>
+</ul>
+</li>
+<li>
+<p><strong>深度冲突（Z-Fighting）</strong>：</p>
+<ul>
+<li>当两个物体深度相近且 <code>ZWrite On</code> 时，可能出现闪烁，可通过 <code>Offset</code> 指令调整。</li>
+</ul>
+</li>
+</ol>
+<h3 id="错误配置示例"><strong>错误配置示例</strong></h3>
+<ul>
+<li><strong>错误</strong>：透明物体使用 <code>ZWrite On</code>，会导致后续透明片段被错误遮挡。</li>
+<li><strong>正确</strong>：透明物体必须使用 <code>ZWrite Off</code>，并配合 <code>Blend</code> 指令实现混合。</li>
+</ul>
+<p>通过合理控制 <code>ZWrite</code>，可以精确控制物体的遮挡关系，实现透明、叠加等复杂视觉效果。</p>
+<!-- more -->
+<hr>
+<h2 id="blend">Blend</h2>
+<p>在Unity Shader中，<code>Blend</code> 指令用于控制片段着色器输出的颜色如何与帧缓冲区中已有的颜色进行混合。这对于实现透明、半透明、发光效果等至关重要。</p>
+<h3 id="blend-的基本语法"><strong><code>Blend</code> 的基本语法</strong></h3>
+<pre><code class="language-hlsl">Blend [源因子] [目标因子]        // 基本混合模式
+Blend [源因子] [目标因子], [源因子A] [目标因子A]  // 分离RGB和Alpha通道的混合
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><strong>源因子</strong>：表示新渲染片段的颜色权重。</li>
+<li><strong>目标因子</strong>：表示帧缓冲区中已有颜色的权重。</li>
+</ul>
+<h3 id="常见混合因子"><strong>常见混合因子</strong></h3>
+<table>
+<thead>
+<tr>
+<th>因子名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zero</code></td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>One</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>SrcColor</code></td>
+<td>源颜色值</td>
+</tr>
+<tr>
+<td><code>OneMinusSrcColor</code></td>
+<td>1 - 源颜色值</td>
+</tr>
+<tr>
+<td><code>DstColor</code></td>
+<td>目标颜色值（已在缓冲区中）</td>
+</tr>
+<tr>
+<td><code>OneMinusDstColor</code></td>
+<td>1 - 目标颜色值</td>
+</tr>
+<tr>
+<td><code>SrcAlpha</code></td>
+<td>源Alpha值</td>
+</tr>
+<tr>
+<td><code>OneMinusSrcAlpha</code></td>
+<td>1 - 源Alpha值</td>
+</tr>
+<tr>
+<td><code>DstAlpha</code></td>
+<td>目标Alpha值</td>
+</tr>
+<tr>
+<td><code>OneMinusDstAlpha</code></td>
+<td>1 - 目标Alpha值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常见混合模式及应用场景"><strong>常见混合模式及应用场景</strong></h3>
+<h4 id="1-标准透明alpha-blending">1. <strong>标准透明（Alpha Blending）</strong></h4>
+<pre><code class="language-hlsl">Blend SrcAlpha OneMinusSrcAlpha
+</code></pre>
+<ul>
+<li><strong>效果</strong>：根据源Alpha值，将新颜色与目标颜色混合。</li>
+<li><strong>应用</strong>：半透明物体（如玻璃、树叶）。</li>
+</ul>
+<h4 id="2-加法混合additive-blending">2. <strong>加法混合（Additive Blending）</strong></h4>
+<pre><code class="language-hlsl">Blend One One
+</code></pre>
+<ul>
+<li><strong>效果</strong>：颜色叠加，常用于发光效果（如粒子、光晕）。</li>
+<li><strong>应用</strong>：特效、灯光、能量场。</li>
+</ul>
+<h4 id="3-乘法混合multiplicative-blending">3. <strong>乘法混合（Multiplicative Blending）</strong></h4>
+<pre><code class="language-hlsl">Blend DstColor Zero
+</code></pre>
+<ul>
+<li><strong>效果</strong>：新颜色乘以目标颜色，常用于阴影或变暗效果。</li>
+</ul>
+<h4 id="4-alpha-预乘premultiplied-alpha">4. <strong>Alpha 预乘（Premultiplied Alpha）</strong></h4>
+<pre><code class="language-hlsl">Blend One OneMinusSrcAlpha
+</code></pre>
+<ul>
+<li><strong>效果</strong>：源颜色已包含Alpha信息，适合纹理本身已预乘Alpha的情况。</li>
+</ul>
+<h3 id="分离rgb和alpha通道的混合"><strong>分离RGB和Alpha通道的混合</strong></h3>
+<pre><code class="language-hlsl">Blend SrcAlpha OneMinusSrcAlpha, One Zero
+</code></pre>
+<ul>
+<li><strong>含义</strong>：RGB通道使用标准透明混合，Alpha通道完全替换目标Alpha。</li>
+</ul>
+<h3 id="配合其他指令的典型配置"><strong>配合其他指令的典型配置</strong></h3>
+<h4 id="1-半透明物体">1. <strong>半透明物体</strong></h4>
+<pre><code class="language-hlsl">Tags { &quot;RenderType&quot;=&quot;Transparent&quot; &quot;Queue&quot;=&quot;Transparent&quot; }
+ZWrite Off           // 不写入深度，避免遮挡后面的物体
+Blend SrcAlpha OneMinusSrcAlpha  // 标准透明混合
+</code></pre>
+<h4 id="2-发光效果">2. <strong>发光效果</strong></h4>
+<pre><code class="language-hlsl">ZWrite Off           // 不影响深度缓冲区
+Blend One One        // 加法混合，增强亮度
+</code></pre>
+<h4 id="3-双面透明物体">3. <strong>双面透明物体</strong></h4>
+<pre><code class="language-hlsl">Cull Off             // 双面渲染
+ZWrite Off           // 避免自遮挡
+Blend SrcAlpha OneMinusSrcAlpha  // 透明混合
+</code></pre>
+<h3 id="注意事项-4"><strong>注意事项</strong></h3>
+<ol>
+<li>
+<p><strong>渲染顺序</strong>：透明物体通常需要从远到近渲染，通过 <code>Queue</code> 标签控制：</p>
+<pre><code class="language-hlsl">Tags { &quot;Queue&quot;=&quot;Transparent&quot; }  // 在不透明物体后渲染
+</code></pre>
+</li>
+<li>
+<p><strong>性能开销</strong>：混合操作通常比直接覆盖（<code>Blend Off</code>）更消耗性能。</p>
+</li>
+<li>
+<p><strong>Alpha 测试 vs Alpha 混合</strong>：</p>
+<ul>
+<li><strong>Alpha 测试</strong>（<code>discard</code> 指令）：非黑即白的透明度（如草叶）。</li>
+<li><strong>Alpha 混合</strong>：平滑的半透明效果，但需要正确的渲染顺序。</li>
+</ul>
+</li>
+</ol>
+<h3 id="特殊混合模式示例"><strong>特殊混合模式示例</strong></h3>
+<h4 id="1-屏幕混合screen-blend">1. <strong>屏幕混合（Screen Blend）</strong></h4>
+<pre><code class="language-hlsl">Blend OneMinusDstColor One  // 常用于HDR效果
+</code></pre>
+<h4 id="2-减色混合">2. <strong>减色混合</strong></h4>
+<pre><code class="language-hlsl">Blend OneMinusDstColor Zero  // 从目标颜色中减去源颜色
+</code></pre>
+<p>通过灵活配置 <code>Blend</code> 指令，可以实现从简单透明到复杂特效的各种视觉效果。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-shader-zhong-de-lod/" class="post-title gt-a-link">
+                    Unity Shader中的LOD
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

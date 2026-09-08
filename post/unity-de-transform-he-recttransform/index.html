@@ -1,0 +1,397 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的Transform和RectTransform | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的Transform和RectTransform
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-28 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 中，<code>Transform</code> 和 <code>RectTransform</code> 是处理游戏对象位置、旋转、缩放的核心组件，但适用场景和功能差异显著。<code>RectTransform</code> 是 <code>Transform</code> 的子类，专门为 UI 元素（UGUI）设计，而 <code>Transform</code> 用于 3D/2D 非 UI 游戏对象。下面从<strong>核心区别、关键属性、使用场景、常见操作</strong>四个维度详细解析：</p>
+<h3 id="一-核心定位与适用场景">一、核心定位与适用场景</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Transform</th>
+<th>RectTransform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>继承关系</td>
+<td>基础组件，所有游戏对象默认挂载</td>
+<td>继承自 Transform，仅 UI 元素（Canvas 下的子对象）默认挂载</td>
+</tr>
+<tr>
+<td>适用对象</td>
+<td>3D 物体、2D 精灵（Sprite）、空对象等非 UI 元素</td>
+<td>Canvas 下的所有 UI 元素（Image、Text、Button、Panel 等）</td>
+</tr>
+<tr>
+<td>空间体系</td>
+<td>基于<strong>世界/局部坐标系</strong>的自由 3D/2D 空间</td>
+<td>基于<strong>锚点（Anchor）+ 轴心（Pivot）</strong> 的矩形布局空间，适配 Canvas 渲染模式</td>
+</tr>
+<tr>
+<td>核心作用</td>
+<td>控制对象在 3D/2D 世界中的位置、旋转、缩放</td>
+<td>不仅控制位置，还定义 UI 矩形的大小、锚点、边距，适配不同分辨率</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-关键属性详解">二、关键属性详解</h3>
+<h4 id="1-transform-核心属性通用">1. Transform 核心属性（通用）</h4>
+<p><code>Transform</code> 的属性围绕<strong>坐标、旋转、缩放</strong>，无布局相关逻辑：</p>
+<ul>
+<li><code>position</code>：世界坐标系下的位置（Vector3）。</li>
+<li><code>localPosition</code>：相对于父对象的局部位置（Vector3）。</li>
+<li><code>rotation</code>：世界坐标系下的旋转（Quaternion）。</li>
+<li><code>localRotation</code>：局部旋转（Quaternion）。</li>
+<li><code>localScale</code>：局部缩放（Vector3）。</li>
+<li><code>eulerAngles</code>：欧拉角（Vector3，更直观的旋转表示）。</li>
+<li><code>parent</code>：父 Transform（可通过 <code>SetParent()</code> 修改）。</li>
+</ul>
+<h4 id="2-recttransform-核心属性ui-专属">2. RectTransform 核心属性（UI 专属）</h4>
+<p><code>RectTransform</code> 继承了 Transform 的所有属性，新增<strong>布局相关核心属性</strong>，是 UI 适配的关键：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anchors（锚点）</td>
+<td>定义 UI 矩形的四个锚点（Min/Max），绑定到父 RectTransform 的相对位置，是分辨率适配的核心</td>
+</tr>
+<tr>
+<td>Pivot（轴心）</td>
+<td>UI 矩形的变换中心（旋转/缩放/锚点计算的基准），取值 0~1（如 (0.5,0.5) 是中心）</td>
+</tr>
+<tr>
+<td>Anchored Position</td>
+<td>相对于锚点的位置（Vector2），UI 位置的核心控制属性（替代 Transform.localPosition）</td>
+</tr>
+<tr>
+<td>Size Delta</td>
+<td>UI 矩形的大小偏移：<br>- 锚点四角重合时：直接表示宽高（x=宽，y=高）；<br>- 锚点分散时：相对于锚点包围盒的偏移</td>
+</tr>
+<tr>
+<td>Rect（Rect）</td>
+<td>世界空间中的矩形区域（只读），包含 x/y/width/height，反映最终渲染的矩形范围</td>
+</tr>
+<tr>
+<td>Offset Min/Max</td>
+<td>锚点最小/最大点与 UI 矩形边缘的偏移，等价于 Size Delta 的底层表示</td>
+</tr>
+</tbody>
+</table>
+<p><strong>锚点关键规则</strong>：</p>
+<ul>
+<li>锚点四角重合（如都在父中心）：UI 位置由 <code>anchoredPosition</code> 控制，大小由 <code>sizeDelta</code> 直接定义（最常用）。</li>
+<li>锚点分散（如左/右绑定父左右边缘）：UI 宽度会随父对象宽度自动拉伸，<code>sizeDelta</code> 表示与锚点包围盒的偏移。</li>
+</ul>
+<h3 id="三-核心操作对比代码示例">三、核心操作对比（代码示例）</h3>
+<h4 id="1-位置控制">1. 位置控制</h4>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>Transform 实现</th>
+<th>RectTransform 实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>设置局部位置</td>
+<td><code>transform.localPosition = new Vector3(10, 20, 0);</code></td>
+<td><code>rectTransform.anchoredPosition = new Vector2(10, 20);</code></td>
+</tr>
+<tr>
+<td>获取世界位置</td>
+<td><code>transform.position</code></td>
+<td><code>rectTransform.position</code>（与 Transform 一致）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-大小控制仅-recttransform">2. 大小控制（仅 RectTransform）</h4>
+<pre><code class="language-csharp">// 方式1：直接设置 Size Delta（锚点重合时）
+rectTransform.sizeDelta = new Vector2(200, 100); // 宽200，高100
+
+// 方式2：通过 SetSizeWithCurrentAnchors（推荐，适配锚点）
+rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 200); // 宽200
+rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);   // 高100
+
+// 方式3：修改 Rect（仅锚点固定时生效）
+rectTransform.rect = new Rect(0, 0, 200, 100);
+</code></pre>
+<h4 id="3-锚点与轴心设置">3. 锚点与轴心设置</h4>
+<pre><code class="language-csharp">// 设置锚点到父对象左上角（Min/Max 均为 (0,1)）
+rectTransform.anchorMin = new Vector2(0, 1);
+rectTransform.anchorMax = new Vector2(0, 1);
+
+// 设置轴心到左上角（默认是中心 (0.5,0.5)）
+rectTransform.pivot = new Vector2(0, 1);
+</code></pre>
+<h4 id="4-父对象设置">4. 父对象设置</h4>
+<pre><code class="language-csharp">// 通用方式（Transform/RectTransform 均可）
+transform.SetParent(parentTransform);
+
+// UI 专属：设置父对象并保持锚点/位置不变
+rectTransform.SetParent(parentRectTransform, false); // 第二个参数：是否保持世界位置
+</code></pre>
+<h3 id="四-常见坑与注意事项">四、常见坑与注意事项</h3>
+<ol>
+<li>
+<p><strong>UI 位置不要用 localPosition/position</strong>：<br>
+UI 元素的位置应通过 <code>anchoredPosition</code> 控制，直接修改 <code>localPosition</code> 会导致锚点逻辑失效，适配异常。</p>
+</li>
+<li>
+<p><strong>锚点分散时 Size Delta 不是实际大小</strong>：<br>
+若锚点左右绑定父边缘，<code>sizeDelta.x</code> 是「UI 宽度 - 父锚点宽度」，需通过 <code>rectTransform.rect.width</code> 获取实际渲染宽度。</p>
+</li>
+<li>
+<p><strong>Canvas 渲染模式影响 RectTransform 坐标</strong>：</p>
+<ul>
+<li>Screen Space - Overlay：RectTransform 坐标以屏幕左下角为原点；</li>
+<li>World Space：RectTransform 坐标是世界空间，需结合 Canvas 缩放处理。</li>
+</ul>
+</li>
+<li>
+<p><strong>Pivot 影响位置和旋转</strong>：<br>
+修改 Pivot 会改变 UI 的显示位置（如 Pivot 从中心改到左上角，UI 会偏移），需同步调整 <code>anchoredPosition</code>。</p>
+</li>
+<li>
+<p><strong>RectTransform 的 rotation/scale 与 Transform 一致</strong>：<br>
+UI 旋转/缩放仍用 <code>transform.rotation</code>/<code>transform.localScale</code>，RectTransform 无专属旋转属性。</p>
+</li>
+</ol>
+<h3 id="五-总结">五、总结</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>用 Transform</th>
+<th>用 RectTransform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3D 物体/2D 非 UI 精灵</td>
+<td>✅ 必选</td>
+<td>❌ 无需使用</td>
+</tr>
+<tr>
+<td>Canvas 下的 UI 元素</td>
+<td>❌ 仅继承基础属性</td>
+<td>✅ 必选，控制位置/大小/锚点</td>
+</tr>
+<tr>
+<td>控制位置</td>
+<td>localPosition/position</td>
+<td>anchoredPosition（核心）</td>
+</tr>
+<tr>
+<td>控制大小</td>
+<td>❌ 无此属性</td>
+<td>sizeDelta/SetSizeWithCurrentAnchors</td>
+</tr>
+<tr>
+<td>分辨率适配</td>
+<td>❌ 无适配逻辑</td>
+<td>✅ 锚点（Anchors）是核心适配手段</td>
+</tr>
+</tbody>
+</table>
+<p>简单来说：<strong>非 UI 用 Transform，UI 用 RectTransform 并聚焦锚点/anchoredPosition/sizeDelta</strong>，避免混用两套坐标体系。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/ru-he-zai-bu-tong-de-zuo-biao-kong-jian-zhi-jian-jin-xing-zuo-biao-zhuan-huan/" class="post-title gt-a-link">
+                    如何在不同的坐标空间之间进行坐标转换？
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

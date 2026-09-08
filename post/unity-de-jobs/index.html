@@ -1,0 +1,526 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的Jobs | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的Jobs
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="一-unity-jobs-是什么核心定义">一、Unity Jobs 是什么？核心定义</h2>
+<p>Unity Jobs 系统是 <strong>Unity 官方提供的一套「多线程并行编程」解决方案</strong>，专门用于 Unity 游戏开发中<strong>把耗时的计算逻辑从主线程剥离，放到多个后台工作线程并行执行</strong>。</p>
+<ul>
+<li>本质：一套基于<strong>Burst 编译器</strong>（可选但强烈推荐）优化的轻量级多线程框架，专为游戏开发的高频计算场景设计。</li>
+<li>核心目标：<strong>减轻主线程压力</strong>，主线程只负责 Unity 核心工作（渲染、输入、物理更新、GameObject/Component 生命周期管理），所有纯计算逻辑交给 Jobs 后台执行，彻底解决「计算量大→主线程阻塞→游戏掉帧/卡顿」的核心问题。</li>
+</ul>
+<hr>
+<h2 id="二-为什么要用-jobs-系统核心价值必看">二、为什么要用 Jobs 系统？核心价值（必看）</h2>
+<p>Unity 引擎的<strong>主线程是单线程串行执行</strong>的，所有游戏核心逻辑都挤在主线程：渲染画面、处理鼠标/键盘输入、更新刚体物理、执行<code>Update()</code>/<code>LateUpdate()</code>、处理UI事件...</p>
+<p>如果在主线程执行<strong>大量纯计算逻辑</strong>（比如：十万个敌人的寻路计算、顶点坐标修改、数据排序/筛选、网格生成、碰撞检测预处理），会出现：<br>
+✅ 主线程「堵塞」，帧率（FPS）暴跌、游戏画面卡顿<br>
+✅ 物理引擎响应延迟，点击/触摸等输入事件不灵敏<br>
+✅ 严重时出现游戏「卡死」的假死状态</p>
+<p>而 <strong>Jobs 系统的核心价值就是「解耦」</strong>：把「不依赖Unity引擎上下文的纯计算逻辑」抽离到后台线程，让主线程专心做自己的事，后台线程并行计算，最终实现 <strong>游戏流畅度的质的提升</strong>。</p>
+<h3 id="️-补充jobs-适用场景高频">✔️ 补充：Jobs 适用场景（高频）</h3>
+<ul>
+<li>大规模数据处理：数组/列表的排序、筛选、遍历计算（比如血量排序、伤害结算）</li>
+<li>图形相关计算：Mesh网格顶点生成/修改、粒子系统轨迹计算、地形高度图采样</li>
+<li>游戏逻辑计算：寻路算法（A*）、AI行为树决策、碰撞检测预处理、大量对象的坐标更新</li>
+<li>数学密集型逻辑：向量运算、矩阵变换、距离检测、随机数生成</li>
+</ul>
+<hr>
+<h2 id="三-jobs-系统的核心约束重中之重不遵守必报错">三、Jobs 系统的核心约束（重中之重！不遵守必报错）</h2>
+<p>Unity Jobs 是**「安全的多线程」**，为了避免多线程开发中常见的「线程安全问题」（比如：多线程同时读写同一份数据导致脏读、数据错乱、程序崩溃），<strong>Jobs 系统强制要求了几个核心约束</strong>，这是 Jobs 的基础，必须牢记！</p>
+<h3 id="约束-1job-内部严禁访问-unity-的任何托管对象">✅ 约束 1：Job 内部<strong>严禁访问 Unity 的任何托管对象</strong></h3>
+<blockquote>
+<p>托管对象 = 继承自 <code>UnityEngine.Object</code> 的所有类，包括：GameObject、Transform、Rigidbody、MeshRenderer、Collider、MonoBehaviour、Texture、Material 等</p>
+</blockquote>
+<p><strong>为什么？</strong><br>
+Unity 的所有引擎核心对象（GameObject/组件）<strong>都不是线程安全的</strong>，它们的内存管理、状态更新全部由主线程管控，后台线程直接访问会导致：内存错乱、引擎崩溃、数据泄漏、不可预知的Bug。</p>
+<h3 id="约束-2job-只能操作纯数据推荐使用native-容器">✅ 约束 2：Job 只能操作「纯数据」，推荐使用<strong>Native 容器</strong></h3>
+<p>Jobs 后台线程能安全操作的数据，只有两种：</p>
+<ol>
+<li>基础值类型：int、float、Vector2/3/4、Quaternion、Color 等（无引用、内存连续）</li>
+<li><strong>Unity 提供的 Native 容器（核心推荐）</strong>：<code>NativeArray&lt;T&gt;</code>、<code>NativeList&lt;T&gt;</code>、<code>NativeHashMap&lt;K,V&gt;</code>、<code>NativeQueue&lt;T&gt;</code> 等</li>
+</ol>
+<h4 id="什么是-native-容器">什么是 Native 容器？</h4>
+<p>Native 容器是 Unity 专门为 Jobs 设计的**「非托管内存容器」**，特点：</p>
+<ul>
+<li>内存分配在 <strong>Unity 的非托管堆</strong>（不受C# GC垃圾回收管控），没有GC开销</li>
+<li>天生支持<strong>多线程安全访问</strong>，自带访问权限校验，从根源避免线程安全问题</li>
+<li>内存连续，遍历/计算效率极高，远超C#原生的<code>List&lt;T&gt;</code>/<code>Array</code></li>
+</ul>
+<h3 id="约束-3job-必须是值类型-struct且实现指定-job-接口">✅ 约束 3：Job 必须是「值类型 struct」，且实现指定 Job 接口</h3>
+<p>所有要交给 Jobs 系统执行的「计算逻辑」，都必须封装在一个 <strong>C# 值类型 struct</strong> 中，且这个struct必须实现 Unity 提供的<strong>标准 Job 接口</strong>。</p>
+<hr>
+<h2 id="四-核心基础3个最常用的-job-接口优先级排序">四、核心基础：3个最常用的 Job 接口（优先级排序）</h2>
+<p>Unity 为 Jobs 提供了多个标准接口，所有接口都在 <code>Unity.Jobs</code> 命名空间下，<strong>99%的开发场景只会用到下面3个</strong>，按「使用频率+重要性」排序，掌握这3个就够了：</p>
+<h3 id="1-ijob-接口最常用-最基础">✅ 1. <code>IJob</code> 接口（最常用、最基础）</h3>
+<ul>
+<li><strong>核心用途</strong>：执行<strong>单个、独立</strong>的计算任务，执行一次就结束</li>
+<li><strong>执行方式</strong>：手动调度，调度后在后台线程执行，执行完成后可获取结果</li>
+<li><strong>核心方法</strong>：必须实现无参的 <code>void Execute()</code> 方法，Job的所有计算逻辑都写在这里面</li>
+<li><strong>典型场景</strong>：单次大量计算（比如：一次性生成1万个地形顶点、单次寻路计算、单次数据排序）</li>
+</ul>
+<h3 id="2-ijobfor-接口高频推荐替代旧版-ijobparallelfor">✅ 2. <code>IJobFor</code> 接口（高频推荐，替代旧版 IJobParallelFor）</h3>
+<ul>
+<li><strong>核心用途</strong>：执行<strong>并行循环计算</strong>，把一个「循环任务」拆分成多个子任务，分配到多个后台线程<strong>并行执行</strong>，效率爆炸！</li>
+<li><strong>核心改进</strong>：Unity 2022+ 主推的接口，替代了旧的<code>IJobParallelFor</code>，语法更简洁、调度更高效、线程安全校验更严格</li>
+<li><strong>核心方法</strong>：必须实现 <code>void Execute(int index)</code> 方法，<code>index</code>是循环的索引值</li>
+<li><strong>典型场景</strong>：遍历数组/列表批量计算（比如：10万个敌人的坐标更新、批量修改Mesh顶点、批量计算距离、批量结算伤害）→ <strong>项目中80%的Jobs需求都是这个场景</strong></li>
+</ul>
+<h3 id="3-ijobparallelfortransform-接口专用高频">✅ 3. <code>IJobParallelForTransform</code> 接口（专用高频）</h3>
+<ul>
+<li><strong>核心用途</strong>：专门用于<strong>批量修改多个GameObject的Transform组件</strong>（位置、旋转、缩放）的并行Job</li>
+<li><strong>特殊点</strong>：唯一一个「看似访问Unity组件，但线程安全」的Job接口，底层由Unity做了线程安全封装</li>
+<li><strong>核心方法</strong>：必须实现 <code>void Execute(int index, TransformAccess transform)</code> 方法，<code>index</code>是索引，<code>transform</code>是可安全修改的Transform句柄</li>
+<li><strong>典型场景</strong>：批量移动/旋转大量对象（比如：成群的敌人、粒子特效、场景物件批量位移）</li>
+</ul>
+<hr>
+<h2 id="五-完整实战案例3个接口全覆盖直接复制可用">五、完整实战案例（3个接口全覆盖，直接复制可用）</h2>
+<h3 id="前置准备必做2步">前置准备（必做！2步）</h3>
+<ol>
+<li>导入命名空间（所有Jobs代码都需要）</li>
+</ol>
+<pre><code class="language-csharp">using UnityEngine;
+using Unity.Jobs;
+using Unity.Collections; // Native容器的命名空间
+using Unity.Burst;       // Burst编译器的命名空间（可选但强烈推荐）
+</code></pre>
+<ol start="2">
+<li>开启 Burst 编译器：给你的Job struct 添加 <code>[BurstCompile]</code> 特性，能让Job的执行速度<strong>提升3~10倍</strong>（Burst会把C#代码编译成优化的原生机器码，无C#虚拟机开销）</li>
+</ol>
+<hr>
+<h3 id="案例1ijob-实战-单任务后台计算比如计算两点间的海量路径点">✅ 案例1：IJob 实战 - 单任务后台计算（比如：计算两点间的海量路径点）</h3>
+<p>需求：在后台线程计算一个复杂的路径点数组，不阻塞主线程，计算完成后主线程拿到结果刷新显示</p>
+<pre><code class="language-csharp">public class IJobDemo : MonoBehaviour
+{
+    // Native容器：存储计算结果，必须声明为NativeArray
+    private NativeArray&lt;Vector3&gt; _pathPoints;
+
+    void Start()
+    {
+        // 1. 初始化Native容器：分配10000个Vector3的内存，访问权限为可读写
+        _pathPoints = new NativeArray&lt;Vector3&gt;(10000, Allocator.Persistent);
+
+        // 2. 创建Job实例，赋值需要计算的数据
+        PathCalculateJob pathJob = new PathCalculateJob()
+        {
+            pathPoints = _pathPoints,
+            startPos = transform.position,
+            targetPos = new Vector3(100,0,100)
+        };
+
+        // 3. 调度Job：在后台线程执行，返回Job句柄（用于等待完成）
+        JobHandle jobHandle = pathJob.Schedule();
+
+        // 4. 【可选】主线程等待Job完成（一般不推荐，除非必须立即拿结果）
+        // jobHandle.Complete();
+
+        // 5. 主线程继续执行其他逻辑，不被阻塞
+        Debug.Log(&quot;主线程继续运行，不等待计算完成&quot;);
+    }
+
+    // 核心：封装计算逻辑的Job struct，值类型+实现IJob+Burst编译
+    [BurstCompile]
+    public struct PathCalculateJob : IJob
+    {
+        // 写入权限：可以修改容器内的数据
+        public NativeArray&lt;Vector3&gt; pathPoints;
+        // 只读权限：只能读取，不能修改（加[ReadOnly]提升效率+线程安全）
+        [ReadOnly] public Vector3 startPos;
+        [ReadOnly] public Vector3 targetPos;
+
+        // 必须实现的核心方法：所有计算逻辑写在这里
+        public void Execute()
+        {
+            // 模拟：计算10000个路径点（耗时计算）
+            for (int i = 0; i &lt; pathPoints.Length; i++)
+            {
+                float t = (float)i / pathPoints.Length;
+                pathPoints[i] = Vector3.Lerp(startPos, targetPos, t) + new Vector3(Random.value,0,Random.value);
+            }
+        }
+    }
+
+    // 必写：Native容器需要手动释放内存（非托管堆，GC不会自动回收）
+    private void OnDestroy()
+    {
+        if (_pathPoints.IsCreated) _pathPoints.Dispose();
+    }
+}
+</code></pre>
+<hr>
+<h3 id="案例2ijobfor-实战-并行循环计算批量修改顶点高频刚需">✅ 案例2：IJobFor 实战 - 并行循环计算（批量修改顶点，高频刚需）</h3>
+<p>需求：修改Mesh的1000个顶点坐标，把顶点沿Y轴偏移，使用并行计算提升效率（比主线程循环快10倍+）</p>
+<pre><code class="language-csharp">public class IJobForDemo : MonoBehaviour
+{
+    public Mesh mesh;
+    private NativeArray&lt;Vector3&gt; _vertices;
+    private JobHandle _jobHandle;
+
+    void Start()
+    {
+        // 1. 获取Mesh顶点，存入Native容器（只读转可写）
+        Vector3[] originVertices = mesh.vertices;
+        _vertices = new NativeArray&lt;Vector3&gt;(originVertices, Allocator.Persistent);
+
+        // 2. 创建并行Job实例
+        VertexOffsetJob vertexJob = new VertexOffsetJob()
+        {
+            vertices = _vertices,
+            offsetY = 2f // 顶点Y轴偏移量
+        };
+
+        // 3. 调度并行Job：参数1=循环长度，参数2=批处理大小（一般填64）
+        _jobHandle = vertexJob.Schedule(_vertices.Length, 64);
+    }
+
+    void Update()
+    {
+        // 4. 主线程等待Job完成，然后把计算后的顶点赋值回Mesh
+        if (_jobHandle.IsCompleted)
+        {
+            _jobHandle.Complete(); // 必须调用Complete，确保计算完成+线程同步
+            mesh.vertices = _vertices.ToArray();
+            mesh.RecalculateNormals();
+        }
+    }
+
+    // 并行循环Job struct：实现IJobFor+Burst编译
+    [BurstCompile]
+    public struct VertexOffsetJob : IJobFor
+    {
+        public NativeArray&lt;Vector3&gt; vertices; // 可写
+        [ReadOnly] public float offsetY;      // 只读
+
+        // 必须实现：index是循环的索引，自动分配到不同线程并行执行
+        public void Execute(int index)
+        {
+            // 每个顶点沿Y轴偏移，并行执行，无线程安全问题
+            vertices[index] = new Vector3(vertices[index].x, vertices[index].y + offsetY, vertices[index].z);
+        }
+    }
+
+    // 释放Native容器内存
+    private void OnDestroy()
+    {
+        if (_vertices.IsCreated) _vertices.Dispose();
+    }
+}
+</code></pre>
+<hr>
+<h3 id="案例3ijobparallelfortransform-实战-批量修改transform专用场景">✅ 案例3：IJobParallelForTransform 实战 - 批量修改Transform（专用场景）</h3>
+<p>需求：批量移动场景中100个敌人的Transform组件，沿Z轴前进，并行执行，不阻塞主线程</p>
+<pre><code class="language-csharp">public class IJobTransformDemo : MonoBehaviour
+{
+    public Transform[] enemyTransforms; // 挂载所有敌人的Transform
+    private JobHandle _jobHandle;
+
+    void Update()
+    {
+        // 1. 创建Transform并行Job实例
+        EnemyMoveJob moveJob = new EnemyMoveJob()
+        {
+            moveSpeed = 1f,
+            deltaTime = Time.deltaTime
+        };
+
+        // 2. 调度Job：专门的调度方法，传入Transform数组和批处理大小
+        _jobHandle = moveJob.Schedule(enemyTransforms, 64);
+
+        // 3. 等待完成（Transform修改后主线程需要立即渲染，必须等）
+        _jobHandle.Complete();
+    }
+
+    // 专用Job struct：实现IJobParallelForTransform
+    [BurstCompile]
+    public struct EnemyMoveJob : IJobParallelForTransform
+    {
+        [ReadOnly] public float moveSpeed;
+        [ReadOnly] public float deltaTime;
+
+        // 必须实现：index=索引，transform=可安全修改的Transform句柄
+        public void Execute(int index, TransformAccess transform)
+        {
+            // 安全修改位置：沿Z轴前进
+            transform.position += new Vector3(0,0,moveSpeed * deltaTime);
+            // 也可以修改旋转/缩放
+            transform.rotation = Quaternion.Euler(0, index * 5, 0);
+        }
+    }
+}
+</code></pre>
+<hr>
+<h2 id="六-jobhandlejob句柄核心用法必掌握">六、JobHandle（Job句柄）核心用法（必掌握）</h2>
+<p>所有Job调度后都会返回一个 <code>JobHandle</code> 对象，它是<strong>Job的「身份证」</strong>，也是主线程和后台线程的「通信桥梁」，核心用法只有3个，全部是高频刚需：</p>
+<h3 id="1-等待job完成jobhandlecomplete">✅ 1. 等待Job完成：<code>jobHandle.Complete()</code></h3>
+<ul>
+<li>作用：<strong>阻塞当前线程</strong>，直到这个Job执行完成后，才继续执行后续代码</li>
+<li>核心规则：
+<ol>
+<li>主线程调用：阻塞主线程，直到Job完成（谨慎使用，避免卡顿）</li>
+<li>后台线程调用：阻塞当前后台线程，等待依赖的Job完成</li>
+<li><strong>必须调用</strong>：如果要访问Job修改过的Native容器数据，<strong>必须先调用Complete()</strong>，否则会触发线程安全报错！（Unity强制校验）</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-检查job是否完成jobhandleiscompleted">✅ 2. 检查Job是否完成：<code>jobHandle.IsCompleted</code></h3>
+<ul>
+<li>作用：<strong>非阻塞式检查</strong>，返回<code>bool</code>值，判断Job是否执行完成</li>
+<li>最佳实践：在<code>Update()</code>中轮询，判断完成后再调用<code>Complete()</code>，然后处理结果（如案例2），<strong>这是主线程和Jobs协作的最优方式</strong>，完全不阻塞主线程。</li>
+</ul>
+<h3 id="3-多个job依赖jobhandlecombinedependencies">✅ 3. 多个Job依赖：<code>JobHandle.CombineDependencies()</code></h3>
+<ul>
+<li>作用：实现<strong>Job的执行顺序控制</strong>，比如：JobB必须等JobA执行完成后才能执行，避免「数据未计算完成就被读取」的问题</li>
+<li>语法示例：</li>
+</ul>
+<pre><code class="language-csharp">// JobA：计算顶点数据
+JobHandle jobAHandle = jobA.Schedule();
+// JobB：基于顶点数据计算法线，依赖JobA完成
+JobHandle jobBHandle = jobB.Schedule(jobAHandle);
+// 等待JobB完成，自动先等JobA完成
+jobBHandle.Complete();
+</code></pre>
+<ul>
+<li>多依赖组合：如果JobC依赖JobA和JobB，用<code>CombineDependencies</code>合并句柄</li>
+</ul>
+<pre><code class="language-csharp">JobHandle allHandle = JobHandle.CombineDependencies(jobAHandle, jobBHandle);
+JobHandle jobCHandle = jobC.Schedule(allHandle);
+</code></pre>
+<hr>
+<h2 id="七-native-容器-核心补充避坑最佳实践">七、Native 容器 核心补充（避坑+最佳实践）</h2>
+<p>Native容器是Jobs的灵魂，这里补充2个必须掌握的<strong>高频知识点</strong>，避免90%的Jobs报错：</p>
+<h3 id="1-native容器的-allocator-内存分配器3个核心类型">✅ 1. Native容器的 <code>Allocator</code> 内存分配器（3个核心类型）</h3>
+<p>创建Native容器时必须指定分配器，不同分配器对应不同的生命周期和性能，<strong>选错必出Bug/内存泄漏</strong>：</p>
+<pre><code class="language-csharp">// 语法：new NativeArray&lt;T&gt;(长度, 分配器类型);
+NativeArray&lt;Vector3&gt; array1 = new NativeArray&lt;Vector3&gt;(1000, Allocator.Temp);
+</code></pre>
+<ul>
+<li>✔️ <code>Allocator.Temp</code>：临时分配，<strong>生命周期最短</strong>（1帧内），分配/释放速度最快，<strong>不能跨帧使用</strong>，不需要手动调用<code>Dispose()</code>（Unity自动回收）</li>
+<li>✔️ <code>Allocator.TempJob</code>：临时Job分配，生命周期<strong>最多4帧</strong>，速度次之，专门用于短期Job，推荐在<code>Update()</code>中创建的临时容器使用，<strong>必须手动Dispose()</strong></li>
+<li>✔️ <code>Allocator.Persistent</code>：持久化分配，生命周期<strong>自定义</strong>（直到手动释放），速度最慢，但最灵活，适合长期使用的容器（比如案例中的全局顶点数组），<strong>必须手动Dispose()</strong> → <strong>项目中最常用</strong></li>
+</ul>
+<h3 id="2-访问权限特性提升效率线程安全">✅ 2. 访问权限特性（提升效率+线程安全）</h3>
+<p>给Native容器/变量添加以下特性，是Jobs的<strong>最佳实践</strong>，Unity会做优化+安全校验：</p>
+<ul>
+<li><code>[ReadOnly]</code>：标记为「只读」，只能读取不能修改，Unity会跳过写锁校验，提升并行效率，且线程绝对安全</li>
+<li><code>[WriteOnly]</code>：标记为「只写」，只能修改不能读取，适合批量赋值场景</li>
+<li><code>[NativeDisableParallelForRestriction]</code>：【慎用】解除并行循环的索引限制，允许在<code>IJobFor</code>中访问非当前index的元素（比如相邻顶点），需自己保证线程安全</li>
+</ul>
+<hr>
+<h2 id="八-jobs-系统使用总结核心知识点速记看完就忘的话看这里">八、Jobs 系统使用总结（核心知识点速记，看完就忘的话看这里）</h2>
+<h3 id="核心知识点速记5句话必背">✅ 核心知识点速记（5句话，必背）</h3>
+<ol>
+<li>Unity Jobs 是<strong>多线程并行计算框架</strong>，核心目的是<strong>减轻主线程压力，解决掉帧卡顿</strong>；</li>
+<li>Job必须是<strong>值类型struct</strong>，实现<code>IJob/IJobFor/IJobParallelForTransform</code>接口，逻辑写在<code>Execute()</code>中；</li>
+<li>Job内部<strong>不能访问任何Unity组件/GameObject</strong>，只能用<strong>Native容器+基础值类型</strong>；</li>
+<li>调度Job返回<code>JobHandle</code>，用<code>IsCompleted</code>非阻塞检查，用<code>Complete()</code>等待完成，<strong>读数据前必须Complete()</strong>；</li>
+<li>Native容器是Jobs的核心，用<code>Persistent</code>分配、手动<code>Dispose()</code>释放，加<code>[ReadOnly]</code>提升效率。</li>
+</ol>
+<h3 id="性能优化黄金法则">✅ 性能优化黄金法则</h3>
+<ol>
+<li>能不用<code>Complete()</code>就不用，尽量用<code>IsCompleted</code>轮询，避免阻塞主线程；</li>
+<li>所有Job都加上<code>[BurstCompile]</code>，速度提升3~10倍，无任何副作用；</li>
+<li>优先用<code>IJobFor</code>处理循环计算，并行效率远高于单线程循环；</li>
+<li>尽量复用Native容器，避免频繁创建/释放，减少内存开销；</li>
+<li>小计算量逻辑（比如循环100次）没必要用Jobs，线程调度的开销会超过计算收益，<strong>计算量越大，Jobs的收益越高</strong>。</li>
+</ol>
+<hr>
+<h2 id="总结">总结</h2>
+<p>Unity Jobs 系统是解决「Unity主线程卡顿」的<strong>终极方案之一</strong>，也是中大型Unity项目的<strong>标配技术</strong>，核心就围绕「<strong>把纯计算逻辑抽离到后台线程</strong>」展开：</p>
+<ol>
+<li>核心约束是为了线程安全，遵守约束就不会出多线程Bug；</li>
+<li>3个核心接口覆盖99%的场景：<code>IJob</code>（单任务）、<code>IJobFor</code>（并行循环）、<code>IJobParallelForTransform</code>（批量改Transform）；</li>
+<li>Native容器是Jobs的核心载体，Burst编译是效率放大器；</li>
+<li>JobHandle是主线程和后台线程的桥梁，掌握<code>IsCompleted</code>和<code>Complete()</code>就够用。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-zhong-zi-ji-de-zi-yuan-wen-jian-jia/" class="post-title gt-a-link">
+                    Unity中自己的资源文件夹
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

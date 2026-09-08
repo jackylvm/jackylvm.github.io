@@ -1,0 +1,975 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>游戏存档实现 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    游戏存档实现
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-05 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/PhawdhHnu6/" class="post-tags">
+                            # 存档
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Unity中<strong>可以使用ScriptableObject作为游戏存档的载体</strong>，但需要明确其适用场景和局限性，再结合具体的序列化/反序列化逻辑实现存档功能。</p>
+<!-- more -->
+<h3 id="一-先明确scriptableobject做存档的优缺点">一、先明确：ScriptableObject做存档的优缺点</h3>
+<h4 id="优点">优点</h4>
+<ol>
+<li><strong>编辑时友好</strong>：可在Inspector面板直接编辑和预览存档数据，调试方便。</li>
+<li><strong>轻量级</strong>：基于Unity的序列化系统，无需手动处理复杂的字段映射。</li>
+<li><strong>可复用</strong>：可作为存档模板（如默认存档配置），运行时实例化修改。</li>
+</ol>
+<h4 id="局限性">局限性</h4>
+<ol>
+<li><strong>运行时实例的持久化问题</strong>：ScriptableObject本身是<strong>资源对象</strong>，默认存储在Asset数据库中（.asset文件），<strong>运行时创建的ScriptableObject实例无法直接保存为本地文件</strong>（需手动序列化其数据）。</li>
+<li><strong>跨平台兼容性</strong>：直接保存.asset文件在移动端/打包后无法写入（仅只读），必须将数据提取后用文件形式存储。</li>
+<li><strong>安全性低</strong>：纯文本序列化（如JSON）易被篡改，若需防篡改需额外加密。</li>
+</ol>
+<p><strong>适用场景</strong>：适合<strong>单机小游戏的轻量级存档</strong>、编辑时的配置存档，或作为存档数据的“容器模板”；不适合大型游戏的复杂存档（如包含大量场景数据、多人存档）。</p>
+<hr>
+<h3 id="二-实现思路">二、实现思路</h3>
+<p>核心逻辑：<strong>用ScriptableObject定义存档数据的结构</strong>，运行时将其数据序列化为<strong>JSON/二进制文件</strong>存储到本地，读档时反序列化数据并赋值给ScriptableObject实例。</p>
+<p>步骤拆解：</p>
+<ol>
+<li>定义ScriptableObject存档类（声明存档数据字段）。</li>
+<li>实现数据的序列化（将ScriptableObject的字段转为JSON/二进制）。</li>
+<li>实现数据的反序列化（从本地文件读取数据并赋值给ScriptableObject）。</li>
+<li>封装存档/读档的工具类。</li>
+</ol>
+<hr>
+<h3 id="三-具体实现代码">三、具体实现代码</h3>
+<h4 id="1-定义scriptableobject存档类">1. 定义ScriptableObject存档类</h4>
+<p>创建一个继承自<code>ScriptableObject</code>的类，声明需要存档的字段（如玩家等级、金币、关卡进度等）。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 标记为可创建Asset文件（可选，用于编辑时的默认存档模板）
+[CreateAssetMenu(fileName = &quot;PlayerSaveData&quot;, menuName = &quot;Game/SaveData/PlayerSaveData&quot;)]
+public class PlayerSaveData : ScriptableObject
+{
+    // 玩家基础数据
+    public int playerLevel;          // 等级
+    public int gold;                 // 金币
+    public float hp;                 // 生命值
+    public bool[] unlockedLevels;    // 解锁的关卡
+    public Vector3 playerPosition;   // 玩家位置
+
+    // 重置存档数据（可选）
+    public void ResetData()
+    {
+        playerLevel = 1;
+        gold = 0;
+        hp = 100;
+        unlockedLevels = new bool[10] { true, false, false, false, false, false, false, false, false, false };
+        playerPosition = Vector3.zero;
+    }
+}
+</code></pre>
+<h4 id="2-存档工具类核心序列化与反序列化">2. 存档工具类（核心：序列化与反序列化）</h4>
+<p>封装存档/读档的方法，将<code>PlayerSaveData</code>的字段序列化为JSON文件，存储到Unity的<strong>持久化路径</strong>（<code>Application.persistentDataPath</code>，跨平台可写）。</p>
+<pre><code class="language-csharp">using UnityEngine;
+using System.IO;
+
+public static class SaveSystem
+{
+    // 存档文件的路径（如：Android的/data/data/包名/files/SaveData.json）
+    private static string SavePath =&gt; Path.Combine(Application.persistentDataPath, &quot;SaveData.json&quot;);
+
+    /// &lt;summary&gt;
+    /// 存档：将ScriptableObject的数据序列化为JSON并保存到本地
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;saveData&quot;&gt;要保存的存档数据对象&lt;/param&gt;
+    public static void Save(PlayerSaveData saveData)
+    {
+        if (saveData == null)
+        {
+            Debug.LogError(&quot;SaveData is null!&quot;);
+            return;
+        }
+
+        // 将ScriptableObject的字段序列化为JSON字符串
+        string json = JsonUtility.ToJson(saveData);
+
+        // 将JSON写入文件
+        File.WriteAllText(SavePath, json);
+
+        Debug.Log(&quot;Save success! Path: &quot; + SavePath);
+    }
+
+    /// &lt;summary&gt;
+    /// 读档：从本地文件读取JSON并反序列化为数据，赋值给ScriptableObject
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;saveData&quot;&gt;要赋值的存档数据对象&lt;/param&gt;
+    /// &lt;returns&gt;是否读档成功&lt;/returns&gt;
+    public static bool Load(PlayerSaveData saveData)
+    {
+        if (saveData == null)
+        {
+            Debug.LogError(&quot;SaveData is null!&quot;);
+            return false;
+        }
+
+        // 检查文件是否存在
+        if (!File.Exists(SavePath))
+        {
+            Debug.LogWarning(&quot;Save file not found! Create new save data.&quot;);
+            saveData.ResetData(); // 不存在则重置为默认数据
+            return false;
+        }
+
+        // 读取文件中的JSON字符串
+        string json = File.ReadAllText(SavePath);
+
+        // 将JSON反序列化并赋值给ScriptableObject
+        JsonUtility.FromJsonOverwrite(json, saveData);
+
+        Debug.Log(&quot;Load success!&quot;);
+        return true;
+    }
+
+    /// &lt;summary&gt;
+    /// 删除存档文件
+    /// &lt;/summary&gt;
+    public static void DeleteSave()
+    {
+        if (File.Exists(SavePath))
+        {
+            File.Delete(SavePath);
+            Debug.Log(&quot;Save file deleted!&quot;);
+        }
+        else
+        {
+            Debug.LogWarning(&quot;Save file not found!&quot;);
+        }
+    }
+}
+</code></pre>
+<h4 id="3-测试使用在游戏逻辑中调用">3. 测试使用（在游戏逻辑中调用）</h4>
+<p>创建一个测试脚本，挂载到场景中的GameObject上，测试存档/读档功能。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class SaveTest : MonoBehaviour
+{
+    // 可在Inspector面板赋值（编辑时创建的PlayerSaveData.asset文件）
+    public PlayerSaveData saveDataTemplate;
+
+    private PlayerSaveData runtimeSaveData; // 运行时的存档实例
+
+    private void Awake()
+    {
+        // 方式1：使用编辑时创建的Asset模板（只读，需实例化后修改）
+        // 注意：直接修改模板会改变Asset文件，因此运行时需创建实例
+        runtimeSaveData = Instantiate(saveDataTemplate);
+
+        // 方式2：运行时动态创建ScriptableObject实例（无需提前创建Asset文件）
+        // runtimeSaveData = ScriptableObject.CreateInstance&lt;PlayerSaveData&gt;();
+        // runtimeSaveData.ResetData();
+    }
+
+    private void Update()
+    {
+        // 按S键存档
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            // 模拟修改数据
+            runtimeSaveData.playerLevel += 1;
+            runtimeSaveData.gold += 100;
+            runtimeSaveData.playerPosition = transform.position;
+
+            // 调用存档方法
+            SaveSystem.Save(runtimeSaveData);
+        }
+
+        // 按L键读档
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            // 调用读档方法
+            if (SaveSystem.Load(runtimeSaveData))
+            {
+                // 读档后更新游戏逻辑（如玩家位置、等级）
+                transform.position = runtimeSaveData.playerPosition;
+                Debug.Log(&quot;Player Level: &quot; + runtimeSaveData.playerLevel);
+                Debug.Log(&quot;Gold: &quot; + runtimeSaveData.gold);
+            }
+        }
+
+        // 按D键删除存档
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            SaveSystem.DeleteSave();
+        }
+    }
+}
+</code></pre>
+<hr>
+<h3 id="四-关键注意事项">四、关键注意事项</h3>
+<ol>
+<li>
+<p><strong>ScriptableObject的实例化</strong></p>
+<ul>
+<li>编辑时创建的<code>.asset</code>文件是<strong>只读资源</strong>，运行时<strong>不能直接修改</strong>（否则打包后会报错），需用<code>Instantiate()</code>创建实例后再修改。</li>
+<li>也可通过<code>ScriptableObject.CreateInstance&lt;PlayerSaveData&gt;()</code>在运行时动态创建实例，无需提前创建Asset文件。</li>
+</ul>
+</li>
+<li>
+<p><strong>序列化支持的类型</strong></p>
+<ul>
+<li><code>JsonUtility</code>仅支持<strong>Unity序列化的类型</strong>（如<code>int</code>、<code>float</code>、<code>Vector3</code>、<code>bool[]</code>、自定义类需加<code>[System.Serializable]</code>）。</li>
+<li>不支持<code>Dictionary</code>，若需存储键值对，可改用<code>List&lt;KeyValuePair&lt;TKey, TValue&gt;&gt;</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>跨平台路径</strong></p>
+<ul>
+<li>务必使用<code>Application.persistentDataPath</code>（可写路径），不要使用<code>Application.dataPath</code>（打包后只读）。</li>
+<li>PC端路径示例：<code>C:\Users\用户名\AppData\LocalLow\公司名\游戏名\SaveData.json</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>加密与防篡改</strong></p>
+<ul>
+<li>若需防止存档被篡改，可对JSON字符串进行<strong>AES加密</strong>或<strong>MD5签名验证</strong>。</li>
+<li>简单加密：可将字符串转成字节数组后异或一个密钥，再保存。</li>
+</ul>
+</li>
+<li>
+<p><strong>二进制序列化（可选）</strong></p>
+<ul>
+<li>若不想用JSON（可读性高但体积大），可改用<strong>二进制序列化</strong>（<code>BinaryFormatter</code>或<code>protobuf-net</code>），体积更小、安全性更高。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="五-总结">五、总结</h3>
+<p>使用ScriptableObject做存档的核心是<strong>将其作为数据结构的定义</strong>，而非直接保存ScriptableObject对象本身。通过将其数据序列化为文件存储，既利用了ScriptableObject的编辑友好性，又解决了其运行时持久化的问题。</p>
+<p>这种方式适合中小规模的单机游戏存档，若游戏规模较大（如包含大量场景数据、多人存档），建议使用<strong>SQLite</strong>或<strong>Addressables</strong>结合数据库的方式。</p>
+<!-- more -->
+<p>在Unity中实现游戏存档的方案没有绝对的“最好”，只有<strong>最适合项目场景</strong>的选择。除了用<code>ScriptableObject</code>作为数据结构+序列化文件的方式外，还有多种更成熟、更适配不同游戏规模/需求的方案。以下是主流的存档方案，按<strong>适用场景、优缺点、实现方式</strong>逐一分析：</p>
+<hr>
+<h2 id="一-按技术维度分类的主流存档方案">一、按“技术维度”分类的主流存档方案</h2>
+<h3 id="1-纯文件序列化基础款json二进制xml">1. <strong>纯文件序列化（基础款：JSON/二进制/XML）</strong></h3>
+<p>这是最基础的存档方式，也是<code>ScriptableObject</code>方案的核心底层逻辑，只是可以脱离<code>ScriptableObject</code>直接用<strong>普通C#类</strong>作为数据载体。</p>
+<h4 id="1json序列化推荐中小项目">（1）JSON序列化（推荐中小项目）</h4>
+<ul>
+<li><strong>核心工具</strong>：Unity内置<code>JsonUtility</code>、第三方库<code>Newtonsoft.Json</code>（Json.NET）、<code>LitJSON</code>。</li>
+<li><strong>适用场景</strong>：单机小游戏、轻量级存档（玩家数据、关卡进度）。</li>
+<li><strong>优点</strong>：
+<ul>
+<li>可读性强，调试方便；</li>
+<li>实现简单，无需依赖额外插件；</li>
+<li><code>Newtonsoft.Json</code>支持<code>Dictionary</code>、泛型等<code>JsonUtility</code>不支持的类型。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>纯文本易被篡改，需额外加密；</li>
+<li>数据量大时，序列化/反序列化效率略低。</li>
+</ul>
+</li>
+<li><strong>实现示例（Newtonsoft.Json）</strong>：<pre><code class="language-csharp">using Newtonsoft.Json;
+using System.IO;
+
+// 普通C#类作为数据载体（无需继承ScriptableObject）
+[System.Serializable]
+public class PlayerData
+{
+    public int Level;
+    public int Gold;
+    public Dictionary&lt;string, bool&gt; UnlockedSkills; // 支持Dictionary
+}
+
+public static class JsonSaveSystem
+{
+    private static string SavePath =&gt; Path.Combine(Application.persistentDataPath, &quot;PlayerData.json&quot;);
+
+    public static void Save(PlayerData data)
+    {
+        string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+        File.WriteAllText(SavePath, json);
+    }
+
+    public static PlayerData Load()
+    {
+        if (!File.Exists(SavePath)) return new PlayerData();
+        string json = File.ReadAllText(SavePath);
+        return JsonConvert.DeserializeObject&lt;PlayerData&gt;(json);
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h4 id="2二进制序列化推荐对性能体积有要求的项目">（2）二进制序列化（推荐对性能/体积有要求的项目）</h4>
+<ul>
+<li><strong>核心工具</strong>：<code>BinaryFormatter</code>（Unity内置，已标记过时）、<code>protobuf-net</code>（谷歌Protobuf的C#实现）、<code>MessagePack-CSharp</code>（高性能二进制序列化）。</li>
+<li><strong>适用场景</strong>：中大型单机游戏、需要紧凑数据体积的场景（如移动端）。</li>
+<li><strong>优点</strong>：
+<ul>
+<li>数据体积小，序列化/反序列化速度快；</li>
+<li>二进制格式比JSON更难篡改（非明文）；</li>
+<li><code>protobuf-net</code>跨语言兼容（C#/C++/Java等）。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>可读性差，调试不便；</li>
+<li>实现比JSON稍复杂。</li>
+</ul>
+</li>
+<li><strong>关键推荐</strong>：<strong>优先用<code>protobuf-net</code>替代<code>BinaryFormatter</code></strong>（<code>BinaryFormatter</code>存在安全漏洞且效率低）。</li>
+</ul>
+<h4 id="3xml序列化几乎不推荐">（3）XML序列化（几乎不推荐）</h4>
+<ul>
+<li><strong>适用场景</strong>：仅需与老项目/外部系统兼容的情况。</li>
+<li><strong>缺点</strong>：体积大、效率低、语法繁琐，已被JSON和二进制替代。</li>
+</ul>
+<h3 id="2-本地数据库推荐中大型单机游戏">2. <strong>本地数据库（推荐中大型单机游戏）</strong></h3>
+<p>当存档数据<strong>量大、结构复杂、需频繁查询/修改</strong>时（如开放世界游戏的任务进度、物品库、NPC关系），文件序列化的方式会变得低效，此时推荐使用<strong>本地嵌入式数据库</strong>。</p>
+<h4 id="1sqlite最主流">（1）SQLite（最主流）</h4>
+<ul>
+<li><strong>核心工具</strong>：<code>SQLite-net</code>（轻量级ORM）、<code>Unity SQLite</code>（Unity官方提供的插件）。</li>
+<li><strong>适用场景</strong>：大型单机游戏、需要复杂数据查询的存档（如按条件筛选物品、统计任务进度）。</li>
+<li><strong>优点</strong>：
+<ul>
+<li>关系型数据库，支持SQL查询，数据管理高效；</li>
+<li>轻量级（无服务器，文件型数据库），跨平台兼容；</li>
+<li>数据持久化可靠，支持事务（避免存档损坏）。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>学习成本比文件序列化高；</li>
+<li>需手动设计数据表结构。</li>
+</ul>
+</li>
+<li><strong>实现思路</strong>：
+<ol>
+<li>导入<code>SQLite-net</code>包（NuGet或Unity Package Manager）；</li>
+<li>定义数据模型（对应数据库表）；</li>
+<li>封装数据库操作类（增删改查）。</li>
+</ol>
+<pre><code class="language-csharp">using SQLite;
+
+// 定义数据表
+[Table(&quot;Player&quot;)]
+public class PlayerTable
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+    public int Level { get; set; }
+    public int Gold { get; set; }
+    public string PlayerName { get; set; }
+}
+
+// 数据库操作类
+public class SQLiteManager
+{
+    private SQLiteConnection _conn;
+
+    public SQLiteManager()
+    {
+        string dbPath = Path.Combine(Application.persistentDataPath, &quot;GameDB.db&quot;);
+        _conn = new SQLiteConnection(dbPath);
+        _conn.CreateTable&lt;PlayerTable&gt;(); // 创建表
+    }
+
+    // 插入/更新数据
+    public void SavePlayer(PlayerTable player)
+    {
+        if (_conn.Find&lt;PlayerTable&gt;(player.Id) != null)
+            _conn.Update(player);
+        else
+            _conn.Insert(player);
+    }
+
+    // 查询数据
+    public PlayerTable LoadPlayer(int id)
+    {
+        return _conn.Find&lt;PlayerTable&gt;(id);
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h4 id="2litedbnosql型本地数据库推荐快速开发">（2）LiteDB（NoSQL型本地数据库，推荐快速开发）</h4>
+<ul>
+<li><strong>核心特点</strong>：NoSQL数据库，类MongoDB的API，无需设计数据表结构，直接存储JSON格式的文档。</li>
+<li><strong>优点</strong>：比SQLite更易上手，无需写SQL语句，适合快速开发。</li>
+<li><strong>适用场景</strong>：中小型游戏，需要灵活数据结构的存档。</li>
+</ul>
+<h3 id="3-云端存档推荐联网游戏">3. <strong>云端存档（推荐联网游戏）</strong></h3>
+<p>对于联网游戏或需要跨设备同步存档的场景，本地存档无法满足需求，需结合<strong>云端服务</strong>实现存档。</p>
+<h4 id="1unity官方云服务unity-gaming-services-ugs-cloud-save">（1）Unity官方云服务：Unity Gaming Services (UGS) - Cloud Save</h4>
+<ul>
+<li><strong>核心优势</strong>：与Unity深度集成，无需自建服务器，支持跨平台同步（PC/移动端/主机）。</li>
+<li><strong>优点</strong>：
+<ul>
+<li>开箱即用，只需调用API即可实现云端存档；</li>
+<li>支持数据加密、版本控制、存档备份。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>有流量/存储费用（免费额度有限）；</li>
+<li>依赖网络，离线时无法使用。</li>
+</ul>
+</li>
+<li><strong>实现示例</strong>：<pre><code class="language-csharp">using Unity.Services.CloudSave;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public async Task SaveToCloud()
+{
+    // 初始化UGS（需先在Unity Dashboard配置）
+    await UnityServices.InitializeAsync();
+
+    // 存储数据到云端
+    var data = new Dictionary&lt;string, object&gt;
+    {
+        { &quot;Level&quot;, 10 },
+        { &quot;Gold&quot;, 1000 }
+    };
+    await CloudSaveService.Instance.Data.Player.SaveAsync(data);
+}
+
+public async Task LoadFromCloud()
+{
+    var data = await CloudSaveService.Instance.Data.Player.LoadAsync(new List&lt;string&gt; { &quot;Level&quot;, &quot;Gold&quot; });
+    int level = (int)data[&quot;Level&quot;];
+    int gold = (int)data[&quot;Gold&quot;];
+}
+</code></pre>
+</li>
+</ul>
+<h4 id="2第三方云服务">（2）第三方云服务</h4>
+<ul>
+<li><strong>Firebase Realtime Database/Firestore</strong>（谷歌）：适合中小型联网游戏，实时同步数据。</li>
+<li><strong>AWS DynamoDB</strong>（亚马逊）：适合大型游戏，高可用、高并发。</li>
+<li><strong>LeanCloud</strong>（国内）：本地化服务，适配国内网络环境。</li>
+</ul>
+<h3 id="4-混合存档方案推荐生产环境">4. <strong>混合存档方案（推荐生产环境）</strong></h3>
+<p>实际项目中，通常会结合<strong>本地存档</strong>和<strong>云端存档</strong>，兼顾离线体验和跨设备同步：</p>
+<ol>
+<li><strong>本地优先</strong>：游戏运行时优先读取本地存档，保证离线可玩；</li>
+<li><strong>云端同步</strong>：联网时将本地存档上传到云端，同时从云端拉取最新的存档（解决多设备同步）；</li>
+<li><strong>冲突处理</strong>：定义存档的版本号/时间戳，解决本地与云端的数据冲突（如以时间戳最新的为准）。</li>
+</ol>
+<hr>
+<h2 id="二-不同场景的方案选型建议">二、不同场景的方案选型建议</h2>
+<table>
+<thead>
+<tr>
+<th>游戏类型/规模</th>
+<th>推荐方案</th>
+<th>核心优势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小型单机小游戏</td>
+<td>JSON序列化（Newtonsoft.Json）+ 简单加密</td>
+<td>实现快、调试方便</td>
+</tr>
+<tr>
+<td>中型单机游戏</td>
+<td>Protobuf二进制序列化 + SQLite</td>
+<td>效率高、数据管理灵活</td>
+</tr>
+<tr>
+<td>大型开放世界单机</td>
+<td>SQLite/LiteDB + 分卷存档（按场景/模块拆分）</td>
+<td>支持海量数据、查询高效</td>
+</tr>
+<tr>
+<td>联网手游/网游</td>
+<td>UGS Cloud Save + 本地缓存</td>
+<td>跨平台同步、兼顾离线体验</td>
+</tr>
+<tr>
+<td>竞技类网游</td>
+<td>纯云端存档（服务器存储）+ 本地临时缓存</td>
+<td>防止作弊、数据统一管控</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="三-存档的通用最佳实践">三、存档的通用最佳实践</h2>
+<p>无论选择哪种方案，都需要注意以下关键点，避免踩坑：</p>
+<h3 id="1-数据加密与防篡改">1. <strong>数据加密与防篡改</strong></h3>
+<ul>
+<li><strong>基础加密</strong>：对序列化后的字符串/字节数组进行<strong>AES对称加密</strong>（推荐）、RSA非对称加密（适合联网）。</li>
+<li><strong>防篡改</strong>：添加<strong>MD5/SHA256哈希签名</strong>（将数据和签名一起存储，读取时验证签名是否一致）。</li>
+<li><strong>避免明文存储</strong>：永远不要将敏感数据（如玩家金币、等级）以明文形式存储。</li>
+</ul>
+<h3 id="2-存档损坏处理">2. <strong>存档损坏处理</strong></h3>
+<ul>
+<li><strong>备份存档</strong>：每次存档时保留上一版本的备份（如<code>SaveData.json</code>和<code>SaveData.bak</code>），若当前存档损坏则读取备份。</li>
+<li><strong>数据校验</strong>：读取存档时验证数据的合法性（如等级不能为负数、金币不能超过最大值）。</li>
+</ul>
+<h3 id="3-分卷存档">3. <strong>分卷存档</strong></h3>
+<ul>
+<li>将大型存档按<strong>模块拆分</strong>（如玩家数据、关卡数据、物品数据分别存储），避免单个存档文件过大，提高读写效率。</li>
+</ul>
+<h3 id="4-避免频繁存档">4. <strong>避免频繁存档</strong></h3>
+<ul>
+<li>不要每帧都存档（如玩家移动时实时存档），而是在<strong>关键节点</strong>存档（如关卡结束、玩家退出、手动存档），减少IO开销。</li>
+</ul>
+<hr>
+<h2 id="四-总结">四、总结</h2>
+<p>如果你的项目是<strong>小型单机游戏</strong>，用<code>ScriptableObject + JSON</code>就足够；如果是<strong>中大型游戏</strong>，建议升级到<strong>二进制序列化 + 本地数据库</strong>；如果是<strong>联网游戏</strong>，优先考虑<strong>UGS Cloud Save或Firebase</strong>等云端服务。</p>
+<p>核心原则是：<strong>先满足功能需求，再优化性能和安全性</strong>，避免过度设计（比如小型游戏没必要用SQLite）。</p>
+<!-- more -->
+<p>在Unity中，当你给存储了数据的<code>ScriptableObject</code>（SO）类<strong>增删属性</strong>时，<strong>会对已存在的<code>.asset</code>文件（SO实例）和运行时的序列化/反序列化逻辑产生直接影响</strong>，具体影响程度取决于修改的类型、Unity的序列化规则以及你的使用场景（编辑时/运行时）。以下从<strong>影响表现、底层原因、应对方案</strong>三个维度详细分析：</p>
+<hr>
+<h3 id="一-核心影响不同修改类型的具体表现">一、核心影响：不同修改类型的具体表现</h3>
+<p>我们将修改分为<strong>增属性、删属性、改属性（名/类型）</strong> 三类，分别看对<strong>编辑时的<code>.asset</code>文件</strong>和<strong>运行时的存档/反序列化</strong>的影响：</p>
+<h4 id="1-新增属性">1. <strong>新增属性</strong></h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>影响表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编辑时的<code>.asset</code>文件</td>
+<td>已存在的SO实例（.asset）中，<strong>新增的属性会被赋予默认值</strong>（如<code>int</code>为0，<code>string</code>为空，引用为null），原有数据完全保留。<br>✅ 这是最安全的修改，几乎无风险。</td>
+</tr>
+<tr>
+<td>运行时的JSON反序列化（如存档）</td>
+<td>若用<code>JsonUtility</code>反序列化旧存档（无新属性的JSON），新属性会被赋予默认值；若用<code>Newtonsoft.Json</code>等库，需确保配置了<strong>忽略未知属性</strong>（否则可能报错）。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>：<br>
+原SO类有<code>playerLevel</code>，新增<code>gold</code>后，旧的<code>PlayerData.asset</code>中<code>gold</code>会显示为0，<code>playerLevel</code>保留原有值。</p>
+<h4 id="2-删除属性">2. <strong>删除属性</strong></h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>影响表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编辑时的<code>.asset</code>文件</td>
+<td>Unity的序列化系统会<strong>丢弃已存在的<code>.asset</code>文件中对应属性的数据</strong>，且该数据无法恢复（除非回滚代码并重新导入<code>.asset</code>）。<br>⚠️ 数据永久丢失，需谨慎。</td>
+</tr>
+<tr>
+<td>运行时的JSON反序列化（如存档）</td>
+<td>若旧存档包含被删除的属性，<code>JsonUtility</code>会<strong>忽略该属性</strong>（无报错）；<code>Newtonsoft.Json</code>默认也会忽略，除非开启严格模式。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>：<br>
+原SO类有<code>gold</code>，删除后，旧的<code>PlayerData.asset</code>中<code>gold</code>的数据被清空，即使重新加回<code>gold</code>，也会恢复为默认值。</p>
+<h4 id="3-修改属性重命名改类型">3. <strong>修改属性（重命名/改类型）</strong></h4>
+<p>这是<strong>最容易出问题</strong>的修改，本质上等价于「删除旧属性 + 新增新属性」。</p>
+<h5 id="1重命名属性如playerlevel改为level">（1）重命名属性（如<code>playerLevel</code>改为<code>level</code>）</h5>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>影响表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编辑时的<code>.asset</code>文件</td>
+<td>Unity会将<code>playerLevel</code>视为“被删除的属性”（数据丢失），<code>level</code>视为“新增的属性”（默认值）。<br>⚠️ 原有属性数据直接丢失。</td>
+</tr>
+<tr>
+<td>运行时的JSON反序列化</td>
+<td>旧存档中的<code>playerLevel</code>会被忽略，<code>level</code>取默认值，数据丢失。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="2修改属性类型如int-playerlevel改为float-playerlevel">（2）修改属性类型（如<code>int playerLevel</code>改为<code>float playerLevel</code>）</h5>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>影响表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编辑时的<code>.asset</code>文件</td>
+<td>Unity序列化系统无法将旧类型数据转换为新类型，会<strong>清空该属性的数据</strong>（赋予新类型的默认值）。<br>⚠️ 数据丢失，且可能导致Inspector显示异常。</td>
+</tr>
+<tr>
+<td>运行时的JSON反序列化</td>
+<td><code>JsonUtility</code>会尝试转换类型，失败则赋值默认值（如<code>int</code>转<code>float</code>可成功，<code>float</code>转<code>int</code>会截断小数，<code>string</code>转<code>int</code>则赋值0）。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>特殊情况</strong>：若修改的是<strong>简单值类型间的兼容转换</strong>（如<code>int</code>→<code>float</code>），Unity可能会保留数据（如<code>int 10</code>转为<code>float 10.0</code>），但这属于未定义行为，<strong>不建议依赖</strong>。</p>
+<hr>
+<h3 id="二-底层原因unity的序列化规则">二、底层原因：Unity的序列化规则</h3>
+<p>Unity对<code>ScriptableObject</code>的序列化基于<strong>属性的“序列化名”</strong>（而非变量名，默认变量名就是序列化名）和<strong>字段的元数据</strong>（类型、顺序等），核心规则：</p>
+<ol>
+<li><strong>序列化数据与字段绑定</strong>：<code>.asset</code>文件中存储的是「序列化名 + 数据」的键值对，而非类的结构。</li>
+<li><strong>字段不匹配时的处理</strong>：
+<ul>
+<li>若新类中有<strong>未在<code>.asset</code>中找到的序列化名</strong>（新增属性），则赋默认值；</li>
+<li>若<code>.asset</code>中有<strong>未在新类中找到的序列化名</strong>（删除/重命名属性），则丢弃该数据；</li>
+<li>若序列化名存在但类型不匹配，则清空数据。</li>
+</ul>
+</li>
+<li><strong>序列化名可通过特性自定义</strong>：可使用<code>[SerializeField]</code>或<code>[FormerlySerializedAs]</code>特性显式指定序列化名，避免重命名导致的数据丢失。</li>
+</ol>
+<hr>
+<h3 id="三-如何避免缓解修改属性的负面影响">三、如何避免/缓解修改属性的负面影响？</h3>
+<p>针对不同场景，有对应的解决方案，从<strong>简单到复杂</strong>排序：</p>
+<h4 id="1-使用formerlyserializedas特性解决重命名属性的问题">1. <strong>使用<code>[FormerlySerializedAs]</code>特性（解决重命名属性的问题）</strong></h4>
+<p>这是Unity官方提供的<strong>最核心的解决方案</strong>，用于告诉序列化系统：“新的属性名对应旧的序列化名”，从而保留原有数据。</p>
+<p><strong>用法示例</strong>：</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+[CreateAssetMenu(fileName = &quot;PlayerData&quot;, menuName = &quot;Game/PlayerData&quot;)]
+public class PlayerDataSO : ScriptableObject
+{
+    // 原属性名是playerLevel，重命名为level，用特性关联旧序列化名
+    [FormerlySerializedAs(&quot;playerLevel&quot;)]
+    public int level;
+
+    // 新增属性，无影响
+    public int gold;
+
+    // 原属性名是hp，已删除，无需处理
+}
+</code></pre>
+<p><strong>效果</strong>：旧的<code>.asset</code>文件中<code>playerLevel</code>的数据会自动映射到<code>level</code>，数据完全保留。</p>
+<h4 id="2-版本控制与数据迁移解决删改属性的核心方案">2. <strong>版本控制与数据迁移（解决删/改属性的核心方案）</strong></h4>
+<p>当需要删除属性、修改类型或做重大结构调整时，需在代码中<strong>手动处理数据迁移</strong>，核心思路：</p>
+<ol>
+<li>给SO类添加<strong>版本号字段</strong>（如<code>public int dataVersion = 1;</code>）；</li>
+<li>当类结构修改时，递增版本号（如改为2）；</li>
+<li>在加载SO时，根据版本号执行不同的迁移逻辑。</li>
+</ol>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+[CreateAssetMenu(fileName = &quot;PlayerData&quot;, menuName = &quot;Game/PlayerData&quot;)]
+public class PlayerDataSO : ScriptableObject
+{
+    // 版本号，用于数据迁移
+    public int dataVersion = 2;
+
+    // 原int类型的hp改为float类型的maxHp
+    [FormerlySerializedAs(&quot;hp&quot;)]
+    public float maxHp;
+
+    // 新增属性
+    public int gold;
+
+    private void OnEnable()
+    {
+        // 数据迁移逻辑
+        if (dataVersion == 1)
+        {
+            // 版本1的hp是int，版本2的maxHp是float，手动转换
+            maxHp = (float)maxHp; // 这里实际是读取旧的int hp值，转为float
+            dataVersion = 2; // 升级版本号
+            EditorUtility.SetDirty(this); // 标记为脏，确保保存修改（仅编辑时）
+        }
+    }
+}
+</code></pre>
+<p><strong>关键</strong>：<code>OnEnable()</code>会在SO加载时调用（编辑时和运行时），是执行数据迁移的最佳时机。</p>
+<h4 id="3-编辑时的备份策略">3. <strong>编辑时的备份策略</strong></h4>
+<ul>
+<li>在修改SO类结构前，<strong>备份已有的<code>.asset</code>文件</strong>（复制到其他文件夹），若修改后数据丢失，可回滚备份；</li>
+<li>对于重要的配置表，可使用<strong>版本控制工具</strong>（如Git）管理<code>.asset</code>文件，方便回滚。</li>
+</ul>
+<h4 id="4-运行时存档的兼容处理">4. <strong>运行时存档的兼容处理</strong></h4>
+<p>若SO的数据需要序列化为存档文件（如JSON），需在反序列化时处理版本兼容：</p>
+<ol>
+<li>在存档数据中加入版本号；</li>
+<li>加载时根据版本号解析不同的字段结构，手动转换数据。</li>
+</ol>
+<p><strong>示例（JSON存档的迁移）</strong>：</p>
+<pre><code class="language-csharp">using Newtonsoft.Json;
+using System.IO;
+
+public class SaveData
+{
+    public int saveVersion = 2;
+    public float maxHp;
+    public int gold;
+}
+
+public static class SaveSystem
+{
+    public static SaveData Load()
+    {
+        string path = Path.Combine(Application.persistentDataPath, &quot;save.json&quot;);
+        if (!File.Exists(path)) return new SaveData();
+
+        string json = File.ReadAllText(path);
+        var saveData = JsonConvert.DeserializeObject&lt;SaveData&gt;(json);
+
+        // 数据迁移：版本1的hp是int，版本2的maxHp是float
+        if (saveData.saveVersion == 1)
+        {
+            // 读取旧的hp字段（需先定义临时类）
+            var oldData = JsonConvert.DeserializeObject&lt;OldSaveData&gt;(json);
+            saveData.maxHp = (float)oldData.hp;
+            saveData.saveVersion = 2;
+            // 重新保存新格式
+            Save(saveData);
+        }
+
+        return saveData;
+    }
+
+    // 旧版本的存档数据类
+    private class OldSaveData
+    {
+        public int saveVersion = 1;
+        public int hp;
+    }
+}
+</code></pre>
+<h4 id="5-避免频繁修改核心so结构">5. <strong>避免频繁修改核心SO结构</strong></h4>
+<ul>
+<li>在项目初期<strong>设计好SO的数据结构</strong>，尽量减少后期的重大修改；</li>
+<li>将易变的字段和稳定的字段拆分到不同的SO中（如将配置表拆分为基础配置和动态配置），降低修改的影响范围。</li>
+</ul>
+<hr>
+<h3 id="四-特殊场景运行时动态创建的so实例">四、特殊场景：运行时动态创建的SO实例</h3>
+<p>对于<strong>运行时通过<code>ScriptableObject.CreateInstance&lt;T&gt;()</code>创建的SO实例</strong>，增删属性的影响：</p>
+<ol>
+<li>若代码修改后重新运行，旧的运行时实例会被销毁，新实例会使用新的类结构（无数据迁移问题）；</li>
+<li>若运行时通过反序列化创建SO（如从旧存档加载），则会遵循上述的序列化规则（新增字段赋默认值，删除字段丢失数据）。</li>
+</ol>
+<hr>
+<h3 id="五-总结-2">五、总结</h3>
+<table>
+<thead>
+<tr>
+<th>修改类型</th>
+<th>影响程度</th>
+<th>最佳解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增属性</td>
+<td>低（安全）</td>
+<td>无需特殊处理，仅需注意默认值是否合理</td>
+</tr>
+<tr>
+<td>重命名属性</td>
+<td>中（数据丢失）</td>
+<td>使用<code>[FormerlySerializedAs]</code>特性关联旧名</td>
+</tr>
+<tr>
+<td>修改属性类型</td>
+<td>高（数据丢失）</td>
+<td>版本号+手动数据迁移</td>
+</tr>
+<tr>
+<td>删除属性</td>
+<td>高（数据永久丢失）</td>
+<td>先备份<code>.asset</code>文件，或通过版本号保留兼容逻辑</td>
+</tr>
+</tbody>
+</table>
+<p>核心要点：</p>
+<ol>
+<li><strong><code>[FormerlySerializedAs]</code>是处理重命名的黄金法则</strong>；</li>
+<li><strong>版本号+数据迁移是处理结构重大变更的通用方案</strong>；</li>
+<li><strong>修改前备份<code>.asset</code>文件是最稳妥的兜底策略</strong>。</li>
+</ol>
+<p>只要做好这些处理，即使SO类增删属性，也能最大程度避免数据丢失和兼容问题。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/guan-yu-unity-de-setpass/" class="post-title gt-a-link">
+                    关于Unity的SetPass
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

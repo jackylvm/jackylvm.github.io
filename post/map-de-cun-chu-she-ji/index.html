@@ -1,0 +1,412 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Map的存储设计 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Map的存储设计
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-15 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/zJdLx295LPI/" class="post-tags">
+                            # 数学方法
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>哈希函数不可避免的会出现碰撞,如果我要实现一个Map,key是一个哈希函数,,如果key计算出来的哈希值发生了碰撞,怎么设计存储Map的值</p>
+<!-- more -->
+<h1 id="哈希碰撞-mapkey哈希值-完整存储设计方案">哈希碰撞 + Map(key=哈希值) 完整存储设计方案</h1>
+<p>这个问题<strong>是哈希表的核心底层问题</strong>，也是所有语言（Java/C#/Go）中<code>HashMap/Dictionary</code>的核心实现逻辑：<strong>当不同的Key计算出相同哈希值（哈希碰撞）时，如何正确存储、查找、区分对应的值，保证数据读写无误</strong>。<br>
+先给你一个核心结论：<strong>哈希碰撞是必然的，无法杜绝，但所有碰撞问题都有成熟、高效的解决方案，而且这两套方案是行业标准，没有更好的替代方案</strong>。</p>
+<h2 id="前置核心认知必须先懂">前置核心认知（必须先懂）</h2>
+<ol>
+<li>你说的「key是一个哈希函数」，准确表述是：<strong>Map的Key（任意数据：字符串/对象/数字等），通过哈希函数计算出「哈希值」</strong>，Map是通过这个哈希值来加速查找的，最终要存储的是 <code>原始Key + Value</code> 键值对；</li>
+<li>哈希碰撞的定义：<strong>两个不同的原始Key，经过哈希函数计算后，得到了完全相同的哈希值</strong>（比如 key1=&quot;abc&quot;、key2=&quot;xyz&quot;，哈希后都是 10086），这就是碰撞；</li>
+<li>碰撞的本质问题：Map会根据哈希值找到「数据存放的位置」，如果哈希值相同，就会找到同一个位置，此时如果直接存值，就会覆盖掉之前的数据，这是绝对要避免的。</li>
+</ol>
+<hr>
+<h2 id="一-哈希表map的基础存储结构数组-哈希寻址">一、哈希表(Map)的基础存储结构：数组 + 哈希寻址</h2>
+<p>所有高性能Map的底层<strong>都是「数组」作为主存储容器</strong>，这是基础，所有碰撞解决方案都基于这个结构，必须先理解：</p>
+<ol>
+<li>Map初始化时，会创建一个<strong>固定容量的数组</strong>（哈希桶数组，也叫<code>Bucket Array</code>），数组的每个位置称为一个「哈希桶(Bucket)」；</li>
+<li>当插入 <code>(Key, Value)</code> 时，先对<strong>原始Key计算哈希值</strong>；</li>
+<li>通过一个「取模运算」做<strong>哈希寻址</strong>：<code>数组下标 = 哈希值 % 数组容量</code>，得到这个键值对应要放入的「数组位置」；</li>
+<li>读取时，用同样的方式计算哈希值+寻址，直接定位数组下标，<strong>理想情况O(1)时间复杂度</strong>，这也是哈希表快的原因。</li>
+</ol>
+<blockquote>
+<p>✅ 举个例子：数组容量=16，key1哈希值=20 → 下标=20%16=4；key2哈希值=36 → 下标=36%16=4 → 哈希碰撞，两个key要放入同一个数组下标=4的桶里。</p>
+</blockquote>
+<hr>
+<h2 id="二-解决哈希碰撞的两大行业标准方案全部必学无其他">二、解决哈希碰撞的「两大行业标准方案」（全部必学，无其他）</h2>
+<p>所有编程语言的Map，解决碰撞只采用这2种方案，<strong>没有第三种主流方案</strong>，二者各有优劣，覆盖所有业务场景，你可以根据自己的需求二选一实现即可。</p>
+<h3 id="方案一链地址法-separate-chaining-推荐优先实现最常用">✅ 方案一：链地址法 (Separate Chaining) 【推荐优先实现，最常用】</h3>
+<h4 id="1-核心设计思想">1. 核心设计思想</h4>
+<p><strong>给哈希桶数组的「每个下标位置」，挂一个「链表/红黑树」</strong>。</p>
+<ul>
+<li>数组的每个桶，不再只存一个 <code>(Key,Value)</code>，而是存一个「链表的头节点」；</li>
+<li>当发生哈希碰撞时（多个Key寻址到同一个数组下标），<strong>不会覆盖数据</strong>，而是把这些「碰撞的键值对」依次追加到这个下标对应的链表中；</li>
+<li>链表中存储的不是「哈希值」，而是 <strong>完整的原始Key + Value</strong>。</li>
+</ul>
+<h4 id="2-完整读写流程重点必看">2. 完整读写流程（重点，必看）</h4>
+<h5 id="插入数据-putkey-value">✔ 插入数据 put(Key, Value)</h5>
+<ol>
+<li>计算原始Key的哈希值 → 哈希寻址得到数组下标 index；</li>
+<li>检查数组[index]位置的链表是否为空：
+<ul>
+<li>为空 → 直接创建新节点，存入 (Key,Value)，作为链表头节点；</li>
+<li>不为空 → 遍历这个链表，<strong>逐个对比「原始Key」</strong>：
+<ul>
+<li>如果找到「相同的原始Key」→ 用新Value覆盖旧Value（Map的key唯一特性）；</li>
+<li>如果遍历完没找到相同Key → 在链表尾部追加新节点，存入 (Key,Value)。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="查询数据-getkey">✔ 查询数据 get(Key)</h5>
+<ol>
+<li>计算原始Key的哈希值 → 哈希寻址得到数组下标 index；</li>
+<li>遍历数组[index]位置的链表，<strong>逐个对比「原始Key」</strong>；</li>
+<li>找到「相同的原始Key」→ 返回对应的Value；</li>
+<li>遍历完链表没找到 → 返回空（Key不存在）。</li>
+</ol>
+<h4 id="3-关键细节避坑优化">3. 关键细节（避坑+优化）</h4>
+<p>✅ 为什么要对比「原始Key」而不是哈希值？</p>
+<blockquote>
+<p>因为哈希碰撞的本质就是「不同Key→相同哈希值」，如果只对比哈希值，就无法区分这两个不同的Key，<strong>原始Key是唯一的标识</strong>，哈希值只是「加速寻址的索引」，最终的唯一性校验必须用原始Key！</p>
+</blockquote>
+<p>✅ 性能优化点：</p>
+<ul>
+<li>当链表长度很短时（比如&lt;8），遍历链表的效率极高，几乎还是O(1)；</li>
+<li>当链表过长（比如&gt;8），把链表升级为「红黑树」，查询效率从O(n)优化为O(logn)，这是Java HashMap的核心优化逻辑，大厂标配。</li>
+</ul>
+<h4 id="4-优点缺点结论首选">4. 优点&amp;缺点（结论：首选）</h4>
+<p>✅ 优点：实现简单、容错性强、扩容成本低、不会出现「哈希堆积」，适合绝大多数场景，<strong>是所有编程语言Map的默认实现方案</strong>（Java HashMap/C# Dictionary/Go map）；<br>
+❌ 缺点：链表会占用少量额外内存（存储节点指针），极端情况链表过长会略降性能（可通过红黑树优化）。</p>
+<hr>
+<h3 id="方案二开放寻址法-open-addressing-极简场景可选">✅ 方案二：开放寻址法 (Open Addressing) 【极简场景可选】</h3>
+<h4 id="1-核心设计思想-2">1. 核心设计思想</h4>
+<p><strong>数组的每个桶，只存一个 <code>(Key,Value)</code> 键值对，没有链表/红黑树，所有数据都存在数组本身</strong>。</p>
+<ul>
+<li>当发生哈希碰撞（寻址到的数组下标已经有数据了），<strong>不往这个位置存</strong>，而是通过「探测规则」<strong>向后寻找「空的哈希桶」</strong>，直到找到空位置再存入；</li>
+<li>核心逻辑：<strong>碰撞了就「挪个位置放」，所有数据都在数组里，无额外结构</strong>。</li>
+</ul>
+<h4 id="2-核心探测规则最常用的3种">2. 核心探测规则（最常用的3种）</h4>
+<p>所有探测规则的前提：哈希寻址得到的下标是 <code>index = hash(key) % capacity</code></p>
+<h5 id="1-线性探测">① 线性探测</h5>
+<p>最简单的规则：依次向后找空桶 → <code>index+1</code> → <code>index+2</code> → <code>index+3</code> ... 直到找到空位置。</p>
+<blockquote>
+<p>例：寻址到下标4，4被占→查5，5被占→查6，6为空→存入6。</p>
+</blockquote>
+<h5 id="2-平方探测">② 平方探测</h5>
+<p>优化线性探测的缺陷：<code>index+1²</code> → <code>index+2²</code> → <code>index+3²</code> ... （+1、+4、+9），避免连续堆积。</p>
+<h5 id="3-二次哈希探测推荐">③ 二次哈希探测（推荐）</h5>
+<p>最优秀的探测规则：<code>index = (hash1(key) + i * hash2(key)) % capacity</code></p>
+<ul>
+<li>用两个不同的哈希函数计算哈希值；</li>
+<li>i是探测次数（0,1,2...）；</li>
+<li>优点：探测的位置分布更均匀，几乎不会堆积，性能最优。</li>
+</ul>
+<h4 id="3-完整读写流程">3. 完整读写流程</h4>
+<h5 id="插入数据-putkey-value-2">✔ 插入数据 put(Key, Value)</h5>
+<ol>
+<li>计算原始Key的哈希值 → 哈希寻址得到初始下标 index；</li>
+<li>检查数组[index]是否为空：为空则直接存入；</li>
+<li>不为空 → 按「探测规则」依次寻找下一个下标，直到找到空位置存入；</li>
+<li>注意：如果遍历中找到「相同的原始Key」，直接覆盖Value。</li>
+</ol>
+<h5 id="查询数据-getkey-2">✔ 查询数据 get(Key)</h5>
+<ol>
+<li>计算原始Key的哈希值 → 哈希寻址得到初始下标 index；</li>
+<li>检查数组[index]的Key是否等于原始Key：相等则返回Value；</li>
+<li>不相等 → 按「探测规则」依次找下一个下标，直到找到匹配的Key 或 找到空桶（Key不存在）。</li>
+</ol>
+<h4 id="4-优点缺点">4. 优点&amp;缺点</h4>
+<p>✅ 优点：<strong>内存利用率极高</strong>（无链表/指针开销）、实现也比较简单，适合「数据量小、碰撞概率低」的极简场景；<br>
+❌ 缺点：</p>
+<ol>
+<li>当数组容量快存满时，探测次数会急剧增加，性能从O(1)暴跌到O(n)；</li>
+<li>存在「哈希堆积」问题：一个碰撞会引发后续多个碰撞，恶性循环；</li>
+<li>删除数据复杂：不能直接置空，否则会破坏探测链路，导致后续查询失败。</li>
+</ol>
+<h4 id="选型建议">✅ 选型建议</h4>
+<p>开放寻址法只适合「小容量、低碰撞、读多写少」的场景，比如嵌入式开发、极简缓存；<strong>绝大多数业务场景，优先选链地址法</strong>。</p>
+<hr>
+<h2 id="三-核心设计原则重中之重绝对不能违反">三、核心设计原则（重中之重，绝对不能违反）</h2>
+<p>无论你用哪种方案，这3个原则是<strong>铁律</strong>，违反任何一个，你的Map一定会出Bug（存错值、查不到值、覆盖数据），这也是你问题的核心答案：</p>
+<h3 id="原则1哈希值只用来找位置不能用来判相等">✅ 原则1：哈希值只用来「找位置」，不能用来「判相等」</h3>
+<p>哈希值的唯一作用是：<strong>快速定位到数组的某个下标</strong>，仅此而已。</p>
+<blockquote>
+<p>❌ 错误做法：判断两个键值对是否是同一个Key，只对比哈希值；<br>
+✅ 正确做法：<strong>必须对比「原始Key」是否完全相等</strong>，哈希值相同只是巧合（碰撞），原始Key相同才是真正的同一个键。</p>
+</blockquote>
+<h3 id="原则2map中必须存储完整的原始key-value缺一不可">✅ 原则2：Map中必须存储「完整的原始Key + Value」，缺一不可</h3>
+<p>很多新手会犯的错误：只存哈希值+Value，不存原始Key。<br>
+这样的后果是：一旦碰撞，你永远无法区分两个不同的Key，因为你没有原始数据做对比，这是致命错误！</p>
+<blockquote>
+<p>✅ 存储单元的标准结构：<code>Bucket = { hash值(可选), 原始Key, Value }</code></p>
+</blockquote>
+<h3 id="原则3哈希值相同-key相同key相同-哈希值一定相同">✅ 原则3：哈希值相同 ≠ Key相同，Key相同 ⇒ 哈希值一定相同</h3>
+<p>这是哈希函数的「确定性」决定的：</p>
+<ul>
+<li>相同的原始Key，用同一个哈希函数计算，哈希值<strong>必然相同</strong>；</li>
+<li>相同的哈希值，原始Key<strong>大概率不同</strong>（碰撞）；<br>
+这是所有逻辑的底层依据。</li>
+</ul>
+<hr>
+<h2 id="四-补充让哈希碰撞更少的优化技巧锦上添花">四、补充：让哈希碰撞「更少」的优化技巧（锦上添花）</h2>
+<p>前面的方案是「<strong>解决碰撞</strong>」，这里的技巧是「<strong>减少碰撞概率</strong>」，二者结合，你的Map会达到极致性能，也是工业级实现的标配：</p>
+<h3 id="1-选择优秀的哈希函数比如你之前问的xxhash">1. 选择优秀的哈希函数（比如你之前问的xxHash）</h3>
+<p>垃圾的哈希函数（比如简单取模）碰撞概率极高，优秀的哈希函数能让哈希值<strong>均匀分布</strong>，碰撞概率低到可以忽略不计：</p>
+<ul>
+<li>推荐：xxHash(XXH64)、MurmurHash3、FNV-1a，这三个都是非加密哈希，速度极快+分布均匀；</li>
+<li>避坑：不要自己写哈希函数，大概率写的哈希值分布不均，碰撞多。</li>
+</ul>
+<h3 id="2-哈希桶数组的容量设计为质数2的幂次">2. 哈希桶数组的容量，设计为「质数/2的幂次」</h3>
+<ul>
+<li>链地址法：数组容量设为 <strong>2的幂次</strong>（16、32、64、128），哈希寻址的取模运算可以换成「位运算」，速度更快（<code>index = hash &amp; (capacity-1)</code>）；</li>
+<li>开放寻址法：数组容量设为 <strong>质数</strong>（7、13、17、31），能让哈希值分布更均匀，减少碰撞。</li>
+</ul>
+<h3 id="3-实现动态扩容-负载因子控制">3. 实现「动态扩容」+ 负载因子控制</h3>
+<ul>
+<li>负载因子 = Map中已存数据量 / 数组容量；</li>
+<li>当负载因子超过阈值（行业标准：0.75），就把数组容量<strong>扩容为原来的2倍</strong>，并把所有旧数据重新计算哈希值、重新寻址、存入新数组；</li>
+<li>作用：数组越空，碰撞概率越低，0.75是「空间利用率」和「碰撞概率」的黄金平衡点，Java/C#的Map都是这个值。</li>
+</ul>
+<hr>
+<h2 id="五-极简伪代码实现链地址法最易上手可直接参考">五、极简伪代码实现（链地址法，最易上手，可直接参考）</h2>
+<p>给你一份<strong>核心逻辑伪代码</strong>，没有语言限制，C/C#/Java/Go都能直接照搬实现，包含完整的<code>put/get</code>核心逻辑，你能一眼看懂：</p>
+<pre><code class="language-python"># 哈希桶数组：每个元素是一个链表，链表节点存储 (原始Key, Value)
+hash_bucket = [[] for _ in range(16)]  # 数组容量=16，初始为空链表
+
+# 哈希函数：用你熟悉的xxHash64，返回哈希值
+def hash_func(key):
+    return xxhash64(key)
+
+# 1. 插入键值对
+def put(key, value):
+    hash_val = hash_func(key)
+    index = hash_val % len(hash_bucket)  # 哈希寻址
+    bucket_list = hash_bucket[index]
+    
+    # 遍历链表，判断key是否已存在，存在则覆盖
+    for i in range(len(bucket_list)):
+        old_key, old_val = bucket_list[i]
+        if old_key == key:  # 核心：对比原始Key！！！
+            bucket_list[i] = (key, value)
+            return
+    # 不存在则追加到链表尾部
+    bucket_list.append((key, value))
+
+# 2. 查询值
+def get(key):
+    hash_val = hash_func(key)
+    index = hash_val % len(hash_bucket)
+    bucket_list = hash_bucket[index]
+    
+    # 遍历链表，对比原始Key
+    for old_key, old_val in bucket_list:
+        if old_key == key:
+            return old_val
+    # 没找到返回空
+    return None
+</code></pre>
+<blockquote>
+<p>✅ 这份伪代码是<strong>完整可运行的核心逻辑</strong>，你只需要把语言语法替换成你用的语言，再加上扩容逻辑，就是一个工业级的Map了。</p>
+</blockquote>
+<hr>
+<h2 id="最终总结精华提炼看完就忘不掉">最终总结（精华提炼，看完就忘不掉）</h2>
+<ol>
+<li>哈希碰撞<strong>必然存在</strong>，不用害怕，有2套标准方案解决：<strong>链地址法（首选）、开放寻址法（极简场景）</strong>；</li>
+<li>核心矛盾：哈希值相同 → 寻址到同一个位置，解决方案：<strong>存原始Key，遍历对比区分</strong>；</li>
+<li>铁律3条：哈希值只寻址、必须存原始Key、Key相同哈希必相同；</li>
+<li>性能优化：好哈希函数+数组扩容+负载因子0.75，碰撞概率低到忽略不计；</li>
+<li>所有语言的HashMap，底层都是这套逻辑，你理解了这个，就理解了所有Map的本质。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/xxhash/" class="post-title gt-a-link">
+                    xxHash
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

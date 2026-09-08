@@ -1,0 +1,494 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x05.Shader函数pow的几个示例 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x05.Shader函数pow的几个示例
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-04-19 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/60e52J_k-Hr/" class="post-tags">
+                            # 基础函数
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>写几个pow的应用示例</p>
+<!-- more -->
+<p>pow的曲线</p>
+<figure data-type="image" tabindex="1"><img src="https://jackylvm.github.io/post-images/1745073705586.png" alt="" loading="lazy"></figure>
+<!-- more -->
+<figure data-type="image" tabindex="2"><img src="https://jackylvm.github.io/post-images/1745073870187.png" alt="" loading="lazy"></figure>
+<pre><code class="language-glsl">Shader &quot;ShaderLearning/Shader10&quot;
+{
+    Properties
+    {
+        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+        _Power (&quot;Power&quot;, Range(0, 1)) = 0.5
+    }
+    SubShader
+    {
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;UnityCG.cginc&quot;
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            sampler2D _MainTex;
+            float _Power;
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                // 让uv坐标在-1到1之间
+                float2 uv = i.uv * 2 - 1;
+
+                // 
+                float r = pow(uv.x * uv.x, _Power) + pow(uv.y * uv.y, _Power) - 1;
+                // float r = pow(i.uv.x * i.uv.x, 0.3) + pow(i.uv.y * i.uv.y, 0.3) - 1;    
+                return fixed4(r, 0, 0, 1);
+            }
+            ENDCG
+        }
+    }
+}
+</code></pre>
+<!-- more -->
+<figure data-type="image" tabindex="3"><img src="https://jackylvm.github.io/post-images/1745072478028.png" alt="" loading="lazy"></figure>
+<pre><code class="language-glsl">Shader &quot;ShaderLearning/Shader10&quot;
+{
+    Properties
+    {
+        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+        _Power (&quot;Power&quot;, Range(0, 1)) = 0.5
+    }
+    SubShader
+    {
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;UnityCG.cginc&quot;
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            sampler2D _MainTex;
+            float _Power;
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                // float r = pow(i.uv.x * i.uv.x, _Power) + pow(i.uv.y * i.uv.y, _Power) - 1;
+                float r = pow(i.uv.x * i.uv.x, 0.3) + pow(i.uv.y * i.uv.y, 0.3) - 1;    
+                return fixed4(r, 0, 0, 1);
+            }
+            ENDCG
+        }
+    }
+}
+</code></pre>
+<!-- more -->
+<figure data-type="image" tabindex="4"><img src="https://jackylvm.github.io/post-images/1745072513606.png" alt="" loading="lazy"></figure>
+<pre><code class="language-glsl">Shader &quot;ShaderLearning/Shader10&quot;
+{
+    Properties
+    {
+        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+        _Power (&quot;Power&quot;, Range(0, 1)) = 0.5
+    }
+    SubShader
+    {
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;UnityCG.cginc&quot;
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            sampler2D _MainTex;
+            float _Power;
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                // float r = pow(i.uv.x * i.uv.x, _Power) + pow(i.uv.y * i.uv.y, _Power) - 1;
+                float r = pow(i.uv.x * i.uv.x, 0.7) + pow(i.uv.y * i.uv.y, 0.7) - 1;    
+                return fixed4(r, 0, 0, 1);
+            }
+            ENDCG
+        }
+    }
+}
+</code></pre>
+<!-- more -->
+<figure data-type="image" tabindex="5"><img src="https://jackylvm.github.io/post-images/1745072643997.png" alt="" loading="lazy"></figure>
+<pre><code class="language-glsl">Shader &quot;ShaderLearning/Shader10&quot;
+{
+    Properties
+    {
+        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+        _Power (&quot;Power&quot;, Range(0, 1)) = 0.5
+    }
+    SubShader
+    {
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;UnityCG.cginc&quot;
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            sampler2D _MainTex;
+            float _Power;
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                // float r = pow(i.uv.x * i.uv.x, _Power) + pow(i.uv.y * i.uv.y, _Power) - 1;
+                float r = pow(i.uv.x * i.uv.x, 0.2) + pow(i.uv.y * i.uv.y, 0.8) - 1;    
+                return fixed4(r, 0, 0, 1);
+            }
+            ENDCG
+        }
+    }
+}
+</code></pre>
+<!-- more -->
+<figure data-type="image" tabindex="6"><img src="https://jackylvm.github.io/post-images/1745072710060.png" alt="" loading="lazy"></figure>
+<pre><code class="language-glsl">Shader &quot;ShaderLearning/Shader10&quot;
+{
+    Properties
+    {
+        _MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+        _Power (&quot;Power&quot;, Range(0, 1)) = 0.5
+    }
+    SubShader
+    {
+        // No culling or depth
+        Cull Off ZWrite Off ZTest Always
+
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include &quot;UnityCG.cginc&quot;
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = v.uv;
+                return o;
+            }
+
+            sampler2D _MainTex;
+            float _Power;
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                // float r = pow(i.uv.x * i.uv.x, _Power) + pow(i.uv.y * i.uv.y, _Power) - 1;
+                float r = pow(i.uv.x * i.uv.x, 0.8) + pow(i.uv.y * i.uv.y, 0.2) - 1;    
+                return fixed4(r, 0, 0, 1);
+            }
+            ENDCG
+        }
+    }
+}
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x04shader-han-shu-pow/" class="post-title gt-a-link">
+                    0x04.Shader函数pow
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

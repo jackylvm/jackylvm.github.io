@@ -1,0 +1,350 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>在游戏开发中,Property和Attribute怎么使用 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    在游戏开发中,Property和Attribute怎么使用
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-10-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在游戏开发中，<strong>Property（属性）</strong> 和 <strong>Attribute（特性/属性）</strong> 是两个不同的概念，用途和场景有显著区别。以下结合游戏开发的实际场景，解释它们的使用方式和典型应用：</p>
+<hr>
+<h3 id="一-property属性封装数据与逻辑">一、Property（属性）：封装数据与逻辑</h3>
+<p><strong>本质</strong>：面向对象编程（OOP）中的成员，用于封装字段（Field），提供对数据的可控访问（读/写），并可在访问时附加逻辑（如验证、触发事件）。<br>
+<strong>核心作用</strong>：保护数据完整性，解耦数据访问与业务逻辑，方便扩展。</p>
+<h4 id="游戏开发中的典型用法">游戏开发中的典型用法：</h4>
+<ol>
+<li>
+<p><strong>角色属性封装</strong><br>
+角色的生命值（HP）、攻击力等数据需要限制范围（如HP不能为负），通过 Property 可在赋值时自动校验：</p>
+<pre><code class="language-csharp">// C# 示例（Unity常用）
+private int _hp;
+public int HP {
+    get =&gt; _hp;
+    set {
+        // 确保HP不会小于0或超过最大值
+        _hp = Mathf.Clamp(value, 0, maxHP);
+        // 触发UI更新事件（如血条变化）
+        OnHPChanged?.Invoke(_hp);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>资源加载控制</strong><br>
+加载纹理、音效等资源时，通过 Property 延迟加载（首次访问时才加载），优化性能：</p>
+<pre><code class="language-csharp">private Texture2D _icon;
+public Texture2D Icon {
+    get {
+        if (_icon == null) {
+            _icon = Resources.Load&lt;Texture2D&gt;(&quot;Icons/Player&quot;); // 延迟加载
+        }
+        return _icon;
+    }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>触发游戏逻辑</strong><br>
+当某个属性变化时（如任务进度），自动触发后续逻辑（如任务完成判定）：</p>
+<pre><code class="language-csharp">private float _taskProgress;
+public float TaskProgress {
+    get =&gt; _taskProgress;
+    set {
+        _taskProgress = value;
+        if (_taskProgress &gt;= 100) {
+            CompleteTask(); // 进度满时完成任务
+        }
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="二-attribute特性属性元数据标记">二、Attribute（特性/属性）：元数据标记</h3>
+<p><strong>本质</strong>：一种“元数据”（描述数据的数据），用于标记类、方法、字段等，给编译器或运行时框架提供额外信息。<br>
+<strong>核心作用</strong>：通过标记简化逻辑（如序列化配置、编辑器扩展、代码生成），无需手动编写重复代码。</p>
+<h4 id="游戏开发中的典型用法-2">游戏开发中的典型用法：</h4>
+<ol>
+<li>
+<p><strong>序列化与存档</strong><br>
+在Unity、Unreal等引擎中，用特性标记需要序列化的字段（如存档数据）：</p>
+<pre><code class="language-csharp">// Unity中标记字段可在Inspector面板显示并序列化
+[SerializeField] // 序列化私有字段
+private int _score;
+
+[System.Serializable] // 标记类可被序列化（用于存档）
+public class PlayerData {
+    public string name;
+    public int level;
+}
+</code></pre>
+</li>
+<li>
+<p><strong>编辑器扩展</strong><br>
+自定义特性控制引擎编辑器的显示逻辑（如限制数值范围、添加说明）：</p>
+<pre><code class="language-csharp">// 限制攻击力范围为1-100，且在Inspector显示滑动条
+[Range(1, 100)] 
+public int attackPower;
+
+// 给字段添加说明文本
+[Tooltip(&quot;角色移动速度（米/秒）&quot;)]
+public float moveSpeed;
+</code></pre>
+</li>
+<li>
+<p><strong>反射驱动逻辑</strong><br>
+用特性标记“可交互物体”，运行时通过反射批量处理：</p>
+<pre><code class="language-csharp">// 自定义特性：标记可拾取物品
+[AttributeUsage(AttributeTargets.Class)]
+public class PickableAttribute : Attribute {
+    public string itemType; // 物品类型（如&quot;武器&quot;、&quot;药水&quot;）
+}
+
+// 应用特性
+[Pickable(itemType = &quot;Potion&quot;)]
+public class HealthPotion : Item { ... }
+
+// 运行时通过反射找到所有可拾取物品并注册
+var pickableTypes = Assembly.GetTypes()
+    .Where(t =&gt; t.GetCustomAttribute&lt;PickableAttribute&gt;() != null);
+</code></pre>
+</li>
+<li>
+<p><strong>网络同步标记</strong><br>
+在多人游戏中，用特性标记需要同步的字段（如位置、状态）：</p>
+<pre><code class="language-csharp">[NetworkSync] // 自定义特性：标记该字段需要网络同步
+public Vector3 position;
+</code></pre>
+</li>
+</ol>
+<h3 id="三-核心区别与使用原则">三、核心区别与使用原则</h3>
+<table>
+<thead>
+<tr>
+<th><strong>维度</strong></th>
+<th><strong>Property（属性）</strong></th>
+<th><strong>Attribute（特性）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作用对象</td>
+<td>封装类的字段，控制数据访问</td>
+<td>标记代码元素（类、方法等），提供元数据</td>
+</tr>
+<tr>
+<td>运行时行为</td>
+<td>可包含逻辑（如计算、事件触发）</td>
+<td>本身不执行逻辑，需通过反射读取后处理</td>
+</tr>
+<tr>
+<td>典型场景</td>
+<td>角色属性、资源控制、逻辑触发</td>
+<td>序列化、编辑器配置、反射逻辑</td>
+</tr>
+</tbody>
+</table>
+<p><strong>使用原则</strong>：</p>
+<ul>
+<li>当需要控制数据的读/写逻辑（如校验、事件）时，用 <strong>Property</strong>。</li>
+<li>当需要给代码添加“标记信息”（供引擎、框架或反射使用）时，用 <strong>Attribute</strong>。</li>
+</ul>
+<p>在Unity、Unreal等主流引擎中，这两个概念被广泛应用，例如：</p>
+<ul>
+<li>Unity的 <code>[SerializeField]</code>、<code>[RequireComponent]</code> 是Attribute；</li>
+<li>角色的 <code>Transform.position</code> 是Property（内部处理了坐标更新逻辑）。<br>
+理解它们的区别能帮助你更规范地设计游戏逻辑和利用引擎特性。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/zhan-dou-shang-hai-ji-suan-gong-shi/" class="post-title gt-a-link">
+                    战斗伤害计算公式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x02. 23 种设计模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x02. 23 种设计模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-12-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="23种设计模式完整分类核心解读">23种设计模式（完整分类+核心解读）</h1>
+<!-- more -->
+<p>23种设计模式是《设计模式：可复用面向对象软件的基础》（俗称“四人帮/Gof”）提出的经典分类，核心是<strong>解耦、复用、可扩展</strong>，按功能分为3大类：创建型（5种）、结构型（7种）、行为型（11种），适配几乎所有面向对象开发场景。</p>
+<h2 id="一-创建型模式5种">一、 创建型模式（5种）</h2>
+<p>核心：<strong>封装对象的创建过程</strong>，不直接new对象，让创建逻辑与业务逻辑分离，灵活控制对象实例化。<br>
+适合场景：对象创建复杂、需要统一管控、要隐藏创建细节时。</p>
+<ol>
+<li>单例模式（Singleton）
+<ul>
+<li>核心：保证一个类<strong>全局只有一个实例</strong>，并提供全局访问点。</li>
+<li>场景：全局配置、数据库连接池、日志对象。</li>
+<li>注意：线程安全（饿汉式/懒汉式/双重校验锁）、防止反射破坏。</li>
+</ul>
+</li>
+<li>工厂方法模式（Factory Method）
+<ul>
+<li>核心：定义创建对象的接口，让<strong>子类决定具体创建哪个类</strong>，把创建延迟到子类。</li>
+<li>场景：日志框架（日志可以是文件/控制台/数据库，子类决定）、不同数据库驱动创建。</li>
+<li>优点：新增产品只需加子类，符合开闭原则。</li>
+</ul>
+</li>
+<li>抽象工厂模式（Abstract Factory）
+<ul>
+<li>核心：提供一个接口，创建<strong>一系列相关/依赖对象</strong>，无需指定具体类（生产“产品族”）。</li>
+<li>场景：系统风格切换（Windows/Mac风格的按钮、输入框）、数据库配套组件（连接+事务+查询）。</li>
+<li>区别于工厂方法：工厂方法造“单一产品”，抽象工厂造“一组配套产品”。</li>
+</ul>
+</li>
+<li>建造者模式（Builder）
+<ul>
+<li>核心：将复杂对象的<strong>构建与表示分离</strong>，相同构建过程能创建不同表示。</li>
+<li>场景：复杂对象创建（比如自定义电脑：CPU+内存+硬盘+显卡，组合不同配件）、HTTP请求构建。</li>
+<li>优点：分步构建、灵活控制细节，避免多参数构造器。</li>
+</ul>
+</li>
+<li>原型模式（Prototype）
+<ul>
+<li>核心：通过<strong>复制已有实例（原型）</strong> 创建新对象，无需重新初始化，效率更高。</li>
+<li>场景：对象创建成本高（比如大数据对象、复杂初始化对象）、需要批量生成相似对象。</li>
+<li>关键：深克隆/浅克隆（浅克隆复制引用，深克隆复制对象本身）。</li>
+</ul>
+</li>
+</ol>
+<h2 id="二-结构型模式7种">二、 结构型模式（7种）</h2>
+<p>核心：<strong>处理类或对象的组合关系</strong>，优化类结构、提高复用性，让结构更灵活且满足需求。<br>
+适合场景：需要组合已有类/对象实现新功能、解决类之间耦合、优化复杂结构时。</p>
+<ol>
+<li>适配器模式（Adapter）
+<ul>
+<li>核心：将一个类的接口<strong>转换成客户端期望的另一个接口</strong>，让不兼容的类能一起工作（“转换器”）。</li>
+<li>场景：新旧系统兼容（比如老接口返回List，新系统需要Set）、第三方组件适配。</li>
+<li>分类：类适配器（继承）、对象适配器（组合，更推荐）。</li>
+</ul>
+</li>
+<li>桥接模式（Bridge）
+<ul>
+<li>核心：将<strong>抽象部分与实现部分分离</strong>，让两者可以独立变化，解耦抽象和实现。</li>
+<li>场景：多维度变化的场景（比如“形状”和“颜色”：形状有圆形/方形，颜色有红/蓝，两者独立扩展）、消息通知（通知方式：短信/邮件；通知类型：普通/紧急）。</li>
+<li>优点：避免类爆炸（不用创建圆形红、圆形蓝、方形红...等大量子类）。</li>
+</ul>
+</li>
+<li>组合模式（Composite）
+<ul>
+<li>核心：将对象组合成<strong>树形结构</strong>，表示“部分-整体”关系，让客户端统一处理单个对象和组合对象。</li>
+<li>场景：树形结构场景（文件夹+文件、菜单+子菜单+菜单项、部门组织架构）。</li>
+<li>关键：叶子节点（无子节点，如文件）和组合节点（有子节点，如文件夹）实现统一接口。</li>
+</ul>
+</li>
+<li>装饰器模式（Decorator）
+<ul>
+<li>核心：<strong>动态给对象添加额外功能</strong>，不改变原类结构，比继承更灵活（“锦上添花”）。</li>
+<li>场景：功能动态扩展（比如咖啡：基础咖啡+加奶+加糖+加冰，自由组合）、IO流包装（Java中BufferedReader装饰InputStream）。</li>
+<li>区别于继承：继承是静态扩展，装饰器是动态扩展，可叠加。</li>
+</ul>
+</li>
+<li>外观模式（Facade）
+<ul>
+<li>核心：为复杂子系统提供<strong>统一的对外接口</strong>，简化客户端调用，隐藏子系统细节。</li>
+<li>场景：复杂系统调用（比如电商下单：需要调用库存、支付、物流子系统，外观类封装成一个“下单”方法）、框架对外API。</li>
+<li>优点：降低客户端与子系统的耦合，简化使用。</li>
+</ul>
+</li>
+<li>享元模式（Flyweight）
+<ul>
+<li>核心：<strong>复用内存中已存在的对象</strong>，减少创建大量相似对象的内存消耗，共享“细粒度对象”。</li>
+<li>场景：大量重复对象场景（比如围棋棋子、验证码字体、池化技术）。</li>
+<li>关键：区分内部状态（共享，如棋子颜色）和外部状态（不共享，如棋子位置）。</li>
+</ul>
+</li>
+<li>代理模式（Proxy）
+<ul>
+<li>核心：为其他对象提供一个<strong>代理对象</strong>，控制对原对象的访问，可附加额外逻辑。</li>
+<li>场景：权限控制、日志记录、懒加载、远程调用（RPC）。</li>
+<li>分类：静态代理（编译期确定）、动态代理（运行时生成，如Java的JDK代理、CGLIB）。</li>
+</ul>
+</li>
+</ol>
+<h2 id="三-行为型模式11种">三、 行为型模式（11种）</h2>
+<p>核心：<strong>处理类或对象之间的交互与职责分配</strong>，规范通信方式，让交互更清晰、职责更明确，提高灵活性。<br>
+适合场景：需要定义对象间通信规则、分配职责、处理算法变化时。</p>
+<ol>
+<li>责任链模式（Chain of Responsibility）
+<ul>
+<li>核心：将请求的<strong>发送者和接收者解耦</strong>，多个接收者连成链，请求沿链传递，直到被处理。</li>
+<li>场景：多级审批（请假：组长→部门经理→总监）、过滤器链（Web请求过滤）、异常处理链。</li>
+<li>优点：新增处理器只需加节点，无需修改原有链。</li>
+</ul>
+</li>
+<li>命令模式（Command）
+<ul>
+<li>核心：将请求封装成<strong>独立的命令对象</strong>，包含接收者和执行逻辑，支持请求的排队、撤销、重做。</li>
+<li>场景：按钮点击事件（点击按钮=执行对应命令）、任务队列、撤销操作（比如编辑器撤回）。</li>
+<li>角色：命令（接口）、具体命令、调用者（触发命令）、接收者（执行实际逻辑）。</li>
+</ul>
+</li>
+<li>解释器模式（Interpreter）
+<ul>
+<li>核心：定义语言的<strong>文法规则</strong>，并构建解释器来解释语言中的句子。</li>
+<li>场景：简单语法解析（比如表达式计算1+2*3、正则表达式解析、配置文件解析）、自定义小型DSL。</li>
+<li>缺点：文法复杂时类会爆炸，只适合简单场景。</li>
+</ul>
+</li>
+<li>迭代器模式（Iterator）
+<ul>
+<li>核心：提供一种方法<strong>顺序访问集合对象的元素</strong>，无需暴露集合的内部结构。</li>
+<li>场景：遍历集合（比如Java的Iterator、Python的for循环迭代）、统一不同集合的遍历方式。</li>
+<li>优点：遍历和集合解耦，新增集合只需实现迭代器接口。</li>
+</ul>
+</li>
+<li>中介者模式（Mediator）
+<ul>
+<li>核心：定义一个中介对象，<strong>封装多个对象之间的交互</strong>，让对象无需直接通信，降低耦合。</li>
+<li>场景：多对象复杂交互（比如聊天室（中介）：用户不用直接发消息给对方，发给聊天室转发）、GUI组件交互。</li>
+<li>优点：减少对象间的直接依赖，交互逻辑集中管理。</li>
+</ul>
+</li>
+<li>备忘录模式（Memento）
+<ul>
+<li>核心：在不破坏封装的前提下，<strong>保存对象的内部状态</strong>，以便后续恢复（“快照”）。</li>
+<li>场景：数据备份与恢复（比如编辑器保存草稿、游戏存档、撤销操作）。</li>
+<li>角色：原发器（保存状态）、备忘录（存储状态）、管理者（管理备忘录，不修改）。</li>
+</ul>
+</li>
+<li>观察者模式（Observer）
+<ul>
+<li>核心：定义<strong>一对多的依赖关系</strong>，当一个对象（被观察者）状态变化，所有依赖它的对象（观察者）自动收到通知并更新。</li>
+<li>场景：发布-订阅模型（比如公众号推送、消息通知、事件监听）、数据绑定。</li>
+<li>分类：推模型（被观察者主动推数据）、拉模型（观察者主动拉数据）。</li>
+</ul>
+</li>
+<li>状态模式（State）
+<ul>
+<li>核心：将对象的<strong>状态封装成独立的状态类</strong>，对象状态变化时，切换对应的状态类，让行为随状态改变而改变。</li>
+<li>场景：对象有多种状态且行为随状态变化（比如订单状态：待付款→待发货→待收货→完成）、电梯运行状态。</li>
+<li>区别于条件判断：用状态类替代if-else/switch，更清晰、易扩展。</li>
+</ul>
+</li>
+<li>策略模式（Strategy）
+<ul>
+<li>核心：定义一系列算法，<strong>将每个算法封装成独立类</strong>，让它们可以互相替换，算法变化不影响使用算法的客户端。</li>
+<li>场景：算法灵活切换（比如排序算法：冒泡/快排/归并、支付方式：微信/支付宝/银行卡）。</li>
+<li>优点：避免多重条件判断，算法可复用、易扩展。</li>
+</ul>
+</li>
+<li>模板方法模式（Template Method）
+<ul>
+<li>核心：在父类中定义<strong>算法的骨架（模板）</strong>，将可变的步骤延迟到子类实现，固定流程、灵活细节。</li>
+<li>场景：流程固定但细节不同（比如泡茶/泡咖啡：流程都是“烧水→放原料→冲泡→倒出”，原料不同）、框架核心流程（比如Spring的Bean生命周期）。</li>
+<li>关键：父类控制流程，子类实现细节，符合“开闭原则”。</li>
+</ul>
+</li>
+<li>访问者模式（Visitor）
+<ul>
+<li>核心：将<strong>数据结构和数据操作分离</strong>，新增操作时无需修改数据结构，只需加访问者类。</li>
+<li>场景：数据结构稳定、操作频繁变化（比如报表生成：同一批数据，生成Excel/Word/PDF报表，数据不变，操作变化）。</li>
+<li>缺点：数据结构变化时，所有访问者都要修改，适合结构稳定的场景。</li>
+</ul>
+</li>
+</ol>
+<h2 id="四-关键补充开发必知">四、 关键补充（开发必知）</h2>
+<h3 id="1-设计模式的核心原则底层支撑">1.  设计模式的核心原则（底层支撑）</h3>
+<p>所有设计模式都围绕<strong>SOLID原则</strong>展开，是判断是否用对模式的标准：</p>
+<ul>
+<li>单一职责：一个类只做一件事</li>
+<li>开闭原则：对扩展开放，对修改关闭（核心）</li>
+<li>里氏替换：子类可替换父类且不影响功能</li>
+<li>接口隔离：接口要细化，不依赖不需要的方法</li>
+<li>依赖倒置：依赖抽象，不依赖具体实现</li>
+</ul>
+<h3 id="2-常用模式优先级开发高频">2.  常用模式优先级（开发高频）</h3>
+<p>不用死记所有模式，优先掌握这些高频款即可覆盖80%场景：</p>
+<ul>
+<li>必学：单例、工厂方法、装饰器、代理、观察者、策略、模板方法</li>
+<li>常用：建造者、适配器、外观、责任链、状态</li>
+<li>小众：抽象工厂、桥接、组合、享元、原型、解释器、中介者、备忘录、访问者</li>
+</ul>
+<h3 id="3-避坑提醒">3.  避坑提醒</h3>
+<ul>
+<li>不要过度使用：简单场景用简单代码，不用强行套模式（比如单例不要滥用，非全局唯一没必要）</li>
+<li>优先组合，少用继承：设计模式大多推荐“组合/聚合”，比继承更灵活</li>
+<li>模式是工具，不是规范：核心是解决问题，不是为了用模式而用模式</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/she-ji-mo-shi-de-li-shi-bei-jing/" class="post-title gt-a-link">
+                    0x01. 设计模式的历史背景
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,703 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>C#中的所有格式控制选项 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    C#中的所有格式控制选项
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-08 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/yeA9sehEoM/" class="post-tags">
+                            # 字符串
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/WgyNS3Ry33/" class="post-tags">
+                            # C#
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <!-- more -->
+<h3 id="核心说明">核心说明</h3>
+<p>格式控制的通用语法：</p>
+<pre><code class="language-csharp">$&quot;{变量/表达式:格式符}&quot;
+// 示例：
+double num = 123.456;
+Console.WriteLine($&quot;保留2位小数：{num:F2}&quot;); // 输出：123.46
+</code></pre>
+<hr>
+<h2 id="一-数值类型格式符整数浮点数小数">一、数值类型格式符（整数/浮点数/小数）</h2>
+<p>适用于 <code>int</code>、<code>double</code>、<code>float</code>、<code>decimal</code>、<code>long</code> 等数值类型，分<strong>标准格式符</strong>和<strong>自定义格式符</strong>两类。</p>
+<h3 id="1-标准数值格式符常用">1. 标准数值格式符（常用）</h3>
+<table>
+<thead>
+<tr>
+<th>格式符</th>
+<th>名称</th>
+<th>说明</th>
+<th>示例（输入：1234.5678）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C/c</td>
+<td>货币格式</td>
+<td>按当前区域显示货币符号（可指定小数位）</td>
+<td><code>{num:C2}</code> → ¥1,234.57（中文环境）</td>
+</tr>
+<tr>
+<td>D/d</td>
+<td>十进制整数</td>
+<td>仅适用于整数，指定位数（补前导零）</td>
+<td><code>{123:D5}</code> → 00123</td>
+</tr>
+<tr>
+<td>E/e</td>
+<td>科学计数法</td>
+<td>指数形式（E大写/e小写）</td>
+<td><code>{num:E2}</code> → 1.23E+003</td>
+</tr>
+<tr>
+<td>F/f</td>
+<td>固定小数位</td>
+<td>指定小数位数（四舍五入）</td>
+<td><code>{num:F2}</code> → 1234.57</td>
+</tr>
+<tr>
+<td>G/g</td>
+<td>常规格式</td>
+<td>自动选择最简洁的格式（F/E）</td>
+<td><code>{num:G}</code> → 1234.5678</td>
+</tr>
+<tr>
+<td>N/n</td>
+<td>数字格式</td>
+<td>带千分位，可指定小数位</td>
+<td><code>{num:N2}</code> → 1,234.57</td>
+</tr>
+<tr>
+<td>P/p</td>
+<td>百分比格式</td>
+<td>数值×100 + %，可指定小数位</td>
+<td><code>{0.789:P1}</code> → 78.9%</td>
+</tr>
+<tr>
+<td>X/x</td>
+<td>十六进制</td>
+<td>仅适用于整数（X大写/x小写）</td>
+<td><code>{255:X}</code> → FF</td>
+</tr>
+<tr>
+<td>R/r</td>
+<td>往返格式</td>
+<td>确保浮点数往返解析无丢失（仅double/float）</td>
+<td><code>{0.1:R}</code> → 0.1</td>
+</tr>
+<tr>
+<td>O/o</td>
+<td>往返格式</td>
+<td>同R，优先用于decimal</td>
+<td><code>{0.1m:O}</code> → 0.1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-自定义数值格式符灵活拼接">2. 自定义数值格式符（灵活拼接）</h3>
+<p>可自由组合符号，实现自定义格式：</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>占位符（补0）</td>
+<td><code>{123.4:0000.00}</code> → 0123.40</td>
+</tr>
+<tr>
+<td>#</td>
+<td>占位符（不补0）</td>
+<td><code>{123.4:####.##}</code> → 123.4</td>
+</tr>
+<tr>
+<td>.</td>
+<td>小数点</td>
+<td><code>{123:0.00}</code> → 123.00</td>
+</tr>
+<tr>
+<td>,</td>
+<td>千分位/数值缩放</td>
+<td><code>{123456:0,,}</code> → 123（缩小1000倍）</td>
+</tr>
+<tr>
+<td>%</td>
+<td>百分比（×100）</td>
+<td><code>{0.78:0.0%}</code> → 78.0%</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义符</td>
+<td><code>{123:\#0}</code> → #123</td>
+</tr>
+<tr>
+<td>;</td>
+<td>分段符（正/负/零）</td>
+<td><code>{ -123:0;负0;零 }</code> → 负123</td>
+</tr>
+<tr>
+<td>$</td>
+<td>货币符号（固定）</td>
+<td><code>{123:$0.00}</code> → $123.00</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<pre><code class="language-csharp">double num = -1234.5678;
+Console.WriteLine($&quot;自定义格式1：{num:0,000.00;-0,000.00;零}&quot;); // -1,234.57
+Console.WriteLine($&quot;自定义格式2：{num:#,###.##}&quot;); // -1,234.57
+Console.WriteLine($&quot;数值缩放：{1234567:0,,.0}&quot;); // 1234.6（缩小1000倍）
+</code></pre>
+<hr>
+<h2 id="二-日期时间格式符">二、日期时间格式符</h2>
+<p>适用于 <code>DateTime</code>、<code>DateTimeOffset</code>、<code>TimeSpan</code> 类型，分<strong>标准格式符</strong>和<strong>自定义格式符</strong>。</p>
+<h3 id="1-标准日期时间格式符常用">1. 标准日期时间格式符（常用）</h3>
+<table>
+<thead>
+<tr>
+<th>格式符</th>
+<th>名称</th>
+<th>说明</th>
+<th>示例（输入：2026-01-06 10:30:45）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d</td>
+<td>短日期</td>
+<td>简化日期（年/月/日）</td>
+<td><code>{dt:d}</code> → 2026/1/6</td>
+</tr>
+<tr>
+<td>D</td>
+<td>长日期</td>
+<td>完整日期（含星期）</td>
+<td><code>{dt:D}</code> → 2026年1月6日 星期二</td>
+</tr>
+<tr>
+<td>t</td>
+<td>短时间</td>
+<td>小时:分钟（12/24小时制）</td>
+<td><code>{dt.t}</code> → 10:30</td>
+</tr>
+<tr>
+<td>T</td>
+<td>长时间</td>
+<td>小时:分钟:秒</td>
+<td><code>{dt:T}</code> → 10:30:45</td>
+</tr>
+<tr>
+<td>f</td>
+<td>完整日期+短时间</td>
+<td>长日期+短时间</td>
+<td><code>{dt:f}</code> → 2026年1月6日 星期二 10:30</td>
+</tr>
+<tr>
+<td>F</td>
+<td>完整日期+长时间</td>
+<td>长日期+长时间</td>
+<td><code>{dt:F}</code> → 2026年1月6日 星期二 10:30:45</td>
+</tr>
+<tr>
+<td>g</td>
+<td>常规日期+短时间</td>
+<td>短日期+短时间</td>
+<td><code>{dt:g}</code> → 2026/1/6 10:30</td>
+</tr>
+<tr>
+<td>G</td>
+<td>常规日期+长时间</td>
+<td>短日期+长时间</td>
+<td><code>{dt:G}</code> → 2026/1/6 10:30:45</td>
+</tr>
+<tr>
+<td>y/Y</td>
+<td>年月格式</td>
+<td>年+月（Y更完整）</td>
+<td><code>{dt:Y}</code> → 2026年1月</td>
+</tr>
+<tr>
+<td>M/m</td>
+<td>月日格式</td>
+<td>月+日</td>
+<td><code>{dt:M}</code> → 1月6日</td>
+</tr>
+<tr>
+<td>R/r</td>
+<td>RFC1123格式</td>
+<td>标准化日期（用于HTTP）</td>
+<td><code>{dt:R}</code> → Tue, 06 Jan 2026 10:30:45 GMT</td>
+</tr>
+<tr>
+<td>O/o</td>
+<td>往返格式</td>
+<td>可解析的完整日期（含时区）</td>
+<td><code>{dt:O}</code> → 2026-01-06T10:30:45.0000000+08:00</td>
+</tr>
+<tr>
+<td>s</td>
+<td>排序格式</td>
+<td>符合ISO 8601，可排序</td>
+<td><code>{dt:s}</code> → 2026-01-06T10:30:45</td>
+</tr>
+<tr>
+<td>u</td>
+<td>通用排序格式</td>
+<td>UTC时间，可排序</td>
+<td><code>{dt:u}</code> → 2026-01-06 10:30:45Z</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-自定义日期时间格式符灵活拼接">2. 自定义日期时间格式符（灵活拼接）</h3>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>y</td>
+<td>年（1-4位）</td>
+<td><code>{dt:yyyy}</code> → 2026；<code>{dt:yy}</code> → 26</td>
+</tr>
+<tr>
+<td>M</td>
+<td>月（1-2位/文本）</td>
+<td><code>{dt:MM}</code> → 01；<code>{dt:MMM}</code> → 一月</td>
+</tr>
+<tr>
+<td>d</td>
+<td>日（1-2位）</td>
+<td><code>{dt:dd}</code> → 06；<code>{dt:d}</code> → 6</td>
+</tr>
+<tr>
+<td>H</td>
+<td>小时（24制，0-23）</td>
+<td><code>{dt:HH}</code> → 10；<code>{dt:H}</code> → 10</td>
+</tr>
+<tr>
+<td>h</td>
+<td>小时（12制，1-12）</td>
+<td><code>{dt:hh}</code> → 10；<code>{dt:h}</code> → 10</td>
+</tr>
+<tr>
+<td>m</td>
+<td>分钟（0-59）</td>
+<td><code>{dt:mm}</code> → 30；<code>{dt:m}</code> → 30</td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒（0-59）</td>
+<td><code>{dt:ss}</code> → 45；<code>{dt:s}</code> → 45</td>
+</tr>
+<tr>
+<td>f</td>
+<td>毫秒（1-7位）</td>
+<td><code>{dt:fff}</code> → 123（取前3位毫秒）</td>
+</tr>
+<tr>
+<td>tt</td>
+<td>上午/下午（中文：上午/下午）</td>
+<td><code>{dt:tt}</code> → 上午</td>
+</tr>
+<tr>
+<td>:</td>
+<td>时间分隔符</td>
+<td><code>{dt:HH:mm:ss}</code> → 10:30:45</td>
+</tr>
+<tr>
+<td>/</td>
+<td>日期分隔符</td>
+<td><code>{dt:yyyy/MM/dd}</code> → 2026/01/06</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<pre><code class="language-csharp">DateTime dt = new DateTime(2026, 1, 6, 10, 30, 45, 123);
+Console.WriteLine($&quot;自定义日期：{dt:yyyy年MM月dd日 HH:mm:ss.fff}&quot;); // 2026年01月06日 10:30:45.123
+Console.WriteLine($&quot;带上午下午：{dt:yyyy-MM-dd hh:mm:ss tt}&quot;); // 2026-01-06 10:30:45 上午
+</code></pre>
+<hr>
+<h2 id="三-timespan-格式符">三、TimeSpan 格式符</h2>
+<p>适用于时间间隔类型（<code>TimeSpan</code>），分标准和自定义：</p>
+<h3 id="1-标准-timespan-格式符">1. 标准 TimeSpan 格式符</h3>
+<table>
+<thead>
+<tr>
+<th>格式符</th>
+<th>说明</th>
+<th>示例（输入：1天2小时3分4秒）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>常规格式（默认）</td>
+<td><code>{ts:c}</code> → 1.02:03:04</td>
+</tr>
+<tr>
+<td>g</td>
+<td>短格式（省略零）</td>
+<td><code>{ts:g}</code> → 1:2:3:4</td>
+</tr>
+<tr>
+<td>G</td>
+<td>长格式（补零）</td>
+<td><code>{ts:G}</code> → 01:02:03:04.0000000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-自定义-timespan-格式符">2. 自定义 TimeSpan 格式符</h3>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d</td>
+<td>天数</td>
+<td><code>{ts:d}</code> → 1</td>
+</tr>
+<tr>
+<td>h</td>
+<td>小时（12制）</td>
+<td><code>{ts:hh}</code> → 02</td>
+</tr>
+<tr>
+<td>H</td>
+<td>小时（24制）</td>
+<td><code>{ts:HH}</code> → 02</td>
+</tr>
+<tr>
+<td>m</td>
+<td>分钟</td>
+<td><code>{ts:mm}</code> → 03</td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒</td>
+<td><code>{ts:ss}</code> → 04</td>
+</tr>
+<tr>
+<td>f</td>
+<td>毫秒</td>
+<td><code>{ts:fff}</code> → 000</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<pre><code class="language-csharp">TimeSpan ts = new TimeSpan(1, 2, 3, 4);
+Console.WriteLine($&quot;自定义TimeSpan：{ts:dd天HH小时mm分钟ss秒}&quot;); // 01天02小时03分钟04秒
+</code></pre>
+<hr>
+<h2 id="四-其他类型格式符">四、其他类型格式符</h2>
+<h3 id="1-布尔类型bool">1. 布尔类型（bool）</h3>
+<table>
+<thead>
+<tr>
+<th>格式符</th>
+<th>说明</th>
+<th>示例（输入：true）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G/g</td>
+<td>常规（True/False）</td>
+<td><code>{b:G}</code> → True</td>
+</tr>
+<tr>
+<td>F/f</td>
+<td>同G</td>
+<td><code>{b:F}</code> → True</td>
+</tr>
+<tr>
+<td>D/d</td>
+<td>数字（1/0）</td>
+<td><code>{b:D}</code> → 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-枚举类型enum">2. 枚举类型（enum）</h3>
+<table>
+<thead>
+<tr>
+<th>格式符</th>
+<th>说明</th>
+<th>示例（enum Color { Red=1, Green=2 }）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G/g</td>
+<td>常规（枚举名称）</td>
+<td><code>{Color.Red:G}</code> → Red</td>
+</tr>
+<tr>
+<td>D/d</td>
+<td>数字值</td>
+<td><code>{Color.Red:D}</code> → 1</td>
+</tr>
+<tr>
+<td>X/x</td>
+<td>十六进制值</td>
+<td><code>{Color.Red:X}</code> → 00000001</td>
+</tr>
+<tr>
+<td>F/f</td>
+<td>标志枚举（按位组合）</td>
+<td>若枚举加 <code>[Flags]</code>，`{Color.Red</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-guid-类型">3. Guid 类型</h3>
+<table>
+<thead>
+<tr>
+<th>格式符</th>
+<th>说明</th>
+<th>示例（Guid：6F9619FF-8B86-D011-B42D-00C04FC964FF）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N</td>
+<td>无分隔符（32位）</td>
+<td><code>{guid:N}</code> → 6f9619ff8b86d011b42d00c04fc964ff</td>
+</tr>
+<tr>
+<td>D</td>
+<td>带连字符（默认）</td>
+<td><code>{guid:D}</code> → 6F9619FF-8B86-D011-B42D-00C04FC964FF</td>
+</tr>
+<tr>
+<td>B</td>
+<td>带大括号</td>
+<td><code>{guid:B}</code> → {6F9619FF-8B86-D011-B42D-00C04FC964FF}</td>
+</tr>
+<tr>
+<td>P</td>
+<td>带圆括号</td>
+<td><code>{guid:P}</code> → (6F9619FF-8B86-D011-B42D-00C04FC964FF)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="五-通用注意事项">五、通用注意事项</h2>
+<ol>
+<li><strong>大小写敏感</strong>：部分格式符区分大小写（如 <code>E/e</code> 科学计数法、<code>X/x</code> 十六进制、<code>H/h</code> 小时），需按示例使用；</li>
+<li><strong>区域适配</strong>：货币（C）、日期（d/D）等格式会受系统区域设置影响（如中文环境显示¥，英文显示$），可指定区域：<pre><code class="language-csharp">// 强制使用英文区域显示货币
+Console.WriteLine($&quot;美元格式：{1234.56.ToString(&quot;C2&quot;, System.Globalization.CultureInfo.GetCultureInfo(&quot;en-US&quot;))}&quot;);
+</code></pre>
+</li>
+<li><strong>格式符组合</strong>：自定义格式符可自由组合（如 <code>yyyy-MM-dd HH:mm:ss</code>），标准格式符不可拼接（如不能写 <code>{dt:dT}</code>）。</li>
+</ol>
+<h3 id="总结">总结</h3>
+<ol>
+<li>C# 格式控制符按类型分类：<strong>数值、日期时间、TimeSpan、布尔、枚举、Guid</strong>，覆盖所有常用类型；</li>
+<li>格式符分「标准」（简洁，如 <code>C2</code>、<code>d</code>）和「自定义」（灵活，如 <code>yyyy-MM-dd</code>），可按需选择；</li>
+<li>核心语法：<code>{变量:格式符}</code>，格式符的效果与 <code>ToString(格式符)</code> 完全一致，可跨场景复用。</li>
+</ol>
+<p>如果需要某类格式的更细节用法（比如精准控制时区、自定义区域格式），可以告诉我，我会补充对应的示例。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/zai-czhong-zi-fu-chuan-ge-shi-hua/" class="post-title gt-a-link">
+                    在C#中字符串格式化
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

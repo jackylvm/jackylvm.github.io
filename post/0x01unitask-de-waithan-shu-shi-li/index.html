@@ -1,0 +1,436 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x01.UniTask的Wait*函数示例 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x01.UniTask的Wait*函数示例
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-01 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/S2uOH6GFN3/" class="post-tags">
+                            # UniTask
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>以下是 UniTask 中各类 <code>Wait</code> 方法的<strong>分类总结 + 代码示例</strong>，涵盖所有常用场景，方便直接参考使用：</p>
+<hr>
+<h3 id="一-条件等待基于布尔条件">一、条件等待（基于布尔条件）</h3>
+<h4 id="1-waituntil">1. <code>WaitUntil</code></h4>
+<p><strong>功能</strong>：等待条件为 <code>true</code> 时继续<br>
+<strong>示例</strong>：等待玩家分数达到 100 分</p>
+<pre><code class="language-csharp">private int playerScore = 0;
+
+private async void CheckScore()
+{
+    Debug.Log(&quot;等待分数达到100...&quot;);
+    // 条件：分数 &gt;= 100 时结束等待
+    await UniTask.WaitUntil(() =&gt; playerScore &gt;= 100);
+    Debug.Log(&quot;分数达标！&quot;);
+}
+
+// 模拟加分（调用后分数变化）
+public void AddScore(int score)
+{
+    playerScore += score;
+    Debug.Log($&quot;当前分数：{playerScore}&quot;);
+}
+</code></pre>
+<h4 id="2-waitwhile">2. <code>WaitWhile</code></h4>
+<p><strong>功能</strong>：等待条件为 <code>false</code> 时继续<br>
+<strong>示例</strong>：等待敌人存活状态结束（敌人死亡后继续）</p>
+<pre><code class="language-csharp">private bool enemyIsAlive = true;
+
+private async void WaitEnemyDeath()
+{
+    Debug.Log(&quot;等待敌人死亡...&quot;);
+    // 条件：敌人存活时持续等待，死亡后结束
+    await UniTask.WaitWhile(() =&gt; enemyIsAlive);
+    Debug.Log(&quot;敌人已死亡！&quot;);
+}
+
+// 模拟敌人死亡
+public void EnemyDie()
+{
+    enemyIsAlive = false;
+}
+</code></pre>
+<h3 id="二-时间等待基于时间长度">二、时间等待（基于时间长度）</h3>
+<h4 id="1-unitaskdelay">1. <code>UniTask.Delay</code></h4>
+<p><strong>功能</strong>：等待指定毫秒数（支持实时/缩放时间）<br>
+<strong>示例</strong>：等待 2 秒（受时间缩放影响）和 3 秒真实时间（不受暂停影响）</p>
+<pre><code class="language-csharp">private async void WaitByDelay()
+{
+    // 等待 2 秒（Time.timeScale 为 0 时会暂停）
+    await UniTask.Delay(2000); // 2000毫秒 = 2秒
+    Debug.Log(&quot;2秒后执行（受时间缩放影响）&quot;);
+
+    // 等待 3 秒真实时间（即使暂停也会计时）
+    await UniTask.Delay(3000, DelayType.RealTime);
+    Debug.Log(&quot;3秒真实时间后执行（不受暂停影响）&quot;);
+}
+</code></pre>
+<h4 id="2-unitaskwaitforseconds">2. <code>UniTask.WaitForSeconds</code></h4>
+<p><strong>功能</strong>：等待指定秒数（受时间缩放影响，类似原生 <code>WaitForSeconds</code>）<br>
+<strong>示例</strong>：等待 1.5 秒后执行</p>
+<pre><code class="language-csharp">private async void WaitBySeconds()
+{
+    Debug.Log(&quot;开始等待...&quot;);
+    await UniTask.WaitForSeconds(1.5f); // 等待1.5秒
+    Debug.Log(&quot;1.5秒后执行&quot;);
+}
+</code></pre>
+<h3 id="三-帧与更新时机等待基于游戏循环">三、帧与更新时机等待（基于游戏循环）</h3>
+<h4 id="1-unitaskyield">1. <code>UniTask.Yield</code></h4>
+<p><strong>功能</strong>：等待当前帧结束，下一帧继续（每帧执行一次）<br>
+<strong>示例</strong>：每帧打印一次，共执行 5 帧</p>
+<pre><code class="language-csharp">private async void LoopPerFrame()
+{
+    for (int i = 0; i &lt; 5; i++)
+    {
+        Debug.Log($&quot;第 {i} 帧（当前帧）&quot;);
+        await UniTask.Yield(); // 等待当前帧结束，下一帧继续循环
+    }
+}
+</code></pre>
+<h4 id="2-unitaskwaitforendofframe">2. <code>UniTask.WaitForEndOfFrame</code></h4>
+<p><strong>功能</strong>：等待当前帧渲染结束（适合截图等操作）<br>
+<strong>示例</strong>：帧末执行截图</p>
+<pre><code class="language-csharp">private async void CaptureScreen()
+{
+    Debug.Log(&quot;帧开始，准备截图...&quot;);
+    await UniTask.WaitForEndOfFrame(); // 等待帧渲染结束
+    ScreenCapture.CaptureScreenshot(&quot;screenshot.png&quot;);
+    Debug.Log(&quot;截图完成（帧末执行）&quot;);
+}
+</code></pre>
+<h4 id="3-unitaskwaitforfixedupdate">3. <code>UniTask.WaitForFixedUpdate</code></h4>
+<p><strong>功能</strong>：等待下一次 <code>FixedUpdate</code>（适合物理逻辑）<br>
+<strong>示例</strong>：在 <code>FixedUpdate</code> 中给刚体加力</p>
+<pre><code class="language-csharp">private Rigidbody rb;
+
+private async void AddForceInFixedUpdate()
+{
+    rb = GetComponent&lt;Rigidbody&gt;();
+    await UniTask.WaitForFixedUpdate(); // 等待下一次FixedUpdate
+    rb.AddForce(Vector3.up * 10f); // 物理操作在FixedUpdate中执行更稳定
+}
+</code></pre>
+<h3 id="四-对象组件生命周期等待">四、对象/组件生命周期等待</h3>
+<h4 id="1-unitaskwaituntildestroyed">1. <code>UniTask.WaitUntilDestroyed</code></h4>
+<p><strong>功能</strong>：等待目标对象被销毁后继续<br>
+<strong>示例</strong>：监听道具对象销毁</p>
+<pre><code class="language-csharp">public GameObject item; // 场景中的道具
+
+private async void WaitItemDestroy()
+{
+    Debug.Log(&quot;等待道具被销毁...&quot;);
+    await UniTask.WaitUntilDestroyed(item); // 等待item被销毁
+    Debug.Log(&quot;道具已消失！&quot;);
+}
+
+// 调用此方法销毁道具
+public void DestroyItem()
+{
+    Destroy(item);
+}
+</code></pre>
+<h4 id="2-unitaskwaitwhileactive-unitaskwaituntilactive">2. <code>UniTask.WaitWhileActive</code> / <code>UniTask.WaitUntilActive</code></h4>
+<p><strong>功能</strong>：等待对象激活状态变化（激活 → 禁用 / 禁用 → 激活）<br>
+<strong>示例</strong>：等待面板从激活变为禁用</p>
+<pre><code class="language-csharp">public GameObject panel; // UI面板
+
+private async void WaitPanelClose()
+{
+    Debug.Log(&quot;等待面板关闭...&quot;);
+    // 面板激活时持续等待，禁用后继续
+    await UniTask.WaitWhileActive(panel);
+    Debug.Log(&quot;面板已关闭&quot;);
+}
+
+// 调用此方法关闭面板
+public void ClosePanel()
+{
+    panel.SetActive(false);
+}
+</code></pre>
+<h3 id="五-多任务等待基于多个异步操作">五、多任务等待（基于多个异步操作）</h3>
+<h4 id="1-unitaskwhenall">1. <code>UniTask.WhenAll</code></h4>
+<p><strong>功能</strong>：等待多个任务全部完成后继续<br>
+<strong>示例</strong>：并行加载两个资源，全部完成后处理</p>
+<pre><code class="language-csharp">private async void LoadMultipleAssets()
+{
+    // 启动两个并行加载任务
+    var loadTexture = LoadAsset&lt;Texture2D&gt;(&quot;icon&quot;);
+    var loadAudio = LoadAsset&lt;AudioClip&gt;(&quot;bgm&quot;);
+
+    // 等待两个任务都完成
+    await UniTask.WhenAll(loadTexture, loadAudio);
+
+    // 处理结果
+    Debug.Log(&quot;所有资源加载完成：&quot;);
+    Debug.Log($&quot;纹理：{loadTexture.Result.name}&quot;);
+    Debug.Log($&quot;音频：{loadAudio.Result.name}&quot;);
+}
+
+// 模拟资源加载
+private async UniTask&lt;T&gt; LoadAsset&lt;T&gt;(string path) where T : UnityEngine.Object
+{
+    await UniTask.Delay(1000); // 模拟加载耗时
+    return new T(); // 实际项目中返回加载的资源
+}
+</code></pre>
+<h4 id="2-unitaskwhenany">2. <code>UniTask.WhenAny</code></h4>
+<p><strong>功能</strong>：等待多个任务中任意一个完成后继续<br>
+<strong>示例</strong>：从两个下载源取最快的结果</p>
+<pre><code class="language-csharp">private async void DownloadFastest()
+{
+    // 两个并行下载任务
+    var downloadA = DownloadFile(&quot;url_A&quot;);
+    var downloadB = DownloadFile(&quot;url_B&quot;);
+
+    // 等待任意一个完成
+    var completedTask = await UniTask.WhenAny(downloadA, downloadB);
+
+    Debug.Log($&quot;最快完成的任务：{completedTask.Result}&quot;);
+}
+
+// 模拟文件下载
+private async UniTask&lt;string&gt; DownloadFile(string url)
+{
+    // 随机模拟下载耗时（1-3秒）
+    var delay = Random.Range(1000, 3000);
+    await UniTask.Delay(delay);
+    return url;
+}
+</code></pre>
+<h3 id="六-属性变化等待">六、属性变化等待</h3>
+<h4 id="unitaskwaitforfirstvaluechanged"><code>UniTask.WaitForFirstValueChanged</code></h4>
+<p><strong>功能</strong>：等待目标对象的指定属性首次变化<br>
+<strong>示例</strong>：监听玩家生命值变化</p>
+<pre><code class="language-csharp">public class Player : MonoBehaviour, INotifyPropertyChanged
+{
+    private int _hp;
+    public int Hp 
+    { 
+        get =&gt; _hp; 
+        set 
+        { 
+            _hp = value; 
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Hp)));
+        } 
+    }
+    public event PropertyChangedEventHandler PropertyChanged;
+}
+
+// 监听Hp变化
+private async void ListenHpChange()
+{
+    var player = GetComponent&lt;Player&gt;();
+    Debug.Log(&quot;等待生命值变化...&quot;);
+    // 等待Hp首次变化
+    await UniTask.WaitForFirstValueChanged(player, p =&gt; p.Hp);
+    Debug.Log($&quot;生命值已变化：{player.Hp}&quot;);
+}
+</code></pre>
+<h3 id="总结">总结</h3>
+<p>通过这些示例可以直观看到：</p>
+<ul>
+<li>条件等待（<code>WaitUntil</code>/<code>WaitWhile</code>）适合状态监听；</li>
+<li>时间/帧等待适合定时或逐帧逻辑；</li>
+<li>对象生命周期等待适合监听物体状态；</li>
+<li>多任务等待适合并行操作协同；</li>
+<li>属性变化等待适合数据驱动的场景。</li>
+</ul>
+<p>根据具体需求选择对应方法，可大幅简化异步逻辑的编写。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x00unitask-de-waithan-shu/" class="post-title gt-a-link">
+                    0x00.UniTask的Wait*函数
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

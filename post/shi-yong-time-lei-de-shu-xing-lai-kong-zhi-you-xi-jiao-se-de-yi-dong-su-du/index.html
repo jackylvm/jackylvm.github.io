@@ -1,0 +1,434 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>使用Time类的属性来控制游戏角色的移动速度 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    使用Time类的属性来控制游戏角色的移动速度
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-05 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Unity中控制游戏角色移动速度的核心是 <strong>使用 <code>Time.deltaTime</code> 实现帧率无关移动</strong>——这是最基础也最关键的原则，确保角色在不同帧率设备（如30fps手机和60fps电脑）上移动速度一致。此外，还可通过 <code>Time.timeScale</code> 实现慢动作/快进移动，或用 <code>Time.unscaledDeltaTime</code> 实现不受暂停影响的移动（如UI角色、后台移动单位）。</p>
+<p>以下分 <strong>核心实现（帧率无关移动）</strong>、<strong>进阶控制（慢动作/暂停兼容）</strong>、<strong>不同移动方式适配</strong> 三部分详细说明，附完整代码示例。</p>
+<h2 id="一-核心原则为什么必须用-timedeltatime">一、核心原则：为什么必须用 <code>Time.deltaTime</code>？</h2>
+<ul>
+<li>游戏的 <code>Update()</code> 函数调用频率不固定（帧率越高，调用越频繁）；</li>
+<li><code>Time.deltaTime</code> 表示“上一帧到当前帧的时间间隔（秒）”，乘以移动速度后，能将“每帧移动距离”转换为“每秒移动距离”，实现 <strong>帧率无关</strong>。</li>
+</ul>
+<p>❌ 错误做法（帧率依赖，低帧率变慢）：</p>
+<pre><code class="language-csharp">// 假设60fps，每帧移动 5/60 米，但30fps时每帧仍移动同样距离，每秒仅移动 5/60 *30 = 2.5米（速度减半）
+transform.Translate(Vector3.forward * 5f / 60f); 
+</code></pre>
+<p>✅ 正确做法（帧率无关，每秒稳定移动5米）：</p>
+<pre><code class="language-csharp">// 速度（米/秒）* 帧间隔（秒）= 每帧移动距离（米），无论帧率多少，每秒总距离=速度
+transform.Translate(Vector3.forward * speed * Time.deltaTime); 
+</code></pre>
+<h2 id="二-基础实现帧率无关的角色移动最常用">二、基础实现：帧率无关的角色移动（最常用）</h2>
+<p>适用于 <strong>普通角色移动</strong>（如PC端 WASD、移动端虚拟摇杆），核心是在 <code>Update()</code> 中用 <code>Time.deltaTime</code> 计算移动量。</p>
+<h3 id="1-代码示例transform-直接移动适合非物理角色">1. 代码示例（Transform 直接移动，适合非物理角色）</h3>
+<p>适合2D/3D角色（如Top-Down视角、横版卷轴），无需物理碰撞（或用碰撞体+非刚体）：</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    [Header(&quot;移动配置&quot;)]
+    public float moveSpeed = 5f; // 核心：移动速度（单位：米/秒，帧率无关）
+    public bool useWorldSpace = true; // true=世界空间移动（固定前后左右），false=本地空间（跟随角色朝向）
+
+    void Update()
+    {
+        // 1. 获取输入（PC端 WASD/方向键，可替换为移动端摇杆输入）
+        float horizontal = Input.GetAxis(&quot;Horizontal&quot;); // 左右：-1（左）~1（右）
+        float vertical = Input.GetAxis(&quot;Vertical&quot;);     // 前后：-1（后）~1（前）
+        
+        // 2. 构建移动方向（归一化避免斜向移动过快）
+        Vector3 moveDir = new Vector3(horizontal, 0, vertical).normalized;
+        // （2D游戏替换为：Vector2 moveDir = new Vector2(horizontal, vertical).normalized;）
+
+        // 3. 帧率无关移动（核心：乘以 Time.deltaTime）
+        if (useWorldSpace)
+        {
+            // 世界空间移动（适合固定视角，如上帝视角）
+            transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // 本地空间移动（适合第三人称/第一人称，移动方向跟随角色朝向）
+            transform.Translate(moveDir * moveSpeed * Time.deltaTime, Space.Self);
+        }
+    }
+}
+</code></pre>
+<h3 id="2-代码示例rigidbody-物理移动适合需要碰撞重力的角色">2. 代码示例（Rigidbody 物理移动，适合需要碰撞/重力的角色）</h3>
+<p>如果角色有 <code>Rigidbody</code>（3D）或 <code>Rigidbody2D</code>（2D），必须在 <code>FixedUpdate()</code> 中使用 <code>Time.fixedDeltaTime</code>（物理帧固定间隔，默认0.02秒），避免物理抖动：</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class PlayerPhysicsMovement : MonoBehaviour
+{
+    [Header(&quot;物理移动配置&quot;)]
+    public float moveSpeed = 5f; // 移动速度（米/秒）
+    private Rigidbody rb; // 3D角色用Rigidbody，2D用Rigidbody2D
+
+    void Start()
+    {
+        // 获取组件（确保角色身上已添加Rigidbody，且勾选&quot;Use Gravity&quot;）
+        rb = GetComponent&lt;Rigidbody&gt;();
+        // 优化：锁定旋转（避免移动时角色倾倒）
+        rb.freezeRotation = true;
+    }
+
+    // 物理逻辑必须用 FixedUpdate（固定时间步，不受帧率影响）
+    void FixedUpdate()
+    {
+        // 1. 获取输入
+        float horizontal = Input.GetAxis(&quot;Horizontal&quot;);
+        float vertical = Input.GetAxis(&quot;Vertical&quot;);
+        Vector3 moveDir = new Vector3(horizontal, 0, vertical).normalized;
+
+        // 2. 物理移动（两种方式选一种）
+        // 方式1：直接设置速度（适合匀速移动，不受摩擦力影响）
+        rb.velocity = new Vector3(moveDir.x * moveSpeed, rb.velocity.y, moveDir.z * moveSpeed);
+
+        // 方式2：施加力（适合有加速度/摩擦力的场景，需调整ForceMode）
+        // rb.AddForce(moveDir * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+    }
+}
+</code></pre>
+<h3 id="关键说明">关键说明：</h3>
+<ul>
+<li><code>moveSpeed</code> 的单位是 <strong>米/秒</strong>（Unity默认单位），直观易调整（如想让角色1秒移动5米，就设为5）；</li>
+<li>移动方向需 <code>normalized</code>：避免斜向移动时（如同时按W+D），向量长度为√2≈1.414，导致斜向速度比正向快。</li>
+</ul>
+<h2 id="三-进阶控制用-timetimescale-调整移动速度慢动作快进">三、进阶控制：用 <code>Time.timeScale</code> 调整移动速度（慢动作/快进）</h2>
+<p><code>Time.timeScale</code> 是时间缩放因子，会影响 <code>Time.deltaTime</code> 和 <code>Time.fixedDeltaTime</code>，因此可直接控制移动速度的“时间流速”，实现慢动作、快进等效果。</p>
+<h3 id="1-慢动作快进示例">1. 慢动作/快进示例</h3>
+<p>在基础移动代码上，只需修改 <code>Time.timeScale</code>，移动速度会自动按比例变化：</p>
+<pre><code class="language-csharp">// 绑定到UI按钮的点击事件（示例：慢动作、正常、快进）
+public void SetSlowMotion()
+{
+    Time.timeScale = 0.5f; // 移动速度变为原来的50%（慢动作）
+}
+
+public void SetNormalSpeed()
+{
+    Time.timeScale = 1f; // 正常速度
+}
+
+public void SetFastForward()
+{
+    Time.timeScale = 2f; // 移动速度变为原来的200%（快进）
+}
+</code></pre>
+<h3 id="2-暂停时的特殊处理">2. 暂停时的特殊处理</h3>
+<p>当 <code>Time.timeScale = 0</code>（暂停）时，<code>Time.deltaTime</code> 会变为0，角色会停止移动。若需要 <strong>暂停时仍能移动的角色</strong>（如UI提示角色、后台巡逻的敌人），需用 <code>Time.unscaledDeltaTime</code>：</p>
+<pre><code class="language-csharp">// 暂停时仍能移动的角色（如UI角色）
+public class UnscaledMovement : MonoBehaviour
+{
+    public float moveSpeed = 3f;
+
+    void Update()
+    {
+        // 核心：用 Time.unscaledDeltaTime（不受 timeScale 影响）
+        transform.Translate(Vector3.right * moveSpeed * Time.unscaledDeltaTime);
+    }
+}
+</code></pre>
+<h3 id="注意事项">注意事项：</h3>
+<ul>
+<li>物理移动（Rigidbody）的暂停：除了 <code>Time.timeScale = 0</code>，还需设置 <code>rb.isKinematic = true</code>（暂停物理模拟），恢复时设为 <code>false</code>；</li>
+<li>等待逻辑：若用 <code>WaitForSeconds()</code> 配合慢动作，等待时间会按 <code>timeScale</code> 缩放（如 <code>timeScale=0.5</code> 时，<code>WaitForSeconds(2)</code> 实际等4秒）；若需实时等待，用 <code>WaitForSecondsRealtime()</code>。</li>
+</ul>
+<h2 id="四-不同移动场景的适配">四、不同移动场景的适配</h2>
+<h3 id="1-2d角色移动rigidbody2d">1. 2D角色移动（Rigidbody2D）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class Player2DMovement : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+    private Rigidbody2D rb2D;
+
+    void Start()
+    {
+        rb2D = GetComponent&lt;Rigidbody2D&gt;();
+        rb2D.freezeRotation = true;
+    }
+
+    void FixedUpdate()
+    {
+        float horizontal = Input.GetAxis(&quot;Horizontal&quot;);
+        float vertical = Input.GetAxis(&quot;Vertical&quot;);
+        Vector2 moveDir = new Vector2(horizontal, vertical).normalized;
+
+        // 2D物理移动
+        rb2D.velocity = moveDir * moveSpeed;
+    }
+}
+</code></pre>
+<h3 id="2-第一人称第三人称移动跟随相机方向">2. 第一人称/第三人称移动（跟随相机方向）</h3>
+<p>让移动方向跟随相机视角（如按下W时向相机前方移动）：</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class PlayerCameraRelativeMovement : MonoBehaviour
+{
+    public float moveSpeed = 6f;
+    public Camera mainCamera; // 赋值主相机
+
+    void Update()
+    {
+        // 1. 获取输入
+        float horizontal = Input.GetAxis(&quot;Horizontal&quot;);
+        float vertical = Input.GetAxis(&quot;Vertical&quot;);
+        Vector3 inputDir = new Vector3(horizontal, 0, vertical).normalized;
+        if (inputDir.magnitude &lt; 0.1f) return; // 无输入时退出
+
+        // 2. 获取相机的水平旋转（忽略垂直旋转，避免上下看时移动方向倾斜）
+        Quaternion cameraRot = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
+        // 3. 将输入方向转换为相机空间
+        Vector3 moveDir = cameraRot * inputDir;
+
+        // 4. 帧率无关移动
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+    }
+}
+</code></pre>
+<h3 id="3-加速减速移动动态调整-movespeed">3. 加速/减速移动（动态调整 <code>moveSpeed</code>）</h3>
+<p>通过 <code>Time.time</code> 或计时器实现速度渐变：</p>
+<pre><code class="language-csharp">public class AcceleratedMovement : MonoBehaviour
+{
+    public float baseSpeed = 3f;
+    public float acceleration = 2f; // 每秒增加的速度（米/秒²）
+    public float maxSpeed = 8f;     // 最大速度上限
+
+    void Update()
+    {
+        float horizontal = Input.GetAxis(&quot;Horizontal&quot;);
+        float vertical = Input.GetAxis(&quot;Vertical&quot;);
+        Vector3 moveDir = new Vector3(horizontal, 0, vertical).normalized;
+
+        if (moveDir.magnitude &gt; 0.1f)
+        {
+            // 加速：速度 = 基础速度 + 加速度 * 时间（帧率无关）
+            moveSpeed = Mathf.MoveTowards(moveSpeed, maxSpeed, acceleration * Time.deltaTime);
+        }
+        else
+        {
+            // 无输入时减速到0
+            moveSpeed = Mathf.MoveTowards(moveSpeed, 0, acceleration * 2 * Time.deltaTime);
+        }
+
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+    }
+}
+</code></pre>
+<h2 id="五-常见问题排查">五、常见问题排查</h2>
+<ol>
+<li><strong>角色斜向移动过快</strong>：忘记对移动方向 <code>normalized</code>，导致斜向向量长度&gt;1；</li>
+<li><strong>物理移动抖动</strong>：在 <code>Update()</code> 中操作Rigidbody，应改为 <code>FixedUpdate()</code> 并使用 <code>Time.fixedDeltaTime</code>；</li>
+<li><strong>暂停后角色仍移动</strong>：误用了 <code>Time.unscaledDeltaTime</code>，需检查是否需要受 <code>timeScale</code> 影响；</li>
+<li><strong>不同设备速度不一致</strong>：未使用 <code>deltaTime</code>，或误将 <code>fixedDeltaTime</code> 用于 <code>Update()</code>。</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>控制角色移动速度的核心流程：</p>
+<ol>
+<li>定义 <code>moveSpeed</code>（单位：米/秒），作为基础移动速度；</li>
+<li>在 <code>Update()</code>（Transform移动）或 <code>FixedUpdate()</code>（物理移动）中，获取输入并构建移动方向；</li>
+<li>用 <code>Time.deltaTime</code>（受时间缩放）或 <code>Time.unscaledDeltaTime</code>（不受时间缩放）乘以速度和方向，实现帧率无关移动；</li>
+<li>进阶需求：通过 <code>Time.timeScale</code> 控制慢动作/快进，或动态调整 <code>moveSpeed</code> 实现加速/减速。</li>
+</ol>
+<p>按以上方法，可确保角色在任何设备、任何帧率下都能按预期速度移动，且兼容暂停、慢动作等常见游戏机制。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-time-lei/" class="post-title gt-a-link">
+                    Unity的Time类
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

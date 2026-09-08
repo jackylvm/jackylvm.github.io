@@ -1,0 +1,289 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>外观模式(Facade Pattern) | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    外观模式(Facade Pattern)
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/WgyNS3Ry33/" class="post-tags">
+                            # C#
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong>外观模式（Facade Pattern）</strong> 是一种简化跨模块交互的设计模式，它通过创建一个统一的&quot;外观&quot;接口，隐藏复杂子系统的内部细节，为外部提供简洁的访问入口。这在处理程序集间通信时非常有用，能有效降低模块间的耦合度。</p>
+<h3 id="外观模式的核心作用">外观模式的核心作用</h3>
+<ol>
+<li>简化复杂程序集的使用方式</li>
+<li>隔离内部实现与外部访问</li>
+<li>统一跨程序集的交互接口</li>
+<li>减少程序集间的直接依赖</li>
+</ol>
+<h3 id="外观模式在程序集通信中的应用">外观模式在程序集通信中的应用</h3>
+<p>假设我们有一个复杂的战斗系统程序集（<code>CombatSystem</code>），包含攻击、防御、技能等多个子模块，其他程序集（如UI、任务系统）需要与它交互：</p>
+<h4 id="1-不使用外观模式的问题">1. 不使用外观模式的问题</h4>
+<pre><code class="language-csharp">// UI程序集直接访问战斗系统内部细节（耦合过高）
+var attackSystem = CombatSystem.Instance.GetSubSystem&lt;AttackSystem&gt;();
+var damage = attackSystem.CalculateDamage(playerWeapon, enemyDefense);
+var defenseSystem = CombatSystem.Instance.GetSubSystem&lt;DefenseSystem&gt;();
+defenseSystem.ApplyDamage(enemy, damage);
+</code></pre>
+<h4 id="2-使用外观模式优化">2. 使用外观模式优化</h4>
+<pre><code class="language-csharp">// 战斗系统程序集中定义外观类（对外暴露的唯一接口）
+public class CombatFacade
+{
+    // 隐藏的内部系统
+    private AttackSystem _attackSystem;
+    private DefenseSystem _defenseSystem;
+    private SkillSystem _skillSystem;
+    
+    // 提供简洁的对外接口
+    public int CalculateDamage(Weapon weapon, Defense defense)
+    {
+        return _attackSystem.CalculateDamage(weapon, defense);
+    }
+    
+    public void ApplyDamage(Character target, int damage)
+    {
+        _defenseSystem.ApplyDamage(target, damage);
+    }
+    
+    public bool CastSkill(Character caster, Skill skill, Character target)
+    {
+        // 内部可能涉及多个子系统协作
+        if (_skillSystem.CanCast(caster, skill))
+        {
+            _skillSystem.ConsumeMana(caster, skill);
+            var skillDamage = _skillSystem.CalculateSkillDamage(skill, caster);
+            _defenseSystem.ApplyDamage(target, skillDamage);
+            return true;
+        }
+        return false;
+    }
+}
+</code></pre>
+<h4 id="3-其他程序集的使用方式">3. 其他程序集的使用方式</h4>
+<pre><code class="language-csharp">// UI程序集只需与外观交互，无需了解内部结构
+public class BattleHUD
+{
+    private CombatFacade _combatFacade;
+    
+    public void OnSkillButtonClicked(Skill selectedSkill)
+    {
+        bool success = _combatFacade.CastSkill(Player.Instance, selectedSkill, CurrentEnemy);
+        if (success)
+        {
+            UpdateSkillUI();
+        }
+    }
+}
+</code></pre>
+<h3 id="外观模式的优势">外观模式的优势</h3>
+<ol>
+<li><strong>降低耦合</strong>：外部程序集只需依赖外观接口，无需了解内部实现</li>
+<li><strong>简化调用</strong>：将复杂的多步骤操作封装为单一方法</li>
+<li><strong>隔离变化</strong>：子系统内部修改时，只要外观接口不变，外部无需调整</li>
+<li><strong>明确边界</strong>：清晰定义程序集的公共功能与内部实现的界限</li>
+</ol>
+<h3 id="实现外观模式的注意事项">实现外观模式的注意事项</h3>
+<ol>
+<li><strong>单一职责</strong>：外观类应只负责协调子系统，不添加额外业务逻辑</li>
+<li><strong>接口稳定</strong>：外观接口应保持相对稳定，避免频繁变更影响外部</li>
+<li><strong>不替代抽象</strong>：外观不是接口的替代品，复杂交互仍需定义清晰接口</li>
+<li><strong>适度设计</strong>：不要为每个程序集都创建外观，简单模块可直接暴露接口</li>
+</ol>
+<p>在Unity项目中，外观模式特别适合用于以下场景：</p>
+<ul>
+<li>复杂系统（如战斗、AI、资源管理）对外提供服务</li>
+<li>第三方插件的二次封装</li>
+<li>跨程序集的批量操作（如场景切换、状态重置）</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/zai-unity-cheng-xu-ji-zhi-jian-jin-xing-tong-xin/" class="post-title gt-a-link">
+                    在Unity程序集之间进行通信
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

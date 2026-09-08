@@ -1,0 +1,286 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>什么是动态域名解析(DDNS) | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    什么是动态域名解析(DDNS)
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/ebs574MC3Pv/" class="post-tags">
+                            # 网络知识
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>动态域名解析（简称 <strong>DDNS</strong>，Dynamic Domain Name System），本质是解决“<strong>动态IP地址与固定域名绑定</strong>”的技术——让用户能通过一个好记的固定域名（比如 <code>myhome.example.com</code>），随时访问到IP地址经常变化的设备（比如家里的路由器、NAS、摄像头），无需每次手动查询和输入新IP。</p>
+<p>要理解DDNS，需要先搞懂它解决的核心问题：<strong>公网IP的“动态性”</strong>。</p>
+<h3 id="1-先明确为什么需要ddns">1. 先明确：为什么需要DDNS？</h3>
+<p>我们平时访问网站（比如百度），靠的是“域名→固定公网IP”的映射（比如 <code>baidu.com</code> 对应某个固定IP），这是传统DNS的作用。但普通家庭/小型企业的宽带，运营商通常不会分配“固定公网IP”，而是会<strong>定期更换IP地址</strong>（比如重启路由器、每天凌晨自动换）——这种IP就是“动态IP”。</p>
+<p>如果你的设备（比如家里的NAS、监控摄像头）需要被外网访问（比如出差时看家里监控、访问NAS里的文件），就会遇到麻烦：</p>
+<ul>
+<li>设备的公网IP每天都变，你无法记住每次变化的IP；</li>
+<li>即使查到新IP，也得手动在访问工具里修改，非常繁琐。</li>
+</ul>
+<p>而DDNS的作用，就是<strong>自动追踪这个“动态IP”的变化，然后把新IP同步到你的固定域名上</strong>——不管IP怎么变，你始终能用同一个域名访问设备。</p>
+<h3 id="2-ddns的工作原理3步自动同步">2. DDNS的工作原理：3步自动同步</h3>
+<p>DDNS的逻辑很简单，核心是“<strong>自动检测+实时更新</strong>”，具体分3步：</p>
+<ol>
+<li><strong>IP变化检测</strong>：你在设备（或路由器）上安装DDNS客户端，客户端会定期（比如每1分钟）检查当前设备的公网IP是否变化；</li>
+<li><strong>向DDNS服务商提交新IP</strong>：一旦检测到IP变了，客户端会自动向你注册的DDNS服务商（比如No-IP、3322）发送“更新请求”，告知服务商“我的新IP是XXX.XXX.XXX.XXX”；</li>
+<li><strong>服务商更新DNS记录</strong>：DDNS服务商会立刻更新它的DNS服务器中“你的域名”对应的IP地址——比如把 <code>myhome.example.com</code> 原来绑定的 <code>123.45.67.89</code>，改成新的 <code>98.76.55.43</code>。</li>
+</ol>
+<p>整个过程完全自动，你无需任何手动操作，下次访问时，输入固定域名就能自动指向最新的IP。</p>
+<h3 id="3-ddns的典型使用场景">3. DDNS的典型使用场景</h3>
+<p>它不是“所有人都需要”的技术，主要针对需要“外网访问内网设备”的场景：</p>
+<ul>
+<li><strong>家庭场景</strong>：
+<ul>
+<li>访问家里的NAS（存储文件、照片）；</li>
+<li>查看家庭监控摄像头（出差时远程看老人/孩子）；</li>
+<li>搭建家庭影音服务器（在外网访问家里的电影库）。</li>
+</ul>
+</li>
+<li><strong>小型办公/个人开发场景</strong>：
+<ul>
+<li>用办公室的电脑搭建临时服务器，供外地同事访问；</li>
+<li>开发时需要外网测试自己本地的网站/程序（无需购买云服务器）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-注意ddns-vs-内网穿透比如花生壳的区别">4. 注意：DDNS vs 内网穿透（比如花生壳）的区别</h3>
+<p>很多人会把DDNS和花生壳这类“内网穿透”工具搞混，其实两者解决的是<strong>不同问题</strong>，甚至可以配合使用：</p>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>动态域名解析（DDNS）</th>
+<th>内网穿透（如花生壳、FRP）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心作用</td>
+<td>解决“动态公网IP→固定域名”的绑定</td>
+<td>解决“无公网IP（内网设备）→外网访问”</td>
+</tr>
+<tr>
+<td>前提条件</td>
+<td>设备必须有<strong>公网IP</strong>（哪怕是动态的）</td>
+<td>设备可以没有公网IP（在路由器内网里）</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>家庭宽带有公网IP，需外网访问内网设备</td>
+<td>宽带无公网IP（比如运营商内网IP）</td>
+</tr>
+</tbody>
+</table>
+<p>简单说：</p>
+<ul>
+<li>如果你的路由器能查到“公网IP”（在路由器后台看，不是 <code>192.168.x.x</code> 这类内网IP），用DDNS就够了；</li>
+<li>如果你的路由器只有“内网IP”（比如IP是 <code>10.x.x.x</code> 或 <code>172.16.x.x</code>），光用DDNS没用，必须用“内网穿透”工具。</li>
+</ul>
+<h3 id="5-怎么用ddns">5. 怎么用DDNS？</h3>
+<p>普通人用DDNS的门槛很低，通常2步就能搞定：</p>
+<ol>
+<li><strong>注册DDNS域名和服务商</strong>：
+<ul>
+<li>选一个DDNS服务商（比如免费的No-IP、3322、80DNS，或付费的DynDNS），注册账号后申请一个免费/付费域名（比如 <code>my-nas.3322.org</code>）；</li>
+</ul>
+</li>
+<li><strong>在路由器/设备上配置DDNS</strong>：
+<ul>
+<li>大部分家用路由器（比如小米、TP-Link、华硕）的后台，都自带“DDNS设置”功能——输入你注册的服务商账号、域名，保存后，路由器会自动帮你检测IP变化并更新；</li>
+<li>如果路由器不支持，也可以在NAS、电脑上安装对应服务商的DDNS客户端（比如No-IP的客户端），同样能实现自动更新。</li>
+</ul>
+</li>
+</ol>
+<p>配置完成后，你在外地打开浏览器/APP，输入固定域名，就能访问家里的设备了（注意：可能需要在路由器上做“端口映射”，比如把NAS的80端口映射到公网，具体看设备说明书）。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/nei-wang-chuan-tou-nei-wang-svn-fang-wen/" class="post-title gt-a-link">
+                    内网穿透,内网SVN访问
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity 项目模板结构设计 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity 项目模板结构设计
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-06-16 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/GbsLkWbrXvQ/" class="post-tags">
+                            # 项目结构
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="项目说明">✅ 项目说明</h2>
+<ul>
+<li>引擎版本建议：<strong>Unity 2021.3 LTS 或 Unity 2022+</strong></li>
+<li>适用于：Top-down RPG、模拟类、策略类等有“世界-角色-行为”结构的项目</li>
+<li>架构风格：面向接口、职责分离、可单元测试</li>
+</ul>
+<hr>
+<h2 id="目录结构">📁 目录结构</h2>
+<pre><code>Assets/
+├── Scripts/
+│   ├── Core/
+│   │   ├── GameWorld.cs
+│   │   └── GameWorldContext.cs
+│   ├── Interfaces/
+│   │   ├── IGameContext.cs
+│   │   └── IEventDispatcher.cs
+│   ├── Characters/
+│   │   ├── NPC.cs
+│   │   └── Player.cs
+│   ├── Events/
+│   │   └── DefaultEventDispatcher.cs
+│   ├── Tests/
+│   │   └── MockGameContext.cs
+│   └── Entry/
+│       └── GameStartup.cs
+└── Scenes/
+    └── SampleScene.unity
+</code></pre>
+<hr>
+<h2 id="️-脚本模板内容部分示例">✏️ 脚本模板内容（部分示例）</h2>
+<h3 id="igamecontextcs"><code>IGameContext.cs</code></h3>
+<pre><code class="language-csharp">public interface IGameContext
+{
+    Player GetPlayer();
+    Vector3 GetSpawnPoint();
+    IEventDispatcher GetEventDispatcher();
+}
+</code></pre>
+<hr>
+<h3 id="ieventdispatchercs"><code>IEventDispatcher.cs</code></h3>
+<pre><code class="language-csharp">public interface IEventDispatcher
+{
+    void Dispatch(string eventName, object data = null);
+    void Subscribe(string eventName, Action&lt;object&gt; callback);
+    void Unsubscribe(string eventName, Action&lt;object&gt; callback);
+}
+</code></pre>
+<hr>
+<h3 id="gameworldcs"><code>GameWorld.cs</code></h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class GameWorld : MonoBehaviour
+{
+    private GameWorldContext context;
+    private Player player;
+    private List&lt;NPC&gt; npcs = new();
+
+    private void Awake()
+    {
+        context = new GameWorldContext(this);
+        player = new GameObject(&quot;Player&quot;).AddComponent&lt;Player&gt;();
+        player.Init(context);
+
+        for (int i = 0; i &lt; 3; i++)
+        {
+            var npcObj = new GameObject($&quot;NPC_{i}&quot;);
+            var npc = npcObj.AddComponent&lt;NPC&gt;();
+            npc.Init(context);
+            npcs.Add(npc);
+        }
+    }
+
+    public Player GetPlayer() =&gt; player;
+    public Vector3 GetSpawnPoint() =&gt; Vector3.zero;
+}
+</code></pre>
+<hr>
+<h3 id="gameworldcontextcs"><code>GameWorldContext.cs</code></h3>
+<pre><code class="language-csharp">public class GameWorldContext : IGameContext
+{
+    private GameWorld world;
+    private IEventDispatcher dispatcher;
+
+    public GameWorldContext(GameWorld world)
+    {
+        this.world = world;
+        this.dispatcher = new DefaultEventDispatcher();
+    }
+
+    public Player GetPlayer() =&gt; world.GetPlayer();
+    public Vector3 GetSpawnPoint() =&gt; world.GetSpawnPoint();
+    public IEventDispatcher GetEventDispatcher() =&gt; dispatcher;
+}
+</code></pre>
+<hr>
+<h3 id="npccs"><code>NPC.cs</code></h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class NPC : MonoBehaviour
+{
+    private IGameContext context;
+
+    public void Init(IGameContext context)
+    {
+        this.context = context;
+    }
+
+    public void Act()
+    {
+        context.GetEventDispatcher().Dispatch(&quot;NPC_Acted&quot;, this);
+        Debug.Log(&quot;NPC acting...&quot;);
+    }
+}
+</code></pre>
+<hr>
+<h3 id="playercs"><code>Player.cs</code></h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+    private IGameContext context;
+
+    public void Init(IGameContext context)
+    {
+        this.context = context;
+    }
+
+    public void Interact()
+    {
+        context.GetEventDispatcher().Dispatch(&quot;Player_Interacted&quot;, this);
+    }
+}
+</code></pre>
+<hr>
+<h3 id="defaulteventdispatchercs"><code>DefaultEventDispatcher.cs</code></h3>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+public class DefaultEventDispatcher : IEventDispatcher
+{
+    private Dictionary&lt;string, Action&lt;object&gt;&gt; listeners = new();
+
+    public void Dispatch(string eventName, object data = null)
+    {
+        if (listeners.TryGetValue(eventName, out var callback))
+        {
+            callback?.Invoke(data);
+        }
+    }
+
+    public void Subscribe(string eventName, Action&lt;object&gt; callback)
+    {
+        if (listeners.ContainsKey(eventName))
+            listeners[eventName] += callback;
+        else
+            listeners[eventName] = callback;
+    }
+
+    public void Unsubscribe(string eventName, Action&lt;object&gt; callback)
+    {
+        if (listeners.ContainsKey(eventName))
+            listeners[eventName] -= callback;
+    }
+}
+</code></pre>
+<hr>
+<h3 id="gamestartupcs用于启动游戏"><code>GameStartup.cs</code>（用于启动游戏）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class GameStartup : MonoBehaviour
+{
+    private void Start()
+    {
+        var worldObj = new GameObject(&quot;GameWorld&quot;);
+        worldObj.AddComponent&lt;GameWorld&gt;();
+    }
+}
+</code></pre>
+<hr>
+<h3 id="mockgamecontextcs测试用"><code>MockGameContext.cs</code>（测试用）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class MockGameContext : IGameContext
+{
+    public Player GetPlayer() =&gt; new GameObject(&quot;MockPlayer&quot;).AddComponent&lt;Player&gt;();
+    public Vector3 GetSpawnPoint() =&gt; Vector3.zero;
+    public IEventDispatcher GetEventDispatcher() =&gt; new DefaultEventDispatcher();
+}
+</code></pre>
+<hr>
+<h2 id="使用方法">🔨 使用方法</h2>
+<ol>
+<li>新建 Unity 项目，导入上述目录结构和脚本。</li>
+<li>在 <code>SampleScene</code> 中放置一个空物体并挂载 <code>GameStartup.cs</code>。</li>
+<li>运行场景，将看到 <code>Player</code> 和多个 <code>NPC</code> 在控制台输出行为。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-jia-gou-she-ji-shi-yong-jie-kou-jie-ou-gameworld-yu-npcplayer-de-guan-xi/" class="post-title gt-a-link">
+                    Unity架构设计：使用接口解耦 GameWorld 与 NPC/Player 的关系
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

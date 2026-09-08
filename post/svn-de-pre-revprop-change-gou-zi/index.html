@@ -1,0 +1,353 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>SVN的pre-revprop-change钩子 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SVN的pre-revprop-change钩子
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-03 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/IWKCJcRGmC/" class="post-tags">
+                            # SVN
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在SVN（Subversion）版本控制系统中，<strong>pre-revprop-change</strong> 是一个核心的<strong>钩子脚本（Hook Script）</strong>，用于在<strong>修改版本属性（Revision Property）</strong> 之前触发执行，以实现对属性修改操作的权限控制、合法性校验或日志记录等功能。</p>
+<hr>
+<h3 id="1-核心概念铺垫版本属性revision-property">1. 核心概念铺垫：版本属性（Revision Property）</h3>
+<p>要理解 <code>pre-revprop-change</code>，首先需要明确 <strong>版本属性</strong> 的含义：<br>
+SVN 中每个版本（Revision）除了包含代码文件的变更外，还附带一些<strong>描述该版本的元数据</strong>，这些元数据就是“版本属性”。常见的版本属性包括：</p>
+<ul>
+<li><code>svn:log</code>：版本提交时的日志信息（最常用的属性，用户通常会修改旧版本的日志来修正错误描述）。</li>
+<li><code>svn:author</code>：该版本的提交者账号。</li>
+<li><code>svn:date</code>：该版本的提交时间。</li>
+</ul>
+<p>默认情况下，SVN 允许用户通过 <code>svn propset</code>、<code>svn propedit</code> 等命令修改这些属性（尤其是 <code>svn:log</code>），而 <code>pre-revprop-change</code> 正是为了“拦截”这类修改操作而存在。</p>
+<h3 id="2-pre-revprop-change-的核心作用">2. pre-revprop-change 的核心作用</h3>
+<p><code>pre-revprop-change</code> 的本质是一个<strong>可执行脚本</strong>（通常是 Shell 脚本，Windows 下也可是 Batch 脚本），存储在 SVN 仓库的 <code>hooks</code> 目录中（路径：<code>[仓库根目录]/hooks/pre-revprop-change</code>）。</p>
+<p>其核心作用是：<strong>在版本属性被实际修改前，检查该修改操作是否合法</strong>。具体逻辑由脚本内容定义，常见用途包括：</p>
+<ul>
+<li><strong>权限控制</strong>：只允许管理员或特定用户修改版本属性（例如禁止普通开发修改 <code>svn:author</code> 或旧版本的 <code>svn:log</code>）。</li>
+<li><strong>合法性校验</strong>：确保修改后的属性符合规范（例如 <code>svn:log</code> 不能为空、长度不小于 10 个字符）。</li>
+<li><strong>日志记录</strong>：记录“谁在什么时间尝试修改哪个版本的哪个属性”，便于审计。</li>
+<li><strong>直接禁止修改</strong>：完全阻断所有版本属性的修改操作（例如严格要求提交日志一旦提交就不能修改）。</li>
+</ul>
+<h3 id="3-工作流程">3. 工作流程</h3>
+<p>当用户执行修改版本属性的命令（如 <code>svn propedit svn:log -r 100</code>，表示修改第 100 版本的日志）时，SVN 会按以下流程触发 <code>pre-revprop-change</code>：</p>
+<ol>
+<li>用户发起版本属性修改请求。</li>
+<li>SVN 自动检测仓库 <code>hooks</code> 目录下是否存在可执行的 <code>pre-revprop-change</code> 脚本。</li>
+<li>若脚本存在，SVN 会将以下关键参数传递给脚本，供脚本判断：
+<ul>
+<li><code>[仓库路径]</code>：被操作的 SVN 仓库在服务器上的绝对路径。</li>
+<li><code>[版本号]</code>：被修改属性的版本号（如 100）。</li>
+<li><code>[用户名]</code>：执行修改操作的用户账号。</li>
+<li><code>[属性名]</code>：被修改的版本属性名（如 <code>svn:log</code>）。</li>
+<li><code>[操作类型]</code>：属性的修改类型（通常是 <code>M</code>，表示 Modify）。</li>
+</ul>
+</li>
+<li>脚本执行后，通过<strong>退出码</strong>告知 SVN 是否允许修改：
+<ul>
+<li>退出码 <code>0</code>：校验通过，SVN 继续执行属性修改。</li>
+<li>退出码 <strong>非 0</strong>：校验失败，SVN 立即终止修改操作，并向用户返回脚本输出的错误信息。</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-默认状态与配置注意事项">4. 默认状态与配置注意事项</h3>
+<h4 id="1默认状态">（1）默认状态</h4>
+<p>SVN 仓库初始化时，<code>hooks</code> 目录下会生成一个<strong>模板文件</strong> <code>pre-revprop-change.tmpl</code>（而非直接可用的 <code>pre-revprop-change</code>）。模板文件通常包含基础注释和示例逻辑，但默认不生效（因为后缀是 <code>.tmpl</code>，且可能没有可执行权限）。</p>
+<p>若未手动配置 <code>pre-revprop-change</code> 脚本，SVN 会<strong>允许所有用户修改版本属性</strong>（这在生产环境中可能存在风险，例如误改提交者或日志）。</p>
+<h4 id="2配置步骤以-linux-服务器为例">（2）配置步骤（以 Linux 服务器为例）</h4>
+<ol>
+<li>进入仓库的 <code>hooks</code> 目录：<pre><code class="language-bash">cd /path/to/your/svn/repo/hooks
+</code></pre>
+</li>
+<li>复制模板文件并移除后缀：<pre><code class="language-bash">cp pre-revprop-change.tmpl pre-revprop-change
+</code></pre>
+</li>
+<li>赋予脚本可执行权限（关键，否则 SVN 无法运行脚本）：<pre><code class="language-bash">chmod +x pre-revprop-change
+</code></pre>
+</li>
+<li>编辑脚本，根据需求修改逻辑（例如只允许管理员修改 <code>svn:log</code>）。</li>
+</ol>
+<h3 id="5-常见脚本示例禁止普通用户修改旧版本日志">5. 常见脚本示例（禁止普通用户修改旧版本日志）</h3>
+<p>以下是一个简化的 <code>pre-revprop-change</code> 脚本示例，功能为：</p>
+<ul>
+<li>只允许用户 <code>admin</code> 修改 <code>svn:log</code> 属性；</li>
+<li>禁止修改 <code>svn:author</code> 和 <code>svn:date</code> 属性。</li>
+</ul>
+<pre><code class="language-bash">#!/bin/sh
+
+# 接收 SVN 传递的参数
+REPO=&quot;$1&quot;
+REV=&quot;$2&quot;
+USER=&quot;$3&quot;
+PROPNAME=&quot;$4&quot;
+ACTION=&quot;$5&quot;
+
+# 禁止修改 svn:author 和 svn:date
+if [ &quot;$PROPNAME&quot; = &quot;svn:author&quot; ] || [ &quot;$PROPNAME&quot; = &quot;svn:date&quot; ]; then
+  echo &quot;Error: 不允许修改 $PROPNAME 属性！&quot; &gt;&amp;2
+  exit 1
+fi
+
+# 只允许 admin 用户修改 svn:log
+if [ &quot;$PROPNAME&quot; = &quot;svn:log&quot; ] &amp;&amp; [ &quot;$USER&quot; != &quot;admin&quot; ]; then
+  echo &quot;Error: 只有 admin 可以修改版本日志！&quot; &gt;&amp;2
+  exit 1
+fi
+
+# 校验通过，允许修改
+exit 0
+</code></pre>
+<pre><code class="language-bash">@echo off
+setlocal
+
+:: 接收 SVN 传递的参数（Windows 中参数通过 %1~%5 接收）
+set REPO=%1
+set REV=%2
+set USER=%3
+set PROPNAME=%4
+set ACTION=%5
+
+:: 禁止修改 svn:author 和 svn:date
+if &quot;%PROPNAME%&quot;==&quot;svn:author&quot; (
+  echo Error: 不允许修改 svn:author 属性！1&gt;&amp;2
+  exit /b 1
+)
+if &quot;%PROPNAME%&quot;==&quot;svn:date&quot; (
+  echo Error: 不允许修改 svn:date 属性！1&gt;&amp;2
+  exit /b 1
+)
+
+:: 只允许 admin 用户修改 svn:log
+if &quot;%PROPNAME%&quot;==&quot;svn:log&quot; (
+  if not &quot;%USER%&quot;==&quot;admin&quot; (
+    echo Error: 只有 admin 可以修改版本日志！1&gt;&amp;2
+    exit /b 1
+  )
+)
+
+:: 校验通过，允许修改
+exit /b 0
+</code></pre>
+<h3 id="6-与-post-revprop-change-的区别">6. 与 post-revprop-change 的区别</h3>
+<p>SVN 的 <code>hooks</code> 目录中还有一个 <code>post-revprop-change</code> 脚本，容易与 <code>pre-revprop-change</code> 混淆，两者的核心区别在于<strong>触发时机</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>钩子脚本</th>
+<th>触发时机</th>
+<th>核心作用</th>
+<th>能否阻止修改</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre-revprop-change</td>
+<td>版本属性修改<strong>之前</strong></td>
+<td>校验修改合法性、控制权限</td>
+<td>能（非 0 退出码）</td>
+</tr>
+<tr>
+<td>post-revprop-change</td>
+<td>版本属性修改<strong>之后</strong></td>
+<td>记录修改结果、发送通知（如邮件告警）</td>
+<td>不能（仅用于事后处理）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="总结">总结</h3>
+<p><code>pre-revprop-change</code> 是 SVN 中管控版本属性修改的“守门人”，通过它可以规范团队对提交日志、提交者等元数据的操作，避免非授权修改导致的版本库混乱。在实际使用中，需根据团队规范配置脚本逻辑，并确保脚本具备可执行权限，才能发挥其作用。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-recttransform/" class="post-title gt-a-link">
+                    Unity的RectTransform
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

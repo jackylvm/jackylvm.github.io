@@ -1,0 +1,292 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x0d.Unity里面的状态模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x0d.Unity里面的状态模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 中，官方有一个极其强大的可视化状态模式工具。今天咱们就来点进阶的：**Unity 特供版状态模式 —— <code>StateMachineBehaviour**</code>！</p>
+<h3 id="震撼真相animator-就是一个现成的状态机">💡 震撼真相：Animator 就是一个现成的状态机！</h3>
+<p>很多新手以为 Unity 的 <code>Animator</code> 窗口只是用来连线播动画的。大错特错！它的全称叫 <strong>Animator State Machine（动画状态机）</strong>，它底层完全就是标准的“状态模式”架构。</p>
+<p>Unity 允许你直接在 Animator 的每一个节点（State）上挂载特定的 C# 脚本。当动画进入、执行、退出该节点时，自动触发代码逻辑。<strong>这完美实现了状态与逻辑的绑定！</strong></p>
+<hr>
+<h3 id="一-如何使用-statemachinebehaviour">一、 如何使用 StateMachineBehaviour？</h3>
+<p>假设我们正在开发一个 Boss 战。Boss 有一个“砸地攻击（SmashAttack）”的状态。在这个状态下，Boss 无法移动，且在砸地瞬间会产生范围伤害。</p>
+<h4 id="1-编写状态脚本">1. 编写状态脚本</h4>
+<p>注意，这个脚本**不继承 <code>MonoBehaviour**</code>，而是继承 <code>StateMachineBehaviour</code>。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 这个脚本不挂载到 GameObject 上，而是挂载到 Animator 窗口的动画节点上！
+public class BossSmashState : StateMachineBehaviour
+{
+    public float damageRadius = 5f;
+    public int damageAmount = 50;
+    
+    // 我们需要拿到 Boss 身上的控制脚本，方便调用它的方法
+    private BossController _boss;
+
+    // 1. 进入状态时调用 (相当于纯 C# 状态机里的 Enter)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        // 因为脚本不在 GameObject 上，所以我们需要通过 animator 去获取 BossController
+        if (_boss == null)
+        {
+            _boss = animator.GetComponent&lt;BossController&gt;();
+        }
+
+        Debug.Log(&quot;Boss 进入【砸地攻击】状态！&quot;);
+        // 锁定 Boss 移动
+        _boss.SetMovementLocked(true); 
+    }
+
+    // 2. 状态持续期间，每帧调用 (相当于 Update)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        // 假设动画播放到 50% 的时候，是锤子落地的瞬间，触发伤害判定
+        // stateInfo.normalizedTime 表示动画播放的进度 (0~1)
+        if (stateInfo.normalizedTime &gt;= 0.5f &amp;&amp; stateInfo.normalizedTime &lt;= 0.55f)
+        {
+            _boss.ApplyAOEDamage(damageRadius, damageAmount);
+        }
+    }
+
+    // 3. 离开状态时调用 (相当于 Exit)
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        Debug.Log(&quot;Boss 结束【砸地攻击】，恢复常态。&quot;);
+        // 解除移动锁定
+        _boss.SetMovementLocked(false);
+    }
+}
+
+</code></pre>
+<h4 id="2-在-unity-编辑器中配置-零代码组装">2. 在 Unity 编辑器中配置 (零代码组装！)</h4>
+<ol>
+<li>打开 Boss 的 <code>Animator</code> 窗口。</li>
+<li>找到名为 <code>SmashAttack</code> 的动画节点，选中它。</li>
+<li>在 Inspector 面板里，点击 <code>Add Behaviour</code> 按钮。</li>
+<li>选择我们刚才写的 <code>BossSmashState</code> 脚本。</li>
+</ol>
+<p><strong>就是这么简单！</strong> 你不需要写庞大的 <code>PlayerStateMachine</code> 去管理切换，你只需要在 Animator 里拉好线（配置好 Transitions 条件），当连线条件满足，动画切换过去时，这段代码就会自动接管 Boss 的行为！</p>
+<hr>
+<h3 id="进阶对比纯-c-状态机-vs-animator-状态机">🆚 进阶对比：纯 C# 状态机 vs Animator 状态机</h3>
+<p>既然有两个选择，实际开发中该用哪个呢？</p>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>纯 C# 手写状态机 (上一次讲的)</th>
+<th>Animator 状态机 (StateMachineBehaviour)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>优势</strong></td>
+<td>运行效率极高，完全由代码精确控制，不依赖动画组件，适合做纯逻辑（比如 UI 弹窗层级、游戏大阶段如开始/暂停/结算）。</td>
+<td>极其直观的<strong>可视化连线</strong>，策划可以直接在面板配参数修改逻辑。能完美卡准动画的播放进度（如动作游戏的攻击判定帧）。</td>
+</tr>
+<tr>
+<td><strong>劣势</strong></td>
+<td>纯代码编写，缺乏可视化面板，对策划和美术不友好。状态一旦多了，阅读逻辑时需要在多个脚本间跳跃。</td>
+<td>强行与 <code>Animator</code> 绑定，如果某个状态没有动画（比如纯粹的 AI 思考状态），用起来会很别扭。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="行业老兵的组合拳建议">💡 行业老兵的组合拳建议</h3>
+<p>在大型商业游戏（尤其是动作游戏 ARPG / 动作射击类）中，最完美的架构是<strong>将两者结合</strong>：</p>
+<ol>
+<li><strong>宏观层用纯 C# FSM</strong>：控制角色的底层大状态（例如：存活状态、死亡状态、昏迷状态、载具状态）。</li>
+<li><strong>微观动作层用 Animator StateMachine</strong>：在“存活状态”下，将角色的移动、连段攻击、技能前摇/后摇判定全部交给 <code>StateMachineBehaviour</code> 来处理。</li>
+</ol>
+<p>这样既保证了代码架构的严谨，又把动作调优的权力交给了擅长使用可视化面板的动作设计师！</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x0czhuang-tai-mo-shi/" class="post-title gt-a-link">
+                    0x0c.状态模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

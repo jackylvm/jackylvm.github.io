@@ -1,0 +1,298 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>伽马色彩空间和线性色彩空间 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    伽马色彩空间和线性色彩空间
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Y9eCBW2ZzKx/" class="post-tags">
+                            # 编辑器设置
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h3 id="伽马色彩空间与线性色彩空间的核心区别">伽马色彩空间与线性色彩空间的核心区别</h3>
+<h4 id="1-定义与原理差异"><strong>1. 定义与原理差异</strong></h4>
+<ul>
+<li>
+<p><strong>伽马色彩空间（Gamma Color Space）</strong></p>
+<ul>
+<li><strong>本质</strong>：基于人眼对光线的非线性感知特性设计，色彩值与实际物理亮度呈非线性关系。</li>
+<li><strong>数学表达</strong>：色彩值（如RGB）需通过伽马校正（通常γ=2.2）转换为物理亮度，即实际亮度 = 色彩值<sup>γ。例如，RGB值0.5在伽马空间中显示的亮度并非中间值，而是偏低（因0.5</sup>2.2≈0.218）。</li>
+<li><strong>应用场景</strong>：传统显示器、图像存储（如JPG、PNG）默认使用伽马空间，符合人眼对亮度的主观感受。</li>
+</ul>
+</li>
+<li>
+<p><strong>线性色彩空间（Linear Color Space）</strong></p>
+<ul>
+<li><strong>本质</strong>：色彩值与物理亮度呈线性关系，即RGB值直接对应真实世界的光强度。</li>
+<li><strong>数学表达</strong>：色彩值无需伽马校正，0.5即代表50%的物理亮度。</li>
+<li><strong>应用场景</strong>：计算机图形学（CG）、物理渲染（如光线追踪），需模拟真实光照物理规律。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-渲染与光照计算的区别"><strong>2. 渲染与光照计算的区别</strong></h4>
+<table>
+<thead>
+<tr>
+<th><strong>维度</strong></th>
+<th><strong>伽马色彩空间</strong></th>
+<th><strong>线性色彩空间</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>光照计算</strong></td>
+<td>直接使用伽马空间的色彩值进行计算，导致非线性误差（如阴影、反射过暗）。</td>
+<td>先将输入色彩（如纹理、材质）从伽马空间转换为线性空间，再进行物理正确的光照计算（如能量守恒、衰减公式）。</td>
+</tr>
+<tr>
+<td><strong>纹理处理</strong></td>
+<td>纹理采样后直接使用，无需转换。</td>
+<td>纹理需通过伽马校正（反变换：色彩值^(1/γ)）转换为线性空间，确保光照计算准确。</td>
+</tr>
+<tr>
+<td><strong>最终输出</strong></td>
+<td>渲染结果需通过伽马校正（γ=2.2）输出到显示器，避免过亮。</td>
+<td>渲染完成后，线性空间的结果通过伽马校正输出到显示器，符合人眼感知。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-视觉效果与精度差异"><strong>3. 视觉效果与精度差异</strong></h4>
+<ul>
+<li><strong>伽马空间的局限性</strong>
+<ul>
+<li>光照计算不符合物理规律：例如，多个光源叠加时亮度非线性叠加，导致高光、阴影失真。</li>
+<li>色彩混合误差：透明度、反射等效果可能出现“色偏”或“过暗”。</li>
+</ul>
+</li>
+<li><strong>线性空间的优势</strong>
+<ul>
+<li><strong>物理真实性</strong>：光照、阴影、反射等效果更接近真实世界（如光线衰减、能量守恒）。</li>
+<li><strong>高精度计算</strong>：浮点运算下线性空间的色彩过渡更平滑，避免伽马空间的非线性压缩导致的细节丢失。</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-在unity中的应用与切换建议"><strong>4. 在Unity中的应用与切换建议</strong></h4>
+<ul>
+<li>
+<p><strong>为何Unity默认使用伽马空间？</strong></p>
+<ul>
+<li>兼容性：早期Unity为简化开发，默认适配传统显示器和非物理渲染流程。</li>
+<li>性能：伽马空间计算量较小（无需额外的伽马转换）。</li>
+</ul>
+</li>
+<li>
+<p><strong>切换线性空间的步骤（如用户描述）</strong></p>
+<ol>
+<li>打开Unity项目设置 → <strong>Player</strong> → <strong>Other Settings</strong> → <strong>Rendering</strong> → 将 <strong>Color Space</strong> 设为 <strong>Linear</strong>。</li>
+<li>注意事项：
+<ul>
+<li>纹理需启用“sRGB”标记（Unity默认勾选），确保导入时自动转换为线性空间。</li>
+<li>旧项目切换后可能需要调整材质、光照参数（如天空盒、反射探针）。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>性能影响</strong></p>
+<ul>
+<li>线性空间需额外进行伽马转换（纹理采样时反伽马，输出时伽马校正），但现代硬件性能下影响可忽略，尤其对空项目无明显延迟。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-总结何时选择哪种空间"><strong>5. 总结：何时选择哪种空间？</strong></h4>
+<ul>
+<li><strong>选伽马空间</strong>：2D游戏、非物理渲染、对性能极度敏感的项目。</li>
+<li><strong>选线性空间</strong>：3D写实游戏、物理光照（如PBR材质）、追求视觉真实性的项目。</li>
+</ul>
+<p><strong>示例场景</strong>：线性空间下，水面反射、金属材质的高光会更接近真实世界，而伽马空间可能出现“高光过曝”或“反射颜色失真”。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/shi-er-ge-shi-chen/" class="post-title gt-a-link">
+                    十二个时辰
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity 中合理规划程序集 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity 中合理规划程序集
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/PAqcc6AHjm/" class="post-tags">
+                            # 程序集
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/GbsLkWbrXvQ/" class="post-tags">
+                            # 项目结构
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Unity中合理规划程序集（Assembly）可以带来诸多好处，包括减少编译时间、控制代码访问权限、提高项目结构清晰度等。以下是一套实用的程序集规划方案，你可以根据项目规模和需求进行调整：</p>
+<h3 id="核心程序集划分原则">核心程序集划分原则</h3>
+<ol>
+<li><strong>按功能职责划分</strong> - 相似功能的代码放在同一个程序集</li>
+<li><strong>按依赖关系分层</strong> - 底层程序集不依赖上层程序集</li>
+<li><strong>控制程序集大小</strong> - 避免过大或过小，保持适度颗粒度</li>
+<li><strong>考虑团队协作</strong> - 按团队分工划分便于并行开发</li>
+</ol>
+<h3 id="推荐的程序集结构">推荐的程序集结构</h3>
+<h4 id="1-基础核心层">1. 基础核心层</h4>
+<ul>
+<li><strong>[ProjectName].Core</strong>
+<ul>
+<li>包含：单例模式、事件系统、基础工具类、扩展方法</li>
+<li>特点：不依赖Unity引擎API，可独立编译</li>
+<li>示例：MathUtils、StringExtensions、EventBus</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-引擎适配层">2. 引擎适配层</h4>
+<ul>
+<li><strong>[ProjectName].UnityCore</strong>
+<ul>
+<li>包含：Unity相关的基础封装、组件扩展、协程管理</li>
+<li>特点：依赖Unity引擎，提供引擎功能的封装</li>
+<li>示例：MonoBehaviourExtension、CoroutineManager、ResourceLoader</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-数据层">3. 数据层</h4>
+<ul>
+<li><strong>[ProjectName].Data</strong>
+<ul>
+<li>包含：数据模型、配置数据、存档系统</li>
+<li>特点：定义数据结构和数据操作接口</li>
+<li>示例：PlayerData、ItemConfig、SaveSystem</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-业务逻辑层">4. 业务逻辑层</h4>
+<ul>
+<li><strong>[ProjectName].Logic</strong>
+<ul>
+<li>包含：游戏核心逻辑、状态机、AI行为</li>
+<li>特点：实现游戏核心玩法逻辑</li>
+<li>示例：BattleSystem、QuestLogic、NPCAI</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-ui层">5. UI层</h4>
+<ul>
+<li><strong>[ProjectName].UI</strong>
+<ul>
+<li>包含：UI管理器、界面逻辑、UI组件</li>
+<li>特点：处理所有UI相关功能</li>
+<li>示例：UIManager、MainMenuView、HUDController</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-资源层">6. 资源层</h4>
+<ul>
+<li><strong>[ProjectName].Resources</strong>
+<ul>
+<li>包含：资源加载、资产管理、对象池</li>
+<li>特点：统一管理游戏资源</li>
+<li>示例：AssetLoader、ObjectPool、ResourceCache</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-模块层根据项目特点拆分">7. 模块层（根据项目特点拆分）</h4>
+<ul>
+<li><strong>[ProjectName].Modules.Character</strong></li>
+<li><strong>[ProjectName].Modules.Combat</strong></li>
+<li><strong>[ProjectName].Modules.Quest</strong></li>
+<li><strong>[ProjectName].Modules.Inventory</strong>
+<ul>
+<li>特点：按游戏核心模块拆分，降低耦合</li>
+</ul>
+</li>
+</ul>
+<h4 id="8-测试层">8. 测试层</h4>
+<ul>
+<li><strong>[ProjectName].Tests</strong>
+<ul>
+<li>包含：单元测试、集成测试代码</li>
+<li>特点：只在开发环境生效</li>
+</ul>
+</li>
+</ul>
+<h3 id="程序集依赖关系">程序集依赖关系</h3>
+<p>建议的依赖方向（单向依赖，避免循环）：</p>
+<pre><code>Tests → 所有其他程序集
+UI → Logic, Data, UnityCore, Core
+Logic → Data, UnityCore, Core
+Modules → Logic, Data, UnityCore, Core
+Resources → UnityCore, Core
+Data → Core
+UnityCore → Core
+Core → 无依赖
+</code></pre>
+<h3 id="实现步骤">实现步骤</h3>
+<ol>
+<li>在Assets目录下创建对应文件夹结构</li>
+<li>为每个文件夹创建<code>Assembly Definition</code>文件（.asmdef）</li>
+<li>在每个.asmdef文件中配置：
+<ul>
+<li>程序集名称</li>
+<li>引用的其他程序集</li>
+<li>排除的平台（如测试程序集排除移动端）</li>
+</ul>
+</li>
+<li>调整脚本的命名空间，使其与程序集结构对应</li>
+</ol>
+<h3 id="注意事项">注意事项</h3>
+<ol>
+<li>频繁变动的代码应放在独立程序集，减少编译时间</li>
+<li>稳定的核心代码可合并到较少的程序集</li>
+<li>程序集之间通过接口通信，减少直接依赖</li>
+<li>小型项目可适当合并程序集，避免过度设计</li>
+<li>定期审查程序集依赖关系，保持合理的层次结构</li>
+</ol>
+<p>通过这种方式组织代码，你可以显著提高项目的可维护性，并在团队协作时减少代码冲突，同时加快迭代速度。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-shi-yong-sqlite3-shu-ju-ku/" class="post-title gt-a-link">
+                    Unity 使用 SQLite3 数据库
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

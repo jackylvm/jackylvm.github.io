@@ -1,0 +1,355 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Shader Graph类型选择 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Shader Graph类型选择
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-05-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/wm-XQvErmy/" class="post-tags">
+                            # Shader Graph
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/cfDC4UnDwb/" class="post-tags">
+                            # Shader
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Unity的Shader Graph中，不同的着色器类型（如Unlit、Decal、Lit）定义了材质如何与光照交互以及最终的渲染效果。</p>
+<!-- more -->
+<h3 id="1-unlit无光照">1. <strong>Unlit（无光照）</strong></h3>
+<ul>
+<li><strong>特点</strong>：完全忽略场景光照，只显示基础颜色或纹理。</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>特效（如粒子、发光UI）。</li>
+<li>始终保持恒定颜色的物体（如HUD元素、纯贴图装饰）。</li>
+</ul>
+</li>
+<li><strong>常见节点</strong>：仅需基础的<code>Texture2D</code>、<code>Color</code>节点即可。</li>
+</ul>
+<h3 id="2-decal贴花">2. <strong>Decal（贴花）</strong></h3>
+<ul>
+<li><strong>特点</strong>：用于在其他物体表面&quot;绘制&quot;效果，通常是半透明的。</li>
+<li><strong>技术实现</strong>：
+<ul>
+<li>使用<strong>深度测试</strong>确保只渲染在其他物体的表面。</li>
+<li>常结合<strong>模板缓冲区</strong>（Stencil）限制影响范围。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>血迹、弹痕、涂鸦等表面效果。</li>
+<li>动态投影（如阴影、光斑）。</li>
+</ul>
+</li>
+<li><strong>注意事项</strong>：需正确设置Render Queue（渲染队列）为<code>Geometry+100</code>左右，确保在基础物体后渲染。</li>
+</ul>
+<h3 id="3-lit标准光照">3. <strong>Lit（标准光照）</strong></h3>
+<ul>
+<li><strong>特点</strong>：完整计算光照、阴影、反射等物理效果。</li>
+<li><strong>基于物理渲染（PBR）</strong>：
+<ul>
+<li><strong>金属工作流</strong>：使用Metallic（金属度）和Smoothness（光滑度）控制表面特性。</li>
+<li><strong>镜面工作流</strong>：使用Specular（镜面反射）和Glossiness（光泽度）。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>自然物体（石头、木材、皮肤）。</li>
+<li>金属、玻璃等特殊材质。</li>
+</ul>
+</li>
+<li><strong>常见节点</strong>：<code>PBR Metallic</code>或<code>PBR Specular</code>节点。</li>
+</ul>
+<h3 id="4-sprite-unlit精灵无光照">4. <strong>Sprite Unlit（精灵无光照）</strong></h3>
+<ul>
+<li><strong>特点</strong>：
+<ul>
+<li>完全忽略光照，仅显示精灵的基础颜色/纹理。</li>
+<li>支持<strong>顶点色</strong>（Vertex Color），可通过代码或动画动态控制颜色（如淡入淡出效果）。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>UI元素、HUD、2D游戏中的静态贴图。</li>
+<li>需要顶点色动画的精灵（如血条、特效）。</li>
+</ul>
+</li>
+<li><strong>与普通Unlit的区别</strong>：
+<ul>
+<li>专为精灵渲染优化，支持SpriteRenderer的特殊功能（如Sprite Atlas、顶点色）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-sprite-lit精灵光照">5. <strong>Sprite Lit（精灵光照）</strong></h3>
+<ul>
+<li><strong>特点</strong>：
+<ul>
+<li>支持基本光照计算（漫反射、高光），但比普通Lit更轻量。</li>
+<li>可使用<strong>法线贴图</strong>模拟凹凸细节，但不支持复杂的PBR材质。</li>
+<li>支持顶点色，可用于控制光照强度（如角色受击时边缘发光）。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>2D游戏中需要光照效果的物体（如角色、动态环境）。</li>
+<li>模拟简单的3D光照效果（如昼夜循环对精灵的影响）。</li>
+</ul>
+</li>
+<li><strong>与普通Lit的区别</strong>：
+<ul>
+<li>简化的光照模型，性能开销更低。</li>
+<li>不支持完整的PBR工作流（如金属度、粗糙度）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-sprite-custom-lit精灵自定义光照">6. <strong>Sprite Custom Lit（精灵自定义光照）</strong></h3>
+<ul>
+<li><strong>特点</strong>：
+<ul>
+<li>继承Sprite Lit的基本框架，但允许自定义光照算法。</li>
+<li>通过Shader Graph或编写Shader代码实现独特的光照逻辑。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>实现卡通渲染（Cel Shading）、轮廓光、渐变光照等特殊效果。</li>
+<li>自定义光照衰减曲线或阴影算法。</li>
+</ul>
+</li>
+<li><strong>自定义示例</strong>：
+<ul>
+<li>仅在精灵边缘计算高光，模拟卡通风格。</li>
+<li>根据精灵朝向调整光照强度（如横版游戏中侧面光照更暗）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="选择建议">选择建议</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>选择</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不需要光照</td>
+<td>Unlit</td>
+</tr>
+<tr>
+<td>表面效果</td>
+<td>Decal</td>
+</tr>
+<tr>
+<td>真实物理材质</td>
+<td>Lit（PBR）</td>
+</tr>
+<tr>
+<td>UI、特效、纯贴图元素</td>
+<td>Sprite Unlit</td>
+</tr>
+<tr>
+<td>简单光照效果（如昼夜循环）</td>
+<td>Sprite Lit</td>
+</tr>
+<tr>
+<td>复杂自定义光照（如卡通渲染）</td>
+<td>Sprite Custom Lit</td>
+</tr>
+<tr>
+<td>需要完整PBR材质（如3D化精灵）</td>
+<td>普通Lit + MeshRenderer</td>
+</tr>
+</tbody>
+</table>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-shader-xuan-ran-zhuang-tai-she-zhi-xuan-xiang/" class="post-title gt-a-link">
+                    Unity Shader渲染状态设置选项
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

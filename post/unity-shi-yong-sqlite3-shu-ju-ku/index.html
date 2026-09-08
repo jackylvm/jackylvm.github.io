@@ -1,0 +1,271 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity 使用 SQLite3 数据库 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity 使用 SQLite3 数据库
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/ufddPmQ1kY/" class="post-tags">
+                            # Sqlite
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/WgyNS3Ry33/" class="post-tags">
+                            # C#
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Unity 可以使用 SQLite3 数据库，这是开发中非常常见的做法，尤其适用于需要本地存储大量结构化数据的场景（如游戏存档、配置数据、离线内容等）。</p>
+<p>实现方式主要有以下几种：</p>
+<ol>
+<li>
+<p><strong>使用 SQLite 官方 C 库 + C# 封装</strong><br>
+SQLite 本身是用 C 语言编写的，你可以通过 C# 的 P/Invoke 机制调用其动态链接库（.dll 或 .so）。不过这种方式需要自己处理平台兼容性（Windows、macOS、Android、iOS 等）。</p>
+</li>
+<li>
+<p><strong>使用现成的 C# 封装库</strong><br>
+更简单的方式是使用第三方封装，例如：</p>
+<ul>
+<li><strong>Mono.Data.Sqlite</strong>：Mono 提供的 SQLite 封装，Unity 早期版本常被使用</li>
+<li><strong>SQLite-net</strong>：轻量级 ORM 库，支持对象关系映射，使用简单</li>
+<li><strong>SQLite4Unity3d</strong>：基于 SQLite-net 针对 Unity 优化的版本</li>
+</ul>
+</li>
+<li>
+<p><strong>使用 Unity 资产商店的插件</strong><br>
+资产商店中有许多成熟的 SQLite 插件（如 &quot;SQLite&quot; 或 &quot;Easy SQLite&quot;），这些插件通常已经处理了跨平台问题，开箱即用。</p>
+</li>
+</ol>
+<p>基本使用流程（以 SQLite-net 为例）：</p>
+<ol>
+<li>导入相关库到 Unity 项目</li>
+<li>创建数据模型类（对应数据库表结构）</li>
+<li>初始化数据库连接</li>
+<li>执行 CRUD 操作（创建、查询、更新、删除）</li>
+</ol>
+<p>例如简单的代码示例：</p>
+<pre><code class="language-csharp">using SQLite;
+using System.IO;
+using UnityEngine;
+
+// 数据模型
+public class PlayerData
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Level { get; set; }
+}
+
+public class SQLiteExample : MonoBehaviour
+{
+    private SQLiteConnection db;
+
+    void Start()
+    {
+        // 数据库文件路径（通常放在 persistentDataPath）
+        string dbPath = Path.Combine(Application.persistentDataPath, &quot;game.db&quot;);
+        db = new SQLiteConnection(dbPath);
+        
+        // 创建表
+        db.CreateTable&lt;PlayerData&gt;();
+        
+        // 插入数据
+        db.Insert(new PlayerData { Name = &quot;Player1&quot;, Level = 1 });
+        
+        // 查询数据
+        var player = db.Get&lt;PlayerData&gt;(1);
+        Debug.Log($&quot;Name: {player.Name}, Level: {player.Level}&quot;);
+    }
+}
+</code></pre>
+<p>使用时需要注意不同平台的文件路径处理和权限设置，特别是在移动平台上，数据库文件通常需要放在可读写的目录（如 <code>Application.persistentDataPath</code>）。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/svn-cang-ku-qian-yi-dao-git/" class="post-title gt-a-link">
+                    SVN 仓库迁移到 Git 
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

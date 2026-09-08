@@ -1,0 +1,618 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity Mathf的方法示例 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity Mathf的方法示例
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-18 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/OhJfM9gu3B/" class="post-tags">
+                            # Mathf
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/zJdLx295LPI/" class="post-tags">
+                            # 数学方法
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="unity-mathf-全方法示例详解含每个方法可直接运行代码">Unity Mathf 全方法示例详解（含每个方法可直接运行代码）</h1>
+<p>以下为 Mathf 常用方法的 <strong>独立可运行示例</strong>，每个方法都配具体场景代码（可直接复制到 Unity 脚本中测试），按功能分类，兼顾基础用法和实际开发场景，方便直接套用。</p>
+<h2 id="一-基础数值运算直接运行验证结果">一、基础数值运算（直接运行验证结果）</h2>
+<h3 id="1-mathfabs取绝对值">1. Mathf.Abs（取绝对值）</h3>
+<pre><code class="language-csharp">void TestAbs()
+{
+    float negative = -7.8f;
+    int intNegative = -10;
+    float result1 = Mathf.Abs(negative);    // 结果：7.8
+    int result2 = Mathf.Abs(intNegative);   // 结果：10
+    Debug.Log($&quot;Abs(-7.8f) = {result1}, Abs(-10) = {result2}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：计算两点距离时（避免负数）、修正方向值等。</p>
+<h3 id="2-mathfround四舍五入取整">2. Mathf.Round（四舍五入取整）</h3>
+<pre><code class="language-csharp">void TestRound()
+{
+    float num1 = 3.4f;
+    float num2 = 3.6f;
+    int result1 = Mathf.RoundToInt(num1);   // 结果：3（RoundToInt 直接返回int）
+    float result2 = Mathf.Round(num2);      // 结果：4.0f
+    Debug.Log($&quot;Round(3.4f) = {result1}, Round(3.6f) = {result2}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：数值显示（如得分、数量）、简化浮点数为整数。</p>
+<h3 id="3-mathffloor向下取整">3. Mathf.Floor（向下取整）</h3>
+<pre><code class="language-csharp">void TestFloor()
+{
+    float num1 = 5.9f;
+    float num2 = -2.1f;
+    float result1 = Mathf.Floor(num1);      // 结果：5.0f（舍弃小数）
+    float result2 = Mathf.Floor(num2);      // 结果：-3.0f（负数向下取整更负）
+    Debug.Log($&quot;Floor(5.9f) = {result1}, Floor(-2.1f) = {result2}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：网格定位（如物体吸附到整数坐标）、分页计算（取当前页索引）。</p>
+<h3 id="4-mathfceil向上取整">4. Mathf.Ceil（向上取整）</h3>
+<pre><code class="language-csharp">void TestCeil()
+{
+    float num1 = 2.1f;
+    float num2 = -3.8f;
+    float result1 = Mathf.Ceil(num1);       // 结果：3.0f（小数非0进1）
+    float result2 = Mathf.Ceil(num2);       // 结果：-3.0f（负数向上取整更接近0）
+    Debug.Log($&quot;Ceil(2.1f) = {result1}, Ceil(-3.8f) = {result2}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：资源加载（如10.2个资源需加载11个）、容量计算（如5.1个物品需6个格子）。</p>
+<h3 id="5-mathfmax取最大值">5. Mathf.Max（取最大值）</h3>
+<pre><code class="language-csharp">void TestMax()
+{
+    float a = 2.3f, b = 5.7f, c = 3.0f;
+    float maxSingle = Mathf.Max(a, b);      // 结果：5.7f（两个值比较）
+    float maxMulti = Mathf.Max(a, b, c);    // 结果：5.7f（多个值比较）
+    Debug.Log($&quot;Max(2.3,5.7) = {maxSingle}, Max(2.3,5.7,3.0) = {maxMulti}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：取角色最大血量、限制数值上限（配合其他方法）。</p>
+<h3 id="6-mathfmin取最小值">6. Mathf.Min（取最小值）</h3>
+<pre><code class="language-csharp">void TestMin()
+{
+    int x = 10, y = 5, z = 8;
+    int minSingle = Mathf.Min(x, y);        // 结果：5（整数比较）
+    int minMulti = Mathf.Min(x, y, z);      // 结果：5（多个整数比较）
+    Debug.Log($&quot;Min(10,5) = {minSingle}, Min(10,5,8) = {minMulti}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：取角色最小伤害、限制数值下限。</p>
+<h3 id="7-mathfpow幂运算">7. Mathf.Pow（幂运算）</h3>
+<pre><code class="language-csharp">void TestPow()
+{
+    float square = Mathf.Pow(4, 2);         // 结果：16.0f（4的平方）
+    float cube = Mathf.Pow(3, 3);           // 结果：27.0f（3的立方）
+    float rootHalf = Mathf.Pow(4, 0.5f);    // 结果：2.0f（等同于平方根）
+    Debug.Log($&quot;4² = {square}, 3³ = {cube}, 4^0.5 = {rootHalf}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：物理计算（如动能 = 0.5mv²）、数值缩放（如经验值随等级平方增长）。</p>
+<h3 id="8-mathfsqrt平方根">8. Mathf.Sqrt（平方根）</h3>
+<pre><code class="language-csharp">void TestSqrt()
+{
+    float num = 25.0f;
+    float root = Mathf.Sqrt(num);           // 结果：5.0f
+    Debug.Log($&quot;Sqrt(25) = {root}&quot;);
+    
+    // 实际场景：计算两点距离（简化版）
+    float x1 = 1, y1 = 2;
+    float x2 = 4, y2 = 6;
+    float distance = Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2));
+    Debug.Log($&quot;两点距离：{distance}&quot;); // 结果：5.0f
+}
+</code></pre>
+<p><strong>场景</strong>：距离计算、几何运算（如圆半径相关）。</p>
+<h3 id="9-mathfrepeat循环数值非负">9. Mathf.Repeat（循环数值，非负）</h3>
+<pre><code class="language-csharp">void TestRepeat()
+{
+    float t1 = 7.2f, length1 = 3;
+    float t2 = -1.5f, length2 = 3;
+    float result1 = Mathf.Repeat(t1, length1); // 结果：1.2f（7.2 - 2*3 = 1.2）
+    float result2 = Mathf.Repeat(t2, length2); // 结果：1.5f（-1.5 + 3 = 1.5，始终非负）
+    Debug.Log($&quot;Repeat(7.2,3) = {result1}, Repeat(-1.5,3) = {result2}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：循环动画帧索引（如0-9循环）、时间循环（如每5秒重复一次）。</p>
+<h3 id="10-mathfsign判断符号">10. Mathf.Sign（判断符号）</h3>
+<pre><code class="language-csharp">void TestSign()
+{
+    float num1 = -3.1f, num2 = 5.2f, num3 = 0;
+    int sign1 = Mathf.Sign(num1);           // 结果：-1（负数）
+    int sign2 = Mathf.Sign(num2);           // 结果：1（正数）
+    int sign3 = Mathf.Sign(num3);           // 结果：0（零）
+    Debug.Log($&quot;Sign(-3.1) = {sign1}, Sign(5.2) = {sign2}, Sign(0) = {sign3}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：判断角色移动方向（左右）、数值增减趋势。</p>
+<h2 id="二-三角函数与角度转换unity-三角函数默认弧度制">二、三角函数与角度转换（Unity 三角函数默认弧度制）</h2>
+<h3 id="1-mathfdeg2rad角度转弧度">1. Mathf.Deg2Rad（角度转弧度）</h3>
+<pre><code class="language-csharp">void TestDeg2Rad()
+{
+    float angleDeg = 180f; // 180度
+    float angleRad = angleDeg * Mathf.Deg2Rad; // 结果：3.1416f（π弧度）
+    Debug.Log($&quot;180度 = {angleRad} 弧度&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：给三角函数传参前的单位转换。</p>
+<h3 id="2-mathfrad2deg弧度转角度">2. Mathf.Rad2Deg（弧度转角度）</h3>
+<pre><code class="language-csharp">void TestRad2Deg()
+{
+    float angleRad = Mathf.PI / 2; // π/2 弧度
+    float angleDeg = angleRad * Mathf.Rad2Deg; // 结果：90.0f（度）
+    Debug.Log($&quot;π/2 弧度 = {angleDeg} 度&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：三角函数计算结果转角度显示（如角色朝向角度）。</p>
+<h3 id="3-mathfsin正弦值">3. Mathf.Sin（正弦值）</h3>
+<pre><code class="language-csharp">void TestSin()
+{
+    float angle30 = 30f * Mathf.Deg2Rad;
+    float sin30 = Mathf.Sin(angle30); // 结果：0.5f
+    float angle90 = 90f * Mathf.Deg2Rad;
+    float sin90 = Mathf.Sin(angle90); // 结果：1.0f
+    Debug.Log($&quot;Sin(30°) = {sin30}, Sin(90°) = {sin90}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：周期性运动（如钟摆、波浪效果）、角度相关数值计算。</p>
+<h3 id="4-mathfcos余弦值">4. Mathf.Cos（余弦值）</h3>
+<pre><code class="language-csharp">void TestCos()
+{
+    float angle0 = 0f * Mathf.Deg2Rad;
+    float cos0 = Mathf.Cos(angle0); // 结果：1.0f
+    float angle180 = 180f * Mathf.Deg2Rad;
+    float cos180 = Mathf.Cos(angle180); // 结果：-1.0f
+    Debug.Log($&quot;Cos(0°) = {cos0}, Cos(180°) = {cos180}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：圆周运动（如物体绕原点旋转）、方向向量计算。</p>
+<h3 id="5-mathftan正切值">5. Mathf.Tan（正切值）</h3>
+<pre><code class="language-csharp">void TestTan()
+{
+    float angle45 = 45f * Mathf.Deg2Rad;
+    float tan45 = Mathf.Tan(angle45); // 结果：1.0f
+    float angle60 = 60f * Mathf.Deg2Rad;
+    float tan60 = Mathf.Tan(angle60); // 结果：1.732f（√3）
+    Debug.Log($&quot;Tan(45°) = {tan45}, Tan(60°) = {tan60}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：斜率计算、几何投影。</p>
+<h3 id="6-mathfasin反正弦值">6. Mathf.Asin（反正弦值）</h3>
+<pre><code class="language-csharp">void TestAsin()
+{
+    float value = 1.0f;
+    float angleRad = Mathf.Asin(value); // 结果：π/2 弧度（90度）
+    float angleDeg = angleRad * Mathf.Rad2Deg;
+    Debug.Log($&quot;Asin(1.0) = {angleDeg} 度&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：通过正弦值反推角度（如已知对边和斜边求角度）。</p>
+<h3 id="7-mathfacos反余弦值">7. Mathf.Acos（反余弦值）</h3>
+<pre><code class="language-csharp">void TestAcos()
+{
+    float value = 0f;
+    float angleRad = Mathf.Acos(value); // 结果：π/2 弧度（90度）
+    float angleDeg = angleRad * Mathf.Rad2Deg;
+    Debug.Log($&quot;Acos(0.0) = {angleDeg} 度&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：通过余弦值反推角度（如已知邻边和斜边求角度）。</p>
+<h3 id="8-mathfatan反正切值">8. Mathf.Atan（反正切值）</h3>
+<pre><code class="language-csharp">void TestAtan()
+{
+    float value = 1.0f;
+    float angleRad = Mathf.Atan(value); // 结果：π/4 弧度（45度）
+    float angleDeg = angleRad * Mathf.Rad2Deg;
+    Debug.Log($&quot;Atan(1.0) = {angleDeg} 度&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：简单角度反推（但无法判断象限）。</p>
+<h3 id="9-mathfatan2向量反正切值推荐">9. Mathf.Atan2（向量反正切值，推荐！）</h3>
+<pre><code class="language-csharp">void TestAtan2()
+{
+    // 第一象限向量(1,1)
+    float angle1 = Mathf.Atan2(1, 1) * Mathf.Rad2Deg; // 结果：45度
+    // 第三象限向量(-1,-1)
+    float angle2 = Mathf.Atan2(-1, -1) * Mathf.Rad2Deg; // 结果：-135度（或225度）
+    // 第二象限向量(-1,1)
+    float angle3 = Mathf.Atan2(1, -1) * Mathf.Rad2Deg; // 结果：135度
+    Debug.Log($&quot;Atan2(1,1) = {angle1}°, Atan2(-1,-1) = {angle2}°, Atan2(1,-1) = {angle3}°&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：计算目标方向（如角色朝向鼠标位置）、向量角度判断（核心方法）。</p>
+<h2 id="三-数值限制与插值动画移动核心">三、数值限制与插值（动画/移动核心）</h2>
+<h3 id="1-mathfclamp限制数值范围">1. Mathf.Clamp（限制数值范围）</h3>
+<pre><code class="language-csharp">void TestClamp()
+{
+    float value1 = 15f, min = 0f, max = 10f;
+    float clamped1 = Mathf.Clamp(value1, min, max); // 结果：10f（超出上限取上限）
+    float value2 = -3f;
+    float clamped2 = Mathf.Clamp(value2, min, max); // 结果：0f（超出下限取下限）
+    Debug.Log($&quot;Clamp(15,0,10) = {clamped1}, Clamp(-3,0,10) = {clamped2}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：限制角色血量（0-100）、滑块数值、相机视角范围。</p>
+<h3 id="2-mathfclamp01限制0-1范围">2. Mathf.Clamp01（限制0-1范围）</h3>
+<pre><code class="language-csharp">void TestClamp01()
+{
+    float value1 = 1.2f;
+    float clamped1 = Mathf.Clamp01(value1); // 结果：1.0f
+    float value2 = -0.5f;
+    float clamped2 = Mathf.Clamp01(value2); // 结果：0.0f
+    float value3 = 0.7f;
+    float clamped3 = Mathf.Clamp01(value3); // 结果：0.7f（在范围内不变）
+    Debug.Log($&quot;Clamp01(1.2) = {clamped1}, Clamp01(-0.5) = {clamped2}, Clamp01(0.7) = {clamped3}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：插值系数（t值）限制、进度条数值（0-1）、透明度（0-1）。</p>
+<h3 id="3-mathflerp线性插值渐变核心">3. Mathf.Lerp（线性插值，渐变核心）</h3>
+<pre><code class="language-csharp">// 声明变量，需在Update中持续调用
+private float currentValue = 2f;
+private float targetValue = 5f;
+private float speed = 1f;
+
+void Update()
+{
+    TestLerp();
+}
+
+void TestLerp()
+{
+    // 每帧按速度更新插值，t = speed * Time.deltaTime（确保帧率无关）
+    currentValue = Mathf.Lerp(currentValue, targetValue, speed * Time.deltaTime);
+    Debug.Log($&quot;Lerp渐变中：{currentValue:F2}&quot;); // F2 保留2位小数
+    // 接近目标时停止（避免无限循环）
+    if (Mathf.Approximately(currentValue, targetValue))
+    {
+        Debug.Log($&quot;Lerp完成，最终值：{currentValue}&quot;);
+        enabled = false; // 关闭脚本
+    }
+}
+</code></pre>
+<p><strong>场景</strong>：物体移动渐变、颜色渐变、数值平滑过渡（如音量调节）。</p>
+<h3 id="4-mathflerpunclamped无限制线性插值">4. Mathf.LerpUnclamped（无限制线性插值）</h3>
+<pre><code class="language-csharp">void TestLerpUnclamped()
+{
+    float a = 2f, b = 5f;
+    float t1 = 1.5f; // 超出1的t值
+    float result1 = Mathf.LerpUnclamped(a, b, t1); // 结果：6.5f（2 + (5-2)*1.5）
+    float t2 = -0.5f; // 小于0的t值
+    float result2 = Mathf.LerpUnclamped(a, b, t2); // 结果：0.5f（2 + (5-2)*(-0.5)）
+    Debug.Log($&quot;LerpUnclamped(2,5,1.5) = {result1}, LerpUnclamped(2,5,-0.5) = {result2}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：超出目标范围的外推计算（如预测物体下一帧位置）。</p>
+<h3 id="5-mathfsmoothdamp平滑阻尼带减速效果">5. Mathf.SmoothDamp（平滑阻尼，带减速效果）</h3>
+<pre><code class="language-csharp">// 声明变量，需在Update中持续调用
+private float currentPos = 0f;
+private float targetPos = 10f;
+private float velocity = 0f; // 速度变量（引用类型，必须初始化）
+private float smoothTime = 0.3f; // 平滑时间（越小越快）
+
+void Update()
+{
+    TestSmoothDamp();
+}
+
+void TestSmoothDamp()
+{
+    // 平滑趋近目标，带自然减速
+    currentPos = Mathf.SmoothDamp(currentPos, targetPos, ref velocity, smoothTime);
+    Debug.Log($&quot;SmoothDamp位置：{currentPos:F2}，当前速度：{velocity:F2}&quot;);
+    // 接近目标时停止
+    if (Mathf.Approximately(currentPos, targetPos))
+    {
+        Debug.Log($&quot;SmoothDamp完成，最终位置：{currentPos}&quot;);
+        enabled = false;
+    }
+}
+</code></pre>
+<p><strong>场景</strong>：相机跟随、UI元素平滑移动、数值缓冲（如血条平滑减少）。</p>
+<h3 id="6-mathfmovetowards匀速趋近无减速">6. Mathf.MoveTowards（匀速趋近，无减速）</h3>
+<pre><code class="language-csharp">// 声明变量，需在Update中持续调用
+private float currentValue = 3f;
+private float targetValue = 8f;
+private float moveSpeed = 2f; // 每秒移动2个单位
+
+void Update()
+{
+    TestMoveTowards();
+}
+
+void TestMoveTowards()
+{
+    // 匀速向目标移动，每次最大步长 = moveSpeed * Time.deltaTime
+    currentValue = Mathf.MoveTowards(currentValue, targetValue, moveSpeed * Time.deltaTime);
+    Debug.Log($&quot;MoveTowards当前值：{currentValue:F2}&quot;);
+    if (Mathf.Approximately(currentValue, targetValue))
+    {
+        Debug.Log($&quot;MoveTowards完成，最终值：{currentValue}&quot;);
+        enabled = false;
+    }
+}
+</code></pre>
+<p><strong>场景</strong>：角色匀速移动、物体直线追击、数值匀速变化（如倒计时）。</p>
+<h3 id="7-mathfpingpong往返循环0length0">7. Mathf.PingPong（往返循环，0→length→0）</h3>
+<pre><code class="language-csharp">void Update()
+{
+    TestPingPong();
+}
+
+void TestPingPong()
+{
+    float speed = 1f;
+    float length = 5f; // 循环范围0-5
+    // Time.time * speed 作为输入t，实现随时间往返
+    float pingPongValue = Mathf.PingPong(Time.time * speed, length);
+    Debug.Log($&quot;PingPong往返值：{pingPongValue:F2}&quot;);
+    // 实际场景：物体左右往返移动
+    transform.position = new Vector3(pingPongValue, 0, 0);
+}
+</code></pre>
+<p><strong>场景</strong>：往返动画（如灯笼摇摆、平台往复移动）、呼吸灯效果（亮度0-1-0）。</p>
+<h2 id="四-实用工具精度随机角度判断">四、实用工具（精度/随机/角度判断）</h2>
+<h3 id="1-mathfapproximately浮点数精度比较">1. Mathf.Approximately（浮点数精度比较）</h3>
+<pre><code class="language-csharp">void TestApproximately()
+{
+    float a = 0.1f + 0.2f;
+    float b = 0.3f;
+    bool equalDirect = (a == b); // 结果：false（浮点数精度误差）
+    bool equalApprox = Mathf.Approximately(a, b); // 结果：true（正确比较）
+    Debug.Log($&quot;直接比较(0.1+0.2==0.3)：{equalDirect}&quot;);
+    Debug.Log($&quot;Approximately比较：{equalApprox}&quot;);
+}
+</code></pre>
+<p><strong>场景</strong>：所有浮点数比较场景（如判断是否到达目标值、数值相等判断）。</p>
+<h3 id="2-mathfperlinnoise平滑随机值">2. Mathf.PerlinNoise（平滑随机值）</h3>
+<pre><code class="language-csharp">void Update()
+{
+    TestPerlinNoise();
+}
+
+void TestPerlinNoise()
+{
+    // x轴随时间变化，y轴固定，生成平滑波动的随机值（0-1）
+    float noiseX = Time.time * 0.5f;
+    float noiseValue = Mathf.PerlinNoise(noiseX, 0f);
+    Debug.Log($&quot;PerlinNoise平滑随机值：{noiseValue:F2}&quot;);
+    // 实际场景：物体上下浮动（y轴位置随噪声变化）
+    transform.position = new Vector3(0, noiseValue * 2, 0); // 浮动范围0-2
+}
+</code></pre>
+<p><strong>场景</strong>：地形生成、自然特效（如火焰、水流波动）、随机但不突兀的数值变化。</p>
+<h3 id="3-mathfdeltaangle计算角度最短差值">3. Mathf.DeltaAngle（计算角度最短差值）</h3>
+<pre><code class="language-csharp">void TestDeltaAngle()
+{
+    float currentAngle = 350f;
+    float targetAngle = 10f;
+    // 350°到10°的最短路径是顺时针转20°，而非逆时针转340°
+    float delta = Mathf.DeltaAngle(currentAngle, targetAngle);
+    Debug.Log($&quot;350°到10°的最短差值：{delta}°&quot;); // 结果：20°
+    
+    float currentAngle2 = 90f;
+    float targetAngle2 = 270f;
+    // 90°到270°的最短路径是逆时针转180°（或顺时针180°，结果为-180°）
+    float delta2 = Mathf.DeltaAngle(currentAngle2, targetAngle2);
+    Debug.Log($&quot;90°到270°的最短差值：{delta2}°&quot;); // 结果：-180°
+}
+</code></pre>
+<p><strong>场景</strong>：角度插值（如角色转向目标时走最短路径）、旋转动画。</p>
+<h3 id="4-mathfinverselerp计算归一化比例">4. Mathf.InverseLerp（计算归一化比例）</h3>
+<pre><code class="language-csharp">void TestInverseLerp()
+{
+    float a = 2f, b = 8f;
+    float value1 = 5f; // 在a和b之间
+    float t1 = Mathf.InverseLerp(a, b, value1); // 结果：0.5f（(5-2)/(8-2)）
+    float value2 = 10f; // 超出b
+    float t2 = Mathf.InverseLerp(a, b, value2); // 结果：1.333f（外推）
+    Debug.Log($&quot;5在[2,8]中的比例：{t1:F2}&quot;);
+    Debug.Log($&quot;10在[2,8]中的比例：{t2:F2}&quot;);
+    
+    // 实际场景：进度条计算（如血量30/100 → 0.3比例）
+    float currentHp = 30f, maxHp = 100f;
+    float hpPercent = Mathf.InverseLerp(0, maxHp, currentHp);
+    Debug.Log($&quot;血量进度：{hpPercent:P0}&quot;); // 结果：30%
+}
+</code></pre>
+<p><strong>场景</strong>：进度计算、数值归一化（如将任意范围值转为0-1比例）。</p>
+<h2 id="通用使用注意事项">通用使用注意事项</h2>
+<ol>
+<li>所有方法均为<strong>静态</strong>，直接用 <code>Mathf.方法名()</code> 调用，无需实例化。</li>
+<li>插值类方法（Lerp/SmoothDamp/MoveTowards）必须在 <code>Update</code>/<code>FixedUpdate</code> 中<strong>持续调用</strong>才会有渐变效果，单次调用仅返回当前插值结果。</li>
+<li>浮点数精度：永远用 <code>Mathf.Approximately(a, b)</code> 代替 <code>a == b</code>，避免精度误差。</li>
+<li>角度单位：三角函数（Sin/Cos/Atan等）仅接收<strong>弧度制</strong>，务必用 <code>Deg2Rad</code>/<code>Rad2Deg</code> 转换，否则结果会完全错误。</li>
+<li>循环方法区别：<code>Repeat</code> 是单向循环（0→length→0），<code>PingPong</code> 是往返循环（0→length→0），根据需求选择。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-mathf-jie-shao/" class="post-title gt-a-link">
+                    Unity的Mathf介绍
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

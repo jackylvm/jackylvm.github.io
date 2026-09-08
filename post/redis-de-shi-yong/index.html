@@ -1,0 +1,592 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Redis的使用 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Redis的使用
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-22 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/FLI9aGQA57/" class="post-tags">
+                            # KV型数据库
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/-8-XXrHLTq/" class="post-tags">
+                            # 数据库
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="redis-全面介绍与-api-使用示例">Redis 全面介绍与 API 使用示例</h1>
+<hr>
+<h2 id="一-redis-核心概念">一、Redis 核心概念</h2>
+<p><strong>Redis（Remote Dictionary Server）</strong> 是一款开源的、高性能的<strong>键值对（Key-Value）数据库</strong>，由 Salvatore Sanfilippo 开发，基于内存运行且支持持久化，常用于缓存、消息队列、会话存储等场景。其核心特点可概括为：</p>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>高性能</strong></td>
+<td>基于内存操作，单节点 QPS 可达 10 万+，延迟通常在微秒级。</td>
+</tr>
+<tr>
+<td><strong>多数据结构支持</strong></td>
+<td>不仅支持字符串（String），还支持哈希（Hash）、列表（List）、集合（Set）等复杂结构。</td>
+</tr>
+<tr>
+<td><strong>持久化</strong></td>
+<td>提供 RDB（快照）和 AOF（日志）两种持久化方式，避免内存数据丢失。</td>
+</tr>
+<tr>
+<td><strong>高可用与分布式</strong></td>
+<td>支持主从复制、哨兵（Sentinel）机制实现高可用，通过 Redis Cluster 实现分布式存储。</td>
+</tr>
+<tr>
+<td><strong>丰富功能</strong></td>
+<td>内置发布订阅、Lua 脚本、事务、过期淘汰等功能，满足多样化业务需求。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="二-redis-核心数据结构与-api-示例">二、Redis 核心数据结构与 API 示例</h2>
+<p>Redis 的 API 与数据结构强绑定，每种结构都有专属命令。以下以 <strong>Redis 6.x</strong> 版本为例，结合 <code>redis-cli</code> 命令行工具演示常用 API（注：示例中 <code>-&gt;</code> 后为命令返回结果）。</p>
+<h3 id="1-字符串string最基础的键值类型">1. 字符串（String）：最基础的键值类型</h3>
+<p>String 是 Redis 最常用的结构，可存储文本、数字（整数/浮点数），最大容量为 512MB，适用于缓存单个值（如用户信息、计数器）。</p>
+<table>
+<thead>
+<tr>
+<th>命令格式</th>
+<th>功能说明</th>
+<th>示例</th>
+<th>返回结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>`SET key value [NX</td>
+<td>XX]`</td>
+<td>设置键值（NX：键不存在时才设；XX：键存在时才设）</td>
+<td><code>SET username &quot;zhangsan&quot;</code></td>
+</tr>
+<tr>
+<td><code>GET key</code></td>
+<td>获取键对应的值</td>
+<td><code>GET username</code></td>
+<td><code>&quot;zhangsan&quot;</code></td>
+</tr>
+<tr>
+<td><code>MSET key1 val1 key2 val2</code></td>
+<td>批量设置键值</td>
+<td><code>MSET age 20 gender &quot;male&quot;</code></td>
+<td><code>OK</code></td>
+</tr>
+<tr>
+<td><code>MGET key1 key2</code></td>
+<td>批量获取键值</td>
+<td><code>MGET username age</code></td>
+<td><code>[&quot;zhangsan&quot;, &quot;20&quot;]</code></td>
+</tr>
+<tr>
+<td><code>INCR key</code></td>
+<td>键值为整数时，自增 1（常用于计数器）</td>
+<td><code>INCR age</code></td>
+<td><code>21</code></td>
+</tr>
+<tr>
+<td><code>DECR key</code></td>
+<td>键值为整数时，自减 1</td>
+<td><code>DECR age</code></td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>INCRBY key num</code></td>
+<td>键值自增指定整数 <code>num</code></td>
+<td><code>INCRBY age 5</code></td>
+<td><code>25</code></td>
+</tr>
+<tr>
+<td><code>EXPIRE key seconds</code></td>
+<td>设置键的过期时间（秒）</td>
+<td><code>EXPIRE username 3600</code></td>
+<td><code>1</code>（成功）</td>
+</tr>
+<tr>
+<td><code>TTL key</code></td>
+<td>查看键剩余过期时间（-1：永不过期；-2：已过期）</td>
+<td><code>TTL username</code></td>
+<td><code>3590</code>（剩余秒数）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-哈希hash适合存储对象">2. 哈希（Hash）：适合存储对象</h3>
+<p>Hash 是“键值对中的键值对”，可将多个字段（Field）和值（Value）关联到一个 Redis 键，适用于存储对象（如用户信息、商品详情），避免单个 String 存储大 JSON 的冗余。</p>
+<table>
+<thead>
+<tr>
+<th>命令格式</th>
+<th>功能说明</th>
+<th>示例</th>
+<th>返回结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HSET key field value</code></td>
+<td>给哈希键设置一个字段和值</td>
+<td><code>HSET user id 101 name &quot;lisi&quot;</code></td>
+<td><code>2</code>（新增字段数）</td>
+</tr>
+<tr>
+<td><code>HGET key field</code></td>
+<td>获取哈希键中指定字段的值</td>
+<td><code>HGET user name</code></td>
+<td><code>&quot;lisi&quot;</code></td>
+</tr>
+<tr>
+<td><code>HMSET key f1 v1 f2 v2</code></td>
+<td>批量设置哈希字段和值</td>
+<td><code>HMSET user age 22 city &quot;Beijing&quot;</code></td>
+<td><code>OK</code></td>
+</tr>
+<tr>
+<td><code>HMGET key f1 f2</code></td>
+<td>批量获取哈希字段的值</td>
+<td><code>HMGET user id city</code></td>
+<td><code>[&quot;101&quot;, &quot;Beijing&quot;]</code></td>
+</tr>
+<tr>
+<td><code>HGETALL key</code></td>
+<td>获取哈希键的所有字段和值</td>
+<td><code>HGETALL user</code></td>
+<td><code>[&quot;id&quot;, &quot;101&quot;, &quot;name&quot;, &quot;lisi&quot;, &quot;age&quot;, &quot;22&quot;, &quot;city&quot;, &quot;Beijing&quot;]</code></td>
+</tr>
+<tr>
+<td><code>HKEYS key</code></td>
+<td>获取哈希键的所有字段</td>
+<td><code>HKEYS user</code></td>
+<td><code>[&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;city&quot;]</code></td>
+</tr>
+<tr>
+<td><code>HLEN key</code></td>
+<td>统计哈希键的字段数量</td>
+<td><code>HLEN user</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>HDEL key field1 [field2]</code></td>
+<td>删除哈希键中的指定字段</td>
+<td><code>HDEL user city</code></td>
+<td><code>1</code>（删除字段数）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-列表list有序可重复的链表">3. 列表（List）：有序可重复的“链表”</h3>
+<p>Redis List 基于双向链表实现，元素有序且可重复，支持从两端插入/删除元素，适用于实现消息队列、最新消息排行、栈/队列等场景。</p>
+<table>
+<thead>
+<tr>
+<th>命令格式</th>
+<th>功能说明</th>
+<th>示例</th>
+<th>返回结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LPUSH key value1 [val2]</code></td>
+<td>从列表<strong>左侧</strong>插入元素（左进）</td>
+<td><code>LPUSH fruits &quot;apple&quot; &quot;banana&quot;</code></td>
+<td><code>2</code>（列表长度）</td>
+</tr>
+<tr>
+<td><code>RPUSH key value1 [val2]</code></td>
+<td>从列表<strong>右侧</strong>插入元素（右进）</td>
+<td><code>RPUSH fruits &quot;orange&quot;</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>LRANGE key start end</code></td>
+<td>获取列表中 <code>start</code> 到 <code>end</code> 的元素（0 开始，-1 表示最后一个）</td>
+<td><code>LRANGE fruits 0 -1</code></td>
+<td><code>[&quot;banana&quot;, &quot;apple&quot;, &quot;orange&quot;]</code></td>
+</tr>
+<tr>
+<td><code>LPOP key</code></td>
+<td>从列表<strong>左侧</strong>弹出元素（左出）</td>
+<td><code>LPOP fruits</code></td>
+<td><code>&quot;banana&quot;</code></td>
+</tr>
+<tr>
+<td><code>RPOP key</code></td>
+<td>从列表<strong>右侧</strong>弹出元素（右出）</td>
+<td><code>RPOP fruits</code></td>
+<td><code>&quot;orange&quot;</code></td>
+</tr>
+<tr>
+<td><code>LLEN key</code></td>
+<td>统计列表长度</td>
+<td><code>LLEN fruits</code></td>
+<td><code>1</code>（剩余 &quot;apple&quot;）</td>
+</tr>
+<tr>
+<td><code>LTRIM key start end</code></td>
+<td>截取列表，保留 <code>start</code> 到 <code>end</code> 的元素</td>
+<td><code>LPUSH nums 1 2 3 4 5</code> → <code>LTRIM nums 1 3</code></td>
+<td><code>OK</code> → <code>LRANGE nums 0 -1</code> 得 <code>[&quot;4&quot;, &quot;3&quot;, &quot;2&quot;]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-集合set无序不可重复的集合">4. 集合（Set）：无序不可重复的“集合”</h3>
+<p>Redis Set 是无序的字符串集合，元素不可重复（自动去重），支持交集、并集、差集等数学运算，适用于标签管理、好友关系（如共同好友）、去重场景。</p>
+<table>
+<thead>
+<tr>
+<th>命令格式</th>
+<th>功能说明</th>
+<th>示例</th>
+<th>返回结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SADD key member1 [mem2]</code></td>
+<td>向集合中添加元素（重复添加会忽略）</td>
+<td><code>SADD tags &quot;java&quot; &quot;python&quot; &quot;go&quot;</code></td>
+<td><code>3</code>（新增元素数）</td>
+</tr>
+<tr>
+<td><code>SMEMBERS key</code></td>
+<td>获取集合中的所有元素（无序）</td>
+<td><code>SMEMBERS tags</code></td>
+<td><code>[&quot;go&quot;, &quot;java&quot;, &quot;python&quot;]</code>（顺序不固定）</td>
+</tr>
+<tr>
+<td><code>SISMEMBER key member</code></td>
+<td>判断元素是否在集合中</td>
+<td><code>SISMEMBER tags &quot;python&quot;</code></td>
+<td><code>1</code>（存在）；<code>SISMEMBER tags &quot;c++&quot;</code> 得 <code>0</code>（不存在）</td>
+</tr>
+<tr>
+<td><code>SCARD key</code></td>
+<td>统计集合元素数量</td>
+<td><code>SCARD tags</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>SREM key member1 [mem2]</code></td>
+<td>从集合中删除元素</td>
+<td><code>SREM tags &quot;go&quot;</code></td>
+<td><code>1</code>（删除元素数）</td>
+</tr>
+<tr>
+<td><code>SINTER key1 key2</code></td>
+<td>求两个集合的<strong>交集</strong>（共同元素）</td>
+<td><code>SADD set1 1 2 3</code> → <code>SADD set2 3 4 5</code> → <code>SINTER set1 set2</code></td>
+<td><code>[&quot;3&quot;]</code></td>
+</tr>
+<tr>
+<td><code>SUNION key1 key2</code></td>
+<td>求两个集合的<strong>并集</strong>（所有元素去重）</td>
+<td><code>SUNION set1 set2</code></td>
+<td><code>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-有序集合sorted-set-zset有序不可重复的加权集合">5. 有序集合（Sorted Set / ZSet）：有序不可重复的“加权集合”</h3>
+<p>ZSet 是 Set 的“升级版”：元素不可重复，但每个元素关联一个<strong>分数（Score，浮点数）</strong>，Redis 按分数对元素排序，适用于排行榜（如销量排行、积分排行）、带权重的消息队列。</p>
+<table>
+<thead>
+<tr>
+<th>命令格式</th>
+<th>功能说明</th>
+<th>示例</th>
+<th>返回结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZADD key score1 mem1 [s2 m2]</code></td>
+<td>向 ZSet 中添加元素及分数（重复元素会更新分数）</td>
+<td><code>ZADD rank 95 &quot;Alice&quot; 88 &quot;Bob&quot; 92 &quot;Charlie&quot;</code></td>
+<td><code>3</code>（新增元素数）</td>
+</tr>
+<tr>
+<td><code>ZRANGE key start end [WITHSCORES]</code></td>
+<td>按分数<strong>升序</strong>获取 <code>start</code> 到 <code>end</code> 的元素（WITHSCORES 显示分数）</td>
+<td><code>ZRANGE rank 0 -1 WITHSCORES</code></td>
+<td><code>[&quot;Bob&quot;, &quot;88&quot;, &quot;Charlie&quot;, &quot;92&quot;, &quot;Alice&quot;, &quot;95&quot;]</code></td>
+</tr>
+<tr>
+<td><code>ZREVRANGE key start end [WITHSCORES]</code></td>
+<td>按分数<strong>降序</strong>获取元素（适合做排行榜）</td>
+<td><code>ZREVRANGE rank 0 1 WITHSCORES</code></td>
+<td><code>[&quot;Alice&quot;, &quot;95&quot;, &quot;Charlie&quot;, &quot;92&quot;]</code>（取Top2）</td>
+</tr>
+<tr>
+<td><code>ZSCORE key member</code></td>
+<td>获取元素的分数</td>
+<td><code>ZSCORE rank &quot;Bob&quot;</code></td>
+<td><code>&quot;88&quot;</code></td>
+</tr>
+<tr>
+<td><code>ZINCRBY key incr member</code></td>
+<td>增加元素的分数</td>
+<td><code>ZINCRBY rank 3 &quot;Bob&quot;</code></td>
+<td><code>&quot;91&quot;</code></td>
+</tr>
+<tr>
+<td><code>ZCARD key</code></td>
+<td>统计 ZSet 元素数量</td>
+<td><code>ZCARD rank</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>ZCOUNT key min max</code></td>
+<td>统计分数在 <code>min</code> 到 <code>max</code> 之间的元素数量</td>
+<td><code>ZCOUNT rank 90 100</code></td>
+<td><code>2</code>（Alice 和 Charlie）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三-redis-高级功能-api-示例">三、Redis 高级功能 API 示例</h2>
+<h3 id="1-事务transaction批量执行命令">1. 事务（Transaction）：批量执行命令</h3>
+<p>Redis 事务通过 <code>MULTI</code>（开始事务）、<code>EXEC</code>（执行事务）包裹命令，事务内命令<strong>要么全部执行，要么全部不执行</strong>（但不支持回滚，若中间命令语法错误，后续命令仍会执行）。</p>
+<pre><code class="language-bash">127.0.0.1:6379&gt; MULTI  # 开始事务
+OK
+127.0.0.1:6379(TX)&gt; SET a 10
+QUEUED  # 命令入队
+127.0.0.1:6379(TX)&gt; INCR a
+QUEUED
+127.0.0.1:6379(TX)&gt; GET a
+QUEUED
+127.0.0.1:6379(TX)&gt; EXEC  # 执行事务
+1) OK
+2) (integer) 11
+3) &quot;11&quot;
+</code></pre>
+<h3 id="2-发布订阅pubsub消息通信">2. 发布订阅（Pub/Sub）：消息通信</h3>
+<p>Redis 支持“发布者-订阅者”模式：发布者（Publisher）向指定频道（Channel）发送消息，所有订阅该频道的订阅者（Subscriber）会收到消息，适用于简单的消息通知场景。</p>
+<h4 id="步骤1订阅者订阅频道">步骤1：订阅者订阅频道</h4>
+<pre><code class="language-bash"># 终端1（订阅者）
+127.0.0.1:6379&gt; SUBSCRIBE news  # 订阅 &quot;news&quot; 频道
+Reading messages... (press Ctrl-C to quit)
+1) &quot;subscribe&quot;
+2) &quot;news&quot;
+3) (integer) 1  # 订阅成功
+</code></pre>
+<h4 id="步骤2发布者发布消息">步骤2：发布者发布消息</h4>
+<pre><code class="language-bash"># 终端2（发布者）
+127.0.0.1:6379&gt; PUBLISH news &quot;Redis 发布订阅测试&quot;  # 向 &quot;news&quot; 频道发消息
+(integer) 1  # 有1个订阅者接收
+</code></pre>
+<h4 id="步骤3订阅者接收消息">步骤3：订阅者接收消息</h4>
+<pre><code class="language-bash"># 终端1（订阅者）会立即收到消息
+1) &quot;message&quot;
+2) &quot;news&quot;
+3) &quot;Redis 发布订阅测试&quot;
+</code></pre>
+<h2 id="四-redis-应用场景总结">四、Redis 应用场景总结</h2>
+<p>结合上述 API 特性，Redis 典型应用场景包括：</p>
+<ul>
+<li><strong>缓存</strong>：用 String/Hash 存储热点数据（如商品详情），通过 <code>EXPIRE</code> 设置过期时间，减轻数据库压力。</li>
+<li><strong>计数器</strong>：用 <code>INCR</code>/<code>INCRBY</code> 实现页面访问量、商品销量统计。</li>
+<li><strong>排行榜</strong>：用 ZSet 的 <code>ZREVRANGE</code> 实现实时积分排行、销量排行。</li>
+<li><strong>消息队列</strong>：用 List 的 <code>LPUSH</code>（生产）+ <code>RPOP</code>（消费）实现简单队列；用 ZSet 实现带优先级的队列。</li>
+<li><strong>好友关系</strong>：用 Set 的 <code>SINTER</code> 求共同好友，<code>SUNION</code> 求所有好友。</li>
+<li><strong>会话存储</strong>：用 String/Hash 存储用户 Session，替代传统的服务器内存存储，支持分布式部署。</li>
+</ul>
+<p>通过掌握上述核心数据结构与 API，可满足大多数 Redis 基础应用需求。实际开发中，还需结合编程语言客户端（如 Java 的 Jedis、Python 的 redis-py）调用这些 API，语法与 <code>redis-cli</code> 命令高度一致。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/valkey-he-redis-de-bi-jiao/" class="post-title gt-a-link">
+                    Valkey和Redis的比较
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

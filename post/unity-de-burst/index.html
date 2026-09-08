@@ -1,0 +1,312 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的Burst | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的Burst
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Unity Burst是基于LLVM的高性能编译器，可将C#子集（HPC#）编译为高度优化的原生机器码，常与Job System搭配，大幅提升CPU密集型代码（如物理、粒子、AI计算）的运行效率，是DOTS技术栈的核心组件。以下是详细介绍：</p>
+<hr>
+<h3 id="核心原理与编译模式">核心原理与编译模式</h3>
+<ul>
+<li><strong>底层架构</strong>：以LLVM为后端，将C# IL转换为优化的原生指令，支持SIMD、循环展开、常量传播等深度优化，减少托管层开销。</li>
+<li><strong>编译模式</strong>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模式</th>
+<th style="text-align:left">适用场景</th>
+<th style="text-align:left">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">JIT</td>
+<td style="text-align:left">编辑器Play模式</td>
+<td style="text-align:left">异步编译，首次运行用默认Mono JIT，编译完成后切换至Burst优化代码</td>
+</tr>
+<tr>
+<td style="text-align:left">AOT</td>
+<td style="text-align:left">打包发布</td>
+<td style="text-align:left">构建时预编译所有支持代码，需对应平台链接工具（类似IL2CPP）</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<hr>
+<h3 id="关键特性与使用限制">关键特性与使用限制</h3>
+<ol>
+<li>
+<p><strong>核心特性</strong></p>
+<ul>
+<li><strong>[BurstCompile]特性</strong>：标记Job结构体或静态方法，指定代码参与Burst编译。</li>
+<li><strong>HPC#子集</strong>：仅支持值类型（结构体、基元类型）、Unity.Mathematics类型，禁用托管对象、try-catch、字符串等，避免GC与托管开销。</li>
+<li><strong>SIMD加速</strong>：自动向量化循环，配合Unity.Mathematics的float3/float4等类型，提升数学运算吞吐量。</li>
+<li><strong>安全检查与快速数学</strong>：编辑器可启用安全检查（容器越界、线程冲突）；发布时可开启快速数学（牺牲部分精度换取速度）。</li>
+</ul>
+</li>
+<li>
+<p><strong>使用限制</strong></p>
+<ul>
+<li>不支持托管数组（int[]），需用NativeArray；不支持LINQ、委托、迭代器等复杂语法。</li>
+<li>方法内不能引用托管对象（如List<T>），需使用Unity.Collections中的原生容器。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="典型用法示例">典型用法示例</h3>
+<pre><code class="language-csharp">using Unity.Burst;
+using Unity.Jobs;
+using Unity.Collections;
+using Unity.Mathematics;
+
+[BurstCompile] // 标记为Burst编译
+public struct ParallelSumJob : IJobParallelFor
+{
+    [ReadOnly] public NativeArray&lt;float&gt; data;
+    [WriteOnly] public NativeArray&lt;float&gt; result;
+
+    public void Execute(int index)
+    {
+        result[0] += data[index] * data[index]; // 平方和计算，自动SIMD优化
+    }
+}
+
+// 调用示例
+public class BurstExample : MonoBehaviour
+{
+    void Start()
+    {
+        var data = new NativeArray&lt;float&gt;(1000000, Allocator.TempJob);
+        var result = new NativeArray&lt;float&gt;(1, Allocator.TempJob);
+
+        // 填充数据...
+
+        var job = new ParallelSumJob { data = data, result = result };
+        job.Schedule(data.Length, 64).Complete(); // 并行调度64个批次
+
+        Debug.Log($&quot;Sum of squares: {result[0]}&quot;);
+
+        data.Dispose();
+        result.Dispose();
+    }
+}
+</code></pre>
+<hr>
+<h3 id="适用场景与优化建议">适用场景与优化建议</h3>
+<ol>
+<li>
+<p><strong>最佳适用场景</strong></p>
+<ul>
+<li>大规模数据处理（粒子系统、网格变形、寻路网格计算）。</li>
+<li>物理引擎扩展（自定义碰撞检测、力场计算）。</li>
+<li>并行Job任务（IJobParallelFor、IJobForEach），充分利用多核CPU。</li>
+</ul>
+</li>
+<li>
+<p><strong>优化建议</strong></p>
+<ul>
+<li>优先使用NativeArray/NativeList等原生容器，避免托管内存分配。</li>
+<li>用Unity.Mathematics替代Mathf/Vector3，最大化SIMD收益。</li>
+<li>控制Job粒度，避免过细任务导致调度开销；利用Burst Inspector查看优化诊断信息。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="与job-system的协同">与Job System的协同</h3>
+<p>Burst与Job System深度绑定，Job负责拆分并行任务，Burst负责编译优化任务代码，两者结合可将CPU密集型逻辑的性能提升数倍至数十倍，尤其适合需要大量并行计算的3D游戏、模拟类应用。</p>
+<hr>
+<h3 id="总结">总结</h3>
+<p>Burst通过LLVM优化与HPC#约束，为Unity提供接近原生C++的代码性能，是解决CPU瓶颈的关键工具。使用时需遵循其类型与语法限制，结合Job System与原生容器，才能最大化性能收益。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-jobs/" class="post-title gt-a-link">
+                    Unity的Jobs
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

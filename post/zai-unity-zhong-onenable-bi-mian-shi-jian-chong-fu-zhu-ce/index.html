@@ -1,0 +1,309 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>在 Unity 中OnEnable避免事件重复注册 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    在 Unity 中OnEnable避免事件重复注册
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-07-09 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Unity中，<code>OnEnable</code>方法会在对象激活时被调用，而<code>SetActive(true)</code>会触发这个过程。如果在<code>OnEnable</code>里注册事件，且多次激活对象，就会造成事件重复注册，进而使同一个事件被多次触发。下面为你提供几种解决办法。</p>
+<hr>
+<h3 id="方案一注册前先取消注册">方案一：注册前先取消注册</h3>
+<p>在注册事件之前，先确保该事件没有被注册，这能避免重复注册。</p>
+<pre><code class="language-csharp">private void OnEnable()
+{
+    // 先取消注册，再注册
+    SomeEvent -= HandleEvent;
+    SomeEvent += HandleEvent;
+}
+
+private void OnDisable()
+{
+    // 取消注册事件
+    SomeEvent -= HandleEvent;
+}
+</code></pre>
+<h3 id="方案二使用标志位避免重复注册">方案二：使用标志位避免重复注册</h3>
+<p>借助一个标志位来判断事件是否已经注册，防止重复操作。</p>
+<pre><code class="language-csharp">private bool _isEventRegistered = false;
+
+private void OnEnable()
+{
+    if (!_isEventRegistered)
+    {
+        SomeEvent += HandleEvent;
+        _isEventRegistered = true;
+    }
+}
+
+private void OnDisable()
+{
+    if (_isEventRegistered)
+    {
+        SomeEvent -= HandleEvent;
+        _isEventRegistered = false;
+    }
+}
+</code></pre>
+<h3 id="方案三在awake中注册事件">方案三：在Awake中注册事件</h3>
+<p>在<code>Awake</code>方法里注册事件，因为<code>Awake</code>只会在对象的生命周期中调用一次，这样可以避免重复注册。</p>
+<pre><code class="language-csharp">private void Awake()
+{
+    // 在Awake中注册，仅调用一次
+    SomeEvent += HandleEvent;
+}
+
+private void OnDisable()
+{
+    // 取消注册事件
+    SomeEvent -= HandleEvent;
+}
+</code></pre>
+<h3 id="方案四使用单例模式">方案四：使用单例模式</h3>
+<p>要是你的组件采用单例模式，那么可以在初始化时注册事件。</p>
+<pre><code class="language-csharp">private static MyClass _instance;
+public static MyClass Instance
+{
+    get
+    {
+        if (_instance == null)
+        {
+            _instance = FindObjectOfType&lt;MyClass&gt;();
+            if (_instance == null)
+            {
+                GameObject obj = new GameObject();
+                obj.name = typeof(MyClass).Name;
+                _instance = obj.AddComponent&lt;MyClass&gt;();
+            }
+            // 初始化时注册事件
+            _instance.Initialize();
+        }
+        return _instance;
+    }
+}
+
+private void Initialize()
+{
+    SomeEvent += HandleEvent;
+}
+
+private void OnDisable()
+{
+    if (_instance == this)
+    {
+        SomeEvent -= HandleEvent;
+    }
+}
+</code></pre>
+<h3 id="方案五利用weakevent模式适合特殊场景">方案五：利用WeakEvent模式（适合特殊场景）</h3>
+<p>对于需要避免内存泄漏的情况，可以考虑使用WeakEvent模式。不过这种模式实现起来较为复杂。</p>
+<pre><code class="language-csharp">// 需要实现WeakEventManager类
+private void OnEnable()
+{
+    WeakEventManager.AddHandler(SomeEvent, HandleEvent);
+}
+
+private void OnDisable()
+{
+    WeakEventManager.RemoveHandler(SomeEvent, HandleEvent);
+}
+</code></pre>
+<h3 id="最佳实践建议">最佳实践建议</h3>
+<ul>
+<li>优先选用方案一，这种方法简单直接，能够有效避免重复注册。</li>
+<li>如果事件注册依赖于对象状态，方案二是不错的选择。</li>
+<li>若组件在场景中会频繁激活和禁用，推荐使用方案三。</li>
+<li>方案四适用于单例组件。</li>
+<li>方案五适合对内存管理有严格要求的场景。</li>
+</ul>
+<p>通过上述方法，你可以解决<code>OnEnable</code>中事件重复注册的问题，保证事件处理的准确性。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/shou-ji-de-yi-xie-dong-xi/" class="post-title gt-a-link">
+                    🚌收集的一些东西
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

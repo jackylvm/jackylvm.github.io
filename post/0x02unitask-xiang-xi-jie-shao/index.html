@@ -1,0 +1,678 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x02.UniTask详细介绍 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x02.UniTask详细介绍
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/S2uOH6GFN3/" class="post-tags">
+                            # UniTask
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="unitask-详细解析unity-中的高效异步编程方案">UniTask 详细解析：Unity 中的高效异步编程方案</h1>
+<p>UniTask 是 Unity 生态中替代 <code>Task</code> 的<strong>轻量级、高性能异步编程库</strong>，由 Cysharp 开发（核心作者 Yoshifumi Kawai），专为 Unity 引擎的运行时特性（如主线程限制、协程机制、序列化需求）设计。它解决了 .NET 原生 <code>Task</code> 在 Unity 中的诸多痛点（如内存分配高、调度不适配、缺少 Unity 专属 API），已成为 Unity 异步开发的主流选择。</p>
+<h2 id="一-核心定位为什么需要-unitask">一、核心定位：为什么需要 UniTask？</h2>
+<h3 id="11-原生-task-在-unity-中的痛点">1.1 原生 Task 在 Unity 中的痛点</h3>
+<ul>
+<li><strong>内存分配高</strong>：<code>Task</code>/<code>Task&lt;T&gt;</code> 实例本身分配较大，且异步状态机默认堆分配，频繁使用易引发 GC。</li>
+<li><strong>调度不适配</strong>：.NET 原生 <code>TaskScheduler</code> 不理解 Unity 的主线程/协程调度，容易出现线程安全问题（如跨线程操作 UI）。</li>
+<li><strong>缺少 Unity 专属支持</strong>：无法直接等待 <code>Coroutine</code>、<code>AsyncOperation</code>（如场景加载）、<code>WWW</code>（旧版）等 Unity 原生异步对象。</li>
+<li><strong>兼容性问题</strong>：.NET Standard 2.0 中的 <code>Task</code> 功能有限，且 Unity 对 .NET 异步的支持在旧版本中不完善。</li>
+</ul>
+<h3 id="12-unitask-的核心优势">1.2 UniTask 的核心优势</h3>
+<ul>
+<li><strong>极致轻量化</strong>：<code>UniTask</code> 实例分配仅 8 字节（远小于 <code>Task</code> 的 24+ 字节），状态机支持<strong>栈分配（ValueTask 模式）</strong>，GC 友好。</li>
+<li><strong>Unity 深度适配</strong>：原生支持等待 <code>Coroutine</code>、<code>AsyncOperation</code>、<code>WebRequest</code>、<code>Addressables</code> 等 Unity 异步对象。</li>
+<li><strong>灵活调度</strong>：默认主线程调度，支持自定义调度器（如线程池、协程调度），完美契合 Unity 主线程操作需求（UI、Transform 等）。</li>
+<li><strong>丰富 API</strong>：提供超时、取消、重试、并发控制等实用功能，API 设计贴近 <code>Task</code>，学习成本低。</li>
+<li><strong>兼容性广</strong>：支持 Unity 2018+，兼容 .NET Standard 2.0、IL2CPP 编译（无反射依赖）。</li>
+</ul>
+<h2 id="二-基础概念与安装">二、基础概念与安装</h2>
+<h3 id="21-核心类型">2.1 核心类型</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用</th>
+<th>类比 .NET 类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UniTask</code></td>
+<td>无返回值的异步操作（类似 <code>void Task</code>）</td>
+<td><code>Task</code></td>
+</tr>
+<tr>
+<td><code>UniTask&lt;T&gt;</code></td>
+<td>有返回值的异步操作</td>
+<td><code>Task&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>UniTaskVoid</code></td>
+<td>无返回值且不支持 <code>await</code> 链式调用（用于事件回调、协程入口）</td>
+<td><code>void</code>（异步方法）</td>
+</tr>
+<tr>
+<td><code>CancellationToken</code></td>
+<td>取消令牌，用于终止异步操作（与 .NET 兼容）</td>
+<td><code>CancellationToken</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-安装方式">2.2 安装方式</h3>
+<h4 id="方式-1package-manager推荐">方式 1：Package Manager（推荐）</h4>
+<ol>
+<li>打开 Unity Package Manager（Window → Package Manager）。</li>
+<li>点击左上角「+」→「Add package from git URL」。</li>
+<li>输入地址：<code>https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask</code>。</li>
+<li>等待下载完成，自动导入到项目中。</li>
+</ol>
+<h4 id="方式-2手动导入">方式 2：手动导入</h4>
+<ol>
+<li>从 <a href="https://github.com/Cysharp/UniTask/releases">GitHub  Releases</a> 下载最新的 <code>UniTask.unitypackage</code>。</li>
+<li>在 Unity 中双击导入，勾选所有文件即可。</li>
+</ol>
+<h4 id="方式-3nuget非-unity-环境如控制台工具">方式 3：NuGet（非 Unity 环境，如控制台工具）</h4>
+<pre><code class="language-bash">Install-Package Cysharp.UniTask
+</code></pre>
+<h2 id="三-基础用法从同步到异步">三、基础用法：从同步到异步</h2>
+<h3 id="31-基本语法与-task-类似">3.1 基本语法（与 Task 类似）</h3>
+<p>UniTask 的核心语法和 <code>Task</code> 一致，通过 <code>async/await</code> 关键字实现异步逻辑，无需学习新语法。</p>
+<h4 id="示例-1无返回值异步方法">示例 1：无返回值异步方法</h4>
+<pre><code class="language-csharp">using Cysharp.Threading.Tasks;
+using UnityEngine;
+
+public class UniTaskDemo : MonoBehaviour
+{
+    private async void Start()
+    {
+        Debug.Log(&quot;开始异步操作&quot;);
+        await DoAsyncWork(); // 等待异步操作完成
+        Debug.Log(&quot;异步操作结束&quot;);
+    }
+
+    // 异步方法：返回 UniTask
+    private async UniTask DoAsyncWork()
+    {
+        await UniTask.Delay(1000); // 等待 1 秒（类似 Task.Delay，但更轻量）
+        Debug.Log(&quot;异步工作完成&quot;);
+    }
+}
+</code></pre>
+<h4 id="示例-2有返回值异步方法">示例 2：有返回值异步方法</h4>
+<pre><code class="language-csharp">private async void Start()
+{
+    int result = await CalculateAsync(10, 20);
+    Debug.Log($&quot;计算结果：{result}&quot;); // 输出 30
+}
+
+// 有返回值的异步方法：返回 UniTask&lt;T&gt;
+private async UniTask&lt;int&gt; CalculateAsync(int a, int b)
+{
+    await UniTask.Delay(500); // 模拟耗时计算
+    return a + b;
+}
+</code></pre>
+<h3 id="32-等待-unity-原生异步对象">3.2 等待 Unity 原生异步对象</h3>
+<p>UniTask 原生支持等待 Unity 常用异步对象，无需手动封装 <code>Task</code>。</p>
+<h4 id="示例-1等待协程coroutine">示例 1：等待协程（Coroutine）</h4>
+<pre><code class="language-csharp">private async void Start()
+{
+    Debug.Log(&quot;开始等待协程&quot;);
+    // 直接 await 协程（UniTask 自动封装）
+    await StartCoroutine(MyCoroutine());
+    Debug.Log(&quot;协程执行完成&quot;);
+}
+
+private IEnumerator MyCoroutine()
+{
+    yield return new WaitForSeconds(1.5f);
+    Debug.Log(&quot;协程内部执行&quot;);
+}
+</code></pre>
+<h4 id="示例-2等待场景加载asyncoperation">示例 2：等待场景加载（AsyncOperation）</h4>
+<pre><code class="language-csharp">using UnityEngine.SceneManagement;
+
+private async void LoadSceneAsync()
+{
+    AsyncOperation asyncOp = SceneManager.LoadSceneAsync(&quot;NextScene&quot;);
+    // 等待场景加载完成（可监听进度）
+    await asyncOp;
+    Debug.Log(&quot;场景加载完成&quot;);
+}
+
+// 进阶：监听加载进度
+private async void LoadSceneWithProgress()
+{
+    AsyncOperation asyncOp = SceneManager.LoadSceneAsync(&quot;NextScene&quot;);
+    asyncOp.allowSceneActivation = false; // 先不激活场景
+
+    // 循环等待，直到加载进度达到 0.9（Unity 场景加载进度最大值为 0.9，激活后才到 1.0）
+    while (asyncOp.progress &lt; 0.9f)
+    {
+        Debug.Log($&quot;加载进度：{asyncOp.progress:P0}&quot;);
+        await UniTask.Yield(); // 每帧等待（类似 yield return null）
+    }
+
+    asyncOp.allowSceneActivation = true; // 激活场景
+    await asyncOp; // 等待激活完成
+    Debug.Log(&quot;场景加载并激活完成&quot;);
+}
+</code></pre>
+<h4 id="示例-3等待网络请求unitywebrequest">示例 3：等待网络请求（UnityWebRequest）</h4>
+<pre><code class="language-csharp">using UnityEngine.Networking;
+
+private async void FetchDataAsync()
+{
+    using UnityWebRequest webRequest = UnityWebRequest.Get(&quot;https://jsonplaceholder.typicode.com/todos/1&quot;);
+    // 直接 await UnityWebRequest（UniTask 扩展方法）
+    await webRequest.SendWebRequest();
+
+    if (webRequest.result == UnityWebRequest.Result.Success)
+    {
+        Debug.Log($&quot;请求成功：{webRequest.downloadHandler.text}&quot;);
+    }
+    else
+    {
+        Debug.LogError($&quot;请求失败：{webRequest.error}&quot;);
+    }
+}
+</code></pre>
+<h2 id="四-核心特性与高级用法">四、核心特性与高级用法</h2>
+<h3 id="41-轻量化与-gc-优化">4.1 轻量化与 GC 优化</h3>
+<p>UniTask 的核心优势是<strong>低内存分配</strong>，关键优化点：</p>
+<ul>
+<li><code>UniTask</code> 是值类型（struct），默认栈分配（无需堆内存）。</li>
+<li>异步状态机支持 <code>[AsyncMethodBuilder(typeof(UniTaskBuilder&lt;&gt;))]</code>，避免额外分配。</li>
+<li>提供 <code>UniTask.Yield()</code> 替代 <code>Task.Yield()</code>，无堆分配。</li>
+</ul>
+<h4 id="示例无分配异步方法">示例：无分配异步方法</h4>
+<pre><code class="language-csharp">// 标记为 [MethodImpl(MethodImplOptions.AggressiveInlining)] 进一步优化
+private async UniTask NoAllocationWork(CancellationToken ct = default)
+{
+    // UniTask.Yield()：无分配，等价于 yield return null
+    await UniTask.Yield(ct); 
+    Debug.Log(&quot;每帧执行，无GC&quot;);
+}
+</code></pre>
+<h3 id="42-取消操作cancellationtoken">4.2 取消操作（CancellationToken）</h3>
+<p>UniTask 完全兼容 .NET 的 <code>CancellationToken</code>，支持优雅终止异步操作。</p>
+<h4 id="示例超时取消-手动取消">示例：超时取消 + 手动取消</h4>
+<pre><code class="language-csharp">using System;
+using UnityEngine;
+
+private CancellationTokenSource _cts;
+
+private async void Start()
+{
+    _cts = new CancellationTokenSource();
+
+    try
+    {
+        // 1. 超时取消：5 秒后自动取消
+        // await LongRunningTask(_cts.Token).Timeout(5000);
+
+        // 2. 手动取消：2 秒后调用 Cancel()
+        await UniTask.Delay(2000);
+        _cts.Cancel(); // 手动取消
+        await LongRunningTask(_cts.Token);
+    }
+    catch (OperationCanceledException)
+    {
+        Debug.Log(&quot;异步操作被取消&quot;);
+    }
+    finally
+    {
+        _cts.Dispose(); // 释放资源
+    }
+}
+
+// 支持取消的异步任务
+private async UniTask LongRunningTask(CancellationToken ct)
+{
+    while (true)
+    {
+        Debug.Log(&quot;执行中...&quot;);
+        // 传入 ct，检测到取消时抛出 OperationCanceledException
+        await UniTask.Delay(1000, cancellationToken: ct);
+    }
+}
+</code></pre>
+<h3 id="43-并发控制与批量等待">4.3 并发控制与批量等待</h3>
+<p>UniTask 提供类似 <code>Task.WhenAll</code>/<code>Task.WhenAny</code> 的 API，支持批量等待异步操作。</p>
+<h4 id="示例-1等待所有任务完成whenall">示例 1：等待所有任务完成（WhenAll）</h4>
+<pre><code class="language-csharp">private async void Start()
+{
+    // 启动 3 个并行任务
+    var task1 = FetchDataAsync(&quot;url1&quot;);
+    var task2 = FetchDataAsync(&quot;url2&quot;);
+    var task3 = FetchDataAsync(&quot;url3&quot;);
+
+    // 等待所有任务完成（返回结果数组）
+    string[] results = await UniTask.WhenAll(task1, task2, task3);
+    Debug.Log($&quot;所有请求完成，结果数：{results.Length}&quot;);
+}
+
+private async UniTask&lt;string&gt; FetchDataAsync(string url)
+{
+    await UniTask.Delay(UnityEngine.Random.Range(500, 1500)); // 模拟随机耗时
+    return $&quot;数据-{url}&quot;;
+}
+</code></pre>
+<h4 id="示例-2等待任意一个任务完成whenany">示例 2：等待任意一个任务完成（WhenAny）</h4>
+<pre><code class="language-csharp">private async void Start()
+{
+    var taskA = TaskWithDelay(1000, &quot;A&quot;);
+    var taskB = TaskWithDelay(2000, &quot;B&quot;);
+    var taskC = TaskWithDelay(1500, &quot;C&quot;);
+
+    // 等待第一个完成的任务
+    (bool isCompleted, string result) = await UniTask.WhenAny(taskA, taskB, taskC);
+    Debug.Log($&quot;第一个完成的任务：{result}&quot;); // 输出 &quot;A&quot;
+}
+
+private async UniTask&lt;string&gt; TaskWithDelay(int ms, string name)
+{
+    await UniTask.Delay(ms);
+    return name;
+}
+</code></pre>
+<h3 id="44-超时与重试">4.4 超时与重试</h3>
+<p>UniTask 内置超时、重试等实用功能，无需手动封装。</p>
+<h4 id="示例-1超时控制timeout">示例 1：超时控制（Timeout）</h4>
+<pre><code class="language-csharp">private async void Start()
+{
+    try
+    {
+        // 5 秒内未完成则抛出 TimeoutException
+        await FetchDataAsync(&quot;url&quot;).Timeout(5000);
+        Debug.Log(&quot;请求成功&quot;);
+    }
+    catch (TimeoutException)
+    {
+        Debug.LogError(&quot;请求超时&quot;);
+    }
+}
+</code></pre>
+<h4 id="示例-2自动重试retry">示例 2：自动重试（Retry）</h4>
+<pre><code class="language-csharp">private async void Start()
+{
+    // 失败时重试 3 次，每次间隔 1 秒
+    await FetchDataAsync(&quot;unstable-url&quot;)
+        .Retry(3, (attempt, ex) =&gt;
+        {
+            Debug.Log($&quot;第 {attempt} 次重试（原因：{ex.Message}）&quot;);
+            return UniTask.Delay(1000); // 重试间隔
+        });
+}
+
+private async UniTask FetchDataAsync(string url)
+{
+    // 模拟随机失败
+    if (UnityEngine.Random.value &lt; 0.7f)
+    {
+        throw new Exception(&quot;请求失败&quot;);
+    }
+    Debug.Log(&quot;请求成功&quot;);
+}
+</code></pre>
+<h3 id="45-调度器scheduler">4.5 调度器（Scheduler）</h3>
+<p>UniTask 支持自定义调度器，默认使用 <code>UnityMainThreadScheduler</code>（主线程调度），确保 UI/Transform 操作安全。</p>
+<h4 id="常用调度器">常用调度器：</h4>
+<table>
+<thead>
+<tr>
+<th>调度器类型</th>
+<th>作用</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UnityMainThreadScheduler</code></td>
+<td>主线程调度（默认）</td>
+<td>UI 操作、Transform 修改、协程交互</td>
+</tr>
+<tr>
+<td><code>ThreadPoolScheduler</code></td>
+<td>线程池调度（多线程）</td>
+<td>耗时计算、无锁IO操作</td>
+</tr>
+<tr>
+<td><code>CurrentThreadScheduler</code></td>
+<td>当前线程调度</td>
+<td>同步执行（无需切换线程）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例切换到线程池执行耗时操作">示例：切换到线程池执行耗时操作</h4>
+<pre><code class="language-csharp">private async void Start()
+{
+    Debug.Log($&quot;主线程 ID：{System.Threading.Thread.CurrentThread.ManagedThreadId}&quot;);
+
+    // 切换到线程池执行耗时计算（非主线程）
+    int result = await UniTask.RunOnThreadPool(() =&gt;
+    {
+        Debug.Log($&quot;线程池 ID：{System.Threading.Thread.CurrentThread.ManagedThreadId}&quot;);
+        int sum = 0;
+        for (int i = 0; i &lt; 100000000; i++) sum += i;
+        return sum;
+    });
+
+    // 自动切回主线程（安全操作UI）
+    Debug.Log($&quot;计算结果：{result}（主线程 ID：{System.Threading.Thread.CurrentThread.ManagedThreadId}）&quot;);
+}
+</code></pre>
+<h2 id="五-unitask-与-coroutinetask-的对比">五、UniTask 与 Coroutine/Task 的对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>UniTask</th>
+<th>Coroutine（Unity 协程）</th>
+<th>Task（.NET 原生）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内存分配</td>
+<td>极低（值类型+栈分配）</td>
+<td>中（IEnumerator 实例+堆分配）</td>
+<td>高（引用类型+堆分配）</td>
+</tr>
+<tr>
+<td>语法支持</td>
+<td><code>async/await</code>（强类型、编译检查）</td>
+<td><code>IEnumerator</code>（弱类型、无编译检查）</td>
+<td><code>async/await</code>（强类型）</td>
+</tr>
+<tr>
+<td>Unity 原生支持</td>
+<td>完美（直接等待 AsyncOperation 等）</td>
+<td>原生支持，但无法返回值</td>
+<td>需手动封装（如 <code>Task.FromResult</code>）</td>
+</tr>
+<tr>
+<td>线程安全</td>
+<td>支持调度器切换（主线程/多线程）</td>
+<td>仅主线程（无法多线程）</td>
+<td>支持多线程，但需手动控制线程安全</td>
+</tr>
+<tr>
+<td>功能丰富度</td>
+<td>高（超时、重试、并发控制）</td>
+<td>低（仅基础等待）</td>
+<td>中（需配合其他库扩展）</td>
+</tr>
+<tr>
+<td>IL2CPP 兼容性</td>
+<td>完美支持（无反射）</td>
+<td>支持</td>
+<td>部分支持（需注意 AOT 限制）</td>
+</tr>
+<tr>
+<td>错误处理</td>
+<td><code>try/catch</code> 直接捕获</td>
+<td>难以捕获异常</td>
+<td><code>try/catch</code> 直接捕获</td>
+</tr>
+</tbody>
+</table>
+<h3 id="选型建议">选型建议：</h3>
+<ul>
+<li>新项目/异步逻辑复杂：优先用 <strong>UniTask</strong>（兼顾性能与开发效率）。</li>
+<li>简单延时/序列操作：Coroutine 足够（学习成本低）。</li>
+<li>跨平台非 Unity 项目：用 <strong>Task</strong>（生态更全）。</li>
+</ul>
+<h2 id="六-常见问题与注意事项">六、常见问题与注意事项</h2>
+<h3 id="61-避免常见陷阱">6.1 避免常见陷阱</h3>
+<ol>
+<li><strong>忘记 await 异步方法</strong>：<code>UniTask</code> 不 await 会直接执行（类似 Task），但可能导致逻辑顺序错误，需确保关键异步操作被 await。</li>
+<li><strong>跨线程操作 UI</strong>：默认调度器是主线程，若手动切换到线程池，需通过 <code>await UniTask.SwitchToMainThread()</code> 切回主线程再操作 UI。</li>
+<li><strong>CancellationToken 未释放</strong>：<code>CancellationTokenSource</code> 需手动 Dispose，避免内存泄漏（尤其长生命周期对象）。</li>
+<li><strong>IL2CPP 编译问题</strong>：避免使用 <code>dynamic</code> 关键字、匿名类型在异步方法中（AOT 编译不支持），UniTask 本身无此问题。</li>
+</ol>
+<h3 id="62-性能优化技巧">6.2 性能优化技巧</h3>
+<ul>
+<li>频繁调用的异步方法：使用 <code>[AsyncMethodBuilder(typeof(UniTaskBuilder&lt;&gt;))]</code> 并标记 <code>MethodImplOptions.AggressiveInlining</code>。</li>
+<li>无返回值且无需等待的方法：返回 <code>UniTaskVoid</code> 而非 <code>UniTask</code>（减少分配）。</li>
+<li>批量异步操作：优先用 <code>UniTask.WhenAll</code> 而非多个独立 await（减少线程切换开销）。</li>
+</ul>
+<h3 id="63-错误处理">6.3 错误处理</h3>
+<p>UniTask 支持 <code>try/catch</code> 直接捕获异常，包括：</p>
+<ul>
+<li><code>OperationCanceledException</code>：取消操作时抛出。</li>
+<li><code>TimeoutException</code>：超时的抛出。</li>
+<li>自定义异常：异步方法中主动抛出的异常。</li>
+</ul>
+<pre><code class="language-csharp">private async void Start()
+{
+    try
+    {
+        await RiskyOperation();
+    }
+    catch (OperationCanceledException)
+    {
+        Debug.Log(&quot;操作被取消&quot;);
+    }
+    catch (TimeoutException)
+    {
+        Debug.Log(&quot;操作超时&quot;);
+    }
+    catch (Exception ex)
+    {
+        Debug.LogError($&quot;未知错误：{ex.Message}&quot;);
+    }
+}
+
+private async UniTask RiskyOperation()
+{
+    await UniTask.Delay(1000);
+    throw new Exception(&quot;模拟错误&quot;);
+}
+</code></pre>
+<h2 id="七-总结">七、总结</h2>
+<p>UniTask 是 Unity 异步编程的<strong>最优解之一</strong>，它既保留了 <code>async/await</code> 的简洁语法，又解决了原生 <code>Task</code> 的性能问题，同时深度适配 Unity 生态。核心亮点：</p>
+<ul>
+<li>极致轻量化，GC 友好，适合移动平台等对性能敏感的场景。</li>
+<li>原生支持 Unity 异步对象，开发效率高。</li>
+<li>丰富的高级功能（超时、重试、并发控制），无需重复造轮子。</li>
+<li>完美兼容 IL2CPP 编译，跨平台稳定。</li>
+</ul>
+<p>如果你的 Unity 项目需要复杂异步逻辑（如网络请求、资源加载、多线程计算），UniTask 是替代 Coroutine 和原生 Task 的首选方案。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x01unitask-de-waithan-shu-shi-li/" class="post-title gt-a-link">
+                    0x01.UniTask的Wait*函数示例
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

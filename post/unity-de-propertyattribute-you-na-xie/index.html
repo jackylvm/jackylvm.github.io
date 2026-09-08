@@ -1,0 +1,311 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的PropertyAttribute有哪些? | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的PropertyAttribute有哪些?
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 开发中，<strong><code>PropertyAttribute</code></strong> 是用来<strong>修饰字段</strong>、在 Inspector 面板上实现<strong>可视化布局、校验、功能增强</strong>的特性（Attribute），最常用的就是 <code>[Header]</code>。</p>
+<p>我给你整理了 <strong>Unity 内置、无需插件、开箱即用</strong> 的全部常用 <code>PropertyAttribute</code>，按功能分类，直接复制就能用，非常实用。</p>
+<h1 id="一-标题-分组-布局类最常用">一、标题 / 分组 / 布局类（最常用）</h1>
+<p>这些用来让 Inspector 面板更清晰、分组更直观。</p>
+<h3 id="1-header标题">1. <code>[Header(&quot;标题&quot;)]</code></h3>
+<p>给字段上方加一个<strong>加粗标题</strong>，用于分组。</p>
+<pre><code class="language-csharp">[Header(&quot;玩家设置&quot;)]
+public int hp;
+</code></pre>
+<h3 id="2-space-space间距">2. <code>[Space]</code> / <code>[Space(间距)]</code></h3>
+<p>在字段之间增加<strong>空行间距</strong>。</p>
+<pre><code class="language-csharp">public int a;
+[Space] // 默认空一行
+[Space(20)] // 空20像素
+public int b;
+</code></pre>
+<h3 id="3-tooltip提示文字">3. <code>[Tooltip(&quot;提示文字&quot;)]</code></h3>
+<p>鼠标悬停在字段上时显示<strong>提示信息</strong>。</p>
+<pre><code class="language-csharp">[Tooltip(&quot;玩家最大生命值，不能超过100&quot;)]
+public int maxHp;
+</code></pre>
+<h3 id="4-separator">4. <code>[Separator]</code></h3>
+<p>画一条<strong>分隔线</strong>（部分 Unity 版本自带）。</p>
+<hr>
+<h1 id="二-数值范围-限制类">二、数值范围 / 限制类</h1>
+<p>强制限制数值输入范围，防止填错。</p>
+<h3 id="5-range最小值-最大值">5. <code>[Range(最小值, 最大值)]</code></h3>
+<p>把数字变成<strong>滑动条</strong>，并限制范围。</p>
+<pre><code class="language-csharp">[Range(0, 100)]
+public int speed;
+</code></pre>
+<h3 id="6-min最小值">6. <code>[Min(最小值)]</code></h3>
+<p>限制数值<strong>不能小于某个值</strong>。</p>
+<pre><code class="language-csharp">[Min(0)]
+public float damage;
+</code></pre>
+<hr>
+<h1 id="三-控件显示-隐藏类">三、控件显示 / 隐藏类</h1>
+<p>控制字段在 Inspector 上的显示样式。</p>
+<h3 id="7-hideininspector">7. <code>[HideInInspector]</code></h3>
+<p>公开变量但<strong>不在面板显示</strong>。</p>
+<pre><code class="language-csharp">[HideInInspector]
+public int id;
+</code></pre>
+<h3 id="8-serializefield">8. <code>[SerializeField]</code></h3>
+<p><strong>私有变量显示在面板</strong>（超级常用）。</p>
+<pre><code class="language-csharp">[SerializeField]
+private int level;
+</code></pre>
+<h3 id="9-nonserialized">9. <code>[NonSerialized]</code></h3>
+<p>公开变量但<strong>不序列化、不显示</strong>。</p>
+<hr>
+<h1 id="四-文本-多行输入类">四、文本 / 多行输入类</h1>
+<h3 id="10-textarea最小行-最大行">10. <code>[TextArea(最小行, 最大行)]</code></h3>
+<p>把字符串变成<strong>多行文本框</strong>。</p>
+<pre><code class="language-csharp">[TextArea(2, 5)]
+public string description;
+</code></pre>
+<h3 id="11-multiline">11. <code>[Multiline]</code></h3>
+<p>简单多行文本（无滚动条）。</p>
+<hr>
+<h1 id="五-引用-资源管理类">五、引用 / 资源管理类</h1>
+<h3 id="12-requirecomponenttypeof组件">12. <code>[RequireComponent(typeof(组件))]</code></h3>
+<p><strong>强制挂载依赖组件</strong>（加在类上）。</p>
+<pre><code class="language-csharp">[RequireComponent(typeof(Rigidbody))]
+public class Player : MonoBehaviour
+</code></pre>
+<h3 id="13-contextmenu菜单名">13. <code>[ContextMenu(&quot;菜单名&quot;)]</code></h3>
+<p>在脚本右上角右键<strong>执行方法</strong>。</p>
+<pre><code class="language-csharp">[ContextMenu(&quot;重置血量&quot;)]
+void ResetHP() =&gt; hp = 100;
+</code></pre>
+<hr>
+<h1 id="六-高级内置特性编辑器增强">六、高级内置特性（编辑器增强）</h1>
+<h3 id="14-colorusage">14. <code>[ColorUsage]</code></h3>
+<p>颜色选择器（支持 HDR、Alpha）。</p>
+<h3 id="15-gradientusage">15. <code>[GradientUsage]</code></h3>
+<p>渐变编辑器。</p>
+<h3 id="16-delayed">16. <code>[Delayed]</code></h3>
+<p>输入完数值按回车才生效，防止拖动时频繁刷新。</p>
+<hr>
+<h1 id="七-最常用组合示例直接复制用">七、最常用组合示例（直接复制用）</h1>
+<pre><code class="language-csharp">[Header(&quot;战斗属性&quot;)]
+[Space(10)]
+
+[Tooltip(&quot;角色最大生命值&quot;)]
+[Range(10, 200)]
+public int maxHp;
+
+[Space]
+
+[TextArea(2, 4)]
+public string skillDesc;
+
+[SerializeField]
+private float attack;
+</code></pre>
+<hr>
+<h1 id="总结最常用的-7-个">总结：最常用的 7 个</h1>
+<p>如果你只想记最实用的，就这 7 个足够 90% 场景：</p>
+<ol>
+<li><code>[Header]</code> —— 标题分组</li>
+<li><code>[Space]</code> —— 间距</li>
+<li><code>[Tooltip]</code> —— 提示</li>
+<li><code>[Range]</code> —— 滑动条</li>
+<li><code>[SerializeField]</code> —— 私有变量显示</li>
+<li><code>[HideInInspector]</code> —— 隐藏公开变量</li>
+<li><code>[TextArea]</code> —— 多行文本</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/guo-biao-ma-jiang-suan-fan/" class="post-title gt-a-link">
+                    国标麻将算番
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

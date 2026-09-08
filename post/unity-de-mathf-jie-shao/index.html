@@ -1,0 +1,484 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的Mathf介绍 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的Mathf介绍
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-18 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/OhJfM9gu3B/" class="post-tags">
+                            # Mathf
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/zJdLx295LPI/" class="post-tags">
+                            # 数学方法
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Unity的Mathf是处理数学运算的核心静态类，涵盖基础计算、三角函数、数值处理等常用功能，无需实例化即可调用。</p>
+<h3 id="核心功能分类">核心功能分类</h3>
+<ol>
+<li><strong>基础数学运算</strong></li>
+</ol>
+<ul>
+<li>提供加减乘除外的拓展计算，比如绝对值（Abs）、取整（Round/ Floor/ Ceil）、最大值最小值（Max/ Min）。</li>
+<li>包含幂运算（Pow）、开方（Sqrt）、取模（Repeat）等常用操作。</li>
+</ul>
+<ol start="2">
+<li><strong>三角函数与角度转换</strong></li>
+</ol>
+<ul>
+<li>支持正弦（Sin）、余弦（Cos）、正切（Tan）及反三角函数（Asin/ Acos/ Atan/ Atan2）。</li>
+<li>提供角度与弧度互转（Deg2Rad/ Rad2Deg），解决Unity默认用弧度计算的需求。</li>
+</ul>
+<ol start="3">
+<li><strong>数值限制与插值</strong></li>
+</ol>
+<ul>
+<li>数值限制：Clamp限制值在指定范围，Clamp01强制值在0-1之间。</li>
+<li>插值计算：Lerp（线性插值）、SmoothDamp（平滑阻尼）、MoveTowards（匀速趋近），常用于动画、移动等渐变效果。</li>
+</ul>
+<ol start="4">
+<li><strong>其他实用工具</strong></li>
+</ol>
+<ul>
+<li>随机数：Random类虽常用，但Mathf的PerlinNoise可生成平滑随机值，适合地形、特效等场景。</li>
+<li>符号判断（Sign）、接近判断（Approximately，避免浮点数精度问题）。</li>
+</ul>
+<h3 id="关键使用要点">关键使用要点</h3>
+<ul>
+<li>所有方法均为静态，调用格式为<code>Mathf.方法名(参数)</code>。</li>
+<li>浮点数计算需注意精度，优先用Approximately判断相等，而非直接用<code>==</code>。</li>
+<li>插值类方法（如Lerp）需在Update中持续调用，才能实现渐变效果。</li>
+</ul>
+<hr>
+<h1 id="unity-mathf-常用方法速查表">Unity Mathf 常用方法速查表</h1>
+<p>以下整理了开发中高频使用的 Mathf 方法，包含 <strong>方法说明、参数、用途、示例代码</strong>，按功能分类便于快速查阅，所有方法均直接通过 <code>Mathf.方法名()</code> 静态调用。</p>
+<h2 id="一-基础数值运算">一、基础数值运算</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数说明</th>
+<th>核心用途</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mathf.Abs(float f)</td>
+<td>f：需要取绝对值的数值（int/float 均支持）</td>
+<td>获取绝对值（解决负数转正需求）</td>
+<td><code>float result = Mathf.Abs(-3.5f); // 结果：3.5</code></td>
+</tr>
+<tr>
+<td>Mathf.Round(float f)</td>
+<td>f：需要取整的浮点数</td>
+<td>四舍五入取整</td>
+<td><code>int result = Mathf.Round(2.3f); // 2</code>；<code>Mathf.Round(2.6f); // 3</code></td>
+</tr>
+<tr>
+<td>Mathf.Floor(float f)</td>
+<td>f：需要取整的浮点数</td>
+<td>向下取整（直接舍弃小数部分）</td>
+<td><code>float result = Mathf.Floor(2.9f); // 2.0</code>；<code>Mathf.Floor(-2.1f); // -3.0</code></td>
+</tr>
+<tr>
+<td>Mathf.Ceil(float f)</td>
+<td>f：需要取整的浮点数</td>
+<td>向上取整（小数部分非0则进1）</td>
+<td><code>float result = Mathf.Ceil(2.1f); // 3.0</code>；<code>Mathf.Ceil(-2.9f); // -2.0</code></td>
+</tr>
+<tr>
+<td>Mathf.Max(params float[] values)</td>
+<td>values：多个待比较的数值（支持2个或多个）</td>
+<td>取多个数值中的最大值</td>
+<td><code>float max = Mathf.Max(1.2f, 5.7f, 3.0f); // 5.7</code></td>
+</tr>
+<tr>
+<td>Mathf.Min(params float[] values)</td>
+<td>values：多个待比较的数值（支持2个或多个）</td>
+<td>取多个数值中的最小值</td>
+<td><code>float min = Mathf.Min(1.2f, 5.7f, 3.0f); // 1.2</code></td>
+</tr>
+<tr>
+<td>Mathf.Pow(float f, float p)</td>
+<td>f：底数；p：指数</td>
+<td>计算 f 的 p 次方（如平方、立方）</td>
+<td><code>float square = Mathf.Pow(3, 2); // 9</code>；<code>float cube = Mathf.Pow(2, 3); // 8</code></td>
+</tr>
+<tr>
+<td>Mathf.Sqrt(float f)</td>
+<td>f：非负底数（f ≥ 0）</td>
+<td>计算平方根</td>
+<td><code>float root = Mathf.Sqrt(16); // 4</code></td>
+</tr>
+<tr>
+<td>Mathf.Repeat(float t, float length)</td>
+<td>t：输入值；length：循环长度（length &gt; 0）</td>
+<td>循环数值（类似取模，但结果始终非负）</td>
+<td><code>float repeat = Mathf.Repeat(5.2f, 3); // 2.2</code>；<code>Mathf.Repeat(-1.1f, 3); // 1.9</code></td>
+</tr>
+<tr>
+<td>Mathf.Sign(float f)</td>
+<td>f：输入数值</td>
+<td>判断数值符号（返回 -1、0 或 1）</td>
+<td><code>int sign1 = Mathf.Sign(-7.2f); // -1</code>；<code>int sign2 = Mathf.Sign(3.1f); // 1</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="二-三角函数与角度转换">二、三角函数与角度转换</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数说明</th>
+<th>核心用途</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mathf.Deg2Rad</td>
+<td>常量（无需参数）</td>
+<td>角度转弧度（1度 = Deg2Rad 弧度）</td>
+<td><code>float rad = 90 * Mathf.Deg2Rad; // 1.5708 弧度（π/2）</code></td>
+</tr>
+<tr>
+<td>Mathf.Rad2Deg</td>
+<td>常量（无需参数）</td>
+<td>弧度转角度（1弧度 = Rad2Deg 度）</td>
+<td><code>float deg = Mathf.PI * Mathf.Rad2Deg; // 180 度</code></td>
+</tr>
+<tr>
+<td>Mathf.Sin(float rad)</td>
+<td>rad：输入角度（弧度制）</td>
+<td>计算正弦值（返回 -1 ~ 1）</td>
+<td><code>float sin90 = Mathf.Sin(90 * Mathf.Deg2Rad); // 1.0</code></td>
+</tr>
+<tr>
+<td>Mathf.Cos(float rad)</td>
+<td>rad：输入角度（弧度制）</td>
+<td>计算余弦值（返回 -1 ~ 1）</td>
+<td><code>float cos0 = Mathf.Cos(0 * Mathf.Deg2Rad); // 1.0</code></td>
+</tr>
+<tr>
+<td>Mathf.Tan(float rad)</td>
+<td>rad：输入角度（弧度制，避免 ±90° 附近值）</td>
+<td>计算正切值</td>
+<td><code>float tan45 = Mathf.Tan(45 * Mathf.Deg2Rad); // 1.0</code></td>
+</tr>
+<tr>
+<td>Mathf.Asin(float f)</td>
+<td>f：输入值（-1 ≤ f ≤ 1）</td>
+<td>计算反正弦值（返回弧度制，范围 -π/2 ~ π/2）</td>
+<td><code>float rad = Mathf.Asin(1); // π/2 弧度（90度）</code></td>
+</tr>
+<tr>
+<td>Mathf.Acos(float f)</td>
+<td>f：输入值（-1 ≤ f ≤ 1）</td>
+<td>计算反余弦值（返回弧度制，范围 0 ~ π）</td>
+<td><code>float rad = Mathf.Acos(0); // π/2 弧度（90度）</code></td>
+</tr>
+<tr>
+<td>Mathf.Atan(float f)</td>
+<td>f：输入值</td>
+<td>计算反正切值（返回弧度制，范围 -π/2 ~ π/2）</td>
+<td><code>float rad = Mathf.Atan(1); // π/4 弧度（45度）</code></td>
+</tr>
+<tr>
+<td>Mathf.Atan2(float y, float x)</td>
+<td>y：y轴坐标；x：x轴坐标</td>
+<td>计算向量(x,y)的反正切值（解决象限判断问题）</td>
+<td><code>float angle = Mathf.Atan2(1, 1) * Mathf.Rad2Deg; // 45度（第一象限）</code>；<code>Mathf.Atan2(-1, -1) * Mathf.Rad2Deg; // -135度（第三象限）</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="三-数值限制与插值动画移动常用">三、数值限制与插值（动画/移动常用）</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数说明</th>
+<th>核心用途</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mathf.Clamp(float value, float min, float max)</td>
+<td>value：输入值；min：最小值；max：最大值</td>
+<td>限制数值在 [min, max] 范围内</td>
+<td><code>float clamped = Mathf.Clamp(5.2f, 1, 3); // 3</code>；<code>Mathf.Clamp(-2.1f, 1, 3); // 1</code></td>
+</tr>
+<tr>
+<td>Mathf.Clamp01(float value)</td>
+<td>value：输入值</td>
+<td>限制数值在 [0, 1] 范围内（简化版 Clamp）</td>
+<td><code>float clamped = Mathf.Clamp01(1.5f); // 1</code>；<code>Mathf.Clamp01(-0.3f); // 0</code></td>
+</tr>
+<tr>
+<td>Mathf.Lerp(float a, float b, float t)</td>
+<td>a：起始值；b：目标值；t：插值系数（0 ≤ t ≤ 1）</td>
+<td>线性插值（t=0返回a，t=1返回b，中间平滑过渡）</td>
+<td><code>// Update中调用，实现从2到5的1秒渐变</code> <br> <code>float speed = 1f;</code> <br> <code>currentValue = Mathf.Lerp(currentValue, 5, speed * Time.deltaTime);</code></td>
+</tr>
+<tr>
+<td>Mathf.LerpUnclamped(float a, float b, float t)</td>
+<td>同 Lerp，但 t 无范围限制</td>
+<td>无限制线性插值（可超出 a/b 范围外推）</td>
+<td><code>float result = Mathf.LerpUnclamped(2, 5, 1.5f); // 6.5</code>（超出目标值）</td>
+</tr>
+<tr>
+<td>Mathf.SmoothDamp(float current, float target, ref float velocity, float smoothTime, float maxSpeed = Mathf.Infinity, float deltaTime = Time.deltaTime)</td>
+<td>current：当前值；target：目标值；velocity：当前速度（引用类型，需提前声明）；smoothTime：平滑时间；maxSpeed：最大速度</td>
+<td>平滑阻尼（带减速效果的渐变，适合相机跟随、数值缓冲）</td>
+<td><code>// 声明速度变量</code> <br> <code>private float velocity = 0;</code> <br> <code>// Update中调用</code> <br> <code>currentValue = Mathf.SmoothDamp(currentValue, targetValue, ref velocity, 0.3f);</code></td>
+</tr>
+<tr>
+<td>Mathf.MoveTowards(float current, float target, float maxDelta)</td>
+<td>current：当前值；target：目标值；maxDelta：每次最大移动步长</td>
+<td>匀速趋近目标值（避免超调）</td>
+<td><code>// 每秒移动2个单位，向10靠近</code> <br> <code>currentValue = Mathf.MoveTowards(currentValue, 10, 2 * Time.deltaTime);</code></td>
+</tr>
+<tr>
+<td>Mathf.PingPong(float t, float length)</td>
+<td>t：输入值；length：循环长度（length &gt; 0）</td>
+<td>往返循环数值（0 → length → 0 反复）</td>
+<td><code>// Update中调用，实现0~5往返</code> <br> <code>float pingPong = Mathf.PingPong(Time.time * 2, 5);</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="四-实用工具精度随机判断">四、实用工具（精度/随机/判断）</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数说明</th>
+<th>核心用途</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mathf.Approximately(float a, float b)</td>
+<td>a、b：待比较的两个浮点数</td>
+<td>浮点数精度比较（避免直接用 == 导致的误差）</td>
+<td><code>bool isEqual = Mathf.Approximately(0.1f + 0.2f, 0.3f); // true</code>（直接 == 会返回 false）</td>
+</tr>
+<tr>
+<td>Mathf.PerlinNoise(float x, float y)</td>
+<td>x、y：2D坐标值</td>
+<td>生成平滑随机值（返回 0 ~ 1，适合地形、特效、随机波动）</td>
+<td><code>// 生成随时间平滑变化的随机值</code> <br> <code>float noise = Mathf.PerlinNoise(Time.time * 0.5f, 0);</code></td>
+</tr>
+<tr>
+<td>Mathf.DeltaAngle(float current, float target)</td>
+<td>current：当前角度（度）；target：目标角度（度）</td>
+<td>计算两个角度的最短差值（返回 -180 ~ 180）</td>
+<td><code>float delta = Mathf.DeltaAngle(350, 10); // 20</code>（350→10顺时针转20度，而非340度）</td>
+</tr>
+<tr>
+<td>Mathf.InverseLerp(float a, float b, float value)</td>
+<td>a：起始值；b：目标值；value：当前值</td>
+<td>计算 value 在 [a,b] 中的归一化比例（返回 0 ~ 1，超出则外推）</td>
+<td><code>float t = Mathf.InverseLerp(2, 5, 3.5f); // 0.5</code>（3.5是2和5的中间值）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关键使用注意事项">关键使用注意事项</h2>
+<ol>
+<li>浮点数精度：<strong>永远不要用 <code>==</code> 比较两个浮点数</strong>，必须用 <code>Mathf.Approximately(a, b)</code>。</li>
+<li>插值生效：<code>Lerp</code>/<code>SmoothDamp</code>/<code>MoveTowards</code> 需在 <code>Update</code>/<code>FixedUpdate</code> 中<strong>持续调用</strong>，单次调用仅返回当前插值结果。</li>
+<li>角度单位：Unity 三角函数（Sin/Cos/Atan 等）默认接收 <strong>弧度制</strong>，需用 <code>Deg2Rad</code>/<code>Rad2Deg</code> 转换。</li>
+<li>方法特性：<code>Repeat</code> 结果始终非负（区别于 <code>%</code> 取模），<code>PingPong</code> 是往返循环（区别于 <code>Repeat</code> 的单向循环）。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-shi-yong-input-xi-tong/" class="post-title gt-a-link">
+                    Unity使用Input系统
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x05.观察者模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x05.观察者模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>观察者模式（Observer Pattern）是为了解决对象之间的“通信问题”。</p>
+<p>在 Unity 中，观察者模式可以说是<strong>最重要、使用最频繁</strong>的设计模式，没有之一。它是帮你告别“意大利面条式代码”（也就是代码互相纠缠、耦合度极高）的绝对利器。</p>
+<h3 id="为什么要用观察者模式">💡 为什么要用观察者模式？</h3>
+<p>假设你的玩家（Player）在游戏中被怪物攻击，扣了血，甚至死亡了。在这个瞬间，你需要做很多事情：</p>
+<ol>
+<li><strong>UI 界面</strong>需要更新血条。</li>
+<li><strong>音效管理器</strong>需要播放受伤或死亡音效。</li>
+<li><strong>成就系统</strong>需要记录“玩家死亡100次”的成就。</li>
+<li><strong>游戏管理器</strong>需要弹出“Game Over”界面。</li>
+</ol>
+<p><strong>新手的灾难写法：</strong><br>
+把所有引用都塞进 Player 脚本里。Player 受伤时，挨个调用 <code>ui.UpdateHealth()</code>、<code>audio.PlayDeath()</code>... 这会导致 Player 类极其臃肿，而且只要 UI 或音效改了一点点代码，Player 脚本就会报错。</p>
+<p><strong>观察者模式的优雅解法：</strong><br>
+让 Player 变成一个<strong>广播站（Subject/Publisher）</strong>，它只负责大喊一声：“我受伤了，当前血量是X！”或者“我死了！”。<br>
+至于谁想听这个消息？Player 根本不关心。UI、音效、成就系统作为<strong>观察者（Observer/Subscriber）</strong>，自己去订阅这个广播。</p>
+<hr>
+<p>在 C# 中，我们通常不需要像传统的 GoF 书籍里那样去写繁琐的 <code>IObserver</code> 接口，因为 C# 原生提供了极其强大的<strong>委托（Delegate）<strong>和</strong>事件（Event）</strong>。</p>
+<p>下面我为你演示两种在 Unity 中最实用的观察者模式写法。</p>
+<h3 id="一-最经典的-c-action-事件-推荐写法">一、 最经典的 C# Action 事件 (推荐写法)</h3>
+<p>这是日常开发中最常用的解耦方式，性能极高，代码简洁。</p>
+<p><strong>1. 广播站：玩家健康脚本 (PlayerHealth)</strong></p>
+<pre><code class="language-csharp">using System;
+using UnityEngine;
+
+public class PlayerHealth : MonoBehaviour
+{
+    public int currentHealth = 100;
+
+    // 1. 定义事件（广播频道）
+    // Action&lt;int&gt; 表示这个事件发生时，会顺便传递一个 int 类型的参数（比如当前血量）
+    public event Action&lt;int&gt; OnHealthChanged; 
+    // Action 不带参数，表示只通知事情发生了
+    public event Action OnPlayerDied;       
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log(&quot;玩家受到伤害，当前血量：&quot; + currentHealth);
+
+        // 2. 触发事件（开始广播！）
+        // 使用 ?.Invoke() 是一种安全的写法，表示“如果有人订阅了这个事件，就通知他们”
+        OnHealthChanged?.Invoke(currentHealth);
+
+        if (currentHealth &lt;= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log(&quot;玩家死亡！&quot;);
+        OnPlayerDied?.Invoke(); // 广播死亡事件
+    }
+}
+
+</code></pre>
+<p><strong>2. 观察者：UI 管理器 (UIManager)</strong></p>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.UI;
+
+public class UIManager : MonoBehaviour
+{
+    // 需要拿到玩家的引用，以便订阅它的事件
+    public PlayerHealth player; 
+    public Text healthText;
+
+    // 当脚本启用时，订阅事件
+    private void OnEnable()
+    {
+        if (player != null)
+        {
+            // 使用 += 来订阅事件
+            player.OnHealthChanged += UpdateHealthUI;
+            player.OnPlayerDied += ShowGameOverScreen;
+        }
+    }
+
+    // 当脚本禁用或销毁时，必须取消订阅！(极其重要)
+    private void OnDisable()
+    {
+        if (player != null)
+        {
+            // 使用 -= 来取消订阅
+            player.OnHealthChanged -= UpdateHealthUI;
+            player.OnPlayerDied -= ShowGameOverScreen;
+        }
+    }
+
+    // 事件触发时要执行的具体方法
+    private void UpdateHealthUI(int newHealth)
+    {
+        healthText.text = &quot;血量: &quot; + newHealth;
+    }
+
+    private void ShowGameOverScreen()
+    {
+        Debug.Log(&quot;UI：显示 Game Over 画面！&quot;);
+    }
+}
+
+</code></pre>
+<p><strong>3. 另一个观察者：音效管理器 (AudioManager)</strong></p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class AudioManager : MonoBehaviour
+{
+    public PlayerHealth player;
+
+    private void OnEnable()
+    {
+        player.OnPlayerDied += PlayDeathSound;
+    }
+
+    private void OnDisable()
+    {
+        player.OnPlayerDied -= PlayDeathSound;
+    }
+
+    private void PlayDeathSound()
+    {
+        Debug.Log(&quot;音效：播放玩家惨叫声！&quot;);
+    }
+}
+
+</code></pre>
+<p>你看，通过这种方式，<code>PlayerHealth</code> 根本不知道 <code>UIManager</code> 和 <code>AudioManager</code> 的存在。你可以随时删掉音效管理器，或者新增一个成就管理器，玩家的代码一行都不用改！这就叫<strong>高内聚，低耦合</strong>。</p>
+<hr>
+<h3 id="二-适合策划美术配置的unityevent">二、 适合策划/美术配置的：UnityEvent</h3>
+<p>如果你希望让不懂代码的策划或美术也能在 Inspector 面板中连线配置事件，你可以使用 <code>UnityEngine.Events.UnityEvent</code>。这在 Unity 官方的 UI 系统（比如 Button 的 OnClick）中被广泛使用。</p>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.Events; // 引入命名空间
+
+public class Door : MonoBehaviour
+{
+    // 定义一个可以在 Inspector 面板中显示的事件
+    public UnityEvent OnDoorOpened;
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(&quot;Player&quot;))
+        {
+            Debug.Log(&quot;门打开了！&quot;);
+            
+            // 触发事件
+            OnDoorOpened?.Invoke();
+        }
+    }
+}
+
+</code></pre>
+<p><strong>如何使用？</strong><br>
+写完这段代码后，回到 Unity 编辑器点击这扇门，你会发现它的 Inspector 面板上多了一个 <code>On Door Opened ()</code> 的列表。你可以点击 <code>+</code> 号，把播放开门音效的方法、增加玩家经验值的方法直接拖拽上去，完全不需要写额外的订阅代码！</p>
+<hr>
+<h3 id="避坑指南致命错误警告">🚨 避坑指南（致命错误警告！）</h3>
+<p>作为新手，在使用 C# 的 <code>Action</code> 或 <code>delegate</code> 时，极其容易犯一个导致游戏卡死或内存泄漏的错误：<strong>忘记取消订阅</strong>。</p>
+<p>如果你在 <code>OnEnable</code> 或 <code>Start</code> 里写了 <code>+=</code>，<strong>必须、一定、绝对</strong>要在 <code>OnDisable</code> 或 <code>OnDestroy</code> 里写对应的 <code>-=</code>。</p>
+<p><strong>为什么？</strong><br>
+假设一个敌人订阅了全局的 <code>GameManager.OnDayNightChanged</code>（昼夜交替事件）。玩家把这个敌人杀死了，敌人对应的 GameObject 被 <code>Destroy</code> 了。<br>
+但如果这个敌人没有执行 <code>-=</code>，<code>GameManager</code> 仍然保留着对它的记忆。当昼夜交替时，<code>GameManager</code> 试图通知一个已经被销毁的敌人，Unity 就会瞬间抛出可怕的 <strong>NullReferenceException（空引用异常）</strong>，严重时会导致整个游戏逻辑中断。</p>
+<p>总结一下：<strong>有加必有减，成对出现保安宁。</strong> 只要记住这一点，观察者模式将成为你在 Unity 开发中最得心应手的武器！</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x04gong-han-mo-shi/" class="post-title gt-a-link">
+                    0x04.工厂模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

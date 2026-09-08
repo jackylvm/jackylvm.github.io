@@ -1,0 +1,346 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity Mathf的高级方法 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity Mathf的高级方法
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-18 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/OhJfM9gu3B/" class="post-tags">
+                            # Mathf
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/zJdLx295LPI/" class="post-tags">
+                            # 数学方法
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>除了基础数值运算，Unity 的 <code>Mathf</code> 还有几大类高频实用方法，主要集中在 <strong>角度/向量辅助、数值平滑、特殊数学计算</strong> 等场景，以下是开发中常用的补充方法，每个都配具体用途和可运行示例：</p>
+<h2 id="一-角度与旋转辅助补充三角函数外的核心旋转工具">一、角度与旋转辅助（补充三角函数外的核心旋转工具）</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数说明</th>
+<th>核心用途</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mathf.MoveTowardsAngle(float current, float target, float maxDelta)</td>
+<td>current：当前角度（度）；target：目标角度（度）；maxDelta：每次最大旋转角度</td>
+<td>匀速旋转到目标角度（自动走最短路径）</td>
+<td><code>// 角色朝向匀速旋转（每秒转30度）</code> <br> <code>private float currentAngle = 0f;</code> <br> <code>void Update() {</code> <br> <code>currentAngle = Mathf.MoveTowardsAngle(currentAngle, 90f, 30f * Time.deltaTime);</code> <br> <code>transform.rotation = Quaternion.Euler(0, currentAngle, 0);</code> <br> <code>}</code></td>
+</tr>
+<tr>
+<td>Mathf.LerpAngle(float a, float b, float t)</td>
+<td>a：起始角度（度）；b：目标角度（度）；t：插值系数（0~1）</td>
+<td>角度线性插值（自动处理跨360°的最短路径）</td>
+<td><code>// 相机平滑转向目标角度</code> <br> <code>private float cameraAngle = 0f;</code> <br> <code>void Update() {</code> <br> <code>cameraAngle = Mathf.LerpAngle(cameraAngle, 180f, 0.5f * Time.deltaTime);</code> <br> <code>transform.rotation = Quaternion.Euler(0, cameraAngle, 0);</code> <br> <code>}</code></td>
+</tr>
+<tr>
+<td>Mathf.SmoothDampAngle(float current, float target, ref float velocity, float smoothTime, float maxSpeed = Mathf.Infinity, float deltaTime = Time.deltaTime)</td>
+<td>同 SmoothDamp，仅参数为角度（度）</td>
+<td>角度平滑阻尼（带减速的旋转，适合相机跟随）</td>
+<td><code>// 角色头部平滑转向鼠标方向</code> <br> <code>private float headAngle = 0f;</code> <br> <code>private float velocity = 0f;</code> <br> <code>void Update() {</code> <br> <code>float targetAngle = CalculateMouseAngle(); // 自定义方法获取目标角度</code> <br> <code>headAngle = Mathf.SmoothDampAngle(headAngle, targetAngle, ref velocity, 0.2f);</code> <br> <code>headTransform.rotation = Quaternion.Euler(0, headAngle, 0);</code> <br> <code>}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="二-数值平滑与曲线比基础插值更灵活的过渡">二、数值平滑与曲线（比基础插值更灵活的过渡）</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数说明</th>
+<th>核心用途</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mathf.SmoothStep(float from, float to, float t)</td>
+<td>from：起始值；to：目标值；t：插值系数（0~1）</td>
+<td>平滑过渡（缓入缓出，t在0~1时曲线过渡）</td>
+<td><code>// UI元素缩放平滑过渡（0→1→0）</code> <br> <code>void Update() {</code> <br> <code>float t = Mathf.PingPong(Time.time, 1f);</code> <br> <code>float scale = Mathf.SmoothStep(0.5f, 1.5f, t);</code> <br> <code>uiTransform.localScale = Vector3.one * scale;</code> <br> <code>}</code></td>
+</tr>
+<tr>
+<td>Mathf.Gamma(float value, float gamma)</td>
+<td>value：输入值（≥0）；gamma：伽马值（gamma&gt;0）</td>
+<td>伽马校正（调整数值曲线，用于亮度、颜色校正）</td>
+<td><code>// 调整灯光亮度曲线（暗部更亮，亮部更柔和）</code> <br> <code>float rawBrightness = 0.7f;</code> <br> <code>float gamma = 2.2f; // 标准伽马值</code> <br> <code>float correctedBrightness = Mathf.Gamma(rawBrightness, gamma);</code> <br> <code>light.intensity = correctedBrightness;</code></td>
+</tr>
+<tr>
+<td>Mathf.Pow(float f, float p)（补充场景）</td>
+<td>底数f；指数p</td>
+<td>自定义曲线过渡（如加速/减速插值）</td>
+<td><code>// 加速向目标移动（t的2次方，前期慢后期快）</code> <br> <code>private float current = 0f;</code> <br> <code>void Update() {</code> <br> <code>float t = Mathf.Clamp01(Time.time / 2f); // 2秒内从0到1</code> <br> <code>current = Mathf.Lerp(0f, 10f, Mathf.Pow(t, 2f)); // 加速插值</code> <br> <code>}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="三-特殊数学计算物理几何边界处理">三、特殊数学计算（物理/几何/边界处理）</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数说明</th>
+<th>核心用途</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mathf.DeltaAngle（补充场景）</td>
+<td>current：当前角度（度）；target：目标角度（度）</td>
+<td>角度差值计算（用于旋转速度控制）</td>
+<td><code>// 根据角度差控制旋转速度（差值越大转越快）</code> <br> <code>float currentAngle = transform.eulerAngles.y;</code> <br> <code>float targetAngle = 90f;</code> <br> <code>float delta = Mathf.DeltaAngle(currentAngle, targetAngle);</code> <br> <code>float rotateSpeed = Mathf.Abs(delta) * 2f; // 差值越大速度越快</code> <br> <code>currentAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, rotateSpeed * Time.deltaTime);</code></td>
+</tr>
+<tr>
+<td>Mathf.PerlinNoise（补充2D场景）</td>
+<td>x：x轴坐标；y：y轴坐标</td>
+<td>2D平滑随机（地形、纹理、流体效果）</td>
+<td><code>// 生成2D随机地形高度（简化版）</code> <br> <code>public int gridSize = 10;</code> <br> <code>public float noiseScale = 0.1f;</code> <br> <code>void GenerateTerrain() {</code> <br> <code>for (int x = 0; x &lt; gridSize; x++) {</code> <br> <code>for (int z = 0; z &lt; gridSize; z++) {</code> <br> <code>float height = Mathf.PerlinNoise(x * noiseScale, z * noiseScale) * 5f; // 高度0~5</code> <br> <code>Vector3 pos = new Vector3(x, height, z);</code> <br> <code>Instantiate(terrainBlock, pos, Quaternion.identity);</code> <br> <code>}</code> <br> <code>}</code></td>
+</tr>
+<tr>
+<td>Mathf.InverseLerp（补充反向插值）</td>
+<td>a：起始值；b：目标值；value：当前值</td>
+<td>反向计算插值系数（用于从结果反推比例）</td>
+<td><code>// 根据物体位置反推进度（如跑道上的进度条）</code> <br> <code>float startPos = 0f;</code> <br> <code>float endPos = 100f;</code> <br> <code>float currentPos = transform.position.x;</code> <br> <code>float progress = Mathf.InverseLerp(startPos, endPos, currentPos);</code> <br> <code>progressBar.fillAmount = progress; // 进度条同步</code></td>
+</tr>
+<tr>
+<td>Mathf.Clamp（补充边界场景）</td>
+<td>value：输入值；min：最小值；max：最大值</td>
+<td>多维度边界限制（如相机位置、角色移动范围）</td>
+<td><code>// 限制相机在指定区域内移动</code> <br> <code>Vector3 cameraPos = transform.position;</code> <br> <code>cameraPos.x = Mathf.Clamp(cameraPos.x, -10f, 10f); // x轴范围-10~10</code> <br> <code>cameraPos.z = Mathf.Clamp(cameraPos.z, -5f, 5f); // z轴范围-5~5</code> <br> <code>transform.position = cameraPos;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="四-其他高频工具方法">四、其他高频工具方法</h2>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数说明</th>
+<th>核心用途</th>
+<th>示例代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mathf.IsPowerOfTwo(int value)</td>
+<td>value：整数（≥1）</td>
+<td>判断是否为2的幂（用于纹理尺寸、网格优化）</td>
+<td><code>// 检查纹理尺寸是否为2的幂（Unity纹理优化要求）</code> <br> <code>Texture2D tex = GetComponent&lt;Renderer&gt;().material.mainTexture as Texture2D;</code> <br> <code>if (Mathf.IsPowerOfTwo(tex.width) &amp;&amp; Mathf.IsPowerOfTwo(tex.height)) {</code> <br> <code>Debug.Log(&quot;纹理尺寸符合优化要求&quot;);</code> <br> <code>} else {</code> <br> <code>Debug.LogWarning(&quot;纹理尺寸非2的幂，可能影响性能&quot;);</code> <br> <code>}</code></td>
+</tr>
+<tr>
+<td>Mathf.NextPowerOfTwo(int value)</td>
+<td>value：整数（≥1）</td>
+<td>获取大于等于value的最小2的幂（纹理/网格适配）</td>
+<td><code>// 适配纹理尺寸为2的幂</code> <br> <code>int rawWidth = 120;</code> <br> <code>int optimizedWidth = Mathf.NextPowerOfTwo(rawWidth); // 结果：128</code> <br> <code>int rawHeight = 200;</code> <br> <code>int optimizedHeight = Mathf.NextPowerOfTwo(rawHeight); // 结果：256</code></td>
+</tr>
+<tr>
+<td>Mathf.Deg2Rad/Rad2Deg（补充场景）</td>
+<td>常量（无参数）</td>
+<td>旋转矩阵/向量计算（物理、特效方向）</td>
+<td><code>// 生成指定角度的方向向量（如子弹发射方向）</code> <br> <code>float angle = 45f;</code> <br> <code>float rad = angle * Mathf.Deg2Rad;</code> <br> <code>Vector2 direction = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)); // 45度方向向量</code> <br> <code>bulletRigidbody.velocity = direction * bulletSpeed;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="核心使用场景总结">核心使用场景总结</h2>
+<p>这些补充方法覆盖了 Unity 开发中 <strong>旋转控制、平滑过渡、物理/几何计算、资源适配</strong> 四大核心场景，其中：</p>
+<ul>
+<li>角度相关（<code>MoveTowardsAngle</code>/<code>LerpAngle</code>/<code>SmoothDampAngle</code>）是角色/相机旋转的首选，避免手动处理360°边界问题；</li>
+<li>平滑过渡（<code>SmoothStep</code>/<code>Gamma</code>）比基础 <code>Lerp</code> 更自然，适合UI动画、数值缓冲；</li>
+<li>2的幂相关方法（<code>IsPowerOfTwo</code>/<code>NextPowerOfTwo</code>）是资源优化的必备工具；</li>
+<li><code>PerlinNoise</code> 的2D用法是自然效果（地形、流体）的核心。</li>
+</ul>
+<p>所有方法均保持 <code>Mathf</code> 静态调用的特性，且示例代码可直接复制到脚本中测试，结合之前的基础数值运算，可覆盖90%以上的 Unity 数学计算需求。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-mathf-de-fang-fa-shi-li/" class="post-title gt-a-link">
+                    Unity Mathf的方法示例
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

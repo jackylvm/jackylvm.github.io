@@ -1,0 +1,596 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x06. 外观模式 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x06. 外观模式
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-12-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="外观模式">外观模式</h2>
+<!-- more -->
+<p>在Unity中使用C#实现<strong>外观模式（Facade Pattern）</strong>，核心是为复杂的子系统集群提供一个统一的“门面”接口，简化客户端调用。结合游戏开发典型场景——<strong>游戏开局流程</strong>（需依次调用资源加载、角色初始化、音效播放、UI显示等多个子系统），能直观体现外观模式“隐藏复杂细节、简化调用”的核心特性。</p>
+<h3 id="一-核心思路外观模式">一、核心思路（外观模式）</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>对应实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>子系统类</td>
+<td><code>ResourceSystem</code>/<code>CharacterSystem</code>/<code>AudioSystem</code>/<code>UISystem</code></td>
+<td>复杂功能的具体实现者，各自负责独立的子功能（加载资源、创建角色等）</td>
+</tr>
+<tr>
+<td>外观类</td>
+<td><code>GameStartFacade</code>（游戏开局外观类）</td>
+<td>封装所有子系统的调用逻辑，对外提供统一的简化接口（如<code>StartGame()</code>）</td>
+</tr>
+<tr>
+<td>客户端</td>
+<td><code>GameManager</code>（挂载到Unity物体）</td>
+<td>仅调用外观类的接口，无需直接操作子系统</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-完整代码实现">二、完整代码实现</h3>
+<h4 id="1-子系统类复杂功能的具体实现">1. 子系统类（复杂功能的具体实现）</h4>
+<h5 id="11-资源加载子系统resourcesystem">1.1 资源加载子系统：<code>ResourceSystem</code></h5>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 子系统1：资源加载（场景、预制体、配置表等）
+/// &lt;/summary&gt;
+public class ResourceSystem
+{
+    /// &lt;summary&gt;
+    /// 加载游戏核心资源（模拟异步加载）
+    /// &lt;/summary&gt;
+    public void LoadCoreResources()
+    {
+        Debug.Log(&quot;[资源子系统] 开始加载场景资源...&quot;);
+        // Unity实际开发中可调用Resources.Load/Addressables.LoadAsync
+        // 模拟加载延迟
+        Debug.Log(&quot;[资源子系统] 角色预制体加载完成！&quot;);
+        Debug.Log(&quot;[资源子系统] 关卡配置表加载完成！&quot;);
+        Debug.Log(&quot;[资源子系统] 所有核心资源加载完毕✅&quot;);
+    }
+
+    /// &lt;summary&gt;
+    /// 释放无用资源（子系统内部方法，客户端无需关注）
+    /// &lt;/summary&gt;
+    private void UnloadUnusedResources()
+    {
+        Resources.UnloadUnusedAssets();
+        Debug.Log(&quot;[资源子系统] 已释放无用资源&quot;);
+    }
+}
+</code></pre>
+<h5 id="12-角色初始化子系统charactersystem">1.2 角色初始化子系统：<code>CharacterSystem</code></h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 子系统2：角色初始化（创建玩家、加载存档、初始化属性）
+/// &lt;/summary&gt;
+public class CharacterSystem
+{
+    /// &lt;summary&gt;
+    /// 初始化玩家角色
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;playerName&quot;&gt;玩家名称&lt;/param&gt;
+    public void InitPlayer(string playerName)
+    {
+        Debug.Log($&quot;[角色子系统] 开始初始化玩家：{playerName}&quot;);
+        // 模拟加载玩家存档、初始化属性
+        Debug.Log($&quot;[角色子系统] 玩家{playerName}存档加载完成！&quot;);
+        Debug.Log($&quot;[角色子系统] 玩家{playerName}属性初始化完成（HP=1000，攻击=200）✅&quot;);
+    }
+}
+</code></pre>
+<h5 id="13-音效播放子系统audiosystem">1.3 音效播放子系统：<code>AudioSystem</code></h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 子系统3：音效管理（背景音乐、音效播放）
+/// &lt;/summary&gt;
+public class AudioSystem
+{
+    /// &lt;summary&gt;
+    /// 播放开局背景音乐
+    /// &lt;/summary&gt;
+    public void PlayBGM()
+    {
+        Debug.Log(&quot;[音效子系统] 开始播放开局背景音乐《勇者出征》✅&quot;);
+        // Unity实际开发中可调用AudioSource.Play()
+    }
+
+    /// &lt;summary&gt;
+    /// 停止所有音效（子系统内部方法）
+    /// &lt;/summary&gt;
+    private void StopAllAudio()
+    {
+        Debug.Log(&quot;[音效子系统] 已停止所有音效&quot;);
+    }
+}
+</code></pre>
+<h5 id="14-ui显示子系统uisystem">1.4 UI显示子系统：<code>UISystem</code></h5>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 子系统4：UI管理（显示开局界面、隐藏加载界面）
+/// &lt;/summary&gt;
+public class UISystem
+{
+    /// &lt;summary&gt;
+    /// 显示游戏主界面
+    /// &lt;/summary&gt;
+    public void ShowMainUI()
+    {
+        Debug.Log(&quot;[UI子系统] 隐藏加载界面，显示游戏主界面✅&quot;);
+        // Unity实际开发中可控制Canvas/Panel的显示隐藏
+    }
+
+    /// &lt;summary&gt;
+    /// 显示加载进度（子系统内部方法）
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;progress&quot;&gt;进度0-100&lt;/param&gt;
+    private void ShowLoadingProgress(int progress)
+    {
+        Debug.Log($&quot;[UI子系统] 加载进度：{progress}%&quot;);
+    }
+}
+</code></pre>
+<h4 id="2-外观类gamestartfacade统一门面接口">2. 外观类：<code>GameStartFacade</code>（统一门面接口）</h4>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 外观类：游戏开局门面，封装所有子系统的复杂调用逻辑
+/// &lt;/summary&gt;
+public class GameStartFacade
+{
+    // 持有所有子系统的引用
+    private readonly ResourceSystem _resourceSystem;
+    private readonly CharacterSystem _characterSystem;
+    private readonly AudioSystem _audioSystem;
+    private readonly UISystem _uiSystem;
+
+    // 初始化所有子系统
+    public GameStartFacade()
+    {
+        _resourceSystem = new ResourceSystem();
+        _characterSystem = new CharacterSystem();
+        _audioSystem = new AudioSystem();
+        _uiSystem = new UISystem();
+    }
+
+    /// &lt;summary&gt;
+    /// 对外暴露的简化接口：一键启动游戏
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;playerName&quot;&gt;玩家名称&lt;/param&gt;
+    public void StartGame(string playerName)
+    {
+        Debug.Log(&quot;========== 开始游戏开局流程 ==========\n&quot;);
+        
+        // 按顺序调用子系统（复杂逻辑封装在外观类内部）
+        _resourceSystem.LoadCoreResources();
+        Debug.Log(&quot;&quot;); // 空行分隔
+        _characterSystem.InitPlayer(playerName);
+        Debug.Log(&quot;&quot;);
+        _audioSystem.PlayBGM();
+        Debug.Log(&quot;&quot;);
+        _uiSystem.ShowMainUI();
+        
+        Debug.Log(&quot;\n========== 游戏开局流程完成 ==========&quot;);
+    }
+
+    /// &lt;summary&gt;
+    /// 可选：对外暴露的简化接口——退出游戏
+    /// &lt;/summary&gt;
+    public void ExitGame()
+    {
+        Debug.Log(&quot;\n========== 开始退出游戏流程 ==========&quot;);
+        // 调用子系统的清理逻辑（即使子系统方法是private，外观类可通过public方法间接调用）
+        Debug.Log(&quot;[资源子系统] 释放所有资源&quot;);
+        Debug.Log(&quot;[音效子系统] 停止背景音乐&quot;);
+        Debug.Log(&quot;[UI子系统] 显示退出确认界面&quot;);
+        Debug.Log(&quot;========== 退出流程准备完成 ==========&quot;);
+    }
+}
+</code></pre>
+<h4 id="3-客户端调用gamemanagerunity场景挂载">3. 客户端调用：<code>GameManager</code>（Unity场景挂载）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+/// &lt;summary&gt;
+/// 游戏管理器（客户端）：仅调用外观类的简化接口，无需关注子系统细节
+/// &lt;/summary&gt;
+public class GameManager : MonoBehaviour
+{
+    private GameStartFacade _gameStartFacade;
+
+    private void Awake()
+    {
+        // 初始化外观类
+        _gameStartFacade = new GameStartFacade();
+    }
+
+    private void Start()
+    {
+        // 一键启动游戏（仅需调用外观类的一个方法，无需操作任何子系统）
+        _gameStartFacade.StartGame(&quot;勇者一号&quot;);
+
+        // 模拟5秒后退出游戏（测试退出接口）
+        Invoke(nameof(ExitGameTest), 5f);
+    }
+
+    private void ExitGameTest()
+    {
+        _gameStartFacade.ExitGame();
+    }
+}
+</code></pre>
+<h3 id="三-unity运行效果">三、Unity运行效果</h3>
+<p>将<code>GameManager</code>挂载到场景任意物体（如MainCamera），运行后控制台输出：</p>
+<pre><code>========== 开始游戏开局流程 ==========
+
+[资源子系统] 开始加载场景资源...
+[资源子系统] 角色预制体加载完成！
+[资源子系统] 关卡配置表加载完成！
+[资源子系统] 所有核心资源加载完毕✅
+
+[角色子系统] 开始初始化玩家：勇者一号
+[角色子系统] 玩家勇者一号存档加载完成！
+[角色子系统] 玩家勇者一号属性初始化完成（HP=1000，攻击=200）✅
+
+[音效子系统] 开始播放开局背景音乐《勇者出征》✅
+
+[UI子系统] 隐藏加载界面，显示游戏主界面✅
+
+========== 游戏开局流程完成 ==========
+
+// 5秒后输出：
+========== 开始退出游戏流程 ==========
+[资源子系统] 释放所有资源
+[音效子系统] 停止背景音乐
+[UI子系统] 显示退出确认界面
+========== 退出流程准备完成 ==========
+</code></pre>
+<h3 id="四-unity场景扩展贴合实际开发">四、Unity场景扩展（贴合实际开发）</h3>
+<h4 id="1-结合unity异步加载addressables">1. 结合Unity异步加载（Addressables）</h4>
+<p>实际项目中，资源加载是异步的，可在外观类中封装异步逻辑，客户端只需等待回调：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 外观类中封装异步加载逻辑
+/// &lt;/summary&gt;
+public class GameStartFacade
+{
+    // ... 原有子系统引用
+
+    /// &lt;summary&gt;
+    /// 异步启动游戏（带回调）
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;playerName&quot;&gt;玩家名称&lt;/param&gt;
+    /// &lt;param name=&quot;onComplete&quot;&gt;完成回调&lt;/param&gt;
+    public async void StartGameAsync(string playerName, Action onComplete)
+    {
+        Debug.Log(&quot;========== 异步开始游戏开局流程 ==========\n&quot;);
+        
+        // 异步加载资源（Unity Addressables示例）
+        // var handle = Addressables.LoadAssetsAsync&lt;GameObject&gt;(&quot;Character&quot;, null);
+        // await handle.Task;
+        Debug.Log(&quot;[资源子系统] 异步加载资源完成！&quot;);
+        
+        _characterSystem.InitPlayer(playerName);
+        _audioSystem.PlayBGM();
+        _uiSystem.ShowMainUI();
+        
+        Debug.Log(&quot;\n========== 异步开局流程完成 ==========&quot;);
+        onComplete?.Invoke();
+    }
+}
+
+// 客户端调用异步接口
+private void Start()
+{
+    _gameStartFacade.StartGameAsync(&quot;勇者一号&quot;, () =&gt;
+    {
+        Debug.Log(&quot;【客户端】游戏已成功启动，可开始交互！&quot;);
+    });
+}
+</code></pre>
+<h4 id="2-子系统单例化unity常用优化">2. 子系统单例化（Unity常用优化）</h4>
+<p>将子系统改为单例模式，避免重复创建实例，符合Unity开发习惯：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 单例化的资源子系统
+/// &lt;/summary&gt;
+public class ResourceSystem
+{
+    // 单例实例
+    private static ResourceSystem _instance;
+    public static ResourceSystem Instance =&gt; 
+        _instance ?? (_instance = new ResourceSystem());
+
+    // 私有构造器，禁止外部new
+    private ResourceSystem() { }
+
+    // ... 原有LoadCoreResources方法
+}
+
+// 外观类中使用单例
+public class GameStartFacade
+{
+    private readonly ResourceSystem _resourceSystem = ResourceSystem.Instance;
+    // ... 其他子系统同理
+}
+</code></pre>
+<h4 id="3-动态扩展子系统符合开闭原则">3. 动态扩展子系统（符合开闭原则）</h4>
+<p>新增子系统（如<code>SaveSystem</code>存档子系统）时，仅需修改外观类，客户端调用逻辑完全不变：</p>
+<pre><code class="language-csharp">/// &lt;summary&gt;
+/// 新增子系统：存档管理
+/// &lt;/summary&gt;
+public class SaveSystem
+{
+    public void LoadSaveData(string playerName)
+    {
+        Debug.Log($&quot;[存档子系统] 加载玩家{playerName}的存档数据✅&quot;);
+    }
+}
+
+// 外观类中集成新子系统
+public class GameStartFacade
+{
+    private readonly SaveSystem _saveSystem = new SaveSystem();
+
+    public void StartGame(string playerName)
+    {
+        Debug.Log(&quot;========== 开始游戏开局流程 ==========\n&quot;);
+        
+        _resourceSystem.LoadCoreResources();
+        Debug.Log(&quot;&quot;);
+        _saveSystem.LoadSaveData(playerName); // 新增调用
+        Debug.Log(&quot;&quot;);
+        _characterSystem.InitPlayer(playerName);
+        // ... 原有其他子系统调用
+    }
+}
+
+// 客户端调用不变，仍只需一行代码
+_gameStartFacade.StartGame(&quot;勇者一号&quot;);
+</code></pre>
+<h4 id="4-错误处理封装简化客户端异常处理">4. 错误处理封装（简化客户端异常处理）</h4>
+<p>在外观类中统一处理子系统的异常，客户端无需关注具体错误类型：</p>
+<pre><code class="language-csharp">public void StartGame(string playerName)
+{
+    try
+    {
+        _resourceSystem.LoadCoreResources();
+        _characterSystem.InitPlayer(playerName);
+        _audioSystem.PlayBGM();
+        _uiSystem.ShowMainUI();
+    }
+    catch (Exception ex)
+    {
+        // 统一错误处理（显示错误UI、记录日志）
+        Debug.LogError($&quot;[外观类] 开局流程出错：{ex.Message}&quot;);
+        _uiSystem.ShowErrorUI(&quot;游戏启动失败，请重试！&quot;);
+    }
+}
+</code></pre>
+<h3 id="五-外观模式核心优势unity场景">五、外观模式核心优势（Unity场景）</h3>
+<ol>
+<li><strong>简化调用</strong>：客户端仅需调用外观类的1-2个方法，即可完成复杂的多子系统联动（比如开局流程从“调用4个子系统的8个方法”简化为“调用1个StartGame方法”）；</li>
+<li><strong>解耦客户端与子系统</strong>：客户端完全不依赖子系统，子系统的修改（如资源加载方式从Resources改为Addressables）无需修改客户端代码；</li>
+<li><strong>统一管理复杂逻辑</strong>：多子系统的调用顺序、依赖关系都封装在外观类中，便于维护（比如开局必须先加载资源，再初始化角色）；</li>
+<li><strong>降低学习成本</strong>：新开发者无需了解所有子系统的细节，只需调用外观类的接口即可完成核心功能。</li>
+</ol>
+<h3 id="六-外观模式-vs-其他模式unity场景对比">六、外观模式 vs 其他模式（Unity场景对比）</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>核心差异</th>
+<th>Unity适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外观模式</td>
+<td>封装多个子系统，提供统一接口</td>
+<td>复杂流程调用（开局/结算/退出游戏、下单支付流程）</td>
+</tr>
+<tr>
+<td>工厂模式</td>
+<td>关注“创建对象”</td>
+<td>单个对象的创建（角色、道具）</td>
+</tr>
+<tr>
+<td>建造者模式</td>
+<td>关注“组装对象”，分步定制</td>
+<td>复杂对象的组件组装（角色定制、UI面板组装）</td>
+</tr>
+</tbody>
+</table>
+<p>外观模式是Unity中开发“复杂流程型功能”的首选模式，比如游戏开局、关卡结算、商城下单、玩家退出等需要多系统联动的场景，能极大简化客户端代码，降低维护成本。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x05jian-zao-zhe-mo-shi/" class="post-title gt-a-link">
+                    0x05. 建造者模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

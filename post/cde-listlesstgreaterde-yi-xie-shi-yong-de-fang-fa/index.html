@@ -1,0 +1,348 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>C#的List&lt;T&gt;的一些实用的方法 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    C#的List&lt;T&gt;的一些实用的方法
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-06-06 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/WgyNS3Ry33/" class="post-tags">
+                            # C#
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/xvMds3QNF3k/" class="post-tags">
+                            # DotNet
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/7XAvlZ2NdEm/" class="post-tags">
+                            # .net
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/ccKTZLCI9j5/" class="post-tags">
+                            # List
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>经常使用List<T>,总结一些List的一些实用方法</p>
+<hr>
+<h3 id="一-基础操作"><strong>一、基础操作</strong></h3>
+<h4 id="1-添加元素"><strong>1. 添加元素</strong></h4>
+<ul>
+<li><strong><code>Add(T item)</code></strong>：在列表末尾添加一个元素。<pre><code class="language-csharp">List&lt;string&gt; fruits = new List&lt;string&gt;();
+fruits.Add(&quot;Apple&quot;);
+</code></pre>
+</li>
+<li><strong><code>AddRange(IEnumerable&lt;T&gt; collection)</code></strong>：添加集合中的所有元素。<pre><code class="language-csharp">fruits.AddRange(new[] { &quot;Banana&quot;, &quot;Cherry&quot; });
+</code></pre>
+</li>
+</ul>
+<h4 id="2-插入元素"><strong>2. 插入元素</strong></h4>
+<ul>
+<li><strong><code>Insert(int index, T item)</code></strong>：在指定索引处插入元素。<pre><code class="language-csharp">fruits.Insert(1, &quot;Mango&quot;); // 在索引1处插入
+</code></pre>
+</li>
+<li><strong><code>InsertRange(int index, IEnumerable&lt;T&gt; collection)</code></strong>：在指定索引处插入集合。</li>
+</ul>
+<h4 id="3-删除元素"><strong>3. 删除元素</strong></h4>
+<ul>
+<li><strong><code>Remove(T item)</code></strong>：删除第一个匹配的元素，返回是否成功。<pre><code class="language-csharp">bool removed = fruits.Remove(&quot;Apple&quot;);
+</code></pre>
+</li>
+<li><strong><code>RemoveAt(int index)</code></strong>：删除指定索引的元素。<pre><code class="language-csharp">fruits.RemoveAt(0); // 删除第一个元素
+</code></pre>
+</li>
+<li><strong><code>RemoveAll(Predicate&lt;T&gt; match)</code></strong>：删除所有符合条件的元素。<pre><code class="language-csharp">fruits.RemoveAll(f =&gt; f.Length &lt; 5); // 删除长度小于5的元素
+</code></pre>
+</li>
+<li><strong><code>RemoveRange(int index, int count)</code></strong>：删除指定范围内的元素。</li>
+</ul>
+<h4 id="4-查找元素"><strong>4. 查找元素</strong></h4>
+<ul>
+<li><strong><code>Contains(T item)</code></strong>：判断列表是否包含某个元素（使用 <code>Equals</code> 比较）。<pre><code class="language-csharp">bool hasApple = fruits.Contains(&quot;Apple&quot;);
+</code></pre>
+</li>
+<li><strong><code>IndexOf(T item)</code></strong> 和 <strong><code>LastIndexOf(T item)</code></strong>：查找元素首次/最后一次出现的索引。<pre><code class="language-csharp">int index = fruits.IndexOf(&quot;Banana&quot;); // 找不到返回-1
+</code></pre>
+</li>
+<li><strong><code>Find(Predicate&lt;T&gt; match)</code></strong> 和 <strong><code>FindLast(Predicate&lt;T&gt; match)</code></strong>：查找第一个/最后一个符合条件的元素。<pre><code class="language-csharp">string longName = fruits.Find(f =&gt; f.Length &gt; 6);
+</code></pre>
+</li>
+<li><strong><code>FindIndex(Predicate&lt;T&gt; match)</code></strong> 和 <strong><code>FindLastIndex(Predicate&lt;T&gt; match)</code></strong>：查找符合条件的元素的索引。</li>
+</ul>
+<h3 id="二-高级查询linq扩展"><strong>二、高级查询（LINQ扩展）</strong></h3>
+<p>虽然这些是扩展方法（不是 <code>List&lt;T&gt;</code> 自身的方法），但非常实用：</p>
+<ul>
+<li><strong><code>Where(Func&lt;T, bool&gt; predicate)</code></strong>：筛选符合条件的元素。<pre><code class="language-csharp">var filtered = fruits.Where(f =&gt; f.StartsWith(&quot;A&quot;));
+</code></pre>
+</li>
+<li><strong><code>OrderBy(Func&lt;T, K&gt; keySelector)</code></strong> 和 <strong><code>OrderByDescending</code></strong>：排序。<pre><code class="language-csharp">var sorted = fruits.OrderBy(f =&gt; f.Length);
+</code></pre>
+</li>
+<li><strong><code>First(Func&lt;T, bool&gt; predicate)</code></strong> 和 <strong><code>FirstOrDefault</code></strong>：获取第一个符合条件的元素（或默认值）。<pre><code class="language-csharp">string first = fruits.First(f =&gt; f.Contains(&quot;a&quot;));
+</code></pre>
+</li>
+<li><strong><code>Single(Func&lt;T, bool&gt; predicate)</code></strong> 和 <strong><code>SingleOrDefault</code></strong>：获取唯一符合条件的元素（或默认值）。</li>
+<li><strong><code>Select(Func&lt;T, TResult&gt; selector)</code></strong>：投影元素到新类型。<pre><code class="language-csharp">var lengths = fruits.Select(f =&gt; f.Length);
+</code></pre>
+</li>
+</ul>
+<h3 id="三-列表操作"><strong>三、列表操作</strong></h3>
+<ul>
+<li><strong><code>Sort()</code></strong>：对列表进行原地排序（默认比较器或自定义比较器）。<pre><code class="language-csharp">fruits.Sort(); // 按字母排序
+fruits.Sort((x, y) =&gt; y.Length.CompareTo(x.Length)); // 按长度降序
+</code></pre>
+</li>
+<li><strong><code>Reverse()</code></strong>：反转列表元素的顺序。<pre><code class="language-csharp">fruits.Reverse();
+</code></pre>
+</li>
+<li><strong><code>Take(int count)</code></strong> 和 <strong><code>Skip(int count)</code></strong>：截取或跳过指定数量的元素（用于分页）。<pre><code class="language-csharp">var page1 = fruits.Take(10);
+var page2 = fruits.Skip(10).Take(10);
+</code></pre>
+</li>
+<li><strong><code>Distinct()</code></strong>：获取列表中的不重复元素。<pre><code class="language-csharp">var uniqueFruits = fruits.Distinct().ToList();
+</code></pre>
+</li>
+<li><strong><code>ConvertAll&lt;TOutput&gt;(Converter&lt;T, TOutput&gt; converter)</code></strong>：转换列表元素类型。<pre><code class="language-csharp">List&lt;int&gt; lengths = fruits.ConvertAll(f =&gt; f.Length);
+</code></pre>
+</li>
+</ul>
+<h3 id="四-性能优化"><strong>四、性能优化</strong></h3>
+<ul>
+<li><strong><code>Capacity</code> 属性</strong>：设置或获取列表的容量（预分配空间，减少扩容次数）。<pre><code class="language-csharp">List&lt;int&gt; numbers = new List&lt;int&gt;(100); // 预分配100个元素的空间
+</code></pre>
+</li>
+<li><strong><code>TrimExcess()</code></strong>：将容量调整为实际元素数量（释放多余内存）。<pre><code class="language-csharp">numbers.TrimExcess();
+</code></pre>
+</li>
+</ul>
+<h3 id="五-判断与转换"><strong>五、判断与转换</strong></h3>
+<ul>
+<li><strong><code>TrueForAll(Predicate&lt;T&gt; match)</code></strong>：判断所有元素是否都满足条件。<pre><code class="language-csharp">bool allLong = fruits.TrueForAll(f =&gt; f.Length &gt; 3);
+</code></pre>
+</li>
+<li><strong><code>Exists(Predicate&lt;T&gt; match)</code></strong>：判断是否存在至少一个满足条件的元素。<pre><code class="language-csharp">bool hasLongName = fruits.Exists(f =&gt; f.Length &gt; 10);
+</code></pre>
+</li>
+<li><strong><code>ToArray()</code></strong>：将列表转换为数组。<pre><code class="language-csharp">string[] array = fruits.ToArray();
+</code></pre>
+</li>
+<li><strong><code>AsReadOnly()</code></strong>：返回列表的只读包装。<pre><code class="language-csharp">ReadOnlyCollection&lt;string&gt; readOnly = fruits.AsReadOnly();
+</code></pre>
+</li>
+</ul>
+<h3 id="六-批量操作"><strong>六、批量操作</strong></h3>
+<ul>
+<li><strong><code>ForEach(Action&lt;T&gt; action)</code></strong>：对每个元素执行操作。<pre><code class="language-csharp">fruits.ForEach(f =&gt; Console.WriteLine(f.ToUpper()));
+</code></pre>
+</li>
+<li><strong><code>FindAll(Predicate&lt;T&gt; match)</code></strong>：获取所有符合条件的元素。<pre><code class="language-csharp">var apples = fruits.FindAll(f =&gt; f.Contains(&quot;apple&quot;));
+</code></pre>
+</li>
+<li><strong><code>GetRange(int index, int count)</code></strong>：获取指定范围的元素。<pre><code class="language-csharp">var subset = fruits.GetRange(2, 3); // 从索引2开始取3个元素
+</code></pre>
+</li>
+</ul>
+<h3 id="注意事项"><strong>注意事项</strong></h3>
+<ol>
+<li><strong>线程安全</strong>：<code>List&lt;T&gt;</code> 不是线程安全的。多线程环境下使用 <code>ConcurrentBag&lt;T&gt;</code> 或手动同步。</li>
+<li><strong>性能考虑</strong>：
+<ul>
+<li>频繁插入/删除元素：考虑使用 <code>LinkedList&lt;T&gt;</code>。</li>
+<li>频繁查找：考虑使用 <code>Dictionary&lt;TKey, TValue&gt;</code> 或先排序再使用二分查找。</li>
+</ul>
+</li>
+<li><strong>空引用处理</strong>：使用 <code>FirstOrDefault</code>/<code>SingleOrDefault</code> 时注意检查返回值是否为 <code>null</code>。</li>
+</ol>
+<h3 id="总结"><strong>总结</strong></h3>
+<p>根据需求选择合适的方法：</p>
+<ul>
+<li><strong>增删改查</strong>：<code>Add</code>、<code>Remove</code>、<code>Find</code>、<code>IndexOf</code>。</li>
+<li><strong>筛选排序</strong>：<code>Where</code>、<code>OrderBy</code>、<code>Sort</code>。</li>
+<li><strong>分页截取</strong>：<code>Take</code>、<code>Skip</code>。</li>
+<li><strong>性能优化</strong>：<code>Capacity</code>、<code>TrimExcess</code>。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi/" class="post-title gt-a-link">
+                    那些激励自己的东西
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x0b.外观模式  | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x0b.外观模式 
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong>外观模式（Facade Pattern，也叫门面模式）</strong>。如果说之前的“建造者模式”是为了解决<em>单个复杂对象</em>的组装问题，那么“外观模式”则是为了解决<em>一堆复杂子系统</em>的混乱调用问题。</p>
+<p>在 Unity 独立开发或中大型项目重构时，外观模式是帮你维持代码整洁、实现“一键轰炸”的绝对拯救者。</p>
+<h3 id="为什么要用外观模式">💡 为什么要用外观模式？</h3>
+<p>想象一下，当玩家在主菜单点击“<strong>开始游戏</strong>”时，你的后台需要发生多少事情：</p>
+<ol>
+<li><code>SaveSystem</code>（存档系统）：读取玩家的上一次存档数据。</li>
+<li><code>SceneLoader</code>（场景加载器）：异步加载游戏主关卡。</li>
+<li><code>AudioManager</code>（音频管理器）：淡出主菜单 BGM，播放关卡背景音乐。</li>
+<li><code>UIManager</code>（UI 系统）：关闭主菜单，显示加载条，加载完成后显示玩家 HUD（血条等）。</li>
+<li><code>NetworkManager</code>（网络系统）：向服务器同步玩家上线状态。</li>
+</ol>
+<p><strong>新手的灾难写法：</strong><br>
+在主菜单的“开始按钮”脚本里，把这 5 个系统的引用全部拖进来，然后在一行按钮点击事件里挨个调用它们的方法。<br>
+这会导致主菜单脚本和这 5 个系统<strong>死死地捆绑在一起</strong>。以后如果网络系统要换、或者增加一个“成就系统”，你都得去改主菜单按钮的代码。</p>
+<p><strong>外观模式的优雅解法：</strong><br>
+给这堆复杂的子系统套上一个“外壳”或者设一个“前台接待员”（Facade）。主菜单只需要对接待员说一句：“我要开始游戏！”接待员自己转身去调度那 5 个复杂的系统，主菜单根本不需要知道后面发生了什么。</p>
+<hr>
+<h3 id="一-unity-场景下的外观模式代码实现">一、 Unity 场景下的外观模式代码实现</h3>
+<p>我们把上面提到的复杂子系统封装到一个叫 <code>GameFlowFacade</code> 的外观类中。</p>
+<h4 id="1-杂乱无章的各个子系统底层细节">1. 杂乱无章的各个子系统（底层细节）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class SaveSystem : MonoBehaviour
+{
+    public void LoadUserData() { Debug.Log(&quot;存档系统：已成功读取玩家进度。&quot;); }
+}
+
+public class AudioManager : MonoBehaviour
+{
+    public void SwitchToGameplayMusic() { Debug.Log(&quot;音频系统：已切换至战斗 BGM。&quot;); }
+}
+
+public class UIManager : MonoBehaviour
+{
+    public void ShowGameplayHUD() { Debug.Log(&quot;UI系统：隐藏主菜单，显示游戏内血条和UI。&quot;); }
+}
+
+public class SceneLoader : MonoBehaviour
+{
+    public void LoadLevel(string levelName) { Debug.Log($&quot;场景系统：正在异步加载【{levelName}】...&quot;); }
+}
+
+</code></pre>
+<h4 id="2-核心灵魂外观类-gameflowfacade">2. 核心灵魂：外观类 (GameFlowFacade)</h4>
+<p>外观类把所有的子系统组合在一起，并向外暴露几个极其简单的“一键式”方法。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class GameFlowFacade : MonoBehaviour
+{
+    // 内部持有所有子系统的引用（可以在 Inspector 里拖入，也可以用单例）
+    [Header(&quot;Subsystems&quot;)]
+    public SaveSystem saveSystem;
+    public AudioManager audioManager;
+    public UIManager uiManager;
+    public SceneLoader sceneLoader;
+
+    // 外观模式提供的核心高层接口：一键启动游戏
+    public void EnterGameplay(string targetLevel)
+    {
+        Debug.Log(&quot;==== 外观模式：开始协调各个子系统进行场景切换 ====&quot;);
+        
+        // 按正确的业务逻辑顺序，一条龙服务
+        saveSystem.LoadUserData();
+        audioManager.SwitchToGameplayMusic();
+        uiManager.ShowGameplayHUD();
+        sceneLoader.LoadLevel(targetLevel);
+        
+        Debug.Log(&quot;==== 外观模式：所有系统就绪 ====&quot;);
+    }
+
+    // 外观模式提供的另一个接口：一键退出游戏
+    public void ExitGame()
+    {
+        Debug.Log(&quot;外观模式：正在保存数据并安全退出...&quot;);
+        // 可以在这里调用存档系统的保存、网络系统的断开等
+    }
+}
+
+</code></pre>
+<h4 id="3-客户端调用主菜单按钮">3. 客户端调用（主菜单按钮）</h4>
+<p>现在，主菜单的按钮脚本变得异常干净，它只需要知道 <code>GameFlowFacade</code> 的存在。</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class MainMenuController : MonoBehaviour
+{
+    // 只需要引入外观类即可，不需要引入 4、5 个管理器
+    public GameFlowFacade gameFacade; 
+
+    // 绑定到主菜单“开始游戏”按钮的点击事件上
+    public void OnStartButtonClick()
+    {
+        // 客户端只需要发出一个简单的指令，底层细节全被屏蔽了
+        gameFacade.EnterGameplay(&quot;World_1_Level_1&quot;);
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="二-外观模式在-unity-中的王牌拍档结合单例">二、 外观模式在 Unity 中的王牌拍档：结合单例</h3>
+<p>细心的你可能已经发现了：在 Unity 中，为了能让任何地方都方便地调用这个“前台接待员”，我们经常会<strong>把外观模式（Facade）和单例模式（Singleton）结合在一起</strong>。</p>
+<p>比如，你写了一个 <code>GameManager</code>，它肚子里装着 <code>LevelManager</code>、<code>InputManager</code>、<code>BuffManager</code>。<br>
+这个 <code>GameManager</code> 本身是一个<strong>单例</strong>（方便全局访问 <code>GameManager.Instance</code>），但它对外的职责是一个<strong>外观</strong>（封装了游戏暂停、游戏胜利、游戏失败等一系列涉及多系统的复杂操作）。</p>
+<pre><code class="language-csharp">public class GameManager : Singleton&lt;GameManager&gt; // 这是一个单例
+{
+    // 它同时也是一个外观，底下管着一堆复杂的系统
+    public CombatSystem combatSystem;
+    public ScoreSystem scoreSystem;
+    public AchievementSystem achievementSystem;
+
+    // 玩家死亡时，一键触发结算外观
+    public void OnPlayerDied()
+    {
+        combatSystem.DisableAllEnemies();  // 敌人停止攻击
+        scoreSystem.CalculateFinalScore();  // 结算分数
+        achievementSystem.CheckDeathCount(); // 检查是否达成“屡败屡战”成就
+        // ...
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="总结与避坑指南">💡 总结与避坑指南</h3>
+<ul>
+<li>
+<p><strong>核心思想：</strong> 通过创造一个高层接口，把一堆散乱的子系统（Subsystems）包起来，给上层调用者提供一个简单、统一的“全面屏”界面。</p>
+</li>
+<li>
+<p><strong>适用场景：</strong></p>
+</li>
+<li>
+<p>游戏初始化 / 游戏启动引导（Bootstrapping）。</p>
+</li>
+<li>
+<p>关卡切换、过渡结算（胜利、失败、死亡）。</p>
+</li>
+<li>
+<p>当你引入了庞大的第三方插件（比如某个复杂的网络 SDK 或物理引擎），你不想让它污染你的核心代码时，写一个 Facade 把它隔离起来。</p>
+</li>
+<li>
+<p><strong>🚨 避坑指南 —— 不要让 Facade 变成“万能的上帝类”：</strong><br>
+外观模式的职责是“路由和转发”<strong>（像前台接待员一样，指引工作给对应部门），它</strong>自己不应该包含具体的业务逻辑代码。如果你发现你的 <code>GameFlowFacade</code> 里面开始写如何计算伤害、如何移动物体的具体代码时，说明你走偏了，赶紧把这些逻辑放回到对应的子系统里去。</p>
+</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x0ajian-zao-zhe-mo-shi/" class="post-title gt-a-link">
+                    0x0a.建造者模式 
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

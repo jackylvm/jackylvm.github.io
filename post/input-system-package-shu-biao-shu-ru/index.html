@@ -1,0 +1,619 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Input System Package 鼠标输入 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Input System Package 鼠标输入
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-15 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/sUWm8HNCRa/" class="post-tags">
+                            # Input
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="一-核心前提鼠标的核心全局实例对象">一、核心前提：鼠标的核心全局实例对象</h2>
+<p>和键盘的 <code>Keyboard.current</code> 对应，鼠标的所有输入都基于一个<strong>全局唯一的核心实例</strong>：</p>
+<pre><code class="language-csharp">Mouse.current
+</code></pre>
+<p>✅ 说明：<code>Mouse.current</code> 是Input System封装的鼠标单例对象，包含鼠标的<strong>所有硬件信息和输入状态</strong>，是纯代码方案的核心，无需要创建任何配置文件、无需绑定，直接调用即可。</p>
+<blockquote>
+<p>⚠️ 安全判断：和键盘一样，建议每次获取前做空值判断，防止无鼠标设备（如移动端）运行时报错：</p>
+<pre><code class="language-csharp">Mouse mouse = Mouse.current;
+if(mouse == null) return; // 无鼠标设备则直接退出
+</code></pre>
+</blockquote>
+<hr>
+<h2 id="二-方案一纯代码直接调用鼠标输入首选极简无配置">二、方案一：纯代码直接调用鼠标输入（首选！极简无配置）</h2>
+<p>这是<strong>最常用、最推荐的写法</strong>，和旧的 <code>Input.mousePosition</code> 写法接近，学习成本极低，<strong>无需任何配置文件</strong>，代码量少，适合所有独立开发、快速原型、中小型项目，能实现鼠标的<strong>全部功能</strong>，优先级最高！</p>
+<h3 id="️-核心先记住鼠标输入的5大核心类型">✔️ 核心：先记住【鼠标输入的5大核心类型】</h3>
+<h2 id="鼠标的输入逻辑分为5类几乎覆盖所有开发需求所有api调用格式统一和键盘的ispressedwaspressedthisframe逻辑完全一致非常容易记忆所有api都挂载在-mousecurrent-下">鼠标的输入逻辑分为5类，几乎覆盖所有开发需求，<strong>所有API调用格式统一</strong>，和键盘的<code>isPressed/wasPressedThisFrame</code>逻辑完全一致，非常容易记忆，所有API都挂载在 <code>Mouse.current</code> 下：</h2>
+<h3 id="1-获取鼠标当前屏幕位置mouseposition">✅ 1. 获取【鼠标当前屏幕位置】<code>mousePosition</code></h3>
+<h4 id="功能说明">功能说明</h4>
+<p>获取鼠标在<strong>屏幕坐标系</strong>下的实时坐标值，返回 <code>Vector2</code> 类型。</p>
+<ul>
+<li>屏幕坐标系原点：<strong>屏幕左下角为 (0,0)</strong></li>
+<li>屏幕右上角坐标为 <code>(Screen.width, Screen.height)</code></li>
+<li>和旧输入系统 <code>Input.mousePosition</code> 完全等价，只是API写法不同</li>
+</ul>
+<h4 id="调用代码">调用代码</h4>
+<pre><code class="language-csharp">Mouse mouse = Mouse.current;
+if(mouse == null) return;
+// 获取鼠标屏幕位置
+Vector2 mouseScreenPos = mouse.position.ReadValue(); 
+Debug.Log(&quot;鼠标屏幕坐标：&quot; + mouseScreenPos);
+</code></pre>
+<hr>
+<h3 id="2-获取鼠标移动增量delta-重中之重鼠标拖动视角旋转核心">✅ 2. 获取【鼠标移动增量】<code>delta</code> (重中之重！鼠标拖动/视角旋转核心)</h3>
+<h4 id="功能说明-2">功能说明</h4>
+<p>获取<strong>鼠标在「当前帧」的移动偏移量</strong>，返回 <code>Vector2</code> 类型，x对应左右移动、y对应上下移动。</p>
+<ul>
+<li>这是鼠标<strong>最核心的功能之一</strong>：比如 FPS游戏的镜头旋转、RTS游戏的视角拖动、物体旋转、鼠标拖拽跟随 都是基于这个API实现</li>
+<li>该值是<strong>相对偏移量</strong>：鼠标不动时返回 <code>(0,0)</code>，向左移动x为负，向右为正；向上移动y为正，向下为负</li>
+<li>完美替代旧输入系统的 <code>Input.GetAxis(&quot;Mouse X&quot;)</code> 和 <code>Input.GetAxis(&quot;Mouse Y&quot;)</code></li>
+</ul>
+<h4 id="调用代码-2">调用代码</h4>
+<pre><code class="language-csharp">Mouse mouse = Mouse.current;
+if(mouse == null) return;
+// 获取鼠标帧移动增量
+Vector2 mouseDelta = mouse.delta.ReadValue();
+Debug.Log(&quot;鼠标帧移动增量 X：&quot; + mouseDelta.x + &quot;，Y：&quot; + mouseDelta.y);
+// 常用场景：乘以灵敏度，实现平滑的鼠标移动逻辑
+float mouseSensitivity = 0.1f;
+float rotateX = mouseDelta.x * mouseSensitivity;
+float rotateY = mouseDelta.y * mouseSensitivity;
+</code></pre>
+<hr>
+<h3 id="3-鼠标左键右键中键的按键状态判断点击长按松开">✅ 3. 鼠标【左键/右键/中键】的按键状态判断（点击/长按/松开）</h3>
+<p>鼠标的<strong>左键、右键、中键（滚轮键）</strong> 都属于「按键」，和键盘按键的<strong>3个核心状态API完全一致</strong>，这是Input System的统一设计，<strong>一次记忆，终身受用</strong>，优先级极高，必记！</p>
+<h4 id="鼠标三大按键的官方api名称严格大小写直接复制">鼠标三大按键的官方API名称（严格大小写，直接复制）</h4>
+<ol>
+<li>鼠标左键 → <code>leftButton</code></li>
+<li>鼠标右键 → <code>rightButton</code></li>
+<li>鼠标中键（滚轮按下） → <code>middleButton</code></li>
+</ol>
+<h4 id="按键的3个核心状态所有鼠标按键通用格式完全统一">按键的3个核心状态（所有鼠标按键通用，格式完全统一）</h4>
+<pre><code class="language-csharp">Mouse mouse = Mouse.current;
+if(mouse == null) return;
+// ✔️ 1. 按下瞬间 → wasPressedThisFrame ：当前帧按下，只触发1次（点击、攻击、选中物体）
+if(mouse.leftButton.wasPressedThisFrame)
+{
+    Debug.Log(&quot;鼠标左键 按下瞬间 → 选中物体/攻击&quot;);
+}
+// ✔️ 2. 松开瞬间 → wasReleasedThisFrame ：当前帧松开，只触发1次（松开选中、取消拖拽）
+if(mouse.rightButton.wasReleasedThisFrame)
+{
+    Debug.Log(&quot;鼠标右键 松开瞬间 → 取消右键瞄准&quot;);
+}
+// ✔️ 3. 持续按住 → isPressed ：按键一直按住，每一帧触发（长按拖拽、长按施法）
+if(mouse.middleButton.isPressed)
+{
+    Debug.Log(&quot;鼠标中键 持续按住 → 拖动视角&quot;);
+}
+</code></pre>
+<hr>
+<h3 id="4-鼠标滚轮滚动输入向上向下滚动">✅ 4. 鼠标【滚轮滚动】输入（向上/向下滚动）</h3>
+<h4 id="功能说明-3">功能说明</h4>
+<p>获取鼠标滚轮的滚动增量，返回 <code>Vector2</code> 类型，<strong>99%的场景只用y轴的值</strong>：</p>
+<ul>
+<li>滚轮<strong>向上滚动</strong> → <code>scroll.y</code> 为 <strong>正值</strong></li>
+<li>滚轮<strong>向下滚动</strong> → <code>scroll.y</code> 为 <strong>负值</strong></li>
+<li>常用场景：缩放相机视角、调整UI大小、物品栏翻页、视角拉近拉远</li>
+</ul>
+<h4 id="调用代码-3">调用代码</h4>
+<pre><code class="language-csharp">Mouse mouse = Mouse.current;
+if(mouse == null) return;
+// 获取鼠标滚轮滚动值
+Vector2 mouseScroll = mouse.scroll.ReadValue();
+if (mouseScroll.y &gt; 0)
+{
+    Debug.Log(&quot;鼠标滚轮向上滚动 → 视角拉近/放大&quot;);
+}
+else if (mouseScroll.y &lt; 0)
+{
+    Debug.Log(&quot;鼠标滚轮向下滚动 → 视角拉远/缩小&quot;);
+}
+</code></pre>
+<hr>
+<h3 id="5-鼠标侧键额外按键输入拓展">✅ 5. 鼠标侧键（额外按键）输入（拓展）</h3>
+<p>很多鼠标有<strong>前进/后退侧键</strong>，Input System也完美支持，API调用格式和左键右键一致，直接用即可：</p>
+<pre><code class="language-csharp">Mouse mouse = Mouse.current;
+if(mouse == null) return;
+// 鼠标前进键（侧键1）
+if(mouse.forwardButton.wasPressedThisFrame) Debug.Log(&quot;鼠标前进键按下&quot;);
+// 鼠标后退键（侧键2）
+if(mouse.backButton.wasPressedThisFrame) Debug.Log(&quot;鼠标后退键按下&quot;);
+</code></pre>
+<hr>
+<h2 id="纯代码方案-鼠标完整功能综合示例可直接复制运行">✨ 纯代码方案 - 鼠标完整功能综合示例（可直接复制运行）</h2>
+<p>这个脚本整合了<strong>鼠标所有核心输入功能</strong>：位置、移动增量、左键/右键/中键、滚轮，是你开发中可以直接参考的完整模板，挂载到任意GameObject上即可运行测试：</p>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.InputSystem; // 必须引入！
+
+public class MouseInputTest : MonoBehaviour
+{
+    [Header(&quot;鼠标灵敏度&quot;)]
+    public float mouseSensitivity = 0.1f;
+    [Header(&quot;相机缩放速度&quot;)]
+    public float scrollSpeed = 0.5f;
+
+    private Camera mainCamera;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+    }
+
+    void Update()
+    {
+        // 1. 获取鼠标实例 + 安全判断
+        Mouse mouse = Mouse.current;
+        if (mouse == null) return;
+
+        // 2. 获取鼠标当前屏幕位置
+        Vector2 mousePos = mouse.position.ReadValue();
+        Debug.Log(&quot;鼠标屏幕坐标：&quot; + mousePos);
+
+        // 3. 获取鼠标移动增量 → 核心！实现视角旋转/物体拖动
+        Vector2 mouseDelta = mouse.delta.ReadValue();
+        // 用鼠标增量旋转物体（示例：绕Y轴左右转，绕X轴上下转）
+        transform.Rotate(-mouseDelta.y * mouseSensitivity, mouseDelta.x * mouseSensitivity, 0);
+
+        // 4. 鼠标左键/右键/中键 按键判断
+        if (mouse.leftButton.wasPressedThisFrame)
+        {
+            Debug.Log(&quot;左键按下 → 选中/攻击&quot;);
+        }
+        if (mouse.rightButton.isPressed)
+        {
+            Debug.Log(&quot;右键长按 → 瞄准/拖动&quot;);
+        }
+        if (mouse.middleButton.wasReleasedThisFrame)
+        {
+            Debug.Log(&quot;中键松开 → 取消视角拖动&quot;);
+        }
+
+        // 5. 鼠标滚轮缩放相机
+        Vector2 scroll = mouse.scroll.ReadValue();
+        mainCamera.fieldOfView -= scroll.y * scrollSpeed;
+        // 限制相机视野范围，防止缩放过度
+        mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, 20f, 80f);
+
+        // 6. 鼠标侧键（拓展）
+        if (mouse.forwardButton.wasPressedThisFrame)
+        {
+            Debug.Log(&quot;鼠标前进键按下&quot;);
+        }
+    }
+}
+</code></pre>
+<hr>
+<h2 id="三-方案二input-action-可视化配置鼠标输入进阶解耦团队项目推荐">三、方案二：Input Action 可视化配置鼠标输入（进阶解耦，团队项目推荐）</h2>
+<p>这是Input System的<strong>标准设计理念</strong>，和键盘的可视化配置逻辑完全相同，核心优势是：<strong>将「鼠标输入逻辑」和「业务逻辑完全解耦」</strong>，无需修改代码，即可在可视化窗口中修改鼠标按键绑定、一键切换「鼠标+键盘+手柄」输入，支持多按键映射同一个行为，<strong>适合中大型项目/团队协作</strong>，也是官方推荐的进阶用法。</p>
+<h3 id="核心特点">✅ 核心特点</h3>
+<ul>
+<li>鼠标的<code>位置、增量、滚轮、按键</code>都可以在可视化窗口中配置为「Action」</li>
+<li>脚本中只需要调用配置好的Action，无需关心具体绑定的是鼠标哪个按键/轴</li>
+<li>配置一次，后续修改按键逻辑<strong>无需改代码</strong>，直接在配置窗口调整即可</li>
+</ul>
+<h3 id="完整实现步骤4步搞定无坑">✅ 完整实现步骤（4步搞定，无坑）</h3>
+<h4 id="step-1创建input-actions配置文件">Step 1：创建Input Actions配置文件</h4>
+<p>在Project窗口右键 → <code>Input Actions</code> → 创建一个配置文件（比如命名为 <code>MouseInputActions</code>）</p>
+<h4 id="step-2可视化配置鼠标所有输入核心图文步骤">Step 2：可视化配置鼠标所有输入（核心！图文步骤）</h4>
+<p>双击创建好的<code>MouseInputActions</code>，打开配置窗口，按以下步骤配置，<strong>所有鼠标输入都在这里配置完成</strong>：</p>
+<ol>
+<li>左侧点击<code>+</code> → 新建 <strong>Action Map</strong>，命名为<code>MouseControl</code>（代表鼠标的所有输入行为）</li>
+<li>选中<code>MouseControl</code>，右侧点击<code>+</code>，根据需求创建<strong>Action（输入行为）</strong>，并设置对应的「类型」和「绑定」，<strong>鼠标必配的5个Action如下（复制即可）</strong>：
+<ul>
+<li>✔️ <strong>MousePosition（鼠标位置）</strong>：类型选「Value」，控制类型选「Vector2」→ 点击+绑定 → 选择<code>Mouse</code> → <code>Position</code></li>
+<li>✔️ <strong>MouseDelta（鼠标增量）</strong>：类型选「Value」，控制类型选「Vector2」→ 绑定 → <code>Mouse</code> → <code>Delta</code></li>
+<li>✔️ <strong>MouseScroll（鼠标滚轮）</strong>：类型选「Value」，控制类型选「Vector2」→ 绑定 → <code>Mouse</code> → <code>Scroll</code></li>
+<li>✔️ <strong>MouseLeftClick（鼠标左键）</strong>：类型选「Button」→ 绑定 → <code>Mouse</code> → <code>Left Button</code></li>
+<li>✔️ <strong>MouseRightClick（鼠标右键）</strong>：类型选「Button」→ 绑定 → <code>Mouse</code> → <code>Right Button</code></li>
+</ul>
+</li>
+<li>配置完成后，<strong>Ctrl+S保存配置窗口</strong>，关闭即可。</li>
+</ol>
+<h4 id="step-3脚本中绑定并使用配置好的鼠标action">Step 3：脚本中绑定并使用配置好的鼠标Action</h4>
+<p>配置完成后，脚本中的调用逻辑<strong>极其简单</strong>，和键盘的Action调用一致，<strong>核心只有3步</strong>：启用Action、读取值/判断状态、销毁时禁用Action，防止内存泄漏。</p>
+<h4 id="完整脚本示例可直接复制">✨ 完整脚本示例（可直接复制）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.InputSystem; // 必须引入！
+
+public class MouseActionTest : MonoBehaviour
+{
+    // 拖拽步骤1创建的 MouseInputActions 配置文件到这个字段
+    public MouseInputActions mouseInputActions;
+
+    [Header(&quot;鼠标灵敏度&quot;)]
+    public float mouseSensitivity = 0.1f;
+    [Header(&quot;滚轮缩放速度&quot;)]
+    public float scrollSpeed = 0.5f;
+    private Camera mainCamera;
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+        // 必做：启用鼠标的Action Map，否则无法响应输入
+        mouseInputActions.MouseControl.Enable();
+    }
+
+    void Update()
+    {
+        // ========== 1. 读取鼠标位置 ==========
+        Vector2 mousePos = mouseInputActions.MouseControl.MousePosition.ReadValue&lt;Vector2&gt;();
+        
+        // ========== 2. 读取鼠标移动增量 → 视角旋转 ==========
+        Vector2 mouseDelta = mouseInputActions.MouseControl.MouseDelta.ReadValue&lt;Vector2&gt;();
+        transform.Rotate(-mouseDelta.y * mouseSensitivity, mouseDelta.x * mouseSensitivity, 0);
+
+        // ========== 3. 读取鼠标滚轮 → 相机缩放 ==========
+        Vector2 scroll = mouseInputActions.MouseControl.MouseScroll.ReadValue&lt;Vector2&gt;();
+        mainCamera.fieldOfView -= scroll.y * scrollSpeed;
+        mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, 20f, 80f);
+
+        // ========== 4. 判断鼠标左键/右键 按下状态 ==========
+        if (mouseInputActions.MouseControl.MouseLeftClick.WasPressedThisFrame())
+        {
+            Debug.Log(&quot;左键按下 → 选中物体&quot;);
+        }
+        if (mouseInputActions.MouseControl.MouseRightClick.IsPressed())
+        {
+            Debug.Log(&quot;右键长按 → 瞄准&quot;);
+        }
+    }
+
+    // 必做：销毁时禁用Action，防止内存泄漏
+    private void OnDestroy()
+    {
+        mouseInputActions.MouseControl.Disable();
+    }
+}
+</code></pre>
+<h4 id="step-4挂载脚本并赋值">Step 4：挂载脚本并赋值</h4>
+<p>将脚本挂载到场景中的任意物体上 → 在Inspector面板，把创建好的<code>MouseInputActions</code>配置文件拖拽到脚本的<code>mouseInputActions</code>字段 → 运行即可生效！</p>
+<hr>
+<h2 id="四-鼠标输入-高频实战需求实现直接用">四、鼠标输入 高频实战需求实现（直接用！）</h2>
+<p>这里补充开发中<strong>最常用的鼠标相关需求</strong>的实现代码，都是基于上面的核心API，直接复制到项目中即可，解决你的实际开发问题：</p>
+<h3 id="需求1鼠标拖拽物体按住左键拖动3d2d物体">✅ 需求1：鼠标拖拽物体（按住左键拖动3D/2D物体）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.InputSystem;
+public class MouseDrag : MonoBehaviour
+{
+    private Mouse mouse;
+    private bool isDragging = false;
+    private Vector3 offset; // 鼠标和物体的偏移量，防止拖动时瞬移
+
+    void Update()
+    {
+        mouse = Mouse.current;
+        if (mouse == null) return;
+
+        // 左键按下 → 开始拖拽，记录偏移量
+        if (mouse.leftButton.wasPressedThisFrame)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(mouse.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                if (hit.collider.gameObject == gameObject)
+                {
+                    isDragging = true;
+                    offset = transform.position - hit.point;
+                }
+            }
+        }
+
+        // 左键松开 → 结束拖拽
+        if (mouse.leftButton.wasReleasedThisFrame)
+        {
+            isDragging = false;
+        }
+
+        // 持续拖拽 → 物体跟随鼠标移动
+        if (isDragging)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(mouse.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                transform.position = hit.point + offset;
+            }
+        }
+    }
+}
+</code></pre>
+<h3 id="需求2fps游戏-鼠标控制相机视角旋转经典需求">✅ 需求2：FPS游戏 鼠标控制相机视角旋转（经典需求）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.InputSystem;
+public class FPSMouseLook : MonoBehaviour
+{
+    public float mouseSensitivity = 2f;
+    public Transform playerBody; // 玩家物体Transform
+    private float xRotation = 0f;
+    private Mouse mouse;
+
+    void Update()
+    {
+        mouse = Mouse.current;
+        if (mouse == null) return;
+
+        Vector2 mouseDelta = mouse.delta.ReadValue() * mouseSensitivity * Time.deltaTime;
+        
+        // 鼠标X轴 → 玩家左右旋转，鼠标Y轴 → 相机上下旋转
+        xRotation -= mouseDelta.y;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // 限制上下视角，防止仰头过度
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * mouseDelta.x);
+    }
+}
+</code></pre>
+<hr>
+<h2 id="五-鼠标输入-避坑指南-常见问题必看解决99报错">五、鼠标输入 避坑指南 &amp; 常见问题（必看！解决99%报错）</h2>
+<h3 id="问题1mousecurrent-一直为null鼠标输入无响应">❌ 问题1：<code>Mouse.current</code> 一直为null，鼠标输入无响应</h3>
+<p>✅ 解决：</p>
+<ol>
+<li>确认已切换启用新输入系统（最常见原因）：<code>Player → Active Input Handling = Input System Package</code></li>
+<li>脚本顶部<strong>忘记引入命名空间</strong>：必须加 <code>using UnityEngine.InputSystem;</code></li>
+<li>运行的设备无鼠标（如手机），做空值判断即可避免报错。</li>
+</ol>
+<h3 id="问题2鼠标移动增量delta-移动过快过慢">❌ 问题2：鼠标移动增量<code>delta</code> 移动过快/过慢</h3>
+<p>✅ 解决：<strong>一定要乘以 <code>Time.deltaTime</code></strong>，让鼠标移动速度和帧率无关，保证不同帧率下移动速度一致：</p>
+<pre><code class="language-csharp">Vector2 mouseDelta = mouse.delta.ReadValue() * mouseSensitivity * Time.deltaTime;
+</code></pre>
+<h3 id="问题3鼠标滚轮滚动时效果不明显太灵敏">❌ 问题3：鼠标滚轮滚动时效果不明显/太灵敏</h3>
+<p>✅ 解决：给滚轮值乘以<strong>缩放系数</strong>，并通过<code>Mathf.Clamp</code>限制范围，参考上面的综合示例。</p>
+<h3 id="问题4input-action配置后鼠标无响应">❌ 问题4：Input Action配置后鼠标无响应</h3>
+<p>✅ 解决：</p>
+<ol>
+<li>脚本中<strong>必须调用 <code>.Enable()</code> 启用Action Map</strong>，否则配置的所有行为都不会生效</li>
+<li>配置窗口中，Action的「类型」和「控制类型」配置错误（比如滚轮要选Vector2，左键要选Button）</li>
+<li>保存配置后，重新拖拽配置文件到脚本字段。</li>
+</ol>
+<h3 id="问题5鼠标位置position和预期不符">❌ 问题5：鼠标位置<code>position</code>和预期不符</h3>
+<p>✅ 解决：记住鼠标位置是<strong>屏幕坐标系</strong>，原点在左下角，而UGUI的RectTransform是基于左上角的，如需转换为UI坐标，使用：</p>
+<pre><code class="language-csharp">RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, mousePos, camera, out Vector2 uiPos);
+</code></pre>
+<hr>
+<h2 id="六-新旧输入系统-鼠标api-对比表快速迁移必看">六、新旧输入系统 鼠标API 对比表（快速迁移必看）</h2>
+<p>如果你是从旧的<code>Input</code>系统迁移过来，这个对比表能让你<strong>无缝切换</strong>，瞬间对应上所有鼠标相关API，不用再查文档：</p>
+<table>
+<thead>
+<tr>
+<th>旧输入系统（Input）</th>
+<th>新输入系统（Input System）</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Input.mousePosition</code></td>
+<td><code>Mouse.current.position.ReadValue()</code></td>
+<td>获取鼠标屏幕位置</td>
+</tr>
+<tr>
+<td><code>Input.GetAxis(&quot;Mouse X&quot;)</code></td>
+<td><code>Mouse.current.delta.ReadValue().x</code></td>
+<td>鼠标X轴移动增量</td>
+</tr>
+<tr>
+<td><code>Input.GetAxis(&quot;Mouse Y&quot;)</code></td>
+<td><code>Mouse.current.delta.ReadValue().y</code></td>
+<td>鼠标Y轴移动增量</td>
+</tr>
+<tr>
+<td><code>Input.GetMouseButtonDown(0)</code></td>
+<td><code>Mouse.current.leftButton.wasPressedThisFrame</code></td>
+<td>鼠标左键按下瞬间</td>
+</tr>
+<tr>
+<td><code>Input.GetMouseButton(1)</code></td>
+<td><code>Mouse.current.rightButton.isPressed</code></td>
+<td>鼠标右键持续按住</td>
+</tr>
+<tr>
+<td><code>Input.GetMouseButtonUp(2)</code></td>
+<td><code>Mouse.current.middleButton.wasReleasedThisFrame</code></td>
+<td>鼠标中键松开瞬间</td>
+</tr>
+<tr>
+<td><code>Input.mouseScrollDelta</code></td>
+<td><code>Mouse.current.scroll.ReadValue()</code></td>
+<td>鼠标滚轮滚动值</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="总结两种鼠标方案怎么选">✅ 总结（两种鼠标方案怎么选？）</h2>
+<p>和键盘输入的选择逻辑完全一致，按项目需求选即可，<strong>无优劣之分，只有合适与否</strong>：</p>
+<ol>
+<li><strong>纯代码方案（<code>Mouse.current</code>）</strong> → <strong>90%场景首选</strong>：无配置、代码简洁、上手快、能实现所有鼠标功能，适合独立开发、小型项目、快速原型验证，学习成本极低，是个人开发的最优解。</li>
+<li><strong>Input Action可视化配置</strong> → <strong>进阶首选</strong>：输入与业务逻辑解耦，支持多设备无缝切换（鼠标→手柄），修改按键无需改代码，适合中大型项目、团队协作，稍微学一点配置成本，后期维护收益巨大。</li>
+</ol>
+<p>鼠标的核心输入逻辑其实就5个：<strong>位置、增量、按键、滚轮、侧键</strong>，掌握这5个核心API，就能搞定所有鼠标相关的开发需求啦！</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/input-system-package/" class="post-title gt-a-link">
+                    Input System Package
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

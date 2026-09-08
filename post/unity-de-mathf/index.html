@@ -1,0 +1,457 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的Mathf | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的Mathf
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-15 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="一-mathf-核心定位-特性">✅ 一、Mathf 核心定位 &amp; 特性</h2>
+<h3 id="1-核心定义">1. 核心定义</h3>
+<p><code>Mathf</code> 是 Unity 引擎<strong>内置原生的静态类</strong>，命名空间为 <code>using UnityEngine;</code>，无需安装任何包，创建Unity工程即可直接使用。<br>
+✅ 核心作用：处理 <strong>单个数值（int/float/双精度）</strong> 的数学运算、数值处理、三角函数、插值、常量调用等。</p>
+<h3 id="2-核心特性">2. 核心特性</h3>
+<p>✅ 无需引入额外命名空间，开箱即用，Unity开发标配<br>
+✅ 所有方法/属性都是<strong>静态</strong>，直接 <code>Mathf.XXX</code> 调用即可<br>
+✅ 所有角度相关的API，<strong>全部基于【角度制】</strong>（0° ~ 360°），符合人类直观认知，<strong>无弧度转换坑</strong><br>
+✅ 纯C#实现，兼容所有Unity开发模式（MonoBehaviour/UGUI/预制体等常规开发）<br>
+✅ 无GC分配，运算稳定，适合常规游戏开发的绝大多数单值运算场景</p>
+<hr>
+<h2 id="二-重中之重mathf-与-unitymathematics-的核心区别-分工">✅ 二、【重中之重】Mathf 与 Unity.Mathematics 的核心区别 &amp; 分工</h2>
+<p>这是你连续问两个知识点的核心需求，<strong>必须彻底分清，否则开发必踩坑</strong>，这两个库<strong>没有优劣，只有分工不同</strong>，99%的Unity项目是<strong>两者配合使用</strong>的，整理了全网最清晰的对比表，建议收藏：</p>
+<h3 id="核心分工原则一句话记住">✅ 核心分工原则（一句话记住）</h3>
+<blockquote>
+<p><strong><code>Mathf</code> → 处理【单个数值】的运算；<code>Unity.Mathematics</code> → 处理【向量/矩阵/四元数】的批量运算</strong></p>
+</blockquote>
+<h3 id="详细对比表全维度无遗漏">✅ 详细对比表（全维度，无遗漏）</h3>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th><code>Mathf</code> (Unity原生)</th>
+<th><code>Unity.Mathematics</code> (官方高性能库)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>处理对象</td>
+<td>✅ 单个数值：<code>int</code>/<code>float</code></td>
+<td>✅ 多维复合类型：<code>float3/int2/quaternion/float4x4</code></td>
+</tr>
+<tr>
+<td>角度制式</td>
+<td>✅ <strong>角度制</strong> (90°、180°)，无需转换</td>
+<td>⚠️ <strong>弧度制</strong> (π/2、π)，必须用<code>math.radians(角度)</code>转换</td>
+</tr>
+<tr>
+<td>命名空间</td>
+<td><code>using UnityEngine;</code>（唯一）</td>
+<td><code>using Unity.Mathematics;</code></td>
+</tr>
+<tr>
+<td>调用方式</td>
+<td><code>Mathf.方法名()</code></td>
+<td>类型构造+<code>math.方法名()</code></td>
+</tr>
+<tr>
+<td>核心优势</td>
+<td>1. 角度制无坑 2. 开箱即用 3. 单值运算简洁 4. 兼容所有场景</td>
+<td>1. SIMD并行优化 2. Burst编译器深度适配 3. 向量矩阵运算极致快 4. DOTS生态标配</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>✅ <strong>所有常规开发</strong>：MonoBehaviour、UGUI、动画、逻辑判断、单值计算、协程等</td>
+<td>✅ <strong>高性能计算</strong>：ECS/JobSystem/Burst、粒子系统、海量坐标运算、物理模拟等</td>
+</tr>
+<tr>
+<td>GC情况</td>
+<td>零GC，静态方法无分配</td>
+<td>零GC，纯值类型无堆内存依赖</td>
+</tr>
+<tr>
+<td>互补关系</td>
+<td>两者可以无缝配合，比如：<code>Mathf.PI</code> 获取圆周率 → 传给 <code>math.radians()</code> 做转换</td>
+<td>两者可以无缝配合，比如：<code>math.length(float3)</code> 得到向量长度 → 用 <code>Mathf.Clamp()</code> 限制范围</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键结论开发必遵">✅ 关键结论（开发必遵）</h3>
+<ol>
+<li>写<strong>常规逻辑</strong>（比如：血量限制、冷却时间计算、角度判断、单值插值）→ 无脑用 <code>Mathf</code>，简单高效无坑</li>
+<li>写<strong>向量/旋转/矩阵</strong>（比如：坐标移动、朝向计算、模型旋转）→ 用 <code>Unity.Mathematics</code> 的 <code>float3/quaternion</code></li>
+<li>写<strong>DOTS/Job/Burst</strong> → 必须用 <code>Unity.Mathematics</code>，禁止在Job中用 <code>Mathf</code></li>
+<li>两者<strong>完全兼容</strong>，可以混合调用，比如：<pre><code class="language-csharp">float3 dir = math.normalize(targetPos - selfPos);
+float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg; // 向量运算用math，单值转换用Mathf
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="三-mathf-核心常量高频必背使用率top10">✅ 三、Mathf 核心常量（高频必背，使用率Top10）</h2>
+<p>所有常量都是 <code>public static readonly</code>，直接调用，<strong>无需计算，零性能损耗</strong>，是开发中最常用的内容，按使用频率排序：</p>
+<pre><code class="language-csharp">// 圆周率相关（最常用）
+Mathf.PI;        // 圆周率 π ≈ 3.141592653589793
+Mathf.Deg2Rad;   // 角度 转 弧度 的系数 (π/180)，比如 90 * Deg2Rad = π/2
+Mathf.Rad2Deg;   // 弧度 转 角度 的系数 (180/π)，比如 π * Rad2Deg = 180°
+
+// 数值相关
+Mathf.Infinity;  // 正无穷大 （常用于初始化最大值）
+Mathf.NegativeInfinity; // 负无穷大
+
+// 插值/平滑相关
+Mathf.Epsilon;   // 极小值（≈0），用于判断浮点数是否相等，比如 if(Mathf.Abs(a-b) &lt; Epsilon)
+</code></pre>
+<hr>
+<h2 id="四-mathf-高频核心api分大类整理全覆盖99开发场景">✅ 四、Mathf 高频核心API（分大类整理，全覆盖99%开发场景）</h2>
+<p>所有API均为 <code>public static</code>，无需实例化，直接调用。我按<strong>开发使用频率优先级</strong>排序，<strong>加粗的是必记API</strong>，背会这些，开发中几乎不用查文档！</p>
+<blockquote>
+<p>所有示例代码均可直接复制到Unity中运行，无依赖</p>
+</blockquote>
+<h3 id="1-数值限制裁剪-使用率第一必记">✔ 1. 数值限制/裁剪 【使用率第一，必记】</h3>
+<p>处理数值边界，防止数值溢出（比如血量不能为负、音量0~1、移动速度限制）</p>
+<pre><code class="language-csharp">// ✅ Mathf.Clamp(数值, 最小值, 最大值) → 强制把数值限制在[min,max]区间内，超了就取边界值
+float hp = Mathf.Clamp(120, 0, 100); // hp = 100
+float volume = Mathf.Clamp(-0.2f, 0, 1); // volume = 0
+
+// ✅ Mathf.Clamp01(数值) → 等价 Clamp(数值,0,1)，专门限制0~1区间，代码更简洁
+float t = Mathf.Clamp01(1.5f); // t = 1
+float alpha = Mathf.Clamp01(-0.3f); // alpha = 0
+
+// Mathf.Max/Min 取多个值的最大/最小值
+float maxVal = Mathf.Max(1,5,3,9); // maxVal =9
+float minVal = Mathf.Min(0.2f, 0.5f, -0.1f); // minVal =-0.1f
+</code></pre>
+<h3 id="2-数值取整-高频必用">✔ 2. 数值取整 【高频必用】</h3>
+<p>处理浮点数转整数的各种场景，<strong>注意区分四舍五入/向上/向下取整</strong>，这是高频坑点！</p>
+<pre><code class="language-csharp">float num = 2.3f;
+float num2 = 2.7f;
+
+// ✅ Mathf.Round(数值) → 标准四舍五入
+Mathf.Round(num);  // 2
+Mathf.Round(num2); // 3
+
+// ✅ Mathf.Floor(数值) → 向下取整（地板），无论小数是多少，都舍弃
+Mathf.Floor(num);  // 2
+Mathf.Floor(2.99f);// 2
+
+// ✅ Mathf.Ceil(数值) → 向上取整（天花板），无论小数是多少，都进1
+Mathf.Ceil(num);   //3
+Mathf.Ceil(2.01f); //3
+
+// Mathf.RoundToInt → 四舍五入后直接返回int类型，省去强制转换
+int val = Mathf.RoundToInt(2.5f); // val=3
+</code></pre>
+<h3 id="3-绝对值符号值-高频">✔ 3. 绝对值/符号值 【高频】</h3>
+<pre><code class="language-csharp">// ✅ Mathf.Abs(数值) → 取绝对值，负数变正数，正数不变
+Mathf.Abs(-5);  //5
+Mathf.Abs(-3.2f);//3.2f
+
+// ✅ Mathf.Sign(数值) → 获取数值的【符号】，返回值只有3种：1(正)、-1(负)、0(零)
+Mathf.Sign(5);   //1
+Mathf.Sign(-3.2f);//-1
+Mathf.Sign(0);   //0
+// 常用场景：判断移动方向、攻击方向
+float moveDir = Mathf.Sign(Input.GetAxis(&quot;Horizontal&quot;));
+</code></pre>
+<h3 id="4-插值运算-核心api必记动画平滑核心">✔ 4. 插值运算 【核心API，必记，动画/平滑核心】</h3>
+<p>插值是游戏开发的灵魂，实现<strong>数值平滑过渡、动画缓动、属性渐变</strong>，Mathf的插值全部是<strong>单值插值</strong>，角度制无坑！</p>
+<pre><code class="language-csharp">// ✅ Mathf.Lerp(起始值, 目标值, 插值系数t) → 线性插值，t∈[0,1]
+// t=0 → 返回起始值；t=1 → 返回目标值；t=0.5 → 返回中间值，匀速过渡
+float speed = Mathf.Lerp(0, 10, 0.5f); // speed=5
+float posX = Mathf.Lerp(transform.position.x, 10, Time.deltaTime); // 平滑移动X轴到10
+
+// ✅ Mathf.LerpAngle(起始角度, 目标角度, t) → 角度专用线性插值，自动处理360°循环（核心！）
+// 比如：从350°插值到10°，会走最短路径（20°），而不是走340°，不会出现旋转卡顿
+float angle = Mathf.LerpAngle(350, 10, 0.5f); // angle=0°
+
+// Mathf.SmoothDamp → 平滑阻尼插值，带【惯性缓动】，比Lerp更丝滑，适合相机跟随、手感优化
+float currentVel = 0;
+float smoothPos = Mathf.SmoothDamp(transform.position.x, 10, ref currentVel, 0.2f);
+</code></pre>
+<h3 id="5-三角函数-开发常用无坑角度制">✔ 5. 三角函数 【开发常用，无坑角度制】</h3>
+<p>Mathf的三角函数<strong>全部基于角度制</strong>，这是和 <code>Unity.Mathematics</code> 的核心区别，<strong>不用转换弧度</strong>，直接传角度即可，太香了！</p>
+<pre><code class="language-csharp">// 正弦/余弦/正切，参数直接传【角度】
+Mathf.Sin(0);    // 0
+Mathf.Sin(90);   // 1
+Mathf.Cos(0);    // 1
+Mathf.Cos(180);  // -1
+
+// ✅ Mathf.Atan2(y, x) → 极坐标反正切，返回【弧度值】，计算两个点的夹角必备！
+// 通用公式：两点夹角 = Mathf.Atan2(y差, x差) * Mathf.Rad2Deg
+Vector2 a = new Vector2(0,0);
+Vector2 b = new Vector2(1,1);
+float rad = Mathf.Atan2(b.y - a.y, b.x - a.x);
+float angle = rad * Mathf.Rad2Deg; // angle=45°
+</code></pre>
+<h3 id="6-其他高频实用api">✔ 6. 其他高频实用API</h3>
+<pre><code class="language-csharp">// ✅ Mathf.Pow(底数, 指数) → 幂运算，比如平方、立方
+float square = Mathf.Pow(2,2); // 2²=4
+float cube = Mathf.Pow(3,3);   //3³=27
+
+// ✅ Mathf.Sqrt(数值) → 平方根运算，比如向量长度计算的开方
+float sqrt = Mathf.Sqrt(16); //4
+
+// Mathf.DeltaAngle(当前角度, 目标角度) → 计算两个角度的【最短差值】，自动处理360°循环
+// 比如：350°到10°的差值是20°，而不是-340°
+float delta = Mathf.DeltaAngle(350, 10); // delta=20
+</code></pre>
+<hr>
+<h2 id="五-mathf-避坑指南开发高频踩坑点共3个全部避开">✅ 五、Mathf 避坑指南（开发高频踩坑点，共3个，全部避开）</h2>
+<h3 id="️-坑1浮点数的等于判断不能用">⚠️ 坑1：浮点数的「等于」判断，不能用 <code>==</code></h3>
+<p>Unity中float是浮点型，存在精度误差，比如 <code>0.1+0.2</code> 不等于 <code>0.3</code>，直接用<code>==</code>会得到错误结果。<br>
+✅ 正确写法：用 <code>Mathf.Epsilon</code> 判断两个数的差值是否小于极小值</p>
+<pre><code class="language-csharp">float a = 0.1f + 0.2f;
+float b = 0.3f;
+// 错误：if(a == b) → false
+// 正确：
+if(Mathf.Abs(a - b) &lt; Mathf.Epsilon)
+{
+    Debug.Log(&quot;a和b相等&quot;); // 会执行
+}
+</code></pre>
+<h3 id="️-坑2mathflerp-的插值系数-t-必须手动限制在-01">⚠️ 坑2：Mathf.Lerp 的插值系数 <code>t</code> 必须手动限制在 [0,1]</h3>
+<p>Mathf.Lerp的<code>t</code>如果超过1，会继续插值导致数值溢出目标值，比如 <code>Mathf.Lerp(0,10,2)</code> 会返回20，不是10！<br>
+✅ 正确写法：配合 <code>Mathf.Clamp01()</code> 限制t的范围</p>
+<pre><code class="language-csharp">float t = Time.deltaTime * 2; // t可能大于1
+float val = Mathf.Lerp(0,10, Mathf.Clamp01(t)); // 永远不会超过10
+</code></pre>
+<h3 id="️-坑3旋转角度计算用-mathflerpangle-而不是-mathflerp">⚠️ 坑3：旋转角度计算用 Mathf.LerpAngle 而不是 Mathf.Lerp</h3>
+<p>普通的Lerp处理角度时，不会处理360°循环，比如从350°到10°，会计算成 <code>-340°</code>，导致物体旋转一大圈而不是小角度。<br>
+✅ 正确写法：所有角度插值，<strong>一律用 Mathf.LerpAngle</strong></p>
+<hr>
+<h2 id="六-mathf-完整实用代码示例常规开发高频场景">✅ 六、Mathf 完整实用代码示例（常规开发高频场景）</h2>
+<p>这个示例整合了Mathf的核心API，模拟了<strong>游戏中最常见的逻辑场景</strong>，直接复制到MonoBehaviour脚本中即可运行，能帮你快速理解实际用法：</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class MathfDemo : MonoBehaviour
+{
+    public Transform target;
+    public float maxHp = 100;
+    private float currentHp = 100;
+
+    void Update()
+    {
+        // 1. 数值限制：扣血后血量不小于0
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            currentHp -= 25;
+            currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+            Debug.Log($&quot;当前血量：{currentHp}&quot;);
+        }
+
+        // 2. 角度计算：看向目标的角度（无坑）
+        Vector3 dir = target.position - transform.position;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, angle, 0);
+
+        // 3. 平滑插值：相机平滑跟随目标X轴，带阻尼
+        float smoothX = Mathf.Lerp(transform.position.x, target.position.x, Time.deltaTime * 3);
+        transform.position = new Vector3(smoothX, transform.position.y, transform.position.z);
+
+        // 4. 绝对值判断：判断是否远离目标
+        float distance = Vector3.Distance(transform.position, target.position);
+        if (Mathf.Abs(distance) &gt; 10)
+        {
+            Debug.Log(&quot;目标已远离，开始追击&quot;);
+        }
+    }
+}
+</code></pre>
+<hr>
+<h2 id="七-总结核心知识点速记必背">✅ 七、总结（核心知识点速记，必背）</h2>
+<ol>
+<li><code>Mathf</code> 是Unity原生静态数学类，<strong>处理单值运算</strong>，角度制无坑，开箱即用，常规开发首选。</li>
+<li><code>Mathf</code> 和 <code>Unity.Mathematics</code> 是<strong>互补关系</strong>，不是替代关系：单值用Mathf，向量矩阵用math库。</li>
+<li>必记3个核心常量：<code>Mathf.PI</code>、<code>Mathf.Deg2Rad</code>、<code>Mathf.Rad2Deg</code>。</li>
+<li>必记6个核心API：<code>Mathf.Clamp</code>、<code>Mathf.Clamp01</code>、<code>Mathf.Round</code>、<code>Mathf.Abs</code>、<code>Mathf.Lerp</code>、<code>Mathf.LerpAngle</code>。</li>
+<li>避坑三原则：浮点判断用Epsilon、Lerp的t要Clamp01、角度插值用LerpAngle。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-mathematics/" class="post-title gt-a-link">
+                    Unity的Mathematics
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

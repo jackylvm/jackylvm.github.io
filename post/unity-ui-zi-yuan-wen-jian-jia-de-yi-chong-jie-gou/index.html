@@ -1,0 +1,381 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity UI资源文件夹的一种结构 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity UI资源文件夹的一种结构
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-24 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Ts8wE1eu0E/" class="post-tags">
+                            # UI
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/GbsLkWbrXvQ/" class="post-tags">
+                            # 项目结构
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Unity开发中，美术UI资源的文件夹结构统一、预制体与动态加载资源的位置协调，核心是<strong>制定标准化资源规范+建立双向同步机制+区分资源加载类型的存储规则</strong>，既保障美术出图流程不被打乱，又让程序开发高效可控，同时规避资源冗余、路径错误、加载异常等问题。以下是可落地的完整解决方案，覆盖规则制定、同步实现、加载协调、工具保障全流程：</p>
+<h3 id="一-核心原则制定美术-程序统一的ui资源根目录规范">一、核心原则：制定<strong>美术-程序统一的UI资源根目录规范</strong></h3>
+<p>先约定唯一的UI资源根目录，美术出图、程序开发均基于此根目录做<strong>子文件夹分层</strong>，<strong>禁止双方随意在根目录外创建UI相关文件夹</strong>，从源头避免结构分歧。</p>
+<h4 id="推荐统一根目录中英文双命名兼顾美术习惯">推荐统一根目录（中英文双命名，兼顾美术习惯）</h4>
+<pre><code>Assets/UI/ （程序主目录，代码、配置、预制体核心目录）
+Assets/UI/ArtRes/ （美术资源专属目录，美术所有出图文件均放在此目录下，程序不修改此目录内文件）
+</code></pre>
+<h4 id="子文件夹强制统一分层规则美术-程序严格遵循按功能模块划分而非资源类型">子文件夹<strong>强制统一分层规则</strong>（美术、程序严格遵循，按“功能/模块”划分，而非“资源类型”）</h4>
+<p>美术出图、程序整理均按此结构，<strong>层级深度建议≤3层</strong>（避免路径过长、查找繁琐），示例：</p>
+<pre><code>Assets/UI/ArtRes/
+├─ Common/        // 通用UI：按钮、输入框、弹窗背景、字体、图标等全局复用资源
+│  ├─ Btn/        // 通用按钮
+│  ├─ Icon/       // 通用图标（金币、等级、关闭等）
+│  └─ Background/ // 通用背景
+├─ Login/         // 登录模块：登录界面所有独用资源（背景、登录按钮、账号输入框等）
+├─ MainUI/        // 主界面模块：主界面独用资源（导航栏、角色信息、功能入口等）
+└─ Shop/          // 商城模块：商城独用资源（商品图标、购买按钮、价格背景等）
+</code></pre>
+<p>✅ 关键要求：<strong>美术的PSD/源文件、导出的PNG/SPINE等最终资源，均按此结构存放</strong>；程序仅在<code>Assets/UI/</code>下创建非美术资源目录（如预制体、配置），不改动<code>ArtRes</code>内结构。</p>
+<h3 id="二-双向同步机制美术出图结构程序使用结构无需手动整理">二、双向同步机制：美术出图结构=程序使用结构，无需手动整理</h3>
+<p>核心解决“美术出图后，程序需手动拷贝/移动资源导致结构不一致”的问题，<strong>让美术的<code>ArtRes</code>目录直接作为程序的资源源目录</strong>，程序通过**“软引用+资源索引”**使用，不修改美术原始文件，具体实现：</p>
+<ol>
+<li><strong>美术侧</strong>：按统一规范导出资源后，直接放入<code>Assets/UI/ArtRes</code>对应模块文件夹，<strong>无需做任何额外整理</strong>（符合美术出图流程，无学习成本）；</li>
+<li><strong>程序侧</strong>：<strong>不拷贝、不移动<code>ArtRes</code>内的任何资源</strong>，预制体挂载、代码动态加载均<strong>直接引用<code>ArtRes</code>内的资源路径</strong>；</li>
+<li><strong>版本控制协同</strong>：将<code>Assets/UI/ArtRes</code>纳入Git/SVN版本控制，美术提交资源后，程序更新版本即可获取最新资源，<strong>提交时禁止修改对方目录</strong>（美术仅提交<code>ArtRes</code>，程序仅提交<code>UI</code>下其他目录）。</li>
+</ol>
+<p>此机制的核心优势：美术修改文件夹结构/资源名称后，程序仅需更新引用（可通过工具自动处理），无需双方同步整理，从流程上保证结构完全统一。</p>
+<h3 id="三-核心区分预制体挂载资源-vs-动态加载资源的存储与加载规则">三、核心区分：预制体挂载资源 vs 动态加载资源的存储与加载规则</h3>
+<p>UI资源分**“预制体挂载（静态资源）”<strong>和</strong>“动态加载（动态资源）”<strong>两类，核心差异是</strong>“是否随场景/预制体一起加载”**，需针对性制定存储位置和加载方式，<strong>核心规则：两类资源均存储在统一的<code>ArtRes</code>目录，仅加载方式不同，不单独建文件夹</strong>，避免资源冗余和结构混乱。</p>
+<h4 id="1-预制体挂载资源静态资源">1. 预制体挂载资源（静态资源）</h4>
+<h5 id="适用场景">适用场景</h5>
+<p>随UI预制体一起显示的固定资源，如界面背景、固定按钮、标题、静态图标等（例：登录界面的“登录按钮”、主界面的“背包入口图标”）。</p>
+<h5 id="存储位置">存储位置</h5>
+<p>统一放在<code>Assets/UI/ArtRes/对应模块</code>目录（与美术出图位置一致）。</p>
+<h5 id="挂载与加载方式">挂载与加载方式</h5>
+<ul>
+<li>在Unity编辑器中，直接将<code>ArtRes</code>内的资源（Sprite/Image等）拖拽到UI预制体的对应组件上（如Image的Sprite属性）；</li>
+<li>加载逻辑：<strong>随预制体一起加载</strong>（通过<code>Resources.Load&lt;GameObject&gt;</code>、Addressables.LoadAssetAsync等加载预制体时，挂载的资源会自动被加载，无需单独加载）；</li>
+<li>预制体存储位置：程序在<code>Assets/UI/</code>下创建<code>Prefabs</code>目录，按模块分类，与<code>ArtRes</code>结构一致，示例：<pre><code>Assets/UI/Prefabs/
+├─ Common/   // 通用预制体：通用弹窗、提示框等
+├─ Login/    // 登录模块预制体：登录界面、账号输入预制体等
+├─ MainUI/   // 主界面模块预制体：主界面、导航栏等
+</code></pre>
+</li>
+</ul>
+<h4 id="2-动态加载资源">2. 动态加载资源</h4>
+<h5 id="适用场景-2">适用场景</h5>
+<p>运行时根据逻辑动态显示的资源，如道具图标、角色头像、活动图片、多语言文本配图等（例：背包中的道具图标、商城中的商品图片）。</p>
+<h5 id="存储位置-2">存储位置</h5>
+<p><strong>同样放在<code>Assets/UI/ArtRes/对应模块</code>目录</strong>（例：道具图标放在<code>Assets/UI/ArtRes/Item/Icon</code>），与静态资源同目录，按功能分层，不单独建“DynamicRes”文件夹。</p>
+<h5 id="核心加载要求">核心加载要求</h5>
+<p><strong>必须使用“带资源路径的寻址加载方案”</strong>，<strong>禁止使用<code>Resources.Load</code>（仅支持固定路径，无法灵活适配统一结构，且打包后无法修改）</strong>，推荐Unity官方主推的<strong>Addressables（可寻址资源系统）</strong>，或自定义AB包（AssetBundle）方案，核心原因：</p>
+<ul>
+<li>支持<strong>按“统一的ArtRes相对路径”加载资源</strong>，与美术/程序的统一结构完全适配；</li>
+<li>支持资源热更、分包加载，适配项目后期迭代；</li>
+<li>支持资源引用管理，避免冗余加载。</li>
+</ul>
+<h5 id="推荐加载方式addressables">推荐加载方式（Addressables）</h5>
+<ol>
+<li>标记资源：在Unity编辑器中，选中<code>ArtRes</code>内的动态资源，在<code>Addressables Groups</code>窗口中添加到对应组，并<strong>设置“Address”为资源的</strong>相对路径**（与文件夹结构一致，例：<code>UI/ArtRes/Item/Icon/Sword</code>）**；</li>
+<li>代码加载：通过资源的<code>Address</code>（即统一的路径）动态加载，示例代码：<pre><code class="language-csharp">using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
+
+/// &lt;summary&gt;
+/// 动态加载UI资源示例（Addressables）
+/// &lt;/summary&gt;
+public class UIDynamicResLoader : MonoBehaviour
+{
+    [SerializeField] private Image targetImage; // 要显示动态资源的Image组件
+    // 资源路径（与ArtRes目录结构一致，美术/程序统一约定）
+    private string resPath = &quot;UI/ArtRes/Item/Icon/Sword&quot;;
+
+    private void Start()
+    {
+        LoadDynamicSprite(resPath);
+    }
+
+    /// &lt;summary&gt;
+    /// 动态加载Sprite并显示
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;address&quot;&gt;Addressables标记的资源路径&lt;/param&gt;
+    private void LoadDynamicSprite(string address)
+    {
+        AsyncOperationHandle&lt;Sprite&gt; loadHandle = Addressables.LoadAssetAsync&lt;Sprite&gt;(address);
+        loadHandle.Completed += (handle) =&gt;
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                targetImage.sprite = handle.Result;
+                targetImage.SetNativeSize(); // 适配图片原始大小
+            }
+            else
+            {
+                Debug.LogError($&quot;动态加载UI资源失败：{address}，错误：{handle.OperationException}&quot;);
+            }
+            // 释放句柄（避免内存泄漏）
+            Addressables.Release(handle);
+        };
+    }
+}
+</code></pre>
+</li>
+</ol>
+<h3 id="四-工具化保障避免人工失误强制规范落地">四、工具化保障：避免人工失误，强制规范落地</h3>
+<p>仅靠制度约定易出现人工失误（如美术建错文件夹、程序随意移动资源），需配合<strong>轻量工具+Unity编辑器校验</strong>，让规范“可检测、可强制”，推荐3个低成本落地的工具/配置：</p>
+<h4 id="1-目录模板生成工具">1. 目录模板生成工具</h4>
+<p>开发简单的Editor工具，一键生成<strong>符合统一规范的UI目录结构</strong>（包括<code>ArtRes</code>、<code>Prefabs</code>、<code>Scenes</code>等），美术和程序均通过工具创建目录，<strong>禁止手动新建文件夹</strong>，示例Editor代码核心逻辑：</p>
+<pre><code class="language-csharp">using UnityEditor;
+using UnityEngine;
+
+public class UIDirectoryCreator : Editor
+{
+    [MenuItem(&quot;Tools/UI/生成标准UI目录结构&quot;)]
+    public static void CreateStandardUIDirectory()
+    {
+        // 根目录
+        CreateDir(&quot;Assets/UI&quot;);
+        CreateDir(&quot;Assets/UI/ArtRes&quot;);
+        CreateDir(&quot;Assets/UI/Prefabs&quot;);
+        CreateDir(&quot;Assets/UI/Scenes&quot;);
+
+        // 通用模块
+        CreateDir(&quot;Assets/UI/ArtRes/Common&quot;);
+        CreateDir(&quot;Assets/UI/Prefabs/Common&quot;);
+        // 业务模块（可根据项目需求扩展）
+        CreateDir(&quot;Assets/UI/ArtRes/Login&quot;);
+        CreateDir(&quot;Assets/UI/Prefabs/Login&quot;);
+        CreateDir(&quot;Assets/UI/ArtRes/MainUI&quot;);
+        CreateDir(&quot;Assets/UI/Prefabs/MainUI&quot;);
+
+        AssetDatabase.Refresh();
+        Debug.Log(&quot;标准UI目录结构生成成功！&quot;);
+    }
+
+    private static void CreateDir(string path)
+    {
+        if (!AssetDatabase.IsValidFolder(path))
+        {
+            string parentPath = System.IO.Path.GetDirectoryName(path);
+            if (!AssetDatabase.IsValidFolder(parentPath))
+            {
+                CreateDir(parentPath); // 递归创建父目录
+            }
+            AssetDatabase.CreateFolder(parentPath, System.IO.Path.GetFileName(path));
+        }
+    }
+}
+</code></pre>
+<h4 id="2-资源路径校验工具">2. 资源路径校验工具</h4>
+<p>开发Editor校验工具，在<strong>打包前/提交代码前</strong>检查：</p>
+<ul>
+<li>所有UI资源是否都在<code>Assets/UI/ArtRes</code>目录下；</li>
+<li>预制体挂载的资源是否引用<code>ArtRes</code>内的文件，而非其他目录；</li>
+<li>动态资源的Addressables路径是否与文件夹结构一致；<br>
+发现违规则弹窗提示，禁止打包/提交，从流程上强制规范。</li>
+</ul>
+<h4 id="3-unity编辑器锁定关键目录">3. Unity编辑器锁定关键目录</h4>
+<p>对<code>Assets/UI/ArtRes</code>目录设置**“只读提醒”**（通过Editor工具实现），当程序试图修改/删除<code>ArtRes</code>内的文件/文件夹时，弹窗提示“禁止修改美术资源目录，请通过美术侧更新”，避免程序误操作导致美术资源结构混乱。</p>
+<h3 id="五-版本控制与协作规范从流程上规避冲突">五、版本控制与协作规范：从流程上规避冲突</h3>
+<ol>
+<li><strong>目录权限约定</strong>：在Git/SVN中约定，<code>Assets/UI/ArtRes</code>目录<strong>仅美术可提交修改</strong>，程序仅可“拉取更新”，禁止程序提交此目录的任何变更；<code>Assets/UI/</code>下的其他目录（<code>Prefabs</code>、<code>Scripts</code>、<code>Scenes</code>）仅程序可提交修改；</li>
+<li><strong>资源命名规范</strong>：统一美术和程序的资源命名规则（例：小驼峰<code>loginBtnBg</code>、模块前缀<code>mainui_bagIcon</code>），避免因命名混乱导致引用错误；</li>
+<li><strong>提交备注规范</strong>：美术提交<code>ArtRes</code>资源时，备注需包含“模块+资源类型+修改内容”（例：“Login：更新登录按钮背景图”），方便程序定位资源变更；</li>
+<li><strong>冲突处理</strong>：若美术修改了资源名称/文件夹结构，需提前通知程序，程序通过<strong>Addressables重新标记路径/预制体重新挂载资源</strong>，避免运行时路径错误。</li>
+</ol>
+<h3 id="六-总结">六、总结</h3>
+<p>本次解决方案的核心是**“统一根目录+双向同步+分类加载+工具保障”**，核心要点可归纳为3句话：</p>
+<ol>
+<li>美术和程序共用**<code>Assets/UI/ArtRes</code>**作为唯一的UI资源存储目录，按模块分层，结构完全统一，程序不修改美术原始文件；</li>
+<li>预制体挂载资源<strong>随预制体一起加载</strong>，动态加载资源<strong>用Addressables按统一路径寻址加载</strong>，两类资源同目录存储，不单独拆分；</li>
+<li>通过<strong>目录生成工具、路径校验工具、版本控制权限</strong>强制规范落地，避免人工失误，让美术出图流程和程序开发流程互不干扰、高效协同。</li>
+</ol>
+<p>按此方案实施后，可彻底解决UI资源文件夹结构不统一、预制体与动态加载资源位置混乱的问题，同时降低后期资源迭代、热更的维护成本。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-de-rect/" class="post-title gt-a-link">
+                    Unity的Rect
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

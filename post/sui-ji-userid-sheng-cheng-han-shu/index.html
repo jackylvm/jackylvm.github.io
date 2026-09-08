@@ -1,0 +1,306 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>随机 UserId 生成函数 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    随机 UserId 生成函数
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-03-20 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="unity-随机userid生成函数">Unity 随机UserId生成函数</h1>
+<p>我需要生成一个<strong>固定格式</strong>的UserId：<strong>2位小写字母(a-z) + 4位数字(0000-9999)</strong>，随便编写了一个可直接在Unity中使用的C#函数。</p>
+<h2 id="完整代码">完整代码</h2>
+<pre><code class="language-csharp">using UnityEngine;
+
+public static class UserIdGenerator
+{
+    /// &lt;summary&gt;
+    /// 生成随机UserId：2位小写字母 + 4位数字
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;格式如：ab1234、xz0001、qy9876&lt;/returns&gt;
+    public static string GenerateRandomUserId()
+    {
+        // 1. 生成2个随机小写字母
+        char firstChar = GetRandomLetter();
+        char secondChar = GetRandomLetter();
+
+        // 2. 生成4位随机数字（0000 ~ 9999）
+        int randomNumber = Random.Range(0, 10000);
+        // 格式化数字，不足4位自动补0
+        string numberStr = randomNumber.ToString(&quot;D4&quot;);
+
+        // 3. 拼接最终UserId
+        string userId = $&quot;{firstChar}{secondChar}{numberStr}&quot;;
+
+        return userId;
+    }
+
+    /// &lt;summary&gt;
+    /// 辅助方法：生成单个随机小写字母(a-z)
+    /// &lt;/summary&gt;
+    private static char GetRandomLetter()
+    {
+        // a的ASCII码是97，z是122，随机取中间值
+        int asciiCode = Random.Range(97, 123);
+        return (char)asciiCode;
+    }
+}
+</code></pre>
+<h2 id="使用示例">使用示例</h2>
+<p>你可以在任意脚本中直接调用这个静态方法：</p>
+<pre><code class="language-csharp">public class Test : MonoBehaviour
+{
+    void Start()
+    {
+        // 生成UserId
+        string userId = UserIdGenerator.GenerateRandomUserId();
+        Debug.Log(&quot;生成的随机UserId：&quot; + userId);
+    }
+}
+</code></pre>
+<h2 id="核心说明">核心说明</h2>
+<ol>
+<li>
+<p><strong>字母生成逻辑</strong></p>
+<ul>
+<li>利用ASCII码：小写字母<code>a</code>=97，<code>z</code>=122</li>
+<li><code>Random.Range(97,123)</code> 会随机生成97~122之间的整数，强转<code>char</code>后就是随机小写字母</li>
+</ul>
+</li>
+<li>
+<p><strong>数字生成逻辑</strong></p>
+<ul>
+<li><code>Random.Range(0,10000)</code> 生成0~9999的整数</li>
+<li><code>ToString(&quot;D4&quot;)</code> 格式化：自动补前导零（如 5 → 0005，123 → 0123）</li>
+</ul>
+</li>
+<li>
+<p><strong>格式保证</strong></p>
+<ul>
+<li>最终结果<strong>严格固定长度</strong>：6位字符（2字母+4数字）</li>
+<li>无大写字母、无特殊符号，完全符合你的要求</li>
+</ul>
+</li>
+</ol>
+<h2 id="扩展版本可选">扩展版本（可选）</h2>
+<p>如果你需要<strong>生成不重复的UserId</strong>，可以使用这个带缓存的版本：</p>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using UnityEngine;
+
+public static class UniqueUserIdGenerator
+{
+    private static readonly HashSet&lt;string&gt; usedIds = new HashSet&lt;string&gt;();
+
+    public static string GenerateUniqueUserId()
+    {
+        string userId;
+        // 循环生成直到得到未使用过的Id
+        do
+        {
+            userId = UserIdGenerator.GenerateRandomUserId();
+        } while (usedIds.Contains(userId));
+        
+        usedIds.Add(userId);
+        return userId;
+    }
+
+    // 清空已使用的Id缓存
+    public static void ClearUsedIds() =&gt; usedIds.Clear();
+}
+</code></pre>
+<h3 id="总结">总结</h3>
+<ol>
+<li>基础版<code>GenerateRandomUserId()</code>直接生成符合格式的随机ID</li>
+<li>数字自动补0，字母纯小写，格式固定6位</li>
+<li>扩展版支持生成<strong>唯一不重复</strong>的UserId</li>
+<li>纯C#实现，无需依赖，可直接在Unity中运行</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-luo-ji-zheng-yu-xuan-ran-zheng-fen-chi/" class="post-title gt-a-link">
+                    Unity 逻辑帧与渲染帧分离
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

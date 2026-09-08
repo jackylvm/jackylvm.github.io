@@ -1,0 +1,296 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Behavior Designer Composites(组合节点)速查表1 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Behavior Designer Composites(组合节点)速查表1
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-05-23 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/CjzF_95ZFz/" class="post-tags">
+                            # Behavior Designer
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong>核心定义</strong>：Composites（组合节点）是行为树的<strong>流程控制器</strong>，负责管控所有子节点的执行顺序、中断规则、成败状态，是搭建AI逻辑的核心骨架。</p>
+<p><strong>前置基础规则</strong>：所有行为树节点只有三种状态 —— Success（成功）、Failure（失败）、Running（运行中）</p>
+<hr>
+<h2 id="一-高频核心节点90-开发场景必用">一、高频核心节点（90% 开发场景必用）</h2>
+<h3 id="1-sequence-序列节点递进执行">1. Sequence 序列节点（递进执行）</h3>
+<p><strong>核心口诀</strong>：<strong>一败即败，全成才成，顺序执行</strong></p>
+<p><strong>执行规则</strong>：从上至下依次执行子节点；任意子节点返回 Failure/Running，立刻终止后续执行；所有子节点全部 Success，自身才返回 Success。</p>
+<p><strong>核心用途</strong>：做<strong>连贯步骤逻辑</strong>（前置条件+后续动作）</p>
+<p><strong>实战案例</strong>：看见目标 → 靠近目标 → 发起攻击（缺一不可）</p>
+<h3 id="2-selector-选择节点分支择优">2. Selector 选择节点（分支择优）</h3>
+<p><strong>核心口诀</strong>：<strong>一成即成，全败才败，择优执行</strong></p>
+<p><strong>执行规则</strong>：从上至下检测子节点；任意子节点返回 Success/Running，立刻停止后续检测；所有子节点全部 Failure，自身才返回 Failure。</p>
+<p><strong>核心用途</strong>：做<strong>互斥分支逻辑</strong>（二选一、多选一）</p>
+<p><strong>实战案例</strong>：看见敌人追击 → 没看见敌人巡逻（互斥切换）</p>
+<hr>
+<h2 id="二-并行类节点多逻辑同时执行">二、并行类节点（多逻辑同时执行）</h2>
+<h3 id="3-parallel-并行节点">3. Parallel 并行节点</h3>
+<p><strong>核心口诀</strong>：<strong>所有子节点同时跑，互不阻塞</strong></p>
+<p><strong>执行规则</strong>：所有子节点同步并行执行，可自定义终止条件（全部成功/任一成功/任一失败）。</p>
+<p><strong>核心用途</strong>：并行动作、状态同步</p>
+<p><strong>实战案例</strong>：角色移动 + 播放跑步动画 + 播放脚步声</p>
+<h3 id="4-parallel-selector-并行选择节点">4. Parallel Selector 并行选择节点</h3>
+<p><strong>核心口诀</strong>：<strong>并行执行，任一成功立刻结束</strong></p>
+<p><strong>执行规则</strong>：所有子节点同时运行，只要有一个子节点 Success，整体立刻成功并终止；全部失败则整体失败。</p>
+<p><strong>核心用途</strong>：紧急互斥优先级检测</p>
+<p><strong>实战案例</strong>：正常攻击逻辑 / 被攻击时立刻触发闪避（谁先满足谁生效）</p>
+<hr>
+<h2 id="三-随机类节点模拟随机ai行为">三、随机类节点（模拟随机AI行为）</h2>
+<h3 id="5-random-selector-随机选择节点">5. Random Selector 随机选择节点</h3>
+<p><strong>核心口诀</strong>：<strong>随机挑一个子节点执行，一成即停</strong></p>
+<p><strong>执行规则</strong>：随机打乱子节点顺序，逐个执行，遇到第一个成功的节点就终止；全部失败则整体失败。</p>
+<p><strong>核心用途</strong>：随机 idle 动作、随机巡逻点位、随机台词</p>
+<p><strong>实战案例</strong>：AI待机随机摸头、张望、站立发呆</p>
+<h3 id="6-random-sequence-随机序列节点">6. Random Sequence 随机序列节点</h3>
+<p><strong>核心口诀</strong>：<strong>随机排序，全部执行，一败即败</strong></p>
+<p><strong>执行规则</strong>：随机打乱子节点顺序，按新顺序依次执行，必须全部成功才算整体成功。</p>
+<p><strong>核心用途</strong>：无固定顺序的成套随机行为</p>
+<p><strong>实战案例</strong>：AI随机整理装备、环顾四周、调整站姿（全套做完才算完成待机互动）</p>
+<hr>
+<h2 id="四-高阶中断节点优先级打断">四、高阶中断节点（优先级打断）</h2>
+<h3 id="7-selector-evaluator-可中断选择节点">7. Selector Evaluator 可中断选择节点</h3>
+<p><strong>核心口诀</strong>：<strong>每帧重检，高优强制打断当前行为</strong></p>
+<p><strong>执行规则</strong>：每帧实时刷新所有子节点状态，<strong>高优先级分支可强制中断正在运行的低优先级行为</strong>。</p>
+<p><strong>核心用途</strong>：紧急状态、高优先级行为覆盖（AI状态打断）</p>
+<p><strong>实战案例</strong>：正常巡逻/追击 → 血量过低立刻打断所有行为，触发逃跑</p>
+<hr>
+<h2 id="五-极速选型对照表开发首选">五、极速选型对照表（开发首选）</h2>
+<table>
+<thead>
+<tr>
+<th>需求场景</th>
+<th>首选节点</th>
+<th>核心逻辑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>先满足条件、再执行动作（步骤流程）</td>
+<td>Sequence</td>
+<td>条件 &amp;amp; 动作 同时成立</td>
+</tr>
+<tr>
+<td>多个行为二选一/多选一（状态切换）</td>
+<td>Selector</td>
+<td>满足其一即可执行</td>
+</tr>
+<tr>
+<td>多个动作同时进行（动画+移动）</td>
+<td>Parallel</td>
+<td>并行执行、互不阻塞</td>
+</tr>
+<tr>
+<td>AI随机动作、随机行为</td>
+<td>Random Selector</td>
+<td>随机单选、模拟自然AI</td>
+</tr>
+<tr>
+<td>紧急状态打断当前所有行为</td>
+<td>Selector Evaluator</td>
+<td>高优先级强制中断</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="六-你的核心需求-标准范式直接复用">六、你的核心需求 标准范式（直接复用）</h2>
+<p><strong>需求</strong>：看见目标移动，看不见目标停止</p>
+<p><strong>固定组合模板</strong>：</p>
+<pre><code class="language-Plain">Selector
+├─ Sequence
+│  ├─ 视野检测（CanSeeTarget）
+│  └─ 目标移动（MoveToTarget）
+└─ 原地等待/停止（Wait）
+</code></pre>
+<p><strong>逻辑解析</strong>：检测+移动必须同时满足（Sequence），不满足则切换停止状态（Selector分支）</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/git-ming-ling-xiang-jie-git-show/" class="post-title gt-a-link">
+                    0x05.Git命令详解-git show
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

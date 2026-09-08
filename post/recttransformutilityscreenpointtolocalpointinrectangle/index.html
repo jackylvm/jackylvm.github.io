@@ -1,0 +1,367 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>RectTransformUtility.ScreenPointToLocalPointInRectangle | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-05-10 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>RectTransformUtility.ScreenPointToLocalPointInRectangle 是 Unity 中用于坐标转换的核心方法，主要功能是将 屏幕空间坐标（如鼠标点击位置）转换为 RectTransform 局部空间的坐标。这在处理 UI 交互（如点击按钮、拖动元素）时非常关键。</p>
+<!-- more -->
+<p><strong>先说它的缺点</strong></p>
+<ol>
+<li>函数能够对坐标进行正确的转换,必须保证锚点、轴心、缩放和Canvas渲染模式都设置正确
+<ol>
+<li>锚点和轴心必须是(0.5,0.5),不然计算的就不对了,其他情况下想得到正确的结果,必须自己再把偏移考虑进去</li>
+<li>缩放函数已经考虑了,不需要另外计算</li>
+<li>Canvas渲染模式的设置如下:
+<ol>
+<li>Screen Space - Overlay：cam 必须为 null。</li>
+<li>Screen Space - Camera 或 World Space：cam 需传入渲染 Canvas 的相机（通常是 Camera.main）。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>下面给出几个图片</p>
+<ol>
+<li>
+<p>第一张是正确的设置<br>
+<img src="https://jackylvm.github.io/post-images/1746861207491.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>第二张和第三张是不正确的设置<br>
+<img src="https://jackylvm.github.io/post-images/1746861246993.png" alt="" loading="lazy"><br>
+<img src="https://jackylvm.github.io/post-images/1746861252877.png" alt="" loading="lazy"></p>
+</li>
+</ol>
+<!-- more -->
+<p>🚝<br>
+<code>RectTransformUtility.ScreenPointToLocalPointInRectangle</code> 是 Unity 中用于坐标转换的核心方法，主要功能是将 <strong>屏幕空间坐标</strong>（如鼠标点击位置）转换为 <strong>RectTransform 局部空间的坐标</strong>。这在处理 UI 交互（如点击按钮、拖动元素）时非常关键。</p>
+<h3 id="核心功能"><strong>核心功能</strong></h3>
+<ol>
+<li>
+<p><strong>屏幕坐标 → UI 局部坐标</strong><br>
+将屏幕上的一个点（如鼠标位置）转换为 UI 元素（RectTransform）内部的相对坐标。</p>
+</li>
+<li>
+<p><strong>处理复杂 UI 布局</strong><br>
+自动考虑 UI 元素的 <strong>锚点（Anchors）</strong>、<strong>轴心（Pivot）</strong>、<strong>缩放</strong> 和 <strong>Canvas 渲染模式</strong>，确保转换结果准确。</p>
+</li>
+</ol>
+<h3 id="应用场景"><strong>应用场景</strong></h3>
+<ul>
+<li><strong>点击定位</strong>：将鼠标点击位置转换为 UI 元素内的坐标，用于拖动或选择。</li>
+<li><strong>跟随鼠标</strong>：让 UI 元素（如tooltip）跟随鼠标移动。</li>
+<li><strong>触摸交互</strong>：在移动设备上处理触摸位置与 UI 的关系。</li>
+</ul>
+<h3 id="参数与返回值"><strong>参数与返回值</strong></h3>
+<pre><code class="language-csharp">public static bool ScreenPointToLocalPointInRectangle(
+    RectTransform rect,          // 目标 UI 元素的 RectTransform
+    Vector2 screenPoint,         // 屏幕坐标点（如鼠标位置）
+    Camera cam,                  // 渲染 Canvas 的相机（Overlay 模式下为 null）
+    out Vector2 localPoint       // 输出的局部坐标（相对于 rect 的锚点）
+);
+</code></pre>
+<ul>
+<li><strong>返回值</strong>：若转换成功返回 <code>true</code>，否则返回 <code>false</code>（如目标 RectTransform 不可见）。</li>
+</ul>
+<h3 id="坐标系统对比"><strong>坐标系统对比</strong></h3>
+<table>
+<thead>
+<tr>
+<th>坐标系统</th>
+<th>原点位置</th>
+<th>方向</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>屏幕坐标</strong></td>
+<td>屏幕左下角 (0,0)</td>
+<td>X 向右，Y 向上</td>
+<td>像素</td>
+</tr>
+<tr>
+<td><strong>RectTransform 局部坐标</strong></td>
+<td>锚点位置</td>
+<td>X 向右，Y 向上</td>
+<td>单位（Unity 单位，与像素可能不同）</td>
+</tr>
+</tbody>
+</table>
+<!-- more -->
+<p>🚍<br>
+在使用 <code>RectTransformUtility.ScreenPointToLocalPointInRectangle</code> 进行坐标转换时，需要注意以下关键点，以确保转换结果符合预期：</p>
+<h3 id="1-canvas-渲染模式的影响">1. <strong>Canvas 渲染模式的影响</strong></h3>
+<ul>
+<li>
+<p><strong>Screen Space - Overlay</strong><br>
+Canvas 直接覆盖在屏幕上，此时 <code>worldCamera</code> 参数必须为 <code>null</code>。</p>
+<pre><code class="language-csharp">RectTransformUtility.ScreenPointToLocalPointInRectangle(
+    rectTransform, 
+    screenPoint, 
+    null,  // 必须为 null
+    out localPoint);
+</code></pre>
+</li>
+<li>
+<p><strong>Screen Space - Camera</strong> 或 <strong>World Space</strong><br>
+Canvas 由相机渲染，需传入渲染 Canvas 的相机（通常是 <code>Camera.main</code>）。</p>
+<pre><code class="language-csharp">RectTransformUtility.ScreenPointToLocalPointInRectangle(
+    rectTransform, 
+    screenPoint, 
+    canvas.worldCamera,  // 传入渲染 Canvas 的相机
+    out localPoint);
+</code></pre>
+</li>
+</ul>
+<h3 id="2-坐标系统差异">2. <strong>坐标系统差异</strong></h3>
+<ul>
+<li>
+<p><strong>屏幕坐标</strong>：<br>
+<code>screenPoint</code> 通常来自 <code>Input.mousePosition</code> 或触摸位置（如 <code>Touch.position</code>），以像素为单位，原点为屏幕左下角。</p>
+</li>
+<li>
+<p><strong>RectTransform 局部坐标</strong>：<br>
+<code>localPoint</code> 是相对于目标 <code>RectTransform</code> 的<strong>锚点</strong>（Anchors）的坐标：</p>
+<ul>
+<li>若锚点为中心（默认），<code>localPoint</code> 的原点是 RectTransform 的中心点。</li>
+<li>若锚点位于角落（如左上角），<code>localPoint</code> 的原点是锚点位置。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-锚点anchors与轴心pivot的影响">3. <strong>锚点（Anchors）与轴心（Pivot）的影响</strong></h3>
+<ul>
+<li>
+<p><strong>锚点决定坐标系原点</strong>：<br>
+转换后的 <code>localPoint</code> 以锚点为基准。例如，若锚点位于左上角，<code>localPoint</code> 的 <code>(0, 0)</code> 对应 RectTransform 的左上角。</p>
+</li>
+<li>
+<p><strong>轴心影响元素位置</strong>：<br>
+若要将子元素精确定位到点击位置，需结合轴心调整：</p>
+<pre><code class="language-csharp">childRectTransform.anchoredPosition = localPoint;  // 适用于轴心为中心的情况
+</code></pre>
+</li>
+</ul>
+<h3 id="4-缩放与分辨率适配">4. <strong>缩放与分辨率适配</strong></h3>
+<ul>
+<li>
+<p><strong>Canvas Scaler 的影响</strong>：<br>
+若 Canvas 使用 <code>Canvas Scaler</code>（如 <code>Scale With Screen Size</code>），转换结果会自动处理缩放，无需额外计算。</p>
+</li>
+<li>
+<p><strong>多分辨率适配</strong>：<br>
+转换结果在不同分辨率下可能需要调整，特别是当 UI 布局依赖于固定像素大小时。</p>
+</li>
+</ul>
+<h3 id="5-穿透检测raycast的限制">5. <strong>穿透检测（Raycast）的限制</strong></h3>
+<ul>
+<li>该方法仅计算坐标，不检查点击是否实际命中 UI 元素。若需检测点击，需配合 <code>GraphicRaycaster</code>：<pre><code class="language-csharp">PointerEventData eventData = new PointerEventData(eventSystem);
+eventData.position = screenPoint;
+List&lt;RaycastResult&gt; results = new List&lt;RaycastResult&gt;();
+raycaster.Raycast(eventData, results);
+</code></pre>
+</li>
+</ul>
+<h3 id="6-3d-场景中的-ui-元素">6. <strong>3D 场景中的 UI 元素</strong></h3>
+<ul>
+<li>若 Canvas 位于 3D 空间（World Space 模式），需确保相机能看到目标 RectTransform，否则转换结果可能异常。</li>
+</ul>
+<h3 id="7-常见错误案例">7. <strong>常见错误案例</strong></h3>
+<ul>
+<li><strong>相机错误</strong>：使用 Screen Space - Camera 模式时传入 <code>null</code> 相机，或使用 Overlay 模式时传入相机。</li>
+<li><strong>锚点误解</strong>：锚点分散时（如拉伸填充父元素），<code>localPoint</code> 的解释会更复杂。</li>
+<li><strong>穿透问题</strong>：转换成功但 UI 未响应点击，可能是 <code>Raycast Target</code> 未勾选或被其他元素遮挡。</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-zhong-tuo-zhan-bian-ji-qi-de-fang-fa/" class="post-title gt-a-link">
+                    Unity中拓展编辑器的方法
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

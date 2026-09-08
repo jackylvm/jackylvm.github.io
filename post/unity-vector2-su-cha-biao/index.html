@@ -1,0 +1,283 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity Vector2 速查表 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity Vector2 速查表
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-03-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="一-基础">一、基础</h2>
+<ul>
+<li><strong>Vector2</strong>：表示 <strong>2D 坐标、方向、距离</strong>，由 <strong>x / y</strong> 组成</li>
+<li>适用场景：UGUI 位置、2D 物体移动、鼠标坐标、屏幕坐标</li>
+</ul>
+<hr>
+<h2 id="二-常用静态属性">二、常用静态属性</h2>
+<pre><code class="language-csharp">Vector2.zero;      // (0,0)          最常用！
+Vector2.one;       // (1,1)
+Vector2.up;        // (0,1)          上
+Vector2.down;      // (0,-1)         下
+Vector2.right;     // (1,0)          右
+Vector2.left;      // (-1,0)         左
+</code></pre>
+<hr>
+<h2 id="三-实例属性">三、实例属性</h2>
+<pre><code class="language-csharp">Vector2 v = new Vector2(1, 2);
+
+v.x; v.y;              // 坐标分量
+v.magnitude;           // 向量长度（距离）
+v.sqrMagnitude;        // 长度平方（性能更高，用于比较）
+v.normalized;          // 归一化（长度=1，纯方向）
+</code></pre>
+<hr>
+<h2 id="四-常用静态方法">四、常用静态方法</h2>
+<h3 id="1-距离">1. 距离</h3>
+<pre><code class="language-csharp">float dist = Vector2.Distance(a, b);
+</code></pre>
+<h3 id="2-点乘判断方向前后">2. 点乘（判断方向/前后）</h3>
+<pre><code class="language-csharp">float dot = Vector2.Dot(a, b);
+// &gt;0 同向  &lt;0 反向  =0 垂直
+</code></pre>
+<h3 id="3-插值平滑移动">3. 插值（平滑移动）</h3>
+<pre><code class="language-csharp">Vector2.Lerp(a, b, t);    // t 0~1
+</code></pre>
+<h3 id="4-匀速移动">4. 匀速移动</h3>
+<pre><code class="language-csharp">Vector2.MoveTowards(from, to, step);
+</code></pre>
+<h3 id="5-反射2d-反弹">5. 反射（2D 反弹）</h3>
+<pre><code class="language-csharp">Vector2.Reflect(入射方向, 法线);
+</code></pre>
+<h3 id="6-投影">6. 投影</h3>
+<pre><code class="language-csharp">Vector2.Project(vector, onNormal);
+</code></pre>
+<hr>
+<h2 id="五-运算符直接用">五、运算符（直接用）</h2>
+<pre><code class="language-csharp">a + b;    // 相加
+a - b;    // 求方向
+a * k;    // 缩放长度
+a / k;
+</code></pre>
+<hr>
+<h2 id="六-高频实战代码2d-专用">六、高频实战代码（2D 专用）</h2>
+<h3 id="1-求-2d-方向">1. 求 2D 方向</h3>
+<pre><code class="language-csharp">Vector2 dir = (targetPos - myPos).normalized;
+</code></pre>
+<h3 id="2-2d-物体移动">2. 2D 物体移动</h3>
+<pre><code class="language-csharp">transform.Translate(dir * speed * Time.deltaTime);
+</code></pre>
+<h3 id="3-ugui-平滑跟随">3. UGUI 平滑跟随</h3>
+<pre><code class="language-csharp">rectTransform.anchoredPosition = Vector2.Lerp(当前, 目标, 0.1f);
+</code></pre>
+<h3 id="4-判断是否到达目标">4. 判断是否到达目标</h3>
+<pre><code class="language-csharp">if(Vector2.Distance(当前, 目标) &lt; 0.1f) { }
+</code></pre>
+<h3 id="5-鼠标位置屏幕转世界">5. 鼠标位置（屏幕转世界）</h3>
+<pre><code class="language-csharp">Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+</code></pre>
+<hr>
+<h2 id="七-高频坑点">七、高频坑点</h2>
+<ol>
+<li><strong>2D 移动必须用 .normalized</strong></li>
+<li>Vector2 是<strong>结构体</strong>，不能直接改 <code>x</code>：<pre><code class="language-csharp">// 错误
+rectTransform.anchoredPosition.x = 100;
+// 正确
+Vector2 pos = rectTransform.anchoredPosition;
+pos.x = 100;
+rectTransform.anchoredPosition = pos;
+</code></pre>
+</li>
+<li>可以和 Vector3 互相转换：<pre><code class="language-csharp">Vector3 v3 = v2;   // 自动转 Z=0
+Vector2 v2 = v3;   // 自动丢掉 Z
+</code></pre>
+</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-vector3-su-cha-biao/" class="post-title gt-a-link">
+                    Unity Vector3 速查表
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x0f.观察者模式的另一个示例 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x0f.观察者模式的另一个示例
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>观察者模式（Observer Pattern）<strong>就是专门用来解决</strong>“对象之间怎么高效通信”的绝对王者。</p>
+<p>在游戏开发中，它还有另外几个大家更熟悉的名字：<strong>事件驱动（Event-Driven）</strong>、<strong>发布-订阅模式（Pub/Sub）</strong>。它是实现模块之间“解耦（Decoupling）”的最强武器。</p>
+<h3 id="为什么要用观察者模式">💡 为什么要用观察者模式？</h3>
+<p>假设你正在开发一款动作游戏，当<strong>玩家角色死亡</strong>时，游戏里需要发生一连串的事情：</p>
+<ol>
+<li><code>UIManager</code>：弹出“胜败乃兵家常事”的死亡界面。</li>
+<li><code>AudioManager</code>：停止激烈的战斗 BGM，播放悲伤的死亡音效。</li>
+<li><code>AchievementManager</code>：记录死亡次数，看看是否能解锁“受苦之魂”成就。</li>
+<li><code>EnemyManager</code>：通知所有敌人停止攻击并原地嘲讽。</li>
+</ol>
+<p><strong>新手的灾难写法（极度耦合）：</strong></p>
+<pre><code class="language-csharp">public class PlayerHealth : MonoBehaviour
+{
+    // 玩家必须把所有相关的系统都认识一遍！
+    public UIManager uiManager;
+    public AudioManager audioManager;
+    public AchievementManager achievementManager;
+    public EnemyManager enemyManager;
+
+    public void Die()
+    {
+        uiManager.ShowGameOver();
+        audioManager.PlaySadMusic();
+        achievementManager.AddDeathCount();
+        enemyManager.StopAllEnemies();
+    }
+}
+
+</code></pre>
+<p><strong>这太糟糕了！</strong> 玩家的血量脚本凭什么要懂 UI 和音效怎么运作？如果有一天策划要求删掉成就系统，你还得跑回 <code>PlayerHealth</code> 里面去删代码，稍微删错一点就会引发空指针报错。</p>
+<p><strong>观察者模式的优雅解法：</strong><br>
+让 <code>PlayerHealth</code> 变成一个只管大喊大叫的“广播电台（发布者）”。它死亡时，只需要向全服广播一句：“我死了！”。<br>
+至于谁想听（<strong>订阅者/观察者</strong>）？玩家根本不在乎。UI 和音效系统只需要默默收听这个频道，听到“玩家死亡”的广播后，各自执行自己的逻辑即可。</p>
+<hr>
+<h3 id="一-c-现代标准写法使用-action-事件">一、 C# 现代标准写法：使用 Action 事件</h3>
+<p>在传统的 Java 或 C++ 中，观察者模式需要你自己写 <code>List&lt;IObserver&gt;</code> 来管理订阅者。但在 C# 中，微软把观察者模式直接做进了语言底层，也就是<strong>委托（Delegate）和事件（Event）</strong>。</p>
+<p>我们现在最常用的是 <code>System.Action</code>。</p>
+<h4 id="1-定义发布者被观察的对象玩家">1. 定义发布者（被观察的对象：玩家）</h4>
+<pre><code class="language-csharp">using System;
+using UnityEngine;
+
+public class PlayerHealth : MonoBehaviour
+{
+    public int health = 100;
+
+    // 1. 核心：定义一个事件（广播频道）
+    // static 意味着这是一个全局频道，任何人都可以方便地收听
+    public static event Action OnPlayerDeath; 
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health &lt;= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log(&quot;玩家：啊，我死了！(开始广播)&quot;);
+        
+        // 2. 触发事件：向所有订阅者广播！
+        // ?. 的作用是：如果没有人订阅（频道空无一人），就不发送，防止报错
+        OnPlayerDeath?.Invoke(); 
+        
+        Destroy(gameObject);
+    }
+}
+
+</code></pre>
+<p>看！玩家的代码变得极其干净，它不再包含任何 UI 或音效的引用。</p>
+<h4 id="2-定义订阅者观察者ui-和-音效">2. 定义订阅者（观察者：UI 和 音效）</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class UIManager : MonoBehaviour
+{
+    // 在对象启用时，订阅（收听）事件
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDeath += ShowGameOverScreen;
+    }
+
+    // 在对象禁用时，必须取消订阅（退订）！
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDeath -= ShowGameOverScreen;
+    }
+
+    // 听到广播后实际要执行的动作
+    private void ShowGameOverScreen()
+    {
+        Debug.Log(&quot;UI系统：收到死亡广播，正在弹出 Game Over 面板...&quot;);
+    }
+}
+
+public class AudioManager : MonoBehaviour
+{
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDeath += PlaySadMusic;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDeath -= PlaySadMusic;
+    }
+
+    private void PlaySadMusic()
+    {
+        Debug.Log(&quot;音效系统：收到死亡广播，正在播放悲伤的二胡 BGM...&quot;);
+    }
+}
+
+</code></pre>
+<hr>
+<h3 id="二-进阶带参数的广播电台">二、 🌟 进阶：带参数的广播电台</h3>
+<p>很多时候，光喊一句“有事发生了”不够，我们还需要传递数据。比如玩家受击时，UI 需要知道<strong>扣了多少血</strong>才能更新血条。</p>
+<p>这时可以使用 <code>Action&lt;T&gt;</code> 来传递参数。</p>
+<p><strong>发布者（广播带有数值）：</strong></p>
+<pre><code class="language-csharp">// 广播频道：谁受伤了？扣了多少血？当前还剩多少血？
+public static event Action&lt;string, int, int&gt; OnPlayerTakeDamage;
+
+public void TakeDamage(int damage)
+{
+    health -= damage;
+    // 广播：发送具体的数据给观察者
+    OnPlayerTakeDamage?.Invoke(&quot;Player&quot;, damage, health);
+}
+
+</code></pre>
+<p><strong>订阅者（接收带数值的广播）：</strong></p>
+<pre><code class="language-csharp">private void OnEnable()
+{
+    // 订阅的函数的参数列表，必须和 Action&lt;string, int, int&gt; 完全一致
+    PlayerHealth.OnPlayerTakeDamage += UpdateHealthBar;
+}
+
+private void UpdateHealthBar(string targetName, int damageTaken, int currentHp)
+{
+    Debug.Log($&quot;UI系统更新：{targetName} 扣除了 {damageTaken} 滴血，剩余血量 {currentHp}&quot;);
+}
+
+</code></pre>
+<hr>
+<h3 id="避坑指南观察者模式的致命诅咒-内存泄漏">🚨 避坑指南：观察者模式的“致命诅咒” (内存泄漏)</h3>
+<p>这是全宇宙 Unity 新手在用观察者模式时<strong>最容易踩的终极天坑</strong>，请务必死死记住：</p>
+<p><strong>只要你 <code>+=</code> 了，就必须在离开时 <code>-=</code>！</strong></p>
+<ul>
+<li><strong>为什么？</strong> 如果你在 <code>UIManager</code> 里写了 <code>PlayerHealth.OnPlayerDeath += ShowGameOver</code>，这意味着 <code>PlayerHealth</code> 的事件列表里<strong>死死地抓住了 <code>UIManager</code> 的引用</strong>。<br>
+如果此时 <code>UIManager</code> 被销毁了（比如切换了场景），但你忘记了 <code>-=</code>。当玩家再次死亡触发事件时，事件系统会试图去寻找那个已经被销毁的 <code>UIManager</code>，这会直接导致 <strong>NullReferenceException（空指针异常）</strong>，甚至造成严重的内存泄漏（GC 无法回收 UI 占用的内存，因为它还被事件抓着）。</li>
+<li><strong>最佳实践：</strong> 永远成对使用 Unity 的生命周期函数：</li>
+<li>在 <code>OnEnable</code> 中 <code>+=</code> 订阅。</li>
+<li>在 <code>OnDisable</code> 中 <code>-=</code> 退订。<br>
+<em>(或者在 <code>Start</code> 中订阅，在 <code>OnDestroy</code> 中退订)。</em></li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x0eyuan-xing-mo-shi/" class="post-title gt-a-link">
+                    0x0e.原型模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

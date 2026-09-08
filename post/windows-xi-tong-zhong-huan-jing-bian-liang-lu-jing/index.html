@@ -1,0 +1,395 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Windows 系统中环境变量路径 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Windows 系统中环境变量路径
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-10-13 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Windows系统中，像 <code>%appdata%</code> 这样的<strong>环境变量路径</strong>（以 <code>%</code> 包裹）非常多，它们用于快速定位系统或用户的关键目录，无需记忆复杂的绝对路径（如 <code>C:\Users\你的用户名\AppData\Roaming</code>）。以下按<strong>用户目录类</strong>、<strong>系统核心类</strong>、<strong>程序支持类</strong>、<strong>临时文件类</strong>分类整理，涵盖最常用的变量及用途：</p>
+<hr>
+<h3 id="一-用户目录类与当前登录用户绑定">一、用户目录类（与当前登录用户绑定）</h3>
+<p>这类变量指向当前用户的个人文件夹，路径通常包含 <code>C:\Users\你的用户名</code>（不同系统可能略有差异，如Win10/11默认此路径）。</p>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>对应绝对路径（示例）</th>
+<th>核心用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%appdata%</code></td>
+<td><code>C:\Users\用户名\AppData\Roaming</code></td>
+<td>存放用户级程序的<strong>配置文件、缓存、日志</strong>（如浏览器插件、软件偏好设置），程序跨设备同步常用此目录。</td>
+</tr>
+<tr>
+<td><code>%localappdata%</code></td>
+<td><code>C:\Users\用户名\AppData\Local</code></td>
+<td>存放用户级程序的<strong>本地缓存、临时文件</strong>（不适合同步，如软件安装包缓存、离线数据）。</td>
+</tr>
+<tr>
+<td><code>%userprofile%</code></td>
+<td><code>C:\Users\用户名</code></td>
+<td>当前用户的“个人文件夹”根目录，包含桌面、文档、下载等子文件夹。</td>
+</tr>
+<tr>
+<td><code>%desktop%</code></td>
+<td><code>C:\Users\用户名\Desktop</code></td>
+<td>直接指向当前用户的<strong>桌面文件夹</strong>，用于快速访问桌面文件。</td>
+</tr>
+<tr>
+<td><code>%documents%</code></td>
+<td><code>C:\Users\用户名\Documents</code></td>
+<td>指向“文档”文件夹（部分软件默认保存路径，如Office文档）。</td>
+</tr>
+<tr>
+<td><code>%downloads%</code></td>
+<td><code>C:\Users\用户名\Downloads</code></td>
+<td>指向“下载”文件夹（浏览器、软件默认下载路径）。</td>
+</tr>
+<tr>
+<td><code>%pictures%</code></td>
+<td><code>C:\Users\用户名\Pictures</code></td>
+<td>指向“图片”文件夹（系统默认图片存储位置，如截图、照片）。</td>
+</tr>
+<tr>
+<td><code>%music%</code></td>
+<td><code>C:\Users\用户名\Music</code></td>
+<td>指向“音乐”文件夹（媒体播放器默认扫描路径）。</td>
+</tr>
+<tr>
+<td><code>%videos%</code></td>
+<td><code>C:\Users\用户名\Videos</code></td>
+<td>指向“视频”文件夹（视频拍摄、编辑后的默认保存路径）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二-系统核心类与windows系统绑定所有用户共用">二、系统核心类（与Windows系统绑定，所有用户共用）</h3>
+<p>这类变量指向系统级目录，通常需要管理员权限才能修改，关乎系统运行稳定性。</p>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>对应绝对路径（示例）</th>
+<th>核心用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%systemroot%</code></td>
+<td><code>C:\Windows</code></td>
+<td>Windows系统根目录（等同于 <code>%windir%</code>），存放系统核心文件（如 <code>explorer.exe</code>、<code>system32</code>）。</td>
+</tr>
+<tr>
+<td><code>%windir%</code></td>
+<td><code>C:\Windows</code></td>
+<td>与 <code>%systemroot%</code> 完全一致，是 <code>%systemroot%</code> 的别名，更常用。</td>
+</tr>
+<tr>
+<td><code>%systemdrive%</code></td>
+<td><code>C:</code></td>
+<td>系统安装所在的磁盘分区（默认C盘），可快速定位系统盘根目录。</td>
+</tr>
+<tr>
+<td><code>%programfiles%</code></td>
+<td><code>C:\Program Files</code></td>
+<td>64位Windows系统中，<strong>64位程序的默认安装目录</strong>（如Chrome、Office等）。</td>
+</tr>
+<tr>
+<td><code>%programfiles(x86)%</code></td>
+<td><code>C:\Program Files (x86)</code></td>
+<td>64位Windows系统中，<strong>32位程序的默认安装目录</strong>（兼容旧版32位软件，32位系统无此变量）。</td>
+</tr>
+<tr>
+<td><code>%commonprogramfiles%</code></td>
+<td><code>C:\Program Files\Common Files</code></td>
+<td>所有程序共用的“公共组件目录”（如共享的DLL文件、驱动组件）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="三-程序支持与工具类">三、程序支持与工具类</h3>
+<p>这类变量指向开发工具、命令行工具或系统辅助程序的目录，常用于编程或运维场景。</p>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>对应绝对路径（示例）</th>
+<th>核心用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%path%</code></td>
+<td>多个路径的集合（如 <code>C:\Windows\System32;C:\Python39\</code>）</td>
+<td>系统“可执行文件搜索路径”：在命令行输入程序名（如 <code>cmd</code>、<code>python</code>）时，系统会从 <code>%path%</code> 包含的目录中查找程序。</td>
+</tr>
+<tr>
+<td><code>%temp%</code> / <code>%tmp%</code></td>
+<td><code>C:\Users\用户名\AppData\Local\Temp</code></td>
+<td>系统级<strong>临时文件目录</strong>（所有程序生成的临时文件默认存于此，重启后可清理）。</td>
+</tr>
+<tr>
+<td><code>%windir%\system32</code></td>
+<td><code>C:\Windows\System32</code></td>
+<td>系统核心“可执行程序/驱动目录”（如 <code>cmd.exe</code>、<code>regedit.exe</code>、硬件驱动文件，虽非独立变量，但常用 <code>%windir%\system32</code> 快速访问）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="如何快速验证使用这些变量">如何快速验证/使用这些变量？</h3>
+<ol>
+<li><strong>打开“运行”对话框</strong>：按 <code>Win + R</code> 键；</li>
+<li><strong>输入变量并回车</strong>：例如输入 <code>%appdata%</code>，会直接打开 <code>Roaming</code> 文件夹；输入 <code>%programfiles%</code>，会打开64位程序安装目录；</li>
+<li><strong>命令行验证</strong>：打开 <code>cmd</code> 或 <code>PowerShell</code>，输入 <code>echo %变量名%</code>（如 <code>echo %userprofile%</code>），会显示变量对应的绝对路径。</li>
+</ol>
+<hr>
+<p>在Windows系统中，<strong>系统核心类环境变量</strong>主要指向系统级关键目录，这些目录为所有用户共用，通常存储系统运行必需的文件，修改时往往需要管理员权限。以下是最核心的系统级环境变量：</p>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>对应路径（示例）</th>
+<th>核心作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%SystemRoot%</code></td>
+<td><code>C:\Windows</code></td>
+<td>Windows系统的根目录，等同于 <code>%windir%</code>，存放系统核心文件（如 <code>explorer.exe</code>、<code>system32</code> 文件夹）。</td>
+</tr>
+<tr>
+<td><code>%Windir%</code></td>
+<td><code>C:\Windows</code></td>
+<td>与 <code>%SystemRoot%</code> 完全一致，是系统根目录的常用别名，更广泛用于脚本或命令中。</td>
+</tr>
+<tr>
+<td><code>%SystemDrive%</code></td>
+<td><code>C:</code></td>
+<td>系统安装所在的磁盘分区（通常是C盘），快速定位系统盘根目录（如输入 <code>%SystemDrive%</code> 可直接打开C盘）。</td>
+</tr>
+<tr>
+<td><code>%ProgramFiles%</code></td>
+<td><code>C:\Program Files</code></td>
+<td>64位系统中，<strong>64位程序的默认安装目录</strong>（如Chrome、Office等现代软件）。</td>
+</tr>
+<tr>
+<td><code>%ProgramFiles(x86)%</code></td>
+<td><code>C:\Program Files (x86)</code></td>
+<td>64位系统中，<strong>32位程序的默认安装目录</strong>（兼容旧版32位软件，32位系统无此变量）。</td>
+</tr>
+<tr>
+<td><code>%CommonProgramFiles%</code></td>
+<td><code>C:\Program Files\Common Files</code></td>
+<td>所有程序共用的“公共组件目录”，存放共享的DLL文件、驱动或插件（如多个软件共用的运行库）。</td>
+</tr>
+<tr>
+<td><code>%CommonProgramW6432%</code></td>
+<td><code>C:\Program Files\Common Files</code></td>
+<td>64位系统中，64位程序的公共组件目录（与 <code>%CommonProgramFiles%</code> 通常指向同一位置）。</td>
+</tr>
+<tr>
+<td><code>%CommonProgramFiles(x86)%</code></td>
+<td><code>C:\Program Files (x86)\Common Files</code></td>
+<td>64位系统中，32位程序的公共组件目录，存放32位共享组件。</td>
+</tr>
+</tbody>
+</table>
+<p>这些变量是系统运行的基础，例如：</p>
+<ul>
+<li>运行 <code>%windir%\system32\cmd.exe</code> 可直接打开命令提示符；</li>
+<li>查看 <code>%ProgramFiles%</code> 可快速找到已安装的64位软件；</li>
+<li>通过 <code>%SystemDrive%</code> 能快速访问系统盘，无需记住具体盘符（尤其多硬盘环境）。</li>
+</ul>
+<p>若需验证，可按 <code>Win + R</code> 输入变量名（如 <code>%SystemRoot%</code>），回车后会直接打开对应的目录。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x02git-can-shu-prune/" class="post-title gt-a-link">
+                    0x02.Git参数prune
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

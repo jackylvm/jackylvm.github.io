@@ -1,0 +1,332 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>0x08.装饰器模式的另一个示例 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    0x08.装饰器模式的另一个示例
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-06-04 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Jy5mBSbIxq/" class="post-tags">
+                            # 设计模式
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>装饰器模式是设计模式中比较绕的一个，因为它打破了我们平时习惯的“父类-子类”这种直线型的思维方式。</p>
+<p>为了让你更容易懂，这次我们不搞抽象的数据，我们用一个<strong>非常形象的“俄罗斯套娃”比喻</strong>，结合“玩家受到伤害时的防御结算”来再举一个例子。</p>
+<p>想象一下，装饰器模式就像是你大冬天出门穿衣服：</p>
+<ol>
+<li><strong>最核心的基础</strong>是你自己（一个肉体）。</li>
+<li>穿上一件<strong>保暖内衣</strong>（第一层装饰器），它拦截了外面的冷空气，削弱了一点寒冷，然后传给你的身体。</li>
+<li>再穿上一件<strong>羽绒服</strong>（第二层装饰器），它先拦截了最外层的暴风雪，削弱了大部分寒冷，再传给保暖内衣。</li>
+</ol>
+<p>在代码中，<strong>每一层外衣都会先处理一下收到的伤害，然后再把剩下的伤害传递给里面的一层。</strong></p>
+<hr>
+<h3 id="新示例玩家的多层防御系统">新示例：玩家的多层防御系统</h3>
+<p>假设玩家遭遇了 100 点伤害。玩家身上可能什么都没穿，也可能穿着护甲，甚至还有魔法护盾。我们可以用装饰器模式来处理这个伤害扣减的过程。</p>
+<h4 id="1-定义核心规则-定义能承受伤害的实体">1. 定义核心规则 (定义“能承受伤害的实体”)</h4>
+<pre><code class="language-csharp">using UnityEngine;
+
+// 任何能处理伤害的东西，都必须实现这个接口
+public interface IDamageHandler
+{
+    // 传入原始伤害，返回经过处理后最终剩下的伤害
+    float ProcessDamage(float rawDamage);
+}
+
+</code></pre>
+<h4 id="2-定义最基础的内核-没穿衣服的玩家">2. 定义最基础的内核 (没穿衣服的玩家)</h4>
+<p>这就是俄罗斯套娃最里面那个最小的娃娃。它没有任何减伤能力。</p>
+<pre><code class="language-csharp">// 毫无防备的玩家肉体
+public class NakedPlayer : IDamageHandler
+{
+    public float ProcessDamage(float rawDamage)
+    {
+        Debug.Log($&quot;[基础肉体] 承受了全部伤害: {rawDamage}&quot;);
+        // 没有减伤，直接返回全部伤害，用于最终扣血
+        return rawDamage; 
+    }
+}
+
+</code></pre>
+<h4 id="3-核心灵魂防御装饰器基类-通用的衣服">3. 核心灵魂：防御装饰器基类 (通用的衣服)</h4>
+<p>这个类非常关键，它是一件“衣服”，它<strong>本身也是一个可以承受伤害的实体（实现了接口）</strong>，但它<strong>肚子里还包着另一个人/衣服（持有接口引用）</strong>。</p>
+<pre><code class="language-csharp">public abstract class DefenseDecorator : IDamageHandler
+{
+    // 肚子里包裹着的下一层（可能是玩家肉体，也可能是另一件衣服）
+    protected IDamageHandler _wrappedHandler;
+
+    // 穿衣服的过程（把里层包进去）
+    public DefenseDecorator(IDamageHandler handlerToWrap)
+    {
+        _wrappedHandler = handlerToWrap;
+    }
+
+    // 衣服被打了，默认行为是直接把伤害穿透给下一层
+    // 这里设为 virtual，让具体的衣服去重写减伤逻辑
+    public virtual float ProcessDamage(float rawDamage)
+    {
+        return _wrappedHandler.ProcessDamage(rawDamage);
+    }
+}
+
+</code></pre>
+<h4 id="4-具体的衣服-各种防御-buff">4. 具体的衣服 (各种防御 Buff)</h4>
+<p>现在我们来写两件真正的防御装备。</p>
+<pre><code class="language-csharp">// 具体的装饰器 A：钢铁护甲（按比例减伤）
+public class IronArmor : DefenseDecorator
+{
+    public IronArmor(IDamageHandler handlerToWrap) : base(handlerToWrap) { }
+
+    public override float ProcessDamage(float rawDamage)
+    {
+        // 钢铁护甲可以抵消 50% 的伤害！
+        float reducedDamage = rawDamage * 0.5f;
+        Debug.Log($&quot;[钢铁护甲] 抵挡了50%伤害，剩下的 {reducedDamage} 伤害穿透到了里面。&quot;);
+        
+        // 把剩下的伤害传递给它包裹住的下一层
+        return base.ProcessDamage(reducedDamage);
+    }
+}
+
+// 具体的装饰器 B：魔法护盾（固定减伤）
+public class MagicShield : DefenseDecorator
+{
+    public MagicShield(IDamageHandler handlerToWrap) : base(handlerToWrap) { }
+
+    public override float ProcessDamage(float rawDamage)
+    {
+        // 魔法护盾可以固定吸收 20 点伤害
+        float reducedDamage = rawDamage - 20f;
+        if (reducedDamage &lt; 0) reducedDamage = 0; // 伤害不能是负数
+
+        Debug.Log($&quot;[魔法护盾] 吸收了20点伤害，剩下的 {reducedDamage} 伤害穿透到了里面。&quot;);
+
+        // 把剩下的伤害传递给下一层
+        return base.ProcessDamage(reducedDamage);
+    }
+}
+
+</code></pre>
+<h4 id="5-见证奇迹的时刻-在-unity-中组装它们">5. 见证奇迹的时刻 (在 Unity 中组装它们)</h4>
+<p>你看，我们不需要写什么 <code>ArmorAndShieldPlayer</code> 这种复杂的类，只需要把它们像穿衣服一样一层层套起来！</p>
+<pre><code class="language-csharp">public class DamageTest : MonoBehaviour
+{
+    void Start()
+    {
+        float incomingDamage = 100f;
+        Debug.Log($&quot;--- 敌人砍来了 {incomingDamage} 点伤害！ ---&quot;);
+
+        // 1. 创建最核心的玩家
+        IDamageHandler player = new NakedPlayer();
+
+        // 2. 给玩家穿上钢铁护甲 (把 player 包起来)
+        player = new IronArmor(player);
+
+        // 3. 给玩家再套上一层魔法护盾 (把穿着护甲的 player 再包一层)
+        player = new MagicShield(player);
+
+        // 现在这个 player 的结构是： [魔法护盾 [钢铁护甲 [玩家肉体]]]
+
+        // 4. 结算伤害！我们只需要对最外层（护盾）造成伤害
+        float finalDamageToTake = player.ProcessDamage(incomingDamage);
+
+        Debug.Log($&quot;--- 最终结算：玩家肉体实际需要扣除的血量是 {finalDamageToTake} ---&quot;);
+    }
+}
+
+</code></pre>
+<p><strong>运行结果会是怎样的？</strong></p>
+<ol>
+<li>100点伤害先打在最外层<strong>魔法护盾</strong>上，吸收20点，剩 80 点传给里面。</li>
+<li>80点伤害打在里面的<strong>钢铁护甲</strong>上，抵消50%，剩 40 点传给里面。</li>
+<li>40点伤害打在最里面的<strong>基础肉体</strong>上，最终返回 40。</li>
+</ol>
+<hr>
+<h3 id="重新理解装饰器">重新理解装饰器</h3>
+<p>通过这个“一层层减伤过滤”的例子，你是不是发现了装饰器模式最大的魅力？</p>
+<p>它允许你<strong>动态地</strong>在运行时给对象添加职责。如果玩家在游戏中途突然被怪物施加了“易伤 Debuff（受到伤害增加20%）”，你只需要再写一个 <code>VulnerabilityDecorator</code>，然后把它套在最外面就行了，原有的护甲、护盾代码一行都不需要修改！</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/0x07zhuang-shi-qi-mo-shi/" class="post-title gt-a-link">
+                    0x07.装饰器模式
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

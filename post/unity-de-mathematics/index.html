@@ -1,0 +1,472 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity的Mathematics | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity的Mathematics
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-01-15 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="一-核心定位与核心优势">✅ 一、核心定位与核心优势</h2>
+<h3 id="1-核心定位">1. 核心定位</h3>
+<p><code>Unity.Mathematics</code> 是 Unity 官方出品的<strong>高性能、SIMD 优化、值类型优先</strong>的数学库，<strong>专为 DOTS 生态（ECS、Job System、Burst 编译器）深度定制</strong>，也可以无缝用于常规 MonoBehaviour 开发中。</p>
+<h3 id="2-核心优势对比unity内置vector3quaternion">2. 核心优势（对比Unity内置<code>Vector3/Quaternion</code>）</h3>
+<p>✅ <strong>极致性能</strong>：底层基于 <strong>SIMD (单指令多数据)</strong> 指令集优化，支持CPU并行计算，相同运算速度远超原生结构体<br>
+✅ <strong>Burst 编译器完美兼容</strong>：Burst 编译能对其做极致IL优化/机器码优化，性能再提升数倍（原生<code>Vector3</code>在Burst中无法最优编译）<br>
+✅ <strong>值类型纯净设计</strong>：无任何GC分配、无虚函数、无堆内存依赖，内存占用更小，缓存命中率更高<br>
+✅ <strong>功能更完整</strong>：包含原生库没有的数学功能（复数、随机数、完整的矩阵运算、几何工具等）<br>
+✅ <strong>语法统一</strong>：所有数学类型API设计风格一致，学习成本低，跨平台兼容性拉满</p>
+<hr>
+<h2 id="二-核心命名空间-基础引用">✅ 二、核心命名空间 &amp; 基础引用</h2>
+<h3 id="1-核心命名空间">1. 核心命名空间</h3>
+<p>使用该库必须引入2个核心命名空间（缺一不可），所有核心类型都在这两个命名空间下：</p>
+<pre><code class="language-csharp">using Unity.Mathematics; // 核心数学类型：float3、quaternion、float4x4 等
+using Unity.Collections;  // 配套的高性能容器（可选，DOTS开发必用）
+</code></pre>
+<h3 id="2-安装说明">2. 安装说明</h3>
+<p>Unity 2019.3+ 版本 <strong>内置自带</strong> <code>Unity.Mathematics</code> 库，<strong>无需手动安装Package</strong>，直接引用命名空间即可使用；<br>
+低版本Unity需在 Package Manager 中搜索 <code>Mathematics</code> 安装对应包。</p>
+<hr>
+<h2 id="三-核心结构体原生类型的完美替代重点必学">✅ 三、核心结构体（原生类型的完美替代，重点必学）</h2>
+<p><code>Unity.Mathematics</code> 的核心设计：<strong>用统一的命名规范 + 更高效的实现，替代所有Unity原生数学类型</strong>，所有类型都是<strong>值类型 <code>struct</code></strong>，核心对应关系如下（工作中99%的场景只需要用这些）：</p>
+<table>
+<thead>
+<tr>
+<th>Unity.Mathematics 类型</th>
+<th>对应 Unity 原生类型</th>
+<th>用途说明</th>
+<th>核心优势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>float2</code></td>
+<td><code>Vector2</code></td>
+<td>2维向量/坐标</td>
+<td>运算快、无GC、支持SIMD</td>
+</tr>
+<tr>
+<td><code>float3</code></td>
+<td><code>Vector3</code></td>
+<td>3维向量/坐标/方向（最常用）</td>
+<td>性能提升最明显，Burst下碾压原生Vector3</td>
+</tr>
+<tr>
+<td><code>float4</code></td>
+<td><code>Vector4</code></td>
+<td>4维向量/颜色(RGBA)</td>
+<td>可直接与矩阵做乘法运算</td>
+</tr>
+<tr>
+<td><code>quaternion</code></td>
+<td><code>Quaternion</code></td>
+<td>四元数（旋转表示）</td>
+<td>运算效率更高，插值更稳定</td>
+</tr>
+<tr>
+<td><code>float4x4</code></td>
+<td><code>Matrix4x4</code></td>
+<td>4x4矩阵（坐标变换/投影）</td>
+<td>内置完整的矩阵运算API，无冗余逻辑</td>
+</tr>
+<tr>
+<td><code>int2/int3/int4</code></td>
+<td><code>Vector2Int/3Int</code></td>
+<td>2/3/4维整数坐标</td>
+<td>纯整型运算，无浮点精度损耗</td>
+</tr>
+</tbody>
+</table>
+<h3 id="核心注意命名规范">✅ 核心注意：命名规范</h3>
+<p><code>Unity.Mathematics</code> 遵循 <strong>「类型+维度」</strong> 的命名规则，一眼看懂含义：</p>
+<ul>
+<li>浮点型：<code>float2</code>(2维)、<code>float3</code>(3维)、<code>float4</code>(4维)</li>
+<li>整型：<code>int2</code>、<code>int3</code>、<code>int4</code></li>
+<li>布尔型：<code>bool2</code>、<code>bool3</code>、<code>bool4</code>（批量布尔判断）</li>
+</ul>
+<hr>
+<h2 id="四-基础语法-常用api与原生类型无缝切换">✅ 四、基础语法 &amp; 常用API（与原生类型无缝切换）</h2>
+<h3 id="1-变量声明与原生一致写法几乎无差别">✔ 1. 变量声明（与原生一致，写法几乎无差别）</h3>
+<pre><code class="language-csharp">// 声明赋值
+float3 pos = new float3(1, 2, 3);    // 等价 Vector3(1,2,3)
+float2 uv = new float2(0.5f, 0.5f);  // 等价 Vector2(0.5f,0.5f)
+quaternion rot = quaternion.identity;// 等价 Quaternion.identity（无旋转）
+float4x4 matrix = float4x4.identity; // 等价 Matrix4x4.identity（单位矩阵）
+
+// 快捷赋值：分量访问和原生一致，x/y/z/w 通用
+pos.x = 5;
+pos.y += 2;
+float height = pos.y;
+</code></pre>
+<h3 id="2-核心常量和原生一致直接调用">✔ 2. 核心常量（和原生一致，直接调用）</h3>
+<pre><code class="language-csharp">float3 up = math.up;        // 等价 Vector3.up → (0,1,0)
+float3 right = math.right;  // 等价 Vector3.right → (1,0,0)
+float3 forward = math.forward;//等价 Vector3.forward → (0,0,1)
+float PI = math.PI;         // 高精度圆周率 π
+float infinity = math.INFINITY; // 无穷大
+</code></pre>
+<h3 id="3-关键类型互转原生-mathematics零成本转换">✔ 3. 关键：类型互转（原生 ↔ Mathematics，零成本转换）</h3>
+<p>最常用的需求：原生<code>Vector3</code>和<code>float3</code>互相转换，<strong>提供2种无缝转换方式，无性能损耗</strong>，完全兼容旧代码：</p>
+<pre><code class="language-csharp">// 方式1：强制类型转换（推荐，简洁高效）
+Vector3 unityVec = new Vector3(1,2,3);
+float3 mathVec = (float3)unityVec; // 原生 → Mathematics
+
+Vector3 newUnityVec = (Vector3)mathVec; // Mathematics → 原生
+
+// 方式2：显式构造（兼容所有场景）
+float3 mathVec2 = new float3(unityVec.x, unityVec.y, unityVec.z);
+</code></pre>
+<blockquote>
+<p>✅ 补充：<code>quaternion</code> ↔ <code>Quaternion</code>、<code>float4</code> ↔ <code>Vector4</code> 均支持上述强制转换方式</p>
+</blockquote>
+<hr>
+<h2 id="五-核心核心math-静态工具类重中之重">✅ 五、核心核心：<code>math</code> 静态工具类（重中之重）</h2>
+<h3 id="核心规则">✔ 核心规则</h3>
+<p><code>Unity.Mathematics</code> 中 <strong>所有的数学运算、向量/四元数/矩阵的操作，都通过 <code>math</code> 静态类调用</strong>！<br>
+✅ 这是和原生最大的区别：原生是 <code>Vector3.Distance(a,b)</code>，数学库是 <code>math.distance(a,b)</code><br>
+✅ 所有API都是静态方法，无GC、无虚调用，Burst编译后速度极快</p>
+<h3 id="高频必用-math-工具函数按使用频率排序全覆盖90开发场景">✔ 高频必用 math 工具函数（按使用频率排序，全覆盖90%开发场景）</h3>
+<p>所有方法均支持 <code>float2/float3/float4</code> 等维度，参数传对应维度即可，API通用！</p>
+<pre><code class="language-csharp">float3 a = new float3(1,0,0);
+float3 b = new float3(0,1,0);
+
+// 1. 向量基础运算
+float length = math.length(a);        // 向量长度 → 等价 Vector3.magnitude
+float lenSq = math.lengthsq(a);       // 向量长度平方（无开方，性能更高，推荐比较距离用）
+float3 normalized = math.normalize(a); // 单位向量 → 等价 Vector3.normalized
+
+// 2. 向量点积/叉积（向量运算核心）
+float dot = math.dot(a, b);           // 点积 → 等价 Vector3.Dot(a,b)
+float3 cross = math.cross(a, b);      // 叉积 → 等价 Vector3.Cross(a,b)
+
+// 3. 距离计算
+float dist = math.distance(a, b);     // 两点距离 → 等价 Vector3.Distance(a,b)
+float distSq = math.distancesq(a, b); // 距离平方（性能优先，推荐）
+
+// 4. 插值运算（平滑过渡核心）
+float3 lerpVec = math.lerp(a, b, 0.5f); // 线性插值 → 等价 Vector3.Lerp(a,b,t)
+quaternion lerpRot = math.lerp(rotA, rotB, 0.5f); // 四元数插值
+quaternion slerpRot = math.slerp(rotA, rotB, 0.5f); // 球面插值（旋转平滑，无万向节死锁）
+
+// 5. 旋转相关（四元数核心操作）
+quaternion rotX = math.mul(rot, quaternion.EulerX(math.radians(30))); // 绕X轴转30度
+quaternion rotY = quaternion.RotateY(math.radians(45)); // 绕Y轴旋转（更简洁）
+float3 euler = math.eulerangles(rot); // 四元数转欧拉角（弧度值）
+
+// 6. 数值处理（通用）
+float clampVal = math.clamp(5.2f, 0, 5); // 数值限制在[0,5] → 等价 Mathf.Clamp
+float roundVal = math.round(2.3f);       // 四舍五入
+float floorVal = math.floor(2.9f);       // 向下取整
+float ceilVal = math.ceil(2.1f);         // 向上取整
+float absVal = math.abs(-3.5f);          // 绝对值
+
+// 7. 弧度/角度转换（必记！math库中所有旋转都是【弧度制】）
+float rad = math.radians(90);  // 角度 → 弧度 （90度 = π/2 弧度）
+float deg = math.degrees(math.PI); // 弧度 → 角度 （π 弧度 = 180度）
+</code></pre>
+<blockquote>
+<p>⚠️ 重要提醒：<code>Unity.Mathematics</code> 中 <strong>所有旋转相关的参数都是「弧度制」</strong>，Unity原生是「角度制」，这是最容易踩坑的点！必须用 <code>math.radians(角度值)</code> 转换后再使用。</p>
+</blockquote>
+<hr>
+<h2 id="六-为什么在-dotsecsjobburst-中必须使用它">✅ 六、为什么在 DOTS(ECS/Job/Burst) 中<strong>必须使用</strong>它？</h2>
+<p>这是重中之重，也是该库被设计的核心原因，<strong>3个强制理由，没有例外</strong>：</p>
+<h3 id="原生-vector3quaternion-在-dots-中的致命问题">❌ 原生 <code>Vector3/Quaternion</code> 在 DOTS 中的致命问题</h3>
+<ol>
+<li><strong>Burst 编译器不友好</strong>：Unity原生的 <code>Vector3</code> 内部有冗余的属性、方法和隐式转换，Burst 编译器无法对其做深度优化，甚至部分场景会直接禁用Burst优化，导致Job任务性能暴跌。</li>
+<li><strong>不支持 IJobParallelFor 等并行Job</strong>：原生结构体内部有<strong>托管堆引用</strong>（非纯值类型），在并行Job中使用会触发<strong>内存安全检查报错</strong>，直接无法运行。</li>
+<li><strong>GC与内存损耗</strong>：原生类型的部分API会产生临时堆分配，在高频调用的Job中会累积GC，造成卡顿。</li>
+</ol>
+<h3 id="unitymathematics-的完美适配">✅ <code>Unity.Mathematics</code> 的完美适配</h3>
+<ol>
+<li><strong>纯 blittable 值类型</strong>：所有结构体都是「 blittable 类型」（内存布局连续、无托管引用），完全兼容Unity的<strong>安全内存访问规则</strong>，可在任意Job（串行/并行）中无限制使用。</li>
+<li><strong>Burst 深度优化</strong>：Burst编译器对 <code>Unity.Mathematics</code> 做了<strong>专属编译优化</strong>，能将数学运算直接编译为CPU的SIMD指令，运算速度是原生类型的 <strong>2~10倍</strong>。</li>
+<li><strong>零GC</strong>：所有API都是静态方法+值类型，全程无堆内存分配，完美适配高性能的ECS/Job体系。</li>
+</ol>
+<blockquote>
+<p>✅ 结论：<strong>只要写 DOTS 相关代码（ECS/Job/Burst），必须使用 Unity.Mathematics，禁止使用原生Vector3/Quaternion</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="七-完整实用代码示例monobehaviour-dots-双场景">✅ 七、完整实用代码示例（MonoBehaviour + DOTS 双场景）</h2>
+<h3 id="示例1常规-monobehaviour-开发无缝替换原生类型无学习成本">示例1：常规 MonoBehaviour 开发（无缝替换原生类型，无学习成本）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+using Unity.Mathematics;
+
+public class MathDemo : MonoBehaviour
+{
+    public Transform target;
+    private float3 selfPos;
+    private quaternion selfRot;
+
+    void Update()
+    {
+        // 原生Vector3转float3
+        selfPos = (float3)transform.position;
+        float3 targetPos = (float3)target.position;
+
+        // 计算方向向量并归一化
+        float3 dir = math.normalize(targetPos - selfPos);
+        // 计算目标旋转：看向目标
+        selfRot = quaternion.LookRotation(dir, math.up);
+        // 平滑旋转插值
+        transform.rotation = (Quaternion)math.slerp((quaternion)transform.rotation, selfRot, Time.deltaTime * 5);
+
+        // 计算距离（用平方距离，性能更高）
+        if(math.distancesq(selfPos, targetPos) &lt; 100)
+        {
+            Debug.Log(&quot;目标在10米范围内&quot;);
+        }
+    }
+}
+</code></pre>
+<h3 id="示例2burst-job-中使用高性能dots核心场景">示例2：Burst Job 中使用（高性能，DOTS核心场景）</h3>
+<pre><code class="language-csharp">using UnityEngine;
+using Unity.Mathematics;
+using Unity.Jobs;
+using Unity.Burst;
+using Unity.Collections;
+
+public class JobMathDemo : MonoBehaviour
+{
+    void Start()
+    {
+        // 创建高性能原生容器
+        NativeArray&lt;float3&gt; positions = new NativeArray&lt;float3&gt;(1000, Allocator.TempJob);
+        // 赋值初始坐标
+        for (int i = 0; i &lt; positions.Length; i++)
+        {
+            positions[i] = new float3(i, math.sin(i * 0.1f), 0);
+        }
+
+        // 创建Burst Job
+        RotateJob rotateJob = new RotateJob()
+        {
+            positions = positions,
+            angle = math.radians(10), // 必须转弧度！
+            deltaTime = Time.deltaTime
+        };
+
+        // 调度并执行Job
+        JobHandle handle = rotateJob.Schedule(positions.Length, 64);
+        handle.Complete();
+
+        // 释放内存
+        positions.Dispose();
+    }
+
+    // Burst编译标记：开启极致优化
+    [BurstCompile]
+    public struct RotateJob : IJobParallelFor
+    {
+        [NativeDisableParallelForRestriction]
+        public NativeArray&lt;float3&gt; positions;
+        public float angle;
+        public float deltaTime;
+
+        public void Execute(int index)
+        {
+            // 高性能旋转计算（math库+Burst优化）
+            quaternion rot = quaternion.RotateY(angle * deltaTime);
+            positions[index] = math.mul(rot, positions[index]);
+        }
+    }
+}
+</code></pre>
+<hr>
+<h2 id="八-总结核心知识点速记必背">✅ 八、总结（核心知识点速记，必背）</h2>
+<ol>
+<li><code>Unity.Mathematics</code> 是 Unity 官方高性能数学库，<strong>DOTS开发必用，常规开发推荐用</strong>，性能碾压原生数学类型。</li>
+<li>核心命名空间：<code>using Unity.Mathematics;</code>，核心类型：<code>float3</code>、<code>quaternion</code>、<code>float4x4</code>。</li>
+<li>核心规则：<strong>所有运算通过 <code>math</code> 静态类调用</strong>，所有旋转参数都是「弧度制」。</li>
+<li>无缝兼容：原生<code>Vector3</code>与<code>float3</code>可强制互转，旧代码改造成本极低。</li>
+<li>性能核心：纯值类型、无GC、SIMD优化、Burst专属适配，是Unity高性能计算的基石。</li>
+<li>避坑点：忘记将「角度」转「弧度」导致旋转异常，这是使用该库最常见的错误。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/input-system-package-shu-biao-shu-ru/" class="post-title gt-a-link">
+                    Input System Package 鼠标输入
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

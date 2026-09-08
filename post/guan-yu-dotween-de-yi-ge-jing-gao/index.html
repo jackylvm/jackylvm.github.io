@@ -1,0 +1,251 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>关于DOTween的一个警告 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    关于DOTween的一个警告
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-07 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/Q5Py7t_OCc/" class="post-tags">
+                            # DOTween
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Max Tweens reached: capacity has automatically been increased from 200/50 to 500/50. Use DOTween.SetTweensCapacity to set it manually at startup</p>
+<hr>
+<p>这个警告是 <strong>DOTween</strong>（Unity 常用补间动画插件）的容量不足提示，意思是：<br>
+默认的 Tween 并发上限（200 个活跃 Tween / 50 个缓存 Tween）不够用，插件已自动扩容到 500/50，建议你在程序启动时手动设置容量。</p>
+<h3 id="为什么会出现">为什么会出现？</h3>
+<p>当你同时运行的补间动画（Tween）数量超过默认上限（200 个）时，DOTween 会自动扩容，但频繁自动扩容可能影响性能，因此建议手动预设合理容量。</p>
+<h3 id="解决方法手动设置-tween-容量">解决方法：手动设置 Tween 容量</h3>
+<p>在 Unity 中创建一个<strong>启动脚本</strong>（比如 <code>DOTweenInit</code>），在游戏启动时调用 <code>DOTween.SetTweensCapacity</code> 手动配置容量，步骤如下：</p>
+<h4 id="1-创建启动脚本">1. 创建启动脚本</h4>
+<pre><code class="language-csharp">using UnityEngine;
+using DG.Tweening; // 必须引入 DOTween 命名空间
+
+public class DOTweenInit : MonoBehaviour
+{
+    // 在游戏启动时执行（仅执行一次）
+    private void Awake()
+    {
+        // 参数说明：SetTweensCapacity(最大活跃Tween数, 缓存池大小)
+        // 根据你的实际需求调整数值（建议比实际最大并发数多 20% 预留）
+        DOTween.SetTweensCapacity(1000, 200); 
+        
+        // 可选：关闭 DOTween 的日志（避免类似警告刷屏）
+        DOTween.defaultLogBehaviour = LogBehaviour.ErrorsOnly;
+    }
+}
+</code></pre>
+<h4 id="2-挂载脚本">2. 挂载脚本</h4>
+<p>将这个脚本挂载到 Unity 场景中的<strong>任意常驻物体</strong>上（比如 <code>GameManager</code>、<code>InitManager</code>），确保游戏启动时会执行 <code>Awake</code> 方法。</p>
+<h4 id="3-调整容量数值">3. 调整容量数值</h4>
+<ul>
+<li>第一个参数（最大活跃 Tween 数）：设置为你实际需要的“同时运行的补间动画数量”（比如你的游戏最多同时有 800 个 Tween，就设为 1000 预留）。</li>
+<li>第二个参数（缓存池大小）：设置为活跃 Tween 数的 20%~50% 即可（用于复用 Tween 对象，减少内存分配）。</li>
+</ul>
+<h3 id="额外优化减少不必要的-tween">额外优化：减少不必要的 Tween</h3>
+<p>如果容量设置过大仍频繁触发警告，可能是你的代码存在<strong>Tween 泄漏</strong>（未回收的 Tween 一直占用容量），可以检查以下几点：</p>
+<ol>
+<li>对不需要的 Tween 调用 <code>Kill()</code> 销毁（比如对象销毁时）：<pre><code class="language-csharp">// 示例：对象销毁时杀死所有关联的 Tween
+private void OnDestroy()
+{
+    DOTween.Kill(this); // 杀死当前脚本所在对象的所有 Tween
+    // 或 DOTween.Kill(targetTransform); // 杀死指定对象的所有 Tween
+}
+</code></pre>
+</li>
+<li>使用 <code>SetAutoKill(true)</code> 让 Tween 完成后自动回收（默认是 <code>true</code>，如果手动设为 <code>false</code> 需注意）。</li>
+<li>避免重复创建相同的 Tween（比如 Update 中反复调用 <code>DOMove</code>，应改为判断 Tween 是否正在运行）。</li>
+</ol>
+<h3 id="最终效果">最终效果</h3>
+<p>设置后，游戏启动时会直接应用你配置的容量，不会再出现“自动扩容”的警告，同时能优化 Tween 的内存复用效率。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/shi-yong-time-lei-de-shu-xing-lai-kong-zhi-you-xi-jiao-se-de-yi-dong-su-du/" class="post-title gt-a-link">
+                    使用Time类的属性来控制游戏角色的移动速度
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>fnm 和 nvm 有什么区别？ | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    fnm 和 nvm 有什么区别？
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-09-07 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/PvIm3WToXo/" class="post-tags">
+                            # node
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/poJ7-ZDZoNB/" class="post-tags">
+                            # nodejs
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="fnm-vs-nvm">fnm vs nvm</h1>
+<blockquote>
+<p>共同点：都用来管理多套 Node.js，都识别 <code>.nvmrc</code> / <code>.node‑version</code>，命令用法大体相似，可以做到几乎无缝迁移。</p>
+</blockquote>
+<h2 id="核心对比表">核心对比表</h2>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>nvm</th>
+<th>fnm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实现</td>
+<td>Bash Shell 脚本</td>
+<td>Rust 编译二进制单文件</td>
+</tr>
+<tr>
+<td>启动速度</td>
+<td>慢，每次开终端加载脚本，200‑400ms</td>
+<td>极快，毫秒级，几乎无延迟</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>原生不支持；要用独立项目 <code>nvm‑windows</code>，两套代码逻辑不一致</td>
+<td><strong>原生完整支持 Windows/macOS/Linux</strong>，一套工具全平台统一</td>
+</tr>
+<tr>
+<td>自动切换</td>
+<td>需要手动写 shell 钩子实现 cd 自动切版本</td>
+<td>内置 <code>--use‑on‑cd</code>，开箱即用目录自动切换版本</td>
+</tr>
+<tr>
+<td>安装方式</td>
+<td>git clone + shell 注入配置</td>
+<td>单二进制，winget/homebrew/curl 一键安装</td>
+</tr>
+<tr>
+<td>社区生态</td>
+<td>老牌，教程、问题案例极多</td>
+<td>较新，功能齐全，资料略少但够用</td>
+</tr>
+<tr>
+<td>全局包</td>
+<td>每个 Node 版本独立一套全局包，fnm 同样如此</td>
+<td>每个 Node 版本独立一套全局包</td>
+</tr>
+<tr>
+<td>CI 使用</td>
+<td>脚本安装，初始化慢</td>
+<td>单二进制下载，CI 速度快</td>
+</tr>
+<tr>
+<td>镜像配置</td>
+<td>需要手动改下载源环境变量</td>
+<td>支持 <code>FNM_NODE_DIST_MIRROR</code> 环境变量配置镜像地址</td>
+</tr>
+</tbody>
+</table>
+<h2 id="底层原理差异">底层原理差异</h2>
+<ol>
+<li><strong>nvm</strong>：shell 脚本，每次打开终端修改 <code>PATH</code> 环境变量来切换版本；新开终端会重新执行脚本，带来启动开销；shell 环境复杂时容易出现版本错乱问题。</li>
+<li><strong>fnm</strong>：Rust 二进制，靠符号链接做版本切换，shell 只注入一小段环境逻辑；<strong>绝大部分逻辑在二进制程序内部执行</strong>，终端启动开销极小。</li>
+</ol>
+<h2 id="命令对照迁移参考">命令对照（迁移参考）</h2>
+<table>
+<thead>
+<tr>
+<th>nvm</th>
+<th>fnm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nvm ls</code></td>
+<td><code>fnm list</code> / <code>fnm ls</code></td>
+</tr>
+<tr>
+<td><code>nvm ls‑remote</code></td>
+<td><code>fnm list‑remote</code></td>
+</tr>
+<tr>
+<td><code>nvm install lts/*</code></td>
+<td><code>fnm install --lts</code></td>
+</tr>
+<tr>
+<td><code>nvm use 22</code></td>
+<td><code>fnm use 22</code></td>
+</tr>
+<tr>
+<td><code>nvm alias default 22</code></td>
+<td><code>fnm default 22</code></td>
+</tr>
+<tr>
+<td><code>nvm uninstall 22</code></td>
+<td><code>fnm uninstall 22</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>fnm 额外好用：<code>fnm exec --using=20 -- node xxx.js</code>，<strong>不改变当前 shell 环境，临时用指定版本跑一条命令</strong>，CI、脚本非常方便。</p>
+</blockquote>
+<h2 id="怎么选">怎么选</h2>
+<p>✅ <strong>选 fnm，如果：</strong></p>
+<ul>
+<li>你同时用 Windows + Mac/Linux，想要一套统一工具</li>
+<li>受不了打开终端卡顿、shell 启动慢</li>
+<li>想要 cd 进项目自动切换版本，不想写复杂钩子</li>
+<li>CI/自动化脚本场景，追求快速安装</li>
+</ul>
+<p>✅ <strong>选 nvm，如果：</strong></p>
+<ul>
+<li>只使用 macOS / Linux，习惯老生态，大量旧项目文档都是 nvm</li>
+<li>遇到疑难问题，优先搜网上海量 nvm 排错案例</li>
+</ul>
+<h2 id="迁移注意">迁移注意</h2>
+<p>不要同时加载两者的 shell 配置，会互相干扰 PATH。<br>
+如果你从 nvm 迁移 fnm：注释掉 nvm 的 shell 加载代码，再配置 fnm 的 <code>eval &quot;$(fnm env --use-on-cd)&quot;</code>。<br>
+fnm 支持导入 nvm 已经下载好的 node：<code>fnm install --from‑nvm</code>。</p>
+<blockquote>
+<p>小坑：fnm 不会复用 nvm 的全局 npm 包，每个 node 版本包完全隔离，和 nvm 行为一致。</p>
+</blockquote>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/shi-yong-fnm-guan-li-node/" class="post-title gt-a-link">
+                    使用 fnm 管理 node
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

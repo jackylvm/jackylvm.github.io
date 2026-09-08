@@ -1,0 +1,442 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Steering Behavior 是什么? | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Steering Behavior 是什么?
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-07-29 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/a3SU6VtW7-/" class="post-tags">
+                            # 知识库
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>简单介绍Steering Behavior,了解它的核心内容是什么</p>
+<!-- more -->
+<h1 id="steering-behavior">Steering Behavior</h1>
+<p><strong>中文标准译法：转向行为 / 制导行为</strong><br>
+多用于<strong>游戏AI、群体仿真、自动驾驶、机器人路径规划</strong>领域。</p>
+<h2 id="1-核心定义">1. 核心定义</h2>
+<p>Steering Behavior 是一类<strong>局部运动智能算法</strong>，让虚拟角色/Agent 根据周围环境实时计算转向力，实现自然、平滑的移动，不需要预先规划完整路径。<br>
+由 Craig Reynolds 在1999年提出，是群体AI（Boids）的基础。</p>
+<blockquote>
+<p>本质：输出一个<strong>转向矢量（steering force）</strong>，用来修正当前速度，引导物体朝目标运动。</p>
+</blockquote>
+<h2 id="2-常见基础-steering-behavior经典类型">2. 常见基础 Steering Behavior（经典类型）</h2>
+<ol>
+<li><strong>Seek（追逐）</strong><br>
+朝着目标位置移动，持续逼近目标。</li>
+<li><strong>Flee（逃离）</strong><br>
+远离威胁目标。</li>
+<li><strong>Arrive（抵达）</strong><br>
+靠近目标时自动减速，平稳停下（Seek不会减速，会冲过目标）。</li>
+<li><strong>Pursuit（追击）</strong><br>
+预判目标未来位置，追踪移动目标（比Seek更智能）。</li>
+<li><strong>Evade（规避）</strong><br>
+预判移动物体轨迹，提前躲开。</li>
+<li><strong>Wander（漫游/游荡）</strong><br>
+随机平滑转向，模拟漫无目的闲逛。</li>
+<li><strong>Avoid Obstacle（障碍物规避）</strong><br>
+检测前方障碍，侧向绕行。</li>
+<li><strong>Separation（分离）</strong><br>
+群体内个体互相推开，防止挤在一起（鸟群、人群必备）。</li>
+<li><strong>Alignment（对齐）</strong><br>
+群体个体朝向与周围同伴运动方向保持一致。</li>
+<li><strong>Cohesion（凝聚）</strong><br>
+向群体中心靠拢，维持集群。</li>
+</ol>
+<blockquote>
+<p>Separation + Alignment + Cohesion = 经典 <strong>Boids 鸟群算法</strong></p>
+</blockquote>
+<h2 id="3-工作简易流程">3. 工作简易流程</h2>
+<ol>
+<li>Agent 当前有速度向量 <code>velocity</code></li>
+<li>行为计算出期望速度 <code>desired velocity</code></li>
+<li>Steering Force = desired velocity − current velocity</li>
+<li>将转向力施加到物体，限制最大加速度、最大速度，更新位置</li>
+</ol>
+<h2 id="4-使用场景">4. 使用场景</h2>
+<ul>
+<li>Unity / Unreal 游戏NPC、怪物、载具AI</li>
+<li>人群仿真、车流模拟</li>
+<li>无人机、机器人局部避障运动控制</li>
+<li>自动驾驶局部路径跟随</li>
+</ul>
+<h2 id="区分两个易混概念">区分两个易混概念</h2>
+<ul>
+<li><strong>Pathfinding（寻路）</strong>：A*、NavMesh → 找整条静态路线（宏观）</li>
+<li><strong>Steering Behavior（转向行为）</strong>：沿着路线平滑移动、避障、群体互动（微观运动控制）</li>
+</ul>
+<!-- more -->
+<h1 id="如何实现-steering-behavior-算法">如何实现 Steering Behavior 算法？</h1>
+<h2 id="核心公式重中之重">核心公式（重中之重）</h2>
+<blockquote>
+<p><strong>SteeringForce（转向力）= DesiredVelocity（期望速度）− CurrentVelocity（当前速度）</strong></p>
+</blockquote>
+<p>约束：</p>
+<ol>
+<li>转向力有最大上限 <code>maxForce</code>（避免瞬间急转）</li>
+<li>物体有最大速度 <code>maxSpeed</code></li>
+<li>使用加速度更新速度，速度更新位置</li>
+</ol>
+<p>运动更新统一框架（所有行为共用）</p>
+<pre><code>// 每一帧执行
+steeringForce = 各个行为算出的转向力加权叠加
+steeringForce = ClampMagnitude(steeringForce, maxForce);
+
+velocity += steeringForce * deltaTime;
+velocity = ClampMagnitude(velocity, maxSpeed);
+
+position += velocity * deltaTime;
+</code></pre>
+<blockquote>
+<p>所有 Steering 行为，只是<strong>计算不同的 DesiredVelocity</strong>。</p>
+</blockquote>
+<hr>
+<h1 id="一-逐个实现经典行为向量伪代码">一、逐个实现经典行为（向量伪代码）</h1>
+<p>假设向量库提供：<code>Normalize()</code>、<code>Magnitude()</code>、<code>ClampMagnitude()</code></p>
+<h2 id="1-seek-追逐奔向目标点">1. Seek 追逐（奔向目标点）</h2>
+<pre><code class="language-csharp">Vector3 Seek(Vector3 targetPos)
+{
+    Vector3 desiredVelocity = (targetPos - position).normalized * maxSpeed;
+    Vector3 steering = desiredVelocity - velocity;
+    return steering;
+}
+</code></pre>
+<h2 id="2-arrive-抵达靠近目标自动减速不会冲过去">2. Arrive 抵达（靠近目标自动减速，不会冲过去）</h2>
+<pre><code class="language-csharp">Vector3 Arrive(Vector3 targetPos, float slowRadius)
+{
+    Vector3 toTarget = targetPos - position;
+    float distance = toTarget.magnitude;
+
+    Vector3 desiredVelocity;
+    if (distance &lt; 0.001f)
+        desiredVelocity = Vector3.zero;
+    else if (distance &lt; slowRadius)
+    {
+        // 距离越近，速度越低
+        float speed = maxSpeed * (distance / slowRadius);
+        desiredVelocity = toTarget.normalized * speed;
+    }
+    else
+    {
+        desiredVelocity = toTarget.normalized * maxSpeed;
+    }
+
+    Vector3 steering = desiredVelocity - velocity;
+    return steering;
+}
+</code></pre>
+<h2 id="3-flee-逃离">3. Flee 逃离</h2>
+<pre><code class="language-csharp">Vector3 Flee(Vector3 threatPos)
+{
+    Vector3 desiredVelocity = (position - threatPos).normalized * maxSpeed;
+    Vector3 steering = desiredVelocity - velocity;
+    return steering;
+}
+</code></pre>
+<h2 id="4-pursuit-预判追击追踪移动目标">4. Pursuit 预判追击（追踪移动目标）</h2>
+<p>思路：预测目标未来位置，再对预测点执行Seek</p>
+<pre><code class="language-csharp">Vector3 Pursuit(Agent targetAgent)
+{
+    // 预估追击时间：距离/自身最大速度
+    float dist = Vector3.Distance(position, targetAgent.position);
+    float predictTime = dist / maxSpeed;
+
+    // 预测目标未来位置
+    Vector3 futureTargetPos = targetAgent.position + targetAgent.velocity * predictTime;
+    
+    return Seek(futureTargetPos);
+}
+</code></pre>
+<h2 id="5-evade-预判躲避">5. Evade 预判躲避</h2>
+<p>和Pursuit相反，预测威胁位置然后Flee</p>
+<pre><code class="language-csharp">Vector3 Evade(Agent threatAgent)
+{
+    float dist = Vector3.Distance(position, threatAgent.position);
+    float predictTime = dist / maxSpeed;
+    Vector3 futureThreatPos = threatAgent.position + threatAgent.velocity * predictTime;
+    return Flee(futureThreatPos);
+}
+</code></pre>
+<h2 id="6-wander-随机漫游平滑闲逛npc常用">6. Wander 随机漫游（平滑闲逛，NPC常用）</h2>
+<p>原理：前进方向前方虚拟圆圈，随机取点作为临时目标</p>
+<pre><code class="language-csharp">Vector3 Wander()
+{
+    // 1. 前进方向前方生成一个圆心
+    Vector3 circleCenter = position + velocity.normalized * wanderDistance;
+    // 2. 在圆上随机一点
+    wanderAngle += Random.Range(-wanderAngleChange, wanderAngleChange);
+    Vector3 offset = new Vector3(Mathf.Cos(wanderAngle), 0, Mathf.Sin(wanderAngle)) * wanderRadius;
+    Vector3 target = circleCenter + offset;
+
+    return Seek(target);
+}
+</code></pre>
+<h2 id="7-boids三规则群体行为鸟群人群">7. Boids三规则（群体行为，鸟群/人群）</h2>
+<h3 id="separation-分离避免互相挤压">Separation 分离（避免互相挤压）</h3>
+<pre><code class="language-csharp">Vector3 Separation(List&lt;Agent&gt; neighbors, float separationRange)
+{
+    Vector3 steer = Vector3.zero;
+    int count = 0;
+    foreach(var neighbor in neighbors)
+    {
+        float dist = Vector3.Distance(position, neighbor.position);
+        if(dist &gt; 0 &amp;&amp; dist &lt; separationRange)
+        {
+            // 距离越近排斥力越大
+            Vector3 away = position - neighbor.position;
+            away /= dist;
+            steer += away;
+            count++;
+        }
+    }
+    if(count &gt; 0)
+    {
+        steer /= count;
+        steer.Normalize();
+        steer *= maxSpeed;
+        steer -= velocity;
+    }
+    return steer;
+}
+</code></pre>
+<h3 id="cohesion-凝聚向群体中心靠拢">Cohesion 凝聚（向群体中心靠拢）</h3>
+<pre><code class="language-csharp">Vector3 Cohesion(List&lt;Agent&gt; neighbors, float cohesionRange)
+{
+    Vector3 center = Vector3.zero;
+    int count = 0;
+    foreach(var neighbor in neighbors)
+    {
+        float dist = Vector3.Distance(position, neighbor.position);
+        if(dist &lt; cohesionRange)
+        {
+            center += neighbor.position;
+            count++;
+        }
+    }
+    if(count == 0) return Vector3.zero;
+    center /= count;
+    return Seek(center);
+}
+</code></pre>
+<h3 id="alignment-对齐和同伴运动方向保持一致">Alignment 对齐（和同伴运动方向保持一致）</h3>
+<pre><code class="language-csharp">Vector3 Alignment(List&lt;Agent&gt; neighbors, float alignRange)
+{
+    Vector3 avgVel = Vector3.zero;
+    int count = 0;
+    foreach(var neighbor in neighbors)
+    {
+        float dist = Vector3.Distance(position, neighbor.position);
+        if(dist &lt; alignRange)
+        {
+            avgVel += neighbor.velocity;
+            count++;
+        }
+    }
+    if(count == 0) return Vector3.zero;
+    avgVel /= count;
+    avgVel.Normalize();
+    avgVel *= maxSpeed;
+    return avgVel - velocity;
+}
+</code></pre>
+<blockquote>
+<p>鸟群最终转向力 = Separation<em>w1 + Cohesion</em>w2 + Alignment*w3</p>
+</blockquote>
+<h2 id="8-obstacle-avoidance-障碍物规避">8. Obstacle Avoidance 障碍物规避</h2>
+<p>简化思路：</p>
+<ol>
+<li>沿自身前进方向发射探测射线</li>
+<li>如果前方有障碍，生成一个侧向躲避期望速度<br>
+复杂版本需要：侧面多条探测射线，区分障碍物远近。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-textmeshpro-tu-wen-hun-pai-shi-yong-zhi-nan/" class="post-title gt-a-link">
+                    Unity TextMeshPro 图文混排实用指南
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>ZString vs StringBuilder | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    ZString vs StringBuilder
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-07-29 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/yeA9sehEoM/" class="post-tags">
+                            # 字符串
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="unityzstring-vs-stringbuilder-选型完整对比">Unity：ZString vs StringBuilder 选型完整对比</h1>
+<p>先给核心结论：</p>
+<blockquote>
+<p><strong>频繁拼接、循环内大量字符串操作：优先 ZString；简单少量拼接、老旧平台/不想引入包：用 StringBuilder。</strong><br>
+ZString 本质是<strong>新一代高性能字符串库</strong>，底层基于 <code>Utf16</code> 缓冲，性能普遍优于原生 <code>StringBuilder</code>，是目前 Unity 社区首选方案。</p>
+</blockquote>
+<h2 id="一-两者基础定位">一、两者基础定位</h2>
+<h3 id="1-stringbuildernet-原生无第三方包">1. <code>StringBuilder</code>（.NET 原生，无第三方包）</h3>
+<p>命名空间：<code>System.Text.StringBuilder</code></p>
+<ul>
+<li>.NET 官方自带，<strong>不需要导入任何插件</strong></li>
+<li>原理：维护一个 char[] 缓冲区，避免每次 <code>+</code> 创建新 string</li>
+<li>局限：
+<ol>
+<li>扩容策略保守，频繁扩容产生 GC</li>
+<li><code>AppendFormat</code>、插值拼接性能一般</li>
+<li>大量微小拼接、循环嵌套场景 GC 压力明显</li>
+<li>不支持直接写入 <code>Span&lt;char&gt;</code> / 更低分配的API</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-zstring第三方开源库cysharpzstring">2. ZString（第三方开源库，Cysharp/ZString）</h3>
+<p>仓库：https://github.com/Cysharp/ZString</p>
+<blockquote>
+<p>专为 .NET / Unity 优化的零分配字符串工具，兼容 IL2CPP</p>
+</blockquote>
+<ul>
+<li>提供：<code>ZStringBuilder</code>、<code>ZString.Format</code>、插值字符串 <code>ZInterpolatedStringHandler</code></li>
+<li>优势核心：大量场景<strong>可以做到近乎 0 GC</strong>，比原生 StringBuilder 更快、更少堆分配</li>
+<li>注意：需要导入包；支持 Unity 2020+，全平台（Windows/Android/iOS/WebGL IL2CPP）</li>
+</ul>
+<h2 id="二-性能关键差异unity-il2cpp-环境实测共识">二、性能关键差异（Unity IL2CPP 环境实测共识）</h2>
+<ol>
+<li><strong>简单循环字符串拼接</strong>
+<ul>
+<li>少量拼接：两者差距不大</li>
+<li><strong>上百次循环、Update持续拼接、日志批量组装</strong>：<code>ZStringBuilder</code> GC 远低于 StringBuilder</li>
+</ul>
+</li>
+<li><strong>格式化字符串（最拉开差距场景）</strong><pre><code class="language-csharp">// 原生：大量装箱、GC
+string s1 = string.Format(&quot;Pos:{0},{1},{2}&quot;,x,y,z);
+// ZString：无装箱
+string s2 = ZString.Format(&quot;Pos:{0},{1},{2}&quot;,x,y,z);
+</code></pre>
+✅ <strong>格式化场景 ZString 碾压原生 StringBuilder + string.Format</strong></li>
+<li><strong>字符串插值（C# 10+）</strong><pre><code class="language-csharp">// 普通插值会产生GC
+var str = $&quot;X:{x} Y:{y}&quot;;
+// ZString 专用插值处理器，零分配构建
+var str = ZString.CreateStringBuilder().Append($&quot;X:{x} Y:{y}&quot;).ToString();
+</code></pre>
+</li>
+<li><strong>复用对象</strong>
+<ul>
+<li>StringBuilder 可以 Clear() 复用；</li>
+<li><code>ZStringBuilder</code> 同样支持 Clear，并且内部缓冲复用策略更高效；还提供 <code>ZStringBuilderPool</code> 对象池进一步降低GC。</li>
+</ul>
+</li>
+</ol>
+<h2 id="三-分场景选型建议">三、分场景选型建议</h2>
+<h3 id="推荐选用-zstring-的情况">✅ 推荐选用 ZString 的情况</h3>
+<ol>
+<li>Update / FixedUpdate 每一帧都执行字符串拼接、格式化（UI文本、战斗日志、坐标打印）</li>
+<li>大量循环内组装字符串（批量生成描述、任务文本、列表内容）</li>
+<li>高频日志打印（替代 Debug.Log 封装 ZString 日志，消除格式化GC）</li>
+<li>大量数值转字符串、坐标拼接、格式化输出</li>
+<li>IL2CPP 打包，追求极致性能、降低卡顿</li>
+</ol>
+<blockquote>
+<p>标准写法示例</p>
+</blockquote>
+<pre><code class="language-csharp">// 使用对象池，减少实例化开销
+using var sb = ZStringBuilderPool.Get();
+sb.Append(&quot;Player:&quot;)
+  .Append(name)
+  .Append(&quot; HP:&quot;)
+  .Append(hp);
+string result = sb.ToString();
+ZStringBuilderPool.Return(sb);
+</code></pre>
+<h3 id="使用原生-stringbuilder-的场景">✅ 使用原生 StringBuilder 的场景</h3>
+<ol>
+<li><strong>项目不允许引入第三方库</strong>（规范限制、精简包体积）</li>
+<li>Unity 版本过低（&lt;2020，ZString兼容性差）</li>
+<li>字符串操作非常少，仅偶尔一次性拼接，性能无关紧要</li>
+<li>跨平台特殊兼容，不想额外引入外部代码维护成本</li>
+</ol>
+<blockquote>
+<p>原生 StringBuilder 最佳实践</p>
+</blockquote>
+<pre><code class="language-csharp">// 预先设置容量，避免频繁扩容！非常关键
+var sb = new StringBuilder(256); 
+sb.Append(&quot;A&quot;).Append(&quot;B&quot;);
+var str = sb.ToString();
+sb.Clear(); // 可复用
+</code></pre>
+<h2 id="四-避坑重点">四、避坑重点</h2>
+<h3 id="1-不要混用误区">1. 不要混用误区</h3>
+<p>❌ 不要频繁 <code>new StringBuilder()</code> / <code>new ZStringBuilder()</code> 不回收；能用池尽量用池。<br>
+❌ 不要直接大量 <code>string + &quot;abc&quot;</code>，不管哪个库，原生字符串加法最差。</p>
+<h3 id="2-webgl-注意">2. WebGL 注意</h3>
+<p>ZString 在 WebGL IL2CPP 完全兼容；但极个别老旧 .NET 后端环境无优势，Unity 客户端不用担心。</p>
+<h3 id="3-内存警告">3. 内存警告</h3>
+<p><code>ZString.ToString()</code> <strong>依然会创建最终字符串对象</strong>（C# string不可变，无法规避）；<br>
+它优化的是<strong>中间过程GC</strong>，不能做到完全无字符串分配，只是大幅减少临时垃圾。</p>
+<h2 id="五-极简总结清单">五、极简总结清单</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>选择</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>帧循环高频拼接、格式化、战斗/UI文本</td>
+<td>ZString (ZStringBuilder + 对象池)</td>
+</tr>
+<tr>
+<td>偶尔少量拼接、禁止导入第三方插件</td>
+<td>StringBuilder</td>
+</tr>
+<tr>
+<td>大量 string.Format / 插值格式化</td>
+<td>优先 ZString.Format</td>
+</tr>
+<tr>
+<td>新手快速开发、不想配置包</td>
+<td>StringBuilder</td>
+</tr>
+</tbody>
+</table>
+<h2 id="补充建议">补充建议</h2>
+<p>如果你项目目前没有任何字符串优化库，<strong>直接导入 ZString</strong>，是当前 Unity 行业通用最优方案；<br>
+如果受项目管制不能加外部源码，则规范使用 StringBuilder，并<strong>初始化时预分配容量</strong>减少GC。</p>
+<p>如果你需要，我可以给你一套可直接粘贴使用的：</p>
+<ol>
+<li>ZString 封装日志工具类</li>
+<li>原生 StringBuilder 复用模板代码</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/steering-behavior-shi-shi-me/" class="post-title gt-a-link">
+                    Steering Behavior 是什么?
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

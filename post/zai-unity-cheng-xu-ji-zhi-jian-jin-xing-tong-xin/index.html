@@ -1,0 +1,282 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>在Unity程序集之间进行通信 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    在Unity程序集之间进行通信
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-09-14 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/PAqcc6AHjm/" class="post-tags">
+                            # 程序集
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/GbsLkWbrXvQ/" class="post-tags">
+                            # 项目结构
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在程序集之间进行通信是Unity项目模块化设计中的关键环节，处理不当容易导致耦合过高、依赖混乱等问题。以下是程序集通信时需要注意的核心事项：</p>
+<h3 id="1-避免循环依赖">1. 避免循环依赖</h3>
+<ul>
+<li><strong>问题</strong>：如果Assembly A依赖Assembly B，同时Assembly B又依赖Assembly A，会导致编译错误和逻辑混乱</li>
+<li><strong>解决</strong>：
+<ul>
+<li>通过&quot;接口隔离&quot;：将共享接口提取到独立的核心程序集</li>
+<li>使用事件总线（EventBus）实现间接通信</li>
+<li>采用依赖注入（DI）模式反转依赖关系</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-依赖方向保持一致">2. 依赖方向保持一致</h3>
+<ul>
+<li>遵循&quot;单向依赖原则&quot;：上层程序集依赖下层，反之则不可</li>
+<li>例如：UI程序集可以依赖逻辑程序集，但逻辑程序集不应依赖UI程序集</li>
+<li>可通过创建依赖关系图可视化检查</li>
+</ul>
+<h3 id="3-明确通信边界">3. 明确通信边界</h3>
+<ul>
+<li>每个程序集应通过明确的&quot;公共接口&quot;对外提供服务，内部实现细节隐藏</li>
+<li>避免在程序集间直接访问对方的私有成员或内部类</li>
+<li>推荐使用&quot;门面模式（Facade）&quot;为复杂程序集提供简化接口</li>
+</ul>
+<h3 id="4-选择合适的通信方式">4. 选择合适的通信方式</h3>
+<p>根据场景选择通信模式：</p>
+<ul>
+<li><strong>接口调用</strong>：适合同步、直接的通信需求</li>
+<li><strong>事件系统</strong>：适合解耦程度要求高的跨程序集通信</li>
+<li><strong>消息队列</strong>：适合异步、需要缓冲的通信场景</li>
+<li><strong>服务定位器</strong>：适合动态获取跨程序集服务</li>
+</ul>
+<p>示例（事件总线解耦）：</p>
+<pre><code class="language-csharp">// 核心程序集中定义事件和总线接口
+public class PlayerLevelUpEvent : IEvent
+{
+    public int NewLevel;
+}
+
+// 逻辑程序集发布事件
+EventBus.Publish(new PlayerLevelUpEvent { NewLevel = 5 });
+
+// UI程序集订阅事件
+EventBus.Subscribe&lt;PlayerLevelUpEvent&gt;(OnPlayerLevelUp);
+</code></pre>
+<h3 id="5-控制数据传递粒度">5. 控制数据传递粒度</h3>
+<ul>
+<li>跨程序集传递的数据应最小化，避免传递过大的对象</li>
+<li>优先传递不可变数据（Immutable Data），减少副作用</li>
+<li>复杂数据可通过数据传输对象（DTO）封装</li>
+</ul>
+<h3 id="6-版本兼容性">6. 版本兼容性</h3>
+<ul>
+<li>公共接口变更时需考虑对依赖程序集的影响</li>
+<li>尽量保持接口稳定，采用&quot;扩展而非修改&quot;原则</li>
+<li>大型项目可考虑语义化版本控制</li>
+</ul>
+<h3 id="7-避免过度通信">7. 避免过度通信</h3>
+<ul>
+<li>频繁的跨程序集通信会影响性能</li>
+<li>可通过批量处理、缓存结果减少通信次数</li>
+<li>核心数据变更可采用&quot;观察者模式&quot;，而非轮询</li>
+</ul>
+<h3 id="8-错误处理与日志">8. 错误处理与日志</h3>
+<ul>
+<li>跨程序集调用必须包含完整的异常处理</li>
+<li>关键通信节点添加详细日志，便于调试</li>
+<li>定义统一的错误码体系，方便问题定位</li>
+</ul>
+<h3 id="9-测试隔离性">9. 测试隔离性</h3>
+<ul>
+<li>确保每个程序集可独立测试，不受其他程序集影响</li>
+<li>跨程序集通信应通过模拟（Mock）对象测试</li>
+<li>定期进行集成测试，验证程序集间交互正确性</li>
+</ul>
+<p>通过遵循这些原则，你可以在保持程序集独立性的同时，实现高效、可靠的跨程序集通信，从而构建出松耦合、高内聚的Unity项目架构。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-zhong-he-li-gui-hua-cheng-xu-ji/" class="post-title gt-a-link">
+                    Unity 中合理规划程序集
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

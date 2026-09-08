@@ -1,0 +1,485 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity里面坐标转换 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1788838527552">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1788838527552" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity里面坐标转换
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-11-23 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/FEl-uD_oB6/" class="post-tags">
+                            # 坐标转换
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 中，坐标转换是游戏开发的核心基础（如物体跟随、射线检测、UI 定位、相机交互等场景均需用到）。其核心是 <strong>基于不同“坐标空间”的相互转换</strong>，所有转换的本质都是通过「矩阵运算」（Unity 已封装 API，无需手动计算）实现点/向量在空间中的映射。</p>
+<h2 id="一-先明确unity-中的-4-大核心坐标空间">一、先明确：Unity 中的 4 大核心坐标空间</h2>
+<p>在转换前，必须先区分“空间”——不同空间的坐标值无直接可比性，需通过特定 API 转换。</p>
+<table>
+<thead>
+<tr>
+<th>坐标空间</th>
+<th>定义（参考系）</th>
+<th>用途</th>
+<th>关键特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>世界空间（World Space）</td>
+<td>整个游戏世界的固定原点（0,0,0）</td>
+<td>描述物体在世界中的绝对位置</td>
+<td>所有物体共用同一参考系，坐标值全局唯一</td>
+</tr>
+<tr>
+<td>局部空间（Local Space）</td>
+<td>物体自身的 Transform 组件（自身原点= pivot 中心点）</td>
+<td>描述子物体相对于父物体的位置、父子层级关系</td>
+<td>子物体坐标随父物体移动/旋转而变化</td>
+</tr>
+<tr>
+<td>相机空间（View Space）</td>
+<td>相机的自身坐标系（相机为原点，Z 轴朝前（Unity 中是 -Z 轴看向世界））</td>
+<td>3D 物体转 2D 屏幕的中间步骤、射线检测</td>
+<td>坐标值表示“物体相对于相机的位置”</td>
+</tr>
+<tr>
+<td>屏幕空间（Screen Space）</td>
+<td>屏幕像素坐标系（左下角为原点 (0,0)，右上角为 (Screen.width, Screen.height)）</td>
+<td>UI 定位、鼠标交互（如点击 3D 物体）</td>
+<td>只关心 2D 像素位置，Z 轴为“物体到相机的距离”</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>补充：UI 专用的「Rect Transform 空间」（如 Canvas 的 Screen Space - Overlay 模式）本质是屏幕空间的延伸，原点可能在左上角（需看 Canvas 设置），下文单独说明。</p>
+</blockquote>
+<h2 id="二-核心坐标转换api-与场景示例">二、核心坐标转换：API 与场景示例</h2>
+<p>Unity 提供了 <code>Transform</code> 和 <code>Camera</code> 类的封装 API，覆盖绝大多数转换场景，无需手动操作矩阵。以下是 <strong>最常用的 6 种转换</strong>，含代码示例和适用场景：</p>
+<h3 id="1-局部空间-世界空间父子物体自身位置转换">1. 局部空间 ↔ 世界空间（父子物体/自身位置转换）</h3>
+<p>最基础的转换，用于将子物体的局部位置转为世界位置，或反之。</p>
+<h4 id="1局部坐标-世界坐标">（1）局部坐标 → 世界坐标</h4>
+<p><strong>API</strong>：<code>Transform.TransformPoint(Vector3 localPos)</code></p>
+<ul>
+<li>作用：将“相对于当前物体 pivot 的局部坐标”，转换为世界坐标。</li>
+<li>注意：会考虑当前物体的 <strong>位置、旋转、缩放</strong>（如果父物体有缩放，子物体的局部坐标会被缩放后再转世界）。</li>
+</ul>
+<p><strong>示例</strong>：子物体相对于父物体的局部位置是 (1,0,0)，获取其世界位置：</p>
+<pre><code class="language-csharp">// 父物体
+Transform parent = GameObject.Find(&quot;Parent&quot;).transform;
+// 子物体相对于父物体的局部坐标
+Vector3 localPos = new Vector3(1, 0, 0);
+// 转换为世界坐标
+Vector3 worldPos = parent.TransformPoint(localPos);
+Debug.Log(&quot;子物体世界位置：&quot; + worldPos);
+</code></pre>
+<h4 id="2世界坐标-局部坐标">（2）世界坐标 → 局部坐标</h4>
+<p><strong>API</strong>：<code>Transform.InverseTransformPoint(Vector3 worldPos)</code></p>
+<ul>
+<li>作用：将“世界坐标”转换为“相对于当前物体 pivot 的局部坐标”。</li>
+<li>注意：同样会考虑当前物体的位置、旋转、缩放。</li>
+</ul>
+<p><strong>示例</strong>：已知世界坐标 (5,2,3)，获取其相对于父物体的局部坐标：</p>
+<pre><code class="language-csharp">Transform parent = GameObject.Find(&quot;Parent&quot;).transform;
+Vector3 worldPos = new Vector3(5, 2, 3);
+Vector3 localPos = parent.InverseTransformPoint(worldPos);
+Debug.Log(&quot;相对于父物体的局部坐标：&quot; + localPos);
+</code></pre>
+<h4 id="特殊情况自身局部位置与世界位置的直接获取">特殊情况：自身局部位置与世界位置的直接获取</h4>
+<ul>
+<li>物体的 <code>transform.localPosition</code>：直接获取“相对于父物体”的局部坐标（无需转换）。</li>
+<li>物体的 <code>transform.position</code>：直接获取“世界坐标”（无需转换）。</li>
+<li>仅当需要“自定义局部点”（非自身 pivot 位置）转换时，才用 <code>TransformPoint</code>/<code>InverseTransformPoint</code>。</li>
+</ul>
+<h3 id="2-世界空间-相机空间3d-物体相对相机位置">2. 世界空间 ↔ 相机空间（3D 物体相对相机位置）</h3>
+<p>相机空间以相机为原点，Z 轴指向世界的 -Z 方向（Unity 相机默认“看向自身 -Z 轴”），用于计算物体相对于相机的位置（如判断物体在相机前方/后方）。</p>
+<h4 id="1世界坐标-相机坐标">（1）世界坐标 → 相机坐标</h4>
+<p><strong>API</strong>：<code>Camera.WorldToCameraPoint(Vector3 worldPos)</code></p>
+<ul>
+<li>作用：将世界坐标转换为“相对于相机的坐标”。</li>
+<li>特性：相机移动/旋转时，转换结果会同步变化；Z 值为“物体到相机的距离”（正值表示在相机前方）。</li>
+</ul>
+<p><strong>示例</strong>：判断物体是否在相机前方（Z &gt; 0）：</p>
+<pre><code class="language-csharp">Camera mainCam = Camera.main;
+Transform target = GameObject.Find(&quot;Target&quot;).transform;
+
+// 世界坐标转相机坐标
+Vector3 cameraPos = mainCam.WorldToCameraPoint(target.position);
+if (cameraPos.z &gt; 0)
+{
+    Debug.Log(&quot;物体在相机前方&quot;);
+}
+else
+{
+    Debug.Log(&quot;物体在相机后方&quot;);
+}
+</code></pre>
+<h4 id="2相机坐标-世界坐标">（2）相机坐标 → 世界坐标</h4>
+<p><strong>API</strong>：<code>Camera.CameraToWorldPoint(Vector3 cameraPos)</code></p>
+<ul>
+<li>作用：将“相对于相机的坐标”转换为世界坐标。</li>
+<li>注意：<code>cameraPos</code> 的 Z 值必须为正（表示在相机前方），否则转换结果无效（会在相机后方）。</li>
+</ul>
+<p><strong>示例</strong>：在相机前方 5 米处生成一个物体：</p>
+<pre><code class="language-csharp">Camera mainCam = Camera.main;
+// 相机空间中：原点（相机位置），Z=5（前方 5 米）
+Vector3 cameraPos = new Vector3(0, 0, 5);
+// 转换为世界坐标
+Vector3 worldPos = mainCam.CameraToWorldPoint(cameraPos);
+// 在该位置生成物体
+Instantiate(Resources.Load(&quot;Cube&quot;), worldPos, Quaternion.identity);
+</code></pre>
+<h3 id="3-世界空间-屏幕空间3d-物体-鼠标ui-交互">3. 世界空间 ↔ 屏幕空间（3D 物体 ↔ 鼠标/UI 交互）</h3>
+<p>最常用的交互转换，比如：3D 物体坐标转屏幕像素位置（用于在物体上方显示血条）、鼠标像素位置转世界坐标（用于点击地面生成物体）。</p>
+<h4 id="1世界坐标-屏幕坐标">（1）世界坐标 → 屏幕坐标</h4>
+<p><strong>API</strong>：<code>Camera.WorldToScreenPoint(Vector3 worldPos)</code></p>
+<ul>
+<li>作用：将 3D 世界坐标转换为 2D 屏幕像素坐标（左下角为 (0,0)，右上角为 (Screen.width, Screen.height)）。</li>
+<li>特性：Z 值为“物体到相机的距离”；若物体在相机视锥外，返回的屏幕坐标可能超出屏幕范围（如 x &lt; 0 或 x &gt; Screen.width）。</li>
+</ul>
+<p><strong>示例</strong>：在 3D 物体上方显示 UI 血条（核心是让 UI 跟随 3D 物体的屏幕位置）：</p>
+<pre><code class="language-csharp">public RectTransform bloodBar; // UI 血条的 RectTransform
+public Transform target; // 3D 目标物体
+private Camera mainCam;
+
+void Start()
+{
+    mainCam = Camera.main;
+}
+
+void Update()
+{
+    // 3D 物体世界坐标转屏幕坐标
+    Vector3 screenPos = mainCam.WorldToScreenPoint(target.position + new Vector3(0, 2, 0)); // 物体上方 2 米
+    // 将屏幕坐标转换为 UI 空间坐标（Canvas 需设为 Screen Space - Overlay）
+    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        bloodBar.parent as RectTransform, // UI 父节点（通常是 Canvas）
+        screenPos,
+        null, // 无相机（Overlay 模式）
+        out Vector2 localPos
+    );
+    // 设置血条位置
+    bloodBar.localPosition = new Vector3(localPos.x, localPos.y, 0);
+}
+</code></pre>
+<h4 id="2屏幕坐标-世界坐标">（2）屏幕坐标 → 世界坐标</h4>
+<p><strong>API</strong>：<code>Camera.ScreenToWorldPoint(Vector3 screenPos)</code></p>
+<ul>
+<li>关键注意：<code>screenPos.z</code> 必须指定“物体到相机的距离”（否则默认 Z=0，可能转换到相机近裁切面）。</li>
+<li>适用场景：鼠标点击地面生成物体、射线检测起点设置等。</li>
+</ul>
+<p><strong>示例</strong>：鼠标点击地面（Y=0）生成物体：</p>
+<pre><code class="language-csharp">Camera mainCam = Camera.main;
+
+void Update()
+{
+    if (Input.GetMouseButtonDown(0)) // 点击鼠标左键
+    {
+        // 屏幕坐标：鼠标位置（x,y）+ 距离相机 10 米（z=10）
+        Vector3 screenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+        // 转换为世界坐标（此时是相机前方 10 米处的点）
+        Vector3 worldPos = mainCam.ScreenToWorldPoint(screenPos);
+        
+        // 修正 Y 轴为地面高度（Y=0）
+        worldPos.y = 0;
+        // 生成物体
+        Instantiate(Resources.Load(&quot;Cube&quot;), worldPos, Quaternion.identity);
+    }
+}
+</code></pre>
+<blockquote>
+<p>更精准的“点击地面”方案：用 <code>Camera.ScreenPointToRay(Input.mousePosition)</code> 发射射线，检测地面碰撞点（避免 Z 值手动设置的误差）。</p>
+</blockquote>
+<h3 id="4-屏幕空间-ui-空间rect-transform-专用">4. 屏幕空间 ↔ UI 空间（Rect Transform 专用）</h3>
+<p>UI 组件（如 Image、Text）的坐标是「Rect Transform 局部空间」，与屏幕空间的转换需用 <code>RectTransformUtility</code> 工具类（因 Canvas 模式不同，原点和范围可能不同）。</p>
+<h4 id="核心-api">核心 API：</h4>
+<ul>
+<li>屏幕坐标 → UI 局部坐标：<code>RectTransformUtility.ScreenPointToLocalPointInRectangle(RectTransform parent, Vector2 screenPos, Camera cam, out Vector2 localPos)</code></li>
+<li>UI 局部坐标 → 屏幕坐标：<code>RectTransformUtility.LocalPointToScreenPointInRectangle(RectTransform parent, Vector2 localPos, Camera cam, out Vector2 screenPos)</code></li>
+</ul>
+<h4 id="关键参数说明">关键参数说明：</h4>
+<ul>
+<li><code>parent</code>：UI 元素的父节点（通常是 Canvas 的 RectTransform，确保坐标参考系统一）。</li>
+<li><code>cam</code>：Canvas 对应的相机（Screen Space - Overlay 模式时设为 <code>null</code>；Screen Space - Camera 模式时设为指定相机）。</li>
+</ul>
+<p><strong>示例</strong>：鼠标位置转为 UI 按钮的局部坐标（判断鼠标是否在按钮内）：</p>
+<pre><code class="language-csharp">public RectTransform buttonRect; // 按钮的 RectTransform
+private Camera uiCam; // Canvas 对应的相机（若为 Overlay 模式则设为 null）
+
+void Start()
+{
+    // 获取 Canvas 的相机（Screen Space - Camera 模式）
+    Canvas canvas = buttonRect.GetComponentInParent&lt;Canvas&gt;();
+    uiCam = canvas.worldCamera;
+}
+
+void Update()
+{
+    // 屏幕坐标（鼠标位置）转 UI 局部坐标
+    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        buttonRect, // 目标 UI 的 RectTransform
+        Input.mousePosition,
+        uiCam,
+        out Vector2 localPos
+    ))
+    {
+        // 判断局部坐标是否在按钮的 Rect 范围内
+        if (buttonRect.rect.Contains(localPos))
+        {
+            Debug.Log(&quot;鼠标在按钮内&quot;);
+        }
+        else
+        {
+            Debug.Log(&quot;鼠标在按钮外&quot;);
+        }
+    }
+}
+</code></pre>
+<h2 id="三-特殊场景向量的坐标转换非位置点">三、特殊场景：向量的坐标转换（非位置点）</h2>
+<p>上述转换均针对「位置点」（有原点参考），若需转换「向量」（无原点，仅表示方向/大小，如速度、法线），需用专门的 API（忽略位置，仅考虑旋转和缩放）。</p>
+<table>
+<thead>
+<tr>
+<th>转换场景</th>
+<th>点（位置）API</th>
+<th>向量（方向）API</th>
+<th>区别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>局部 → 世界</td>
+<td><code>Transform.TransformPoint</code></td>
+<td><code>Transform.TransformDirection</code> / <code>Transform.TransformVector</code></td>
+<td>向量 API 忽略物体位置，仅应用旋转和缩放</td>
+</tr>
+<tr>
+<td>世界 → 局部</td>
+<td><code>Transform.InverseTransformPoint</code></td>
+<td><code>Transform.InverseTransformDirection</code> / <code>Transform.InverseTransformVector</code></td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<h4 id="向量-api-区别">向量 API 区别：</h4>
+<ul>
+<li><code>TransformDirection</code>：忽略物体的缩放（仅应用旋转），适合转换“方向向量”（如前进方向、法线）。</li>
+<li><code>TransformVector</code>：应用物体的缩放和旋转，适合转换“有大小的向量”（如速度、力）。</li>
+</ul>
+<p><strong>示例</strong>：子物体的局部前进方向（Z 轴）转为世界方向：</p>
+<pre><code class="language-csharp">Transform child = GameObject.Find(&quot;Child&quot;).transform;
+// 局部方向：Z 轴（前进方向）
+Vector3 localDir = Vector3.forward;
+// 转换为世界方向（忽略缩放，仅旋转）
+Vector3 worldDir = child.TransformDirection(localDir);
+Debug.Log(&quot;子物体世界前进方向：&quot; + worldDir);
+</code></pre>
+<h2 id="四-常见坑与注意事项">四、常见坑与注意事项</h2>
+<ol>
+<li><strong>Z 值不能为空</strong>：<code>ScreenToWorldPoint</code> 和 <code>CameraToWorldPoint</code> 必须指定 Z 值（物体到相机的距离），否则转换结果无效（Z=0 可能在相机内部）。</li>
+<li><strong>Canvas 模式影响 UI 转换</strong>：
+<ul>
+<li>Overlay 模式：UI 直接覆盖屏幕，<code>RectTransformUtility</code> 的 <code>cam</code> 参数设为 <code>null</code>。</li>
+<li>Camera 模式：UI 通过相机渲染，需传入对应的相机，否则坐标偏移。</li>
+</ul>
+</li>
+<li><strong>Pivot 中心点影响局部坐标</strong>：物体的局部坐标参考系是自身的 <code>pivot</code>（而非模型中心），若模型中心与 pivot 不一致，需注意转换点的位置。</li>
+<li><strong>缩放继承问题</strong>：子物体的局部坐标会继承父物体的缩放，用 <code>TransformPoint</code> 转换时会自动应用缩放，若需忽略缩放，可先将父物体缩放设为 (1,1,1)，或用 <code>TransformDirection</code>（向量）。</li>
+<li><strong>相机视锥范围</strong>：<code>WorldToScreenPoint</code> 转换视锥外的物体时，屏幕坐标可能超出屏幕范围（x/y 为负数或大于屏幕宽高），需判断有效性。</li>
+</ol>
+<h2 id="五-总结核心转换流程图">五、总结：核心转换流程图</h2>
+<pre><code>局部空间 ←→ 世界空间（Transform.TransformPoint/InverseTransformPoint）
+世界空间 ←→ 相机空间（Camera.WorldToCameraPoint/CameraToWorldPoint）
+世界空间 ←→ 屏幕空间（Camera.WorldToScreenPoint/ScreenToWorldPoint）
+屏幕空间 ←→ UI 空间（RectTransformUtility）
+向量转换（Transform.TransformDirection/InverseTransformDirection）
+</code></pre>
+<p>记住：<strong>所有转换的核心是“明确当前坐标所在的空间”</strong>，根据场景选择对应的 API，无需关注底层矩阵运算，Unity 已封装好高效的实现。实际开发中，优先使用 <code>Transform.position</code>/<code>localPosition</code> 直接获取坐标，仅当需要“自定义点/向量”转换时，再调用专门的转换 API。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/you-xi-xiang-guan-zhu-yu-de-zhong-ying-wen-fan-yi/" class="post-title gt-a-link">
+                    游戏相关术语的中英文翻译
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
