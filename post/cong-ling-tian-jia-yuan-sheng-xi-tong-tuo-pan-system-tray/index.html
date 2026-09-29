@@ -1,0 +1,346 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>从零添加原生系统托盘 (System Tray) | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1790694717016">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1790694717016" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    从零添加原生系统托盘 (System Tray)
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-09-29 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>桌面常驻程序（如壁纸软件、后台工具、桌面宠物）通常需要一个系统托盘图标来接管主程序的呼出与退出。由于 Unity 引擎自身并未提供跨平台的系统托盘 API，我们需要引入 .NET Framework 的核心窗体组件，直接调用 Windows 原生组件来完成这一功能。</p>
+<p><a href="https://github.com/jackylvm/HelloWindowsAPI?tab=readme-ov-file">示例工程</a></p>
+<h3 id="关键前置准备导入必要的-dll-文件">关键前置准备：导入必要的 DLL 文件</h3>
+<p>Unity 默认的引用库中并不直接包含 Windows 窗体应用的核心库。在编写任何代码前，必须手动进行以下环境配置：</p>
+<ol>
+<li><strong>修改 API 兼容级别：</strong><br>
+打开 Unity 的 <code>Edit -&gt; Project Settings -&gt; Player -&gt; Other Settings</code>，找到 <strong>Api Compatibility Level</strong>，必须将其修改为 <strong><code>.NET Framework</code></strong>（注意不要选 .NET Standard）。</li>
+<li><strong>提取系统原生 DLL：</strong><br>
+打开你的 Windows 系统的本地资源管理器，导航至以下目录：<br>
+<code>C:\Windows\Microsoft.NET\Framework64\v4.0.30319</code>（32位系统则在 <code>Framework</code> 目录下）。</li>
+<li><strong>导入到 Unity 工程：</strong><br>
+在该目录中找到 <strong><code>System.Windows.Forms.dll</code></strong> 和 <strong><code>System.Drawing.dll</code></strong> 这两个文件。在 Unity 的 <code>Assets</code> 目录下新建一个名为 <code>Plugins</code> 的文件夹，将这两个 DLL 文件直接拖入该文件夹中。</li>
+</ol>
+<p>完成以上三步，Unity 才能成功识别 <code>NotifyIcon</code> 和 <code>Icon</code> 等类。</p>
+<h3 id="系统托盘构建指南">系统托盘构建指南</h3>
+<p>实现系统托盘主要依赖于 <code>NotifyIcon</code> 类，结合 <code>ContextMenu</code> 构建右键交互菜单。</p>
+<ol>
+<li>
+<p><strong>初始化右键菜单与事件绑定：</strong><br>
+创建一个 <code>ContextMenu</code> 实例，并通过 <code>MenuItems.Add</code> 添加如“显示游戏”与“退出游戏”等交互选项。接着，直接将自定义的处理逻辑（例如调用 <code>Application.Quit()</code>）绑定到这些菜单项的点击事件上。</p>
+</li>
+<li>
+<p><strong>配置托盘图标 (NotifyIcon)：</strong><br>
+实例化 <code>NotifyIcon</code>，设置其 <code>Text</code> 属性以提供鼠标悬停时的提示文字。将前面创建的右键菜单绑定到 <code>ContextMenu</code> 属性，并为 <code>DoubleClick</code> 事件挂载呼出主界面的逻辑。</p>
+</li>
+<li>
+<p><strong>生命周期管理（极其重要）：</strong><br>
+托盘图标不会随 Unity 进程的结束而自动销毁，这会导致任务栏残留“幽灵图标”。必须在 MonoBehaviour 的 <code>OnApplicationQuit</code> 生命周期钩子中，将 <code>NotifyIcon.Visible</code> 设为 <code>false</code>，并调用 <code>Dispose()</code> 彻底释放资源。</p>
+</li>
+</ol>
+<h3 id="完整实现代码">完整实现代码</h3>
+<p>以下是 <code>SystemTrayManager.cs</code> 的完整源码，您可以直接挂载使用：</p>
+<pre><code class="language-csharp">// ***********************************************************************************
+// FileName: SystemTrayManager.cs
+// Description: 为 Unity 游戏添加 Windows 系统托盘及右键菜单
+// *************************************************************************************
+
+using System;
+using System.Collections;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using UnityEngine;
+using UnityEngine.Rendering;
+using Application = UnityEngine.Application;
+using ContextMenu = System.Windows.Forms.ContextMenu;
+using Debug = UnityEngine.Debug;
+
+// ReSharper disable CheckNamespace
+namespace OnyxCore.UnityCore.Runtime
+{
+    public class SystemTrayManager : MonoBehaviour
+    {
+        private NotifyIcon trayIcon;
+        private ContextMenu trayMenu;
+
+        /// &lt;summary&gt;
+        /// Start 函数会在脚本实例被启用时调用，并且只在第一帧更新之前执行一次。
+        /// &lt;/summary&gt;
+        private void Start()
+        {
+            if (!Application.isEditor)
+            {
+                Application.runInBackground = true;
+                // 等待 Logo 播放完毕
+                StartCoroutine(WaitSplashScreenAndApply());
+            }
+        }
+
+        IEnumerator WaitSplashScreenAndApply()
+        {
+            // 1. 等待 Unity 启动动画结束
+            while (!SplashScreen.isFinished)
+            {
+                yield return null;
+            }
+
+            // 2. 额外缓冲 0.5 秒，确保渲染管线稳定
+            yield return new WaitForSeconds(0.5f);
+
+            // 3. 初始化系统托盘
+            AddSystemTrayIcon();
+        }
+
+        private void AddSystemTrayIcon()
+        {
+            // 1. 初始化右键菜单
+            trayMenu = new ContextMenu();
+
+            // 添加菜单项和点击事件
+            trayMenu.MenuItems.Add(&quot;显示游戏&quot;, OnShowClicked);
+            trayMenu.MenuItems.Add(&quot;退出游戏&quot;, OnExitClicked);
+
+            // 2. 初始化托盘图标
+            trayIcon = new NotifyIcon();
+            trayIcon.Text = &quot;胡须流浪者&quot;; // 鼠标悬停时的提示文字
+
+            // 加载 .ico 图标文件
+            var iconPath = Path.Combine(Application.streamingAssetsPath, &quot;tray_icon.ico&quot;);
+            if (File.Exists(iconPath))
+            {
+                trayIcon.Icon = new Icon(iconPath);
+            }
+            else
+            {
+                Debug.LogError(&quot;找不到托盘图标文件！请检查 StreamingAssets 目录。&quot;);
+            }
+
+            // 绑定右键菜单
+            trayIcon.ContextMenu = trayMenu;
+
+            // 绑定双击事件
+            trayIcon.DoubleClick += OnShowClicked;
+
+            // 显示托盘图标
+            trayIcon.Visible = true;
+        }
+
+        // 点击“显示游戏”或双击托盘时的逻辑
+        private void OnShowClicked(object sender, EventArgs e)
+        {
+            // 这里可以补充呼出游戏主窗口的逻辑
+            Debug.Log(&quot;显示游戏&quot;);
+        }
+
+        // 点击“退出”时的逻辑
+        private void OnExitClicked(object sender, EventArgs e)
+        {
+            Application.Quit();
+        }
+
+        // 必须在程序退出时销毁托盘图标，否则它会一直残留在任务栏直到鼠标划过
+        void OnApplicationQuit()
+        {
+            if (trayIcon != null)
+            {
+                trayIcon.Visible = false;
+                trayIcon.Dispose();
+                trayIcon = null;
+            }
+        }
+    }
+}
+
+</code></pre>
+<h3 id="填坑指南gameframework-框架下的图标丢失问题">填坑指南：GameFramework 框架下的图标丢失问题</h3>
+<p>如果你在项目中使用 GameFramework (GF) 框架进行资源管理，在构建 AssetBundle 包时，GF 默认的 <code>ResourceBuilder</code> 会清空 <code>StreamingAssets</code> 文件夹，导致你的 <code>.ico</code> 图标丢失。</p>
+<p>解决此问题的最佳实践是<strong>利用 Unity 的 <code>IPostprocessBuildWithReport</code> 接口编写一段 Editor 脚本</strong>。将优先级设置得较高（例如 100）以确保其在 GF 构建完成后执行，直接将保存在安全目录（如自定义的 <code>CustomFiles</code>）下的 <code>.ico</code> 文件，在打包后自动拷贝回最终输出目录下的 <code>StreamingAssets</code> 文件夹中。这样既不干扰框架的打包流程，又能确保托盘组件在运行时顺利读取到图标文件。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/wan-mei-shi-xian-bei-jing-tou-ming-yu-yin-cang-ren-wu-lan-tu-biao/" class="post-title gt-a-link">
+                    完美实现背景透明与隐藏任务栏图标
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

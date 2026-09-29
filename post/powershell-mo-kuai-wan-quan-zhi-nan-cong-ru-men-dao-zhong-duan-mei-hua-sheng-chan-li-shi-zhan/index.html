@@ -1,0 +1,393 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>PowerShell 模块完全指南：从入门到终端美化生产力实战 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1790694717016">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1790694717016" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    PowerShell 模块完全指南：从入门到终端美化生产力实战
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-09-20 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/9LU3l1RpVl/" class="post-tags">
+                            # PowerShell
+                        </a>
+                    
+                        <a href="https://jackylvm.github.io/tag/p5QRI3xAOrN/" class="post-tags">
+                            # 知识积累
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="前言">前言</h2>
+<p>很多人觉得 PowerShell 只是 Windows 自带的“高级 CMD”，功能普通、界面简陋。但实际上，<strong>PowerShell 的真正生产力，全部来自「模块（Module）」</strong>。</p>
+<p>PowerShell 模块相当于插件、功能包，可以给终端增加语法高亮、智能补全、命令预测、Git 状态、云运维、脚本检测、系统管理等能力。</p>
+<p>本文从零讲清楚：模块是什么、怎么安装、怎么管理、开机自动加载、常用必备模块、终极美化配置、常见报错解决，一次性打通 PowerShell 生产力。</p>
+<h2 id="一-先搞懂powershell-模块是什么">一、先搞懂：PowerShell 模块是什么？</h2>
+<p>简单理解：</p>
+<ul>
+<li>
+<p><strong>CMD</strong>：原生固定功能，无法扩展</p>
+</li>
+<li>
+<p><strong>PowerShell</strong>：核心功能极简，所有高级能力靠「模块扩展」</p>
+</li>
+</ul>
+<p>模块分为两类：</p>
+<ol>
+<li>
+<p><strong>内置模块</strong>：系统自带，直接可用（如 Archive、NetTCPIP）</p>
+</li>
+<li>
+<p><strong>第三方模块</strong>：从官方仓库安装（PSGallery），比如 PSReadLine、posh-git</p>
+</li>
+</ol>
+<p>PowerShell 所有插件、增强工具，本质都是 <strong>Module</strong>。</p>
+<h2 id="二-模块核心基础命令必记">二、模块核心基础命令（必记）</h2>
+<h3 id="1-查看已安装模块">1. 查看已安装模块</h3>
+<pre><code class="language-Plain">Get-Module -ListAvailable
+</code></pre>
+<h3 id="2-查看当前已加载模块">2. 查看当前已加载模块</h3>
+<pre><code class="language-Plain">Get-Module
+</code></pre>
+<h3 id="3-安装模块官方仓库">3. 安装模块（官方仓库）</h3>
+<pre><code class="language-Plain">Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+Install-Module 模块名 -Scope CurrentUser -Force
+</code></pre>
+<p><code>-Scope CurrentUser</code>：仅当前用户，不需要管理员权限，推荐日常使用。</p>
+<h3 id="4-加载模块到当前终端">4. 加载模块到当前终端</h3>
+<pre><code class="language-Plain">Import-Module 模块名
+</code></pre>
+<h3 id="5-卸载更新模块">5. 卸载/更新模块</h3>
+<pre><code class="language-Plain"># 更新
+Update-Module 模块名
+
+# 卸载
+Uninstall-Module 模块名
+</code></pre>
+<h2 id="三-关键知识点临时生效-vs-永久生效">三、关键知识点：临时生效 vs 永久生效</h2>
+<p>所有 <code>Import-Module</code>、配置命令，<strong>默认只在当前窗口生效</strong>。</p>
+<p>想要开机、新开终端自动生效，必须写入 <strong>PowerShell Profile</strong>。</p>
+<h3 id="profile-基础操作">Profile 基础操作</h3>
+<pre><code class="language-Plain"># 查看 profile 路径
+$PROFILE
+
+# 不存在则创建
+if (!(Test-Path $PROFILE)) { New-Item $PROFILE -Force }
+
+# 打开编辑
+notepad $PROFILE
+</code></pre>
+<p>所有永久配置，全部写在这个文件里。</p>
+<h2 id="四-新手必装核心模块生产力天花板">四、新手必装核心模块（生产力天花板）</h2>
+<h3 id="1-psreadline最强终端增强必装">1. PSReadLine（最强终端增强，必装）</h3>
+<p>微软官方模块，所有 PowerShell 增强的基础，功能包括：</p>
+<ul>
+<li>
+<p>命令语法高亮</p>
+</li>
+<li>
+<p>历史命令搜索 Ctrl+R</p>
+</li>
+<li>
+<p>智能命令预测（灰色提示）</p>
+</li>
+<li>
+<p>上下箭头模糊匹配历史</p>
+</li>
+</ul>
+<h3 id="2-posh-gitgit-集成">2. posh-git（Git 集成）</h3>
+<p>终端显示 Git 分支、修改状态、干净提示，开发必备。</p>
+<h3 id="3-ohmyposh美化提示符">3. OhMyPosh（美化提示符）</h3>
+<p>不属于模块，是独立终端美化工具，搭配 PSReadLine 使用，实现高颜值终端、分段提示符、图标主题。</p>
+<h2 id="五-全网最稳无报错终极-profile-配置">五、全网最稳：无报错终极 Profile 配置</h2>
+<p>修复网上 90% 的教程报错（比如 HistoryNoDuplicates 参数错误），可直接全覆盖使用。</p>
+<pre><code class="language-Plain">&lt;#
+PowerShell7 终极生产力配置
+PSReadLine + Git增强 + 终端美化
+#&gt;
+
+# 加载核心模块
+Import-Module PSReadLine
+Import-Module posh-git
+
+# 上下箭头增量搜索历史
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+
+# 智能命令预测（灰字提示） F2切换视图
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionViewStyle InlineView
+
+# 历史记录去重（修复旧版报错写法）
+Set-PSReadLineOption -HistoryNoDuplicates
+Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
+
+# 自定义高亮配色（暗色终端舒适）
+Set-PSReadLineOption -Colors @{
+    Command = &quot;#569CD6&quot;
+    Parameter = &quot;#9CDCFE&quot;
+    Variable = &quot;#4EC9B0&quot;
+    String = &quot;#CE9178&quot;
+    Operator = &quot;#C586C0&quot;
+    Comment = &quot;#6A9955&quot;
+    InlinePrediction = &quot;#666666&quot;
+}
+
+# OhMyPosh 美化主题
+oh-my-posh init pwsh --config &quot;$env:POSH_THEMES_PATH/paradox.omp.json&quot; | Invoke-Expression
+
+# Git 显示优化
+$GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $true
+$GitPromptSettings.BranchColor.ForegroundColor = 'Cyan'
+
+# 常用别名
+Set-Alias ll Get-ChildItem
+Set-Alias g git
+Set-Alias t tree
+
+</code></pre>
+<h2 id="六-ohmyposh-配置文件位置详解">六、OhMyPosh 配置文件位置详解</h2>
+<p>很多新手搞混：<strong>Profile ≠ OhMyPosh 配置</strong></p>
+<ul>
+<li>
+<p><strong>Profile</strong>：PowerShell 启动脚本，负责加载模块、执行初始化</p>
+</li>
+<li>
+<p><strong>OhMyPosh 主题文件</strong>：.omp.json 样式配置</p>
+</li>
+</ul>
+<h3 id="1-官方主题默认路径">1. 官方主题默认路径</h3>
+<pre><code class="language-Plain"># 打开主题目录
+explorer $env:POSH_THEMES_PATH
+</code></pre>
+<p>默认存放所有官方主题，不建议直接修改，更新会覆盖。</p>
+<h3 id="2-自定义主题推荐路径">2. 自定义主题推荐路径</h3>
+<p>自己修改的主题统一放这里，永久保留：</p>
+<pre><code class="language-Plain">$HOME/.config/oh-my-posh/
+</code></pre>
+<h2 id="七-常见报错-解决方案避坑">七、常见报错 &amp; 解决方案（避坑）</h2>
+<h3 id="1-set-psreadlineoption-historynoduplicates-true-报错">1. Set-PSReadLineOption -HistoryNoDuplicates $true 报错</h3>
+<p>原因：该参数是<strong>开关参数</strong>，不能赋值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mi>r</mi><mi>u</mi><mi>e</mi><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">true/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">u</span><span class="mord mathdefault">e</span><span class="mord">/</span></span></span></span>false。</p>
+<p>正确写法：</p>
+<pre><code class="language-Plain">Set-PSReadLineOption -HistoryNoDuplicates
+</code></pre>
+<h3 id="2-禁止运行脚本">2. 禁止运行脚本</h3>
+<pre><code class="language-Plain">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+</code></pre>
+<h3 id="3-终端图标乱码">3. 终端图标乱码</h3>
+<p>未安装 Nerd 字体，安装 Cascadia Code / MesloLGS NF，终端设置切换字体即可。</p>
+<h2 id="八-进阶日常高频实用模块推荐">八、进阶：日常高频实用模块推荐</h2>
+<ul>
+<li>
+<p><strong>PSScriptAnalyzer</strong>：PowerShell 代码检查、规范 Lint</p>
+</li>
+<li>
+<p><strong>Microsoft.PowerShell.Archive</strong>：压缩解压</p>
+</li>
+<li>
+<p><strong>Az / AWS.Tools</strong>：云服务器运维</p>
+</li>
+<li>
+<p><strong>Pode</strong>：PowerShell 搭建 Web 服务、API</p>
+</li>
+</ul>
+<h2 id="九-写在最后">九、写在最后</h2>
+<p>PowerShell 的强大不在于原生功能，而在于<strong>模块化扩展能力</strong>。</p>
+<p>搭配 PSReadLine 智能编辑 + OhMyPosh 高颜值界面 + posh-git 开发集成，完全可以替代 CMD、第三方终端工具，成为 Windows 下一站式开发、运维、自动化终端。</p>
+<h2 id="附录常用速查命令">附录：常用速查命令</h2>
+<pre><code class="language-Plain"># 重载配置
+. $PROFILE
+
+# 查看所有 OhMyPosh 主题
+oh-my-posh list
+
+# 导出当前主题
+oh-my-posh config export &quot;$HOME/.config/oh-my-posh/mytheme.omp.json&quot;
+
+# 查看 PSReadLine 全部快捷键
+Get-PSReadLineKeyHandler
+
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/unity-you-xi-fen-bian-lu-he-quan-ping-mo-shi-she-zhi-xuan-xiang/" class="post-title gt-a-link">
+                    Unity游戏分辨率和全屏模式设置选项
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://jackylvm.github.io</id>
+    <title>路虽远行则将至. 事虽难做则必成!</title>
+    <updated>2026-09-29T15:12:29.626Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://jackylvm.github.io"/>
+    <link rel="self" href="https://jackylvm.github.io/atom.xml"/>
+    <subtitle>&lt;h3&gt;低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!&lt;/h3&gt;</subtitle>
+    <logo>https://jackylvm.github.io/images/avatar.png</logo>
+    <icon>https://jackylvm.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2026, 路虽远行则将至. 事虽难做则必成!</rights>
+    <entry>
+        <title type="html"><![CDATA[从零添加原生系统托盘 (System Tray)]]></title>
+        <id>https://jackylvm.github.io/post/cong-ling-tian-jia-yuan-sheng-xi-tong-tuo-pan-system-tray/</id>
+        <link href="https://jackylvm.github.io/post/cong-ling-tian-jia-yuan-sheng-xi-tong-tuo-pan-system-tray/">
+        </link>
+        <updated>2026-09-29T13:44:43.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[完美实现背景透明与隐藏任务栏图标]]></title>
+        <id>https://jackylvm.github.io/post/wan-mei-shi-xian-bei-jing-tou-ming-yu-yin-cang-ren-wu-lan-tu-biao/</id>
+        <link href="https://jackylvm.github.io/post/wan-mei-shi-xian-bei-jing-tou-ming-yu-yin-cang-ren-wu-lan-tu-biao/">
+        </link>
+        <updated>2026-09-29T13:41:51.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PowerShell 模块完全指南：从入门到终端美化生产力实战]]></title>
+        <id>https://jackylvm.github.io/post/powershell-mo-kuai-wan-quan-zhi-nan-cong-ru-men-dao-zhong-duan-mei-hua-sheng-chan-li-shi-zhan/</id>
+        <link href="https://jackylvm.github.io/post/powershell-mo-kuai-wan-quan-zhi-nan-cong-ru-men-dao-zhong-duan-mei-hua-sheng-chan-li-shi-zhan/">
+        </link>
+        <updated>2026-09-20T03:01:10.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Unity游戏分辨率和全屏模式设置选项]]></title>
+        <id>https://jackylvm.github.io/post/unity-you-xi-fen-bian-lu-he-quan-ping-mo-shi-she-zhi-xuan-xiang/</id>
+        <link href="https://jackylvm.github.io/post/unity-you-xi-fen-bian-lu-he-quan-ping-mo-shi-she-zhi-xuan-xiang/">
+        </link>
+        <updated>2026-09-16T00:43:13.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[git config 的详细操作]]></title>
+        <id>https://jackylvm.github.io/post/git-config-de-xiang-xi-cao-zuo/</id>
+        <link href="https://jackylvm.github.io/post/git-config-de-xiang-xi-cao-zuo/">
+        </link>
+        <updated>2026-09-08T03:33:52.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[fnm + pm2 + ecosystem.config.js 的项目模板]]></title>
+        <id>https://jackylvm.github.io/post/fnm-pm2-ecosystemconfigjs-de-xiang-mu-mo-ban/</id>
+        <link href="https://jackylvm.github.io/post/fnm-pm2-ecosystemconfigjs-de-xiang-mu-mo-ban/">
+        </link>
+        <updated>2026-09-07T06:20:33.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pm2 的详细使用教程]]></title>
+        <id>https://jackylvm.github.io/post/pm2-de-xiang-xi-shi-yong-jiao-cheng/</id>
+        <link href="https://jackylvm.github.io/post/pm2-de-xiang-xi-shi-yong-jiao-cheng/">
+        </link>
+        <updated>2026-09-07T06:18:30.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用 pm2 管理 node 进程]]></title>
+        <id>https://jackylvm.github.io/post/shi-yong-pm2-guan-li-node-jin-cheng/</id>
+        <link href="https://jackylvm.github.io/post/shi-yong-pm2-guan-li-node-jin-cheng/">
+        </link>
+        <updated>2026-09-07T05:02:34.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[fnm 和 nvm 有什么区别？]]></title>
+        <id>https://jackylvm.github.io/post/fnm-he-nvm-you-shi-me-qu-bie/</id>
+        <link href="https://jackylvm.github.io/post/fnm-he-nvm-you-shi-me-qu-bie/">
+        </link>
+        <updated>2026-09-07T04:54:42.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用 fnm 管理 node]]></title>
+        <id>https://jackylvm.github.io/post/shi-yong-fnm-guan-li-node/</id>
+        <link href="https://jackylvm.github.io/post/shi-yong-fnm-guan-li-node/">
+        </link>
+        <updated>2026-09-07T04:53:20.000Z</updated>
+    </entry>
+</feed>

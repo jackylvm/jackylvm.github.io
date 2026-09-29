@@ -1,0 +1,352 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>完美实现背景透明与隐藏任务栏图标 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1790694717016">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1790694717016" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    完美实现背景透明与隐藏任务栏图标
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-09-29 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在 Unity 中开发 Windows 桌面宠物或悬浮窗工具时，开发者通常会面临一个经典的“深水区”冲突：既想让游戏窗口背景完全透明，又想在 Windows 任务栏中隐藏该程序的运行图标。传统的做法是修改窗口扩展样式为 <code>WS_EX_TOOLWINDOW</code>，但这往往会破坏 Unity 与 Windows 桌面窗口管理器（DWM）的渲染链，导致透明通道失效，画面变成黑底。</p>
+<p><a href="https://github.com/jackylvm/HelloWindowsAPI?tab=readme-ov-file">示例工程</a></p>
+<p>要完美同时实现这两个需求，我们需要将“透明渲染”与“任务栏隐藏”这两个操作彻底剥离。</p>
+<h3 id="核心实现原理">核心实现原理</h3>
+<p>解决方案的核心在于：<strong>保留标准的无边框透明窗口样式以确保 DWM 渲染正常，并直接调用 Windows Shell 的 COM 接口强制删除任务栏页签</strong>。</p>
+<ol>
+<li>
+<p><strong>绕过启动黑屏（Splash Screen）限制：</strong><br>
+免费版 Unity 强制显示启动 Logo，如果在 Logo 播放完毕前应用透明化 API，画面切换时透明度会被重置。利用协程配合 <code>UnityEngine.Rendering.SplashScreen.isFinished</code>，我们可以精准挂起代码，在 Logo 播放完毕且渲染管线稳定后再执行 API 调用。</p>
+</li>
+<li>
+<p><strong>设置无边框与置顶透明：</strong><br>
+利用 <code>GetActiveWindow</code> 获取当前窗口句柄，并通过 <code>DwmExtendFrameIntoClientArea</code> 将透明帧扩展到整个客户区。同时，使用 <code>SetWindowLong</code> 为窗口附加 <code>WS_EX_LAYERED</code> 属性，并结合 <code>SetLayeredWindowAttributes</code> 激活透明度渲染。利用 <code>SetWindowPos</code> 与 <code>HWND_TOPMOST</code> 参数确保窗口始终置顶。</p>
+</li>
+<li>
+<p><strong>COM 接口实现“图标消失术”：</strong><br>
+引入 GUID 为 <code>56FDF342-FD6D-11d0-958A-006097C9A090</code> 的 <code>ITaskbarList</code> COM 接口。在初始化 <code>HrInit()</code> 后，直接调用 <code>DeleteTab(hWnd)</code>，从任务栏中强行抹除当前窗口的图标。</p>
+</li>
+</ol>
+<h3 id="完整实现代码">完整实现代码</h3>
+<p>以下是完整的 <code>TransparentWindow.cs</code> 脚本，您可以直接将其挂载到场景中永远不会被销毁的对象上：</p>
+<pre><code class="language-csharp">// ***********************************************************************************
+// FileName: TransparentWindow.cs
+// Description: 实现窗口背景透明并利用 COM 接口隐藏任务栏图标
+// *************************************************************************************
+
+using System;
+using System.Collections;
+using System.Runtime.InteropServices;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+// ReSharper disable CheckNamespace
+namespace OnyxCore.UnityCore.Runtime
+{
+    public class TransparentWindow : MonoBehaviour
+    {
+        [DllImport(&quot;User32.dll&quot;)]
+        private static extern int MessageBox(IntPtr hWnd, string text, string caption, int type);
+
+        [DllImport(&quot;User32.dll&quot;)]
+        private static extern IntPtr GetActiveWindow();
+
+        [DllImport(&quot;User32.dll&quot;)]
+        private static extern IntPtr SetWindowLong(IntPtr hWnd, int index, int value);
+
+        [DllImport(&quot;User32.dll&quot;)]
+        private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, int uFlags);
+
+        [DllImport(&quot;User32.dll&quot;)]
+        private static extern int SetLayeredWindowAttributes(IntPtr hWnd, uint crKey, byte bAlpha, uint dwFlags);
+
+        // --- COM 接口：用于直接操作任务栏 (重点在这里) ---
+        [ComImport]
+        [Guid(&quot;56FDF344-FD6D-11d0-958A-006097C9A090&quot;)]
+        public class TaskbarList
+        {
+        }
+
+        [ComImport]
+        [Guid(&quot;56FDF342-FD6D-11d0-958A-006097C9A090&quot;)]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface ITaskbarList
+        {
+            void HrInit();
+            void AddTab(IntPtr hwnd);
+            void DeleteTab(IntPtr hwnd);
+            void ActivateTab(IntPtr hwnd);
+            void SetActiveAlt(IntPtr hwnd);
+        }
+
+        private struct MARGINS
+        {
+            public int cxLeftWidth;
+            public int cxRightWidth;
+            public int cyTopHeight;
+            public int cyBottomHeight;
+        }
+
+        [DllImport(&quot;Dwmapi.dll&quot;)]
+        private static extern uint DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS margins);
+
+        const int GWL_EXSTYLE = -20;
+
+        const int WS_EX_TRANSPARENT = 0x00000020;
+        const int WS_EX_LAYERED = 0x00080000;
+
+        static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+
+        const uint LWA_COLORKEY = 0x00000001;
+
+        // Start is called before the first frame update
+        private void Start()
+        {
+            if (!Application.isEditor)
+            {
+                Application.runInBackground = true;
+                // 依然需要等待 Logo 播放完毕
+                StartCoroutine(WaitSplashScreenAndApply());
+            }
+        }
+
+        IEnumerator WaitSplashScreenAndApply()
+        {
+            // 1. 等待 Unity 启动动画结束
+            while (!SplashScreen.isFinished)
+            {
+                yield return null;
+            }
+
+            // 2. 额外缓冲 0.5 秒，确保渲染管线稳定
+            yield return new WaitForSeconds(0.5f);
+
+            // 3. 执行透明化和隐藏任务栏图标
+            ApplyTransparentAndHideTaskbar();
+        }
+
+        void ApplyTransparentAndHideTaskbar()
+        {
+            var hWnd = GetActiveWindow();
+            var margins = new MARGINS { cxLeftWidth = -1 };
+            DwmExtendFrameIntoClientArea(hWnd, ref margins);
+
+            SetWindowLong(hWnd, GWL_EXSTYLE, WS_EX_LAYERED);
+            SetLayeredWindowAttributes(hWnd, 0, 0, LWA_COLORKEY);
+
+            SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, 0);
+
+            try
+            {
+                ITaskbarList taskbar = (ITaskbarList)new TaskbarList();
+                taskbar.HrInit();
+                taskbar.DeleteTab(hWnd); // 任务栏图标消失术
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(&quot;隐藏任务栏图标失败: &quot; + e.Message);
+            }
+        }
+    }
+}
+
+</code></pre>
+<h3 id="必要的-unity-引擎设置">必要的 Unity 引擎设置</h3>
+<p>要让上述代码完美生效，您必须配合以下 Unity 渲染设置：</p>
+<ul>
+<li><strong>摄像机 (Main Camera)</strong>：将 <code>Clear Flags</code> 设置为 <strong>Solid Color</strong>，并将 <code>Background</code> 颜色的 Alpha (A) 值设为 <strong>0</strong>（完全透明）。</li>
+<li><strong>Player Settings</strong>：
+<ul>
+<li><code>Fullscreen Mode</code> 必须设为 <strong>Fullscreen Window</strong>。</li>
+<li><strong>务必取消勾选</strong> <code>Use DXGI Flip Model Swapchain for D3D11</code>，否则 DWM 透明层将直接失效。</li>
+</ul>
+</li>
+</ul>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/powershell-mo-kuai-wan-quan-zhi-nan-cong-ru-men-dao-zhong-duan-mei-hua-sheng-chan-li-shi-zhan/" class="post-title gt-a-link">
+                    PowerShell 模块完全指南：从入门到终端美化生产力实战
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

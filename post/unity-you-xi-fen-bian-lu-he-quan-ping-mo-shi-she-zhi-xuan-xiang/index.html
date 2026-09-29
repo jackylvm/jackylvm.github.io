@@ -1,0 +1,318 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity游戏分辨率和全屏模式设置选项 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1790694717016">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1790694717016" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity游戏分辨率和全屏模式设置选项
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-09-16 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="unity-踩坑实录彻底搞懂游戏分辨率与全屏模式设置">Unity 踩坑实录：彻底搞懂游戏分辨率与全屏模式设置</h1>
+<p>在 Unity 开发中，制作一个“画面设置”菜单看起来是件极其简单的事情。但如果 API 使用不当，玩家在切换全屏或修改分辨率时，经常会遇到画面连闪两次、UI 错位甚至状态不同步的 Bug。</p>
+<p>本文将梳理 Unity 中关于屏幕设置的核心 API，并提供一套适用于现代 Windows 桌面游戏的标准实现方案。</p>
+<h2 id="1-核心-api-角色解析别再混用它们了">1. 核心 API 角色解析：别再混用它们了！</h2>
+<p>处理分辨率和窗口状态时，最常见的错误就是混用 <code>Screen.fullScreen</code>、<code>FullScreenMode</code> 和 <code>Screen.SetResolution</code>。理清它们的关系，只需记住一个核心原则：</p>
+<ul>
+<li><strong><code>FullScreenMode</code>（蓝图）</strong>：它是一个枚举类型，精确描述了窗口的具体形态（独占全屏、无边框、窗口化等）。它本身不执行任何操作。</li>
+<li><strong><code>Screen.SetResolution</code>（执行者）</strong>：它是向操作系统发送指令的<strong>唯一推荐通道</strong>。它可以同时修改画面的宽高和窗口形态。</li>
+<li><strong><code>Screen.fullScreen</code>（观察者）</strong>：这是一个只读状态（<code>bool</code>）。只要当前不是窗口化（Windowed），它就是 <code>true</code>。</li>
+</ul>
+<p><strong>🚫 避坑指南：绝对不要连环调用</strong><br>
+很多新手会这样写代码：</p>
+<pre><code class="language-csharp">Screen.fullScreen = true; // 系统触发一次全屏切换
+Screen.SetResolution(1920, 1080, FullScreenMode.FullScreenWindow); // 系统紧接着又触发一次
+
+</code></pre>
+<p>给 <code>Screen.fullScreen</code> 赋值在底层会立刻触发一次窗口状态重置，导致画面闪烁。<strong>正确做法永远是只调用一次 <code>Screen.SetResolution</code>，把全屏模式作为参数传进去。</strong></p>
+<h2 id="2-现代-pc-游戏的三大标准显示模式">2. 现代 PC 游戏的三大标准显示模式</h2>
+<p>对于 Windows 桌面游戏，我们不需要把 Unity 原生的所有 <code>FullScreenMode</code> 都暴露给玩家（例如 macOS 专用的最大化窗口）。通常只需提供以下三个标准选项：</p>
+<ol>
+<li><strong>无边框全屏 (Borderless / <code>FullScreenWindow</code>)</strong></li>
+</ol>
+<ul>
+<li><strong>现代 PC 游戏的默认首选</strong>。本质是一个与显示器同分辨率的无边框窗口，玩家使用 <code>Alt+Tab</code> 切屏时极其顺滑，不会黑屏，对多屏用户非常友好。</li>
+</ul>
+<ol start="2">
+<li><strong>独占全屏 (Exclusive Fullscreen / <code>ExclusiveFullScreen</code>)</strong></li>
+</ol>
+<ul>
+<li><strong>追求极限性能的选择</strong>。绕过 Windows 桌面窗口管理器 (DWM)，帧率最高、延迟最低。但切出游戏时会有明显的黑屏卡顿。</li>
+</ul>
+<ol start="3">
+<li><strong>窗口模式 (Windowed / <code>Windowed</code>)</strong></li>
+</ol>
+<ul>
+<li>标准的带标题栏系统窗口，适合低分辨率运行或需要频繁与桌面交互的场景。</li>
+</ul>
+<h2 id="3-标准-c-实现方案-结合-ugui-textmeshpro">3. 标准 C# 实现方案 (结合 UGUI &amp; TextMeshPro)</h2>
+<p>下面是一套可以直接拿来用的设置面板控制脚本。它在游戏启动时会自动获取设备支持的分辨率，并将其填充到 <code>TMP_Dropdown</code> 中，同时使用 <code>Toggle</code> 来控制全屏开关。</p>
+<pre><code class="language-csharp">using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class VideoSettings : MonoBehaviour
+{
+    [Header(&quot;UI 引用&quot;)]
+    public TMP_Dropdown resolutionDropdown;
+    public Toggle fullscreenToggle;
+
+    private Resolution[] resolutions;
+
+    void Start()
+    {
+        // 1. 获取设备支持的分辨率并初始化 UI
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        fullscreenToggle.isOn = Screen.fullScreen; // 仅作为状态读取
+
+        List&lt;string&gt; options = new List&lt;string&gt;();
+        int currentResolutionIndex = 0;
+
+        // 2. 遍历并填充下拉菜单
+        for (int i = 0; i &lt; resolutions.Length; i++)
+        {
+            string option = $&quot;{resolutions[i].width} x {resolutions[i].height}&quot;;
+            
+            // 去重（防止同分辨率不同刷新率导致多条重复项）
+            if (!options.Contains(option))
+            {
+                options.Add(option);
+            }
+
+            // 记录当前屏幕分辨率的索引
+            if (resolutions[i].width == Screen.width &amp;&amp; resolutions[i].height == Screen.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+
+        // 3. 监听 UI 事件
+        resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
+        fullscreenToggle.onValueChanged.AddListener(OnFullscreenToggled);
+    }
+
+    /// &lt;summary&gt;
+    /// 修改分辨率，保持当前的全屏状态
+    /// &lt;/summary&gt;
+    public void OnResolutionChanged(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
+    }
+
+    /// &lt;summary&gt;
+    /// 切换全屏状态（推荐使用无边框全屏）
+    /// &lt;/summary&gt;
+    public void OnFullscreenToggled(bool isFullscreen)
+    {
+        FullScreenMode mode = isFullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+        // 一次性应用分辨率和窗口状态
+        Screen.SetResolution(Screen.width, Screen.height, mode);
+    }
+}
+
+</code></pre>
+<h2 id="4-进阶打磨细节">4. 进阶打磨细节</h2>
+<p>在将这套系统接入你的游戏工程时，还有几个小细节值得注意：</p>
+<ul>
+<li><strong>无边框模式的逻辑锁定</strong>：当玩家选择“无边框全屏”时，游戏应强制使用显示器的原生分辨率，此时可以在 UI 逻辑中禁用分辨率下拉菜单，防止画面拉伸。</li>
+<li><strong>鼠标限制</strong>：如果是射击或 3D 动作游戏，在窗口化模式下务必加上 <code>Cursor.lockState = CursorLockMode.Confined;</code>，防止玩家在激战中鼠标点到桌面导致游戏失去焦点。</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>总结：</strong> 做好画面设置模块并不难，关键在于克制对 API 的重复调用。把 <code>Screen.SetResolution</code> 当作唯一的指令出口，你的设置菜单就会变得非常稳健。</p>
+</blockquote>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/git-config-de-xiang-xi-cao-zuo/" class="post-title gt-a-link">
+                    git config 的详细操作
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
