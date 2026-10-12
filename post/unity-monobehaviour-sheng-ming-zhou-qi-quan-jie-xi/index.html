@@ -1,0 +1,331 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Unity MonoBehaviour 生命周期全解析 | 路虽远行则将至. 事虽难做则必成!</title>
+
+<link rel="shortcut icon" href="https://jackylvm.github.io/favicon.ico?v=1791775500100">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://jackylvm.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q55W99FYVJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q55W99FYVJ');
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            路虽远行则将至. 事虽难做则必成!
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://ursamajorx.com/app/home" class="menu gt-a-link" target="_blank">
+                            大熊座
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://github.com/jackylvm" class="menu gt-a-link" target="_blank">
+                            Github
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/na-xie-ji-li-zi-ji-de-dong-xi" class="menu gt-a-link">
+                            座右铭
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="https://jackylvm.github.io/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1791775500100" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Unity MonoBehaviour 生命周期全解析
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2026-10-11 ·
+                    </time>
+                    
+                        <a href="https://jackylvm.github.io/tag/mL7ofndKNl/" class="post-tags">
+                            # Unity
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>在Unity开发中，<code>MonoBehaviour</code> 是所有脚本的基石。无论是控制主角移动、管理UI系统，还是处理复杂的AI逻辑，我们都在和 <code>MonoBehaviour</code> 的生命周期函数打交道。</p>
+<p>很多初学者在刚接触Unity时，往往会把所有代码都塞进 <code>Start</code> 和 <code>Update</code> 里，导致后期出现各种诡异的Bug：比如对象获取不到、物理穿模、摄像机抖动，甚至严重的性能问题。这篇文章将从最基础的执行顺序开始，带你彻底理清 Unity 生命周期，并深入探讨动态加载和对象池架构下的生命周期流转。</p>
+<hr>
+<h2 id="阶段一标准生命周期的四大阶段">阶段一：标准生命周期的四大阶段</h2>
+<p>当你将一个脚本直接挂载到场景中的 GameObject 上时，它的生命周期遵循一条固定的单向时间线。我们可以将其划分为四个主要阶段：</p>
+<h3 id="1-初始化阶段-initialization">1. 初始化阶段 (Initialization)</h3>
+<p>这是脚本加载后的“准备工作”区域，主要涉及三个函数：</p>
+<ul>
+<li>
+<p><strong><code>Awake()</code></strong>：脚本实例被加载时调用<strong>一次</strong>。这是生命周期的起点，即使物体处于未激活状态（只要脚本存在），也会执行。</p>
+</li>
+<li>
+<p><em>最佳实践</em>：用于获取自身组件（<code>GetComponent</code>）或进行基础变量赋值。<strong>不要在这里跨物体查找组件</strong>，因为其他物体的 Awake 可能还未执行。</p>
+</li>
+<li>
+<p><strong><code>OnEnable()</code></strong>：脚本或物体每次<strong>被激活</strong>时调用。</p>
+</li>
+<li>
+<p><em>最佳实践</em>：用于注册事件监听器（Event Listener）、恢复状态。</p>
+</li>
+<li>
+<p><strong><code>Start()</code></strong>：在首次 <code>Update</code> 之前调用<strong>一次</strong>。</p>
+</li>
+<li>
+<p><em>最佳实践</em>：此时场景内所有物体的 <code>Awake</code> 都已执行完毕，适合进行依赖于其他游戏对象的初始化操作。</p>
+</li>
+</ul>
+<h3 id="2-物理更新阶段-physics">2. 物理更新阶段 (Physics)</h3>
+<ul>
+<li><strong><code>FixedUpdate()</code></strong>：以固定的时间间隔执行（默认0.02秒），不受游戏帧率波动影响。</li>
+<li><em>最佳实践</em>：<strong>所有涉及到刚体（Rigidbody）的物理受力、速度修改必须放在这里</strong>，否则会导致物理表现在不同配置的机器上出现严重差异或穿模。</li>
+</ul>
+<h3 id="3-逻辑更新阶段-game-logic">3. 逻辑更新阶段 (Game Logic)</h3>
+<ul>
+<li>
+<p><strong><code>Update()</code></strong>：每一帧调用一次，执行频率取决于硬件性能（FPS）。</p>
+</li>
+<li>
+<p><em>最佳实践</em>：处理绝大部分非物理游戏逻辑，如检测玩家键盘/鼠标输入、处理倒计时、常规的 Transform 移动等。</p>
+</li>
+<li>
+<p><strong><code>LateUpdate()</code></strong>：在当前帧的所有 <code>Update</code> 执行完毕后调用。</p>
+</li>
+<li>
+<p><em>最佳实践</em>：<strong>摄像机跟随的绝对首选</strong>。如果在 Update 中处理跟随，可能会因为执行顺序问题（相机先动，角色后动）导致画面剧烈抖动。放在 LateUpdate 中能确保角色完成所有移动后，相机再去平滑追踪。</p>
+</li>
+</ul>
+<h3 id="4-拆卸与销毁阶段-teardown">4. 拆卸与销毁阶段 (Teardown)</h3>
+<ul>
+<li>
+<p><strong><code>OnDisable()</code></strong>：脚本或物体每次<strong>被禁用</strong>时调用。</p>
+</li>
+<li>
+<p><em>最佳实践</em>：注销事件监听（极其重要，防止内存泄漏），重置临时特效。</p>
+</li>
+<li>
+<p><strong><code>OnDestroy()</code></strong>：物体被彻底销毁前调用一次。</p>
+</li>
+<li>
+<p><em>最佳实践</em>：进行最终的断后清理，释放动态生成的材质或断开底层网络连接。</p>
+</li>
+</ul>
+<hr>
+<h2 id="阶段二动态添加与实例化的时机陷阱">阶段二：动态添加与实例化的“时机陷阱”</h2>
+<p>随着项目的深入，你肯定会脱离手动拖拽脚本，开始使用代码动态添加组件（<code>AddComponent</code>）或实例化预制体（<code>Instantiate</code>）。这时候，生命周期的<strong>执行时机</strong>就会发生变化，这也是最容易踩坑的地方。</p>
+<h3 id="addcomponent-的瞬间执行">AddComponent 的“瞬间执行”</h3>
+<p>当你调用 <code>AddComponent&lt;T&gt;()</code> 的那一刻，Unity 会<strong>同步且瞬间</strong>地执行该脚本的 <code>Awake</code> 和 <code>OnEnable</code>。</p>
+<pre><code class="language-csharp">// 陷阱示例
+PlayerStats stats = gameObject.AddComponent&lt;PlayerStats&gt;(); 
+// 当代码运行到这里时，PlayerStats 的 Awake 已经执行完毕了！
+stats.hp = 100; // 如果 Awake 依赖 hp，已经晚了
+
+</code></pre>
+<h3 id="instantiate-与未激活预制体的妙用">Instantiate 与未激活预制体的妙用</h3>
+<p><code>Instantiate</code> 实例化预制体时，如果预制体处于激活状态，其表现与 <code>AddComponent</code> 相同（瞬间执行 Awake/OnEnable）。</p>
+<p><strong>进阶技巧：</strong> 为了解决动态生成时的参数传递问题，老手通常会实例化一个<strong>未激活</strong>的预制体。<br>
+由于对象未激活，实例化时它的所有生命周期函数都处于静默状态。此时你可以安全地传递依赖数据，最后手动激活它：</p>
+<pre><code class="language-csharp">// 1. 实例化未激活的预制体
+GameObject enemyObj = Instantiate(inactiveEnemyPrefab);
+
+// 2. 安全传参（此时 Awake 尚未执行，不会报错）
+EnemyScript enemy = enemyObj.GetComponent&lt;EnemyScript&gt;();
+enemy.InitDamage(50); 
+enemy.SetTarget(playerTransform);
+
+// 3. 手动激活触发生命周期，完美运转
+enemyObj.SetActive(true); 
+
+</code></pre>
+<hr>
+<h2 id="阶段三对象池架构下的生命周期反转">阶段三：对象池架构下的生命周期反转</h2>
+<p>在开发弹幕射击或需要大量生成怪物的游戏中，频繁调用 <code>Instantiate</code> 和 <code>Destroy</code> 会引发严重的 GC（垃圾回收）卡顿。我们通常会引入对象池（Object Pool）模式。</p>
+<p>在对象池模式下，对象不再经历生死，而是通过 <code>SetActive(true/false)</code> 在“工作”与“休眠”之间切换。生命周期函数的作用也随之发生了戏剧性的反转：</p>
+<ol>
+<li><strong>一生一次的 <code>Awake</code>：</strong> 仅在对象池初次生成备用对象时执行。这里只做基础组件获取（如 GetComponent）。绝对不要在这里做状态重置（如恢复满血），因为第二次取出时它不会再执行。</li>
+<li><strong>重获新生的 <code>OnEnable</code>：</strong> 这是对象池模式下的<strong>核心初始化重置区</strong>。每次从池中取出对象时都会触发。你需要在这里重置速度、重置存活时间、播放出场特效。</li>
+<li><strong>功成身退的 <code>OnDisable</code>：</strong> 这是对象池模式下的<strong>核心清理区</strong>。当对象打中目标或超时被放回池中时触发。必须在这里清理残留轨迹（TrailRenderer）、停止循环音效、取消协程（CancelInvoke），确保它干干净净地休眠。</li>
+</ol>
+<pre><code class="language-csharp">// 对象池子弹标准模板
+public class PoolBullet : MonoBehaviour 
+{
+    private Rigidbody2D rb;
+    private TrailRenderer trail;
+
+    void Awake() 
+    {
+        // 仅执行一次：获取基础组件
+        rb = GetComponent&lt;Rigidbody2D&gt;();
+        trail = GetComponent&lt;TrailRenderer&gt;();
+    }
+
+    void OnEnable() 
+    {
+        // 每次取出执行：赋予初速度，开启自动回收倒计时
+        rb.velocity = transform.up * 20f; 
+        Invoke(&quot;Recycle&quot;, 3f); 
+    }
+
+    void OnDisable() 
+    {
+        // 每次放回池子执行：中断回收逻辑，清理历史拖尾
+        CancelInvoke(&quot;Recycle&quot;); 
+        trail.Clear(); 
+    }
+
+    private void Recycle()
+    {
+        gameObject.SetActive(false);
+    }
+}
+
+</code></pre>
+<p>理解生命周期不仅仅是背诵执行顺序，更是理解 Unity 引擎的底层调度逻辑。当你能熟练根据初始化时机和对象池架构去分配代码职责时，你的游戏架构将会变得更加健壮，性能瓶颈也会大幅度减少。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://jackylvm.github.io/post/cong-ling-tian-jia-yuan-sheng-xi-tong-tuo-pan-system-tray/" class="post-title gt-a-link">
+                    从零添加原生系统托盘 (System Tray)
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><h3>低级的欲望,放纵即可获得;高级的欲望,只有克制才能达到!</h3></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/jackylvm" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jackylvm.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
